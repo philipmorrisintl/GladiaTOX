@@ -1,0 +1,63 @@
+%% weave depends: l5_sngl, aes
+
+<<echo=FALSE, results=tex>>=
+pot_dat <- merge(l5_sngl[hitc == 1 & !is.na(chnm) & (modl_acc < 1 | modl_acb < 1), 
+                     list(chnm, m4id, modl, modl_ga, 
+                          modl_acb, modl_acc, aeid)],
+             aes,
+             by = "aeid")
+setkey(pot_dat, m4id)
+pot_dat <- pot_dat[ , list(chnm, m4id, aeid, aenm,
+                   modl, modl_acb, modl_acc, modl_ga)]
+invisible(pot_dat[ , modl_ga  := signif(10^modl_ga,  3)])
+invisible(pot_dat[ , modl_acb := signif(10^modl_acb, 3)])
+invisible(pot_dat[ , modl_acc := signif(10^modl_acc, 3)])
+setkey(pot_dat, aeid, modl_acb, chnm)
+pot_dat <- pot_dat[ , lapply(.SD, sanitize)]
+
+aenm_aeid <- pot_dat[ , paste0(unique(aenm), " (AEID", unique(aeid), ")")]
+aeid_lens <- c(0, which(!duplicated(pot_dat$aeid)) - 1)
+
+pot_dat <- pot_dat[ , list(chnm, m4id, modl, modl_acb, modl_acc, modl_ga)]
+setnames(pot_dat, 
+         c("Chemical Name", "m4id", "Model", "ACB", "ACC", "AC$_\\text{50}$"))
+
+cont_note <- paste0("\\hline\n\\endhead\n",
+                    "\\hline\n",
+                    "\\multicolumn{", dim(pot_dat)[2], "}{l}",
+                    "{\\footnotesize Continued on next page}\n", 
+                    "\\endfoot\n",
+                    "\\endlastfoot\n")
+
+add.to.row <- list(pos = as.list(aeid_lens), 
+                   command = c(cont_note, 
+                               paste0(" \\multicolumn{", 
+                                      dim(pot_dat)[2], 
+                                      "}{C{15.5cm}}{", 
+                                      aenm_aeid,
+                                      "} \\\\ "))) 
+
+pot_dat_cap <- paste("Actives with an ACB or ACC less than 10 micromolar, ordered",
+                     "by ACB and divided by assay endpoint. For stimuli tested",
+                     "in an assay more than once, only",
+                     "one representative sample is listed in the table above.",
+                     "m4id -- the primary key for the results in",
+                     "the database;",
+                     "Model -- the winning model;",
+                     "ACB -- the activity concentration at the endpoint noise",
+                     "baseline (ACB) for the winning model;",
+                     "ACC -- the activity concentration at the endpoint activity",
+                     "cutoff (ACC) for the winning model;",
+                     "AC$_\\text{50}$ -- the AC$_\\text{50}$",
+                     "value for the winning model.",
+                     "All concentrations are in micromolar.")
+pot_act <- xtable(pot_dat, caption = pot_dat_cap)
+suppressWarnings(align(pot_act) <- "lP{7.5cm}P{1.6cm}P{1.6cm}P{1.6cm}P{1.6cm}P{1.6cm}")
+print(pot_act, include.rownames = FALSE,
+      hline.after=-1, floating = FALSE,
+      tabular.environment = "longtable",
+      ssize = "\\setlength{\\tabcolsep}{4pt}",
+      add.to.row = add.to.row, 
+      sanitize.text.function = function(x) x)
+
+@

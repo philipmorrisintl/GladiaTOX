@@ -1,0 +1,151 @@
+%% Create fp ('file-pointer') to simplify syntax
+<% fp <- function(x) {system.file("report_templates", x, package = "GladiaTOX")} %>
+
+%% Insert report header
+<% brew(fp("header.Rnw")) %>
+
+%% Source report data
+<% source(fp("brewData.R"), local = TRUE) %>
+
+%% Load data specific to the all report
+<%
+if (is.null(params$chids)) {
+  chids <- l5_sngl[hitc == 1 & !is.na(chid), unique(chid)]
+} else{
+  chids <- params$chids
+}
+%>
+
+%% Insert weave data
+<% brew(fp("weaveData.Rnw")) %>
+
+\begin{document}
+\SweaveOpts{concordance=true}
+\hyphenpenalty=10000
+\tolerance=10000
+
+%% Create title page
+\begin{titlepage}
+    \begin{center}
+        \includegraphics[width=\textwidth]{<%= system.file("report_templates", "pmi_logo.jpg", package = "GladiaTOX") %>} \\
+        \vspace{2cm}
+        \Huge \textbf{High-Content Screening Report} \\
+        \vspace{2cm}
+        \LARGE
+        <%= report_title %> \\ \hfill \\
+        Study Name: <%= asnm %> \\
+        \vspace{2cm}
+        Prepared By: \\
+        <%= report_author %> \\
+        \vspace{2cm}
+        \Sexpr{format(Sys.Date(), format = "%B %d, %Y")} \\
+        \vfill
+        \normalsize
+        \emph{Report generated with the GladiaTOX R package.}
+    \end{center}
+\end{titlepage}
+\clearpage
+
+%% Add table of contents
+\setcounter{tocdepth}{2}
+\tableofcontents
+\clearpage
+
+\section{Study Overview}
+
+This report summarizes the results from the <%= asnm %> study. This study included \Sexpr{l5[ , lu(chid)]} unique chemicals tested across \Sexpr{aes[ , lu(aid)]} multiplexed high-content assays. The \Sexpr{aes[ , lu(aid)]} multiplexed assays, broken out by treatment duration, produced \Sexpr{aes[ , lu(acid)]} components or readouts, that were analyzed for both increases or decreases in concentration-dependent activity.
+
+Section \ref{assay_tbl} provides an overview of the assays tested within this study. Section \ref{stim_tbl} provides an overview of the stimuli tested within this study.
+
+The text below this point is not in the report format. It is added based on an additional file passed to the \texttt{tcplReportAsid} function.
+
+%% Add the summary file, passed by the user
+<%= if (!is.null(sumfile)) brew(sumfile) %>
+\clearpage
+
+\subsection{Assay Overview Table}
+\label{assay_tbl}
+%% Insert assay overview table
+<% brew(fp("assay_tbl.Rnw")) %>
+\clearpage
+
+\subsection{Stimulus Overview Table}
+\label{stim_tbl}
+<% brew(fp("stim_tbl.Rnw")) %>
+\clearpage
+
+\subsection{Potent Actives}
+\label{pot_actives}
+<% brew(fp("pot_actives.Rnw")) %>
+\clearpage
+
+\section{Stimulus Summaries}
+
+<% for (stim in chids) { -%>
+
+\subsection{<%= l5_sngl[chid == stim, sanitize(unique(chnm))] %>}
+
+<% brew(fp("stim_text.Rnw")) %>
+
+\subsubsection{Stimulus Information}
+
+<% brew(fp("stim_info.Rnw")) %>
+
+<% brew(fp("stim_dist_fig.Rnw")) %>
+\clearpage
+
+\subsubsection{Summary Table}
+\label{<%= stim %>_summtbl}
+<% brew(fp("stim_summtbl.Rnw")) %>
+\clearpage
+
+\subsubsection{Concentration-Response Plots}
+\label{<%= stim %>_crplt}
+<% brew(fp("crplt.Rnw")) %>
+\clearpage
+
+<% } %> %% END STIM FOR-LOOP
+\clearpage
+
+\section{Assay Summaries}
+
+<% for (a in aes[ , unique(aid)]) { -%>
+\subsection{<%= aes[J(a), sanitize(unique(anm))] %>}
+
+\subsubsection{Endpoint overview for <%= aes[J(a), sanitize(unique(anm))] %>.}
+<% brew(fp("aeid_smry.Rnw")) %>
+
+\subsubsection{Data transformations for <%= aes[J(a), sanitize(unique(anm))] %>.}
+
+<% brew(fp("dataTrans.Rnw")) %>
+
+<% for (ae in aes[aid == a, unique(aeid)]) { -%>
+\clearpage
+
+\subsubsection{Fit categories for the <%= aes[aeid == ae, sanitize(unique(aenm))] %> endpoint.}
+<% brew(fp("fitc_fig.Rnw")) %>
+
+<% } %> %% END ENDPOINT FOR-LOOP
+\clearpage
+
+<% } %> %% END ASSAY FOR-LOOP
+\clearpage
+
+\appendix
+
+\section{Figure Explanations}
+
+<% brew(fp("crv_labeled.Rnw")) %>
+
+\section{Flag Descriptions}
+\label{apdx-flag}
+
+<% brew(fp("flagDesc.Rnw")) %>
+\clearpage
+
+\section{Normalization Methods}
+\label{apdx-norm}
+
+<% brew(fp("mthdsTbl.Rnw")) %>
+
+\end{document}

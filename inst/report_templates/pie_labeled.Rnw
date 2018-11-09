@@ -1,0 +1,15 @@
+%% brew depend: fp
+
+\begin{center}
+\includegraphics[width=4in]{<%= fp("pie_labeled.pdf") %>}
+\end{center}
+
+\begin{enumerate}
+\item Each slice that does not touch the center represents the mean minimum effective concentration (MEC) defined by the winning model across all replicates for a chemical-component pair. The MEC (the $\mathit{modl\_acb}$ parameter in the processing software) is calculated as the modeled concentration where the winning model equals the statistical baseline (the $\mathit{bmad}$ parameter in the processing software) for the assay component. No MEC is calculated when the modeled top value does not cross the baseline. 
+
+\item Colored slices that touch the center indicate that none of the tested replicates for the indicated chemical-component pair had modeled top values that were greater than the baseline. 
+
+\item Gray slices indicate the chemical-component pair was not tested. 
+
+\item The numbers and dashed gray lines represent the concentration values in micromolar units.
+\end{enumerate}

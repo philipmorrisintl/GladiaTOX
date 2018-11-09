@@ -1,0 +1,35 @@
+%% brew depends: stim, l5
+
+<% 
+stim_ae <- l5[chid == stim, unique(aeid)]
+stim_ac <- aes[aeid %in% stim_ae][order(clps, timepoint_hr), unique(acid)]
+stim_ac <- stim_ac[order(stim_ac)]
+ac_grps <- split(stim_ac, ceiling(seq_along(stim_ac)/6))
+%>
+
+<% for (ac_grp in seq_along(ac_grps)) { -%>
+
+\hfill \par
+\setkeys{Gin}{width=1\textwidth}
+\begin{centering}
+\begin{figure}[H]
+<% for (ac in ac_grps[[ac_grp]]) { -%>
+\begin{subfigure}{0.49\textwidth}
+<% if (which(ac == ac_grps[[ac_grp]]) == 1) { -%> 
+\addtocounter{subfigure}{<%= (ac_grp - 1)*6 %>} 
+<% } %>
+\caption{<%= sanitize(aes[acid == ac, unique(acnm)]) %>}
+<<<%= paste0("stim", stim, "acid", ac) %>,fig=true,strip.white=true,echo=false,height=4,width=5,include=false>>=
+
+ae_vec <- c(<%= aes[acid == ac, paste(aeid, collapse = ", ")] %>)
+tcplPlotWin(chid = <%= stim %>, aeid = ae_vec, collapse = TRUE, bline = "coff")
+
+@
+\includegraphics[height=0.25\textheight,keepaspectratio]{<%= paste0(fname, "-stim", stim, "acid", ac) %>}
+\end{subfigure} <% if (which(ac == ac_grps[[ac_grp]]) %% 2 == 0) { -%> \par\bigskip <% } %>
+<% } %> %% END WIN CURVE SUBFIG LOOP
+\end{figure}
+\end{centering}
+\par
+
+<% } %> %% END WIN CURVE FIG LOOP

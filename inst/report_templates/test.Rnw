@@ -1,0 +1,93 @@
+%% Create fp ('file-pointer') to simplify syntax
+<% fp <- function(x) {system.file("report_templates", x, package = "GladiaTOX")} %>
+
+%% Insert report header
+<% brew(fp("header.Rnw")) %>
+
+%% Source report data
+<% source(fp("brewData.R"), local = TRUE) %>
+
+%% Load report-specific brew data 
+<%
+if (is.null(params$chids)) {
+  chids <- l5_sngl[hitc == 1 & !is.na(chid), unique(chid)]
+} else{
+  chids <- params$chids
+}
+c1 <- params$c1
+c2 <- params$c2
+cd <- tcplLoadChem(field = "chid", val = c(c1, c2))
+c1nm <- sanitize(cd[chid == c1, unique(chnm)])
+c2nm <- sanitize(cd[chid == c2, unique(chnm)])
+%>
+
+%% Insert weave data
+<% brew(fp("weaveData.Rnw")) %>
+
+<<echo=FALSE>>=
+l2 <- tcplLoadData(2, "acid", aes[ , unique(acid)])
+@
+
+
+\begin{document}
+\SweaveOpts{concordance=true}
+\hyphenpenalty=10000
+\tolerance=10000
+
+%% Create title page
+\begin{titlepage}
+    \begin{center}
+        \includegraphics[width=\textwidth]{<%= system.file("report_templates", "pmi_logo.jpg", package = "GladiaTOX") %>} \\
+        \vspace{2cm}
+        \Huge \textbf{High-Content Screening Chemical Comparison Report} \\
+        \vspace{2cm}
+        \LARGE
+        <%= report_title %> \\ \hfill \\
+        <%= c1nm %> \\
+        \& \\
+        <%= c2nm %> \\ \hfill \\
+        Study Name: <%= asnm %> \\
+        \vspace{2cm}
+        Prepared By: \\
+        <%= report_author %> \\
+        \vspace{2cm}
+        \Sexpr{format(Sys.Date(), format = "%B %d, %Y")} \\
+        \vfill
+        \normalsize
+        \emph{Technical assistance in preparing this report provided by Filer Consulting.}
+    \end{center}
+\end{titlepage}
+
+\clearpage
+
+%% Add table of contents
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\clearpage
+
+\section{Study Overview}
+
+This report summarizes the results from the <%= asnm %> study. This study included \Sexpr{l5[ , lu(chid)]} unique chemicals tested across \Sexpr{aes[ , lu(aid)]} multiplexed high-content assays. The \Sexpr{aes[ , lu(aid)]} multiplexed assays, broken out by treatment duration, produced \Sexpr{aes[ , lu(acid)]} components or readouts, that were analyzed for both increases or decreases in concentration-dependent activity.
+
+Section \ref{assay_tbl} provides an overview of the assays tested within this study. Section \ref{stim_tbl} provides an overview of the stimuli tested within this study.
+
+The text below this point is not in the report format. It is added based on an additional file passed to the \texttt{tcplReportAsid} function.
+
+%% Add the summary file, passed by the user
+<%= if (!is.null(sumfile)) brew(sumfile) %>
+
+<% brew(fp("pot_actives.Rnw")) %>
+
+
+<% for (a in aes[ , unique(aid)]) { -%>
+\clearpage
+\subsection{<%= aes[J(a), sanitize(unique(anm))] %>}
+
+\subsubsection{Endpoint overview for <%= aes[J(a), sanitize(unique(anm))] %>.}
+<% brew(fp("aeid_smry.Rnw")) %>
+
+<% } %> %% END ASSAY FOR-LOOP
+
+
+\end{document}

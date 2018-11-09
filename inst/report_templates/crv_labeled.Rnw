@@ -1,0 +1,22 @@
+%% brew depends: fp
+
+\begin{center}
+\includegraphics[width=5in]{<%= fp("crv_labeled.pdf") %>}
+\end{center}
+
+\begin{enumerate}
+\item Each color represents concentration-response data and the corresponding model for the sample given in the legend. If a sample is replacted more than once on a single assay plate, the plotted point represents the mean of the response values across one plate. The winning model is listed in parentheses next to the sample name. 
+
+\item Representative gain-loss (gnls) models. 
+
+\item Representative hill (hill) model. 
+
+\item Representative constant (csnt) model.
+
+\item Plotted response on the y-axis is relative to positive control data.
+
+\item The x-axis repersents concentration in micromolar units. 
+
+\item The diagonal lines represent $\pm$ 3*$\mathit{bmad}$. 
+
+\end{enumerate}

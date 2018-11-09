@@ -1,0 +1,61 @@
+%% brew depends: a
+%% weave depends: aes
+
+<<echo=FALSE,results=tex>>=
+ctran <- tcplMthdLoad(2, aes[J(<%= a %>), acid])[ , list(acid, mthd_id, ordr, mthd)]
+setorder(ctran, acid, ordr)
+ctran <- ctran[ , list(Methods = paste(paste0(mthd_id, " (", mthd, ")"), collapse = "; ")), by = acid]
+ctran_cap <- paste("Assay component-specific data transformations. These",
+                   "transformations are applied at the component level,",
+                   "therefore they apply to all associated endpoints.",
+                   "acid -- the assay component ID;",
+                   "Methods -- the transformation method ID(s) listed left-to-right",
+                   "by their execution order, with the method name in parentheses.",
+                   "Method descriptions can be found in Appendix \\ref{apdx-norm}.")
+ctran_tbl <- xtable(ctran, caption = ctran_cap)
+suppressWarnings(align(ctran_tbl) <- "lP{3cm}P{13cm}")
+print(ctran_tbl,
+      include.rownames = FALSE,
+      floating = TRUE,
+      table.placement = "H")
+@
+
+
+<<echo=FALSE,results=tex>>=
+ae <- aes[J(<%= a %>), aeid]
+etran <- list(tcplMthdLoad(lvl = 3, id = ae)[ , lvl := 3],
+              tcplMthdLoad(lvl = 5, id = ae)[ , lvl := 5],
+              tcplMthdLoad(lvl = 6, id = ae)[ , lvl := 6])
+etran <- rbindlist(etran, fill = TRUE)[ , nddr := NULL]
+setorder(etran, aeid, lvl, ordr)
+etran <- etran[ , list(Methods = paste(paste0(mthd_id, " (", mthd, ")"), collapse = "; ")), by = list(aeid, lvl)]
+invisible(etran[ , aeid := as.integer(aeid)])
+invisible(etran[ , lvl := as.integer(lvl)])
+setnames(etran, "lvl", "Level")
+
+etran_cap <- paste("Assay endpoint-specific data transformations.",
+                   "acid -- the assay component ID;",
+                   "Level -- the processing level at which the method is applied;",
+                   "Methods -- the transformation method ID(s) listed left-to-right",
+                   "by their execution order, with the method name in parentheses.",
+                   "Method descriptions can be found in Appendices",
+                   "\\ref{apdx-norm}, \\ref{apdx-flag}.")
+add.to.row <- list(pos = list(0), command = NULL) 
+command <- paste0("\\hline\n\\endhead\n",
+                  "\\hline\n",
+                  "\\multicolumn{3}{l}", 
+                  "{\\footnotesize Continued on next page}\n", 
+                  "\\endfoot\n",
+                  "\\endlastfoot\n")
+add.to.row$command <- command
+etran_tbl <- xtable(etran, caption = etran_cap)
+suppressWarnings(align(etran_tbl) <- "lP{1.5cm}P{1.5cm}P{13cm}")
+print(etran_tbl, 
+      include.rownames = FALSE,
+      hline.after = -1, floating = FALSE,
+      tabular.environment = "longtable",
+      add.to.row = add.to.row,
+      table.placement = "H")
+@
+
+

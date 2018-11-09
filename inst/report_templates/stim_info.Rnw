@@ -1,0 +1,18 @@
+%% Weave depends: chem_tbl
+
+<<results=tex,echo=false>>=
+ch_lbls <- c("Chemical/stimulus name:", "PMI code:", "Batch ID:", 
+             "Molecular weight:", "CAS Registry Number:", "Description",
+             "Additional Info:")
+ch_flds <- c("chnm", "pmi_code", "batch_id", "mol_weight", "casn", 
+             "chem_desc", "add_info")
+ch_info <- data.table(ch_lbls, 
+                      val = chem_tbl[chid == <%= stim %>, 
+                                     unlist(.SD), 
+                                     .SDcols = ch_flds])
+invisible(ch_info[is.na(val), val := "Not Listed/Not Applicable"])
+print(xtable(ch_info, align = "lp{0.3\\linewidth}p{0.7\\linewidth}"), 
+      include.rownames = FALSE, 
+      include.colnames = FALSE, 
+      hline.after = NULL)
+@

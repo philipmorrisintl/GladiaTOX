@@ -1,0 +1,15 @@
+%% brew depends: fp
+
+\begin{center}
+\includegraphics[width=\textwidth]{<%= fp("err_labeled.pdf") %>}
+\end{center}
+
+\begin{enumerate}
+\item Each point represents the mean of all replicates for a chemical-component pair at the same concentration. Horizontal spacing of points is proportional to concentration. The bars represent $\pm$ 1 standard error of the mean. 
+
+\item The names of the plotted stimuli are shown in the legend, with the color corresponding to the colors of the points. Darker colors indicate higher concentrations. The two numbers within the brackets represent the minimum and maximum tested concentrations in micromolar units. 
+
+\item The dashed gray lines separate data from different assay components, with the assay component name and it's corresponding data on the left of the dashed line. 
+
+\item Plotted response on the y-axis is relative to positive control data.
+\end{enumerate}

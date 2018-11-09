@@ -1,0 +1,63 @@
+\documentclass{article}
+
+\usepackage{url}
+\usepackage{Sweave}
+\usepackage{rotating}
+\usepackage{enumitem}
+\usepackage{color}
+\usepackage{makebox}
+\usepackage{float}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage[margin=20pt]{subcaption}
+\usepackage{graphicx}
+\usepackage{lscape}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{alphalph}
+\usepackage{ragged2e}
+\usepackage{titletoc}
+\usepackage{mathtools}
+\usepackage{amsmath,amsthm,amssymb}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\slshape \rightmark}
+\fancyhead[R]{}
+\fancyfoot[C]{\thepage}
+
+%% format captions
+\captionsetup[table]{labelformat=empty,justification=raggedright}
+\renewcommand*{\thesubfigure}{\alphalph{\value{subfigure}}}
+
+%% Create new column types
+\newcolumntype{P}[1]{>{\RaggedRight\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{0cm}
+%\setlength{\parskip}{10pt}
+
+\definecolor{gray50}{gray}{0.5}
+
+\DefineVerbatimEnvironment{Sinput}{Verbatim} {xleftmargin=0em,
+                                              frame=single,
+                                              rulecolor=\color{gray50},
+                                              framesep=3mm,
+                                              label=\tiny{R Input},
+                                              samepage=true}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{xleftmargin=0em,
+                                              frame=single,
+                                              rulecolor=\color{gray50},
+                                              framesep=3mm,
+                                              label=\tiny{R Output},
+                                              samepage=true}
+                                              
+\newcommand{\Lagr}{\mathop{\mathcal{L}}}
+

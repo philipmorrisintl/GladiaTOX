@@ -1,0 +1,36 @@
+%% brew depends: a
+%% weave depends: aes, l5
+
+<<echo=FALSE,results=tex>>=
+ae_cap <- paste("Assay endpoints for the", 
+                sanitize("<%= aes[J(a), unique(anm)] %>"),
+                "assay.",
+                "acid -- the assay component ID;",
+                "aeid -- the assay endpoint ID;",
+                "$N_{\\text{S}}$ -- Number of samples;",
+                "$N_{\\text{AS}}$ -- Number of active samples;", 
+                "$N_{\\text{C}}$ -- Number of unique compounds;", 
+                "$N_{\\text{AC}}$ -- Number of unique active compounds.",
+                "Note: the number of samples does not count samples",
+                "completely removed due to poor quality at level 2 processing.")
+aeid_t1 <- l5[aeid %in% aes[aid == <%= a %>, aeid] & !is.na(chid), 
+              list(nsmpl = lu(spid), 
+                   asmpl = lu(spid[hitc == 1])),
+              by = list(aeid, aenm)]
+aeid_t2 <- l5_sngl[aeid %in% aes[aid == <%= a %>, aeid] & !is.na(chid), 
+                   list(nchid = lu(spid), 
+                        achid = lu(spid[hitc == 1])),
+                   by = list(aeid)]
+aeid_smry <- merge(aeid_t1, aeid_t2, by = "aeid")
+aeid_smry <- merge(aeid_smry, aes[ , list(aeid, acid)], by = "aeid")
+invisible(aeid_smry[ , aenm := sanitize(aenm)])
+setcolorder(aeid_smry, c("aenm", "acid", "aeid", "nsmpl", "asmpl", "nchid", "achid"))
+setnames(aeid_smry, c("Endpoint name", "acid", "aeid", "$N_{\\text{S}}$",
+                      "$N_{\\text{AS}}$", "$N_{\\text{C}}$", "$N_{\\text{AC}}$"))
+aeid_smry_tbl <- xtable(aeid_smry, caption = ae_cap)
+suppressWarnings(align(aeid_smry_tbl) <- "lP{10cm}P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}P{1cm}")
+print(aeid_smry_tbl,
+      include.rownames = FALSE,
+      table.placement = "H",
+      sanitize.text.function = function(x) x)
+@

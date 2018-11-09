@@ -1,0 +1,9 @@
+\setkeys{Gin}{width=1.25\textwidth}
+\begin{figure}[H] % NO h HERE!
+\centering
+\rotatebox{90}{
+<<<%= paste0("fitc_key") %>, fig=true, strip.white=true, echo=FALSE, height=5, width=8.5>>=
+tcplPlotFitc()
+@
+}
+\end{figure}

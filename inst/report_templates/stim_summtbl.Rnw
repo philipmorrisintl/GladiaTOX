@@ -1,0 +1,49 @@
+%% brew depends: stim
+%% weave depends: l5_sngl
+
+<<echo=FALSE,results=tex>>=
+sub <- merge(l5_sngl[hitc == 1 & chid == <%= stim %>, 
+                     list(m4id, modl, modl_ga, 
+                          modl_acb, modl_acc, aeid)],
+             aes,
+             by = "aeid")
+setkey(sub, m4id)
+sub <- sub[ , list(m4id, aeid, aenm, modl, modl_acb, modl_acc, modl_ga)]
+# invisible(sub[nchar(aenm) > 30, aenm := paste0(substr(aenm, 0, 27), "...")])
+invisible(sub[ , modl_ga  := signif(10^modl_ga,  3)])
+invisible(sub[ , modl_acb := signif(10^modl_acb, 3)])
+invisible(sub[ , modl_acc := signif(10^modl_acc, 3)])
+setkey(sub, modl_acb)
+setnames(sub, 
+         c("m4id", "aeid", "Assay Endpoint", 
+           "Model", "ACB", "ACC", "AC$_\\text{50}$"))
+sub <- sub[ , lapply(.SD, sanitize)]
+add.to.row <- list(pos = list(0), command = NULL) 
+command <- paste0("\\hline\n\\endhead\n",
+                  "\\hline\n",
+                  "\\multicolumn{", dim(sub)[2], "}{l}", 
+                  "{\\footnotesize Continued on next page}\n", 
+                  "\\endfoot\n",
+                  "\\endlastfoot\n")
+add.to.row$command <- command
+sub_cap <- paste("Active results for", stim_smry[chid == <%= stim %>, chnm],
+                 "ordered by the ACB. If the stimulus was tested in an assay",
+                 "more than once, only one reprepsentative sample is listed.",
+                 "m4id -- the primary key for the results in the database;",
+                 "aeid -- the assay endpoint id;" ,
+                 "Model -- the winning model;",
+                 "ACB -- the activity concentration at the endpoint noise",
+                 "baseline (ACB) for the winning model;",
+                 "ACC -- the activity concentration at the endpoint activity",
+                 "cutoff (ACC) for the winning model;",
+                 "AC$_\\text{50}$ -- the AC$_\\text{50}$",
+                 "value for the winning model.",
+                 "All concentrations are in micromolar.")
+stimsummtbl <- xtable(sub, caption = sub_cap)
+suppressWarnings(align(stimsummtbl) <- "lP{1.5cm}P{1.5cm}P{7cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}")
+print(stimsummtbl, 
+      include.rownames = FALSE,
+      hline.after=-1, floating = FALSE,
+      tabular.environment = "longtable",
+      add.to.row = add.to.row, sanitize.text.function = function(x) x)
+@

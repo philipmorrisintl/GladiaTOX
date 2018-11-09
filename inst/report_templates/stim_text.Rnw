@@ -1,0 +1,3 @@
+%% Brew depends: l5_sngl, stim (a single chid), stim_smry
+
+<%= l5_sngl[chid == stim, sanitize(unique(chnm))] %> was tested a total of \Sexpr{stim_smry[chid == <%= stim %>, N_tested]} times over \Sexpr{stim_smry[chid == <%= stim %>, N_endpoint]} unique assay endpoints. The summary statistics for the active compounds can be found in section \ref{<%= stim %>_summtbl}.

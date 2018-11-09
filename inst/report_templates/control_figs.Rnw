@@ -1,0 +1,19 @@
+%% brew depends: ac, aes, l5, pcdat
+
+<% 
+up_aeid <- aes[acid == ac & analysis_direction == "up", aeid]
+pcids <- l5[spid %in% pcdat[acid == ac, spid] & aeid == up_aeid, m4id]
+%>
+
+<% for (pcid in pcids) { -%>
+
+\hfill \par
+\setkeys{Gin}{width=1\textwidth}
+\begin{figure}[H]
+<<<%= paste0("m4id", pcid) %>,fig=true,strip.white=true,echo=false,height=7,width=12>>=
+tcplPlotM4ID(m4id = <%= pcid %>, lvl = 6, bline = "coff")
+@
+\end{figure}
+\par
+
+<% } %> %% END M4ID POSITIVE CONTROL FOR-LOOP

@@ -1,0 +1,22 @@
+%% This template should contain all the data (common to all reports) needed by
+%% the weaving step.
+
+<<echo=FALSE,results=hide>>=
+## packages needed for weaving
+library(xtable)
+library(RColorBrewer)
+
+## data needed for weaving
+load("brewdat.RData")
+l3 <- tcplLoadData(3, "aeid", aes$aeid)
+l3 <- tcplPrepOtpt(l3)
+l5[ , rltp := modl_tp/coff]
+stim_smry <- l5[!is.na(chnm), 
+                list(N_endpoint = lu(aeid), 
+                     N_tested = .N, 
+                     N_active = lw(hitc == 1),
+                     N_unique_hit = lu(aeid[hitc == 1])), 
+                by = list(chnm, chid)][order(chid)]
+invisible(stim_smry[ , chnm := sanitize(chnm)])
+chem_tbl <- tcplLoadChem(include.spid = FALSE)
+@

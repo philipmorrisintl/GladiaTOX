@@ -1,0 +1,33 @@
+%% weave depends: stim_smry
+
+<<echo=FALSE, results=tex>>=
+stim_cap <- paste("Overview of testing for each stimulus",
+                  "$N_\\text{S}$ -- the total number of samples",
+                  "tested across all assay endpoints;",
+                  "$N_\\text{AS}$ -- the number of active samples;",
+                  "$N_\\text{E}$ -- the number of unique",
+                  "endpoints tested;",
+                  "$N_\\text{AE}$ -- the number of unique",
+                  "endpoints activated by the compound.")
+ssmry <- stim_smry[order(chnm),
+                   list(chnm = chnm, N_tested, N_active, 
+                        N_endpoint, N_unique_hit)]
+setnames(ssmry, c("Compound name", "$N_\\text{S}$", "$N_\\text{AS}$", 
+                  "$N_\\text{E}$", "$N_\\text{AE}$"))
+ssmry_tbl <- xtable(ssmry, caption = stim_cap)
+suppressWarnings(align(ssmry_tbl) <- "lP{11cm}P{1.1cm}P{1.1cm}P{1.1cm}P{1.1cm}")
+add.to.row <- list(pos = list(0), command = NULL) 
+command <- paste0("\\hline\n\\endhead\n",
+                  "\\hline\n",
+                  "\\multicolumn{3}{l}", 
+                  "{\\footnotesize Continued on next page}\n", 
+                  "\\endfoot\n",
+                  "\\endlastfoot\n")
+add.to.row$command <- command
+print(ssmry_tbl, hline.after=-1, floating = FALSE,
+      tabular.environment = "longtable",
+      table.placement = "H",
+      add.to.row = add.to.row,
+      include.rownames = FALSE,
+      sanitize.text.function = function(x) x)
+@

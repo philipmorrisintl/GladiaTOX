@@ -1,0 +1,42 @@
+%% brew depends: l5_sngl, stim
+%% weave depends: l5
+
+<<<%= paste0("summ_", stim) %>,fig=TRUE,strip.white=true,echo=FALSE,height=5.2,width=6.5,include=FALSE>>=
+p <- list(xlab = expression(paste("Concentration (",mu,"M)")),
+          ylab = "Relative Efficacy",
+          main = "",
+          bty = "n",
+          xaxt = "n",
+          yaxt = "n",
+          type = "n",
+          log = "y")
+do.call(what = plot,
+        args = c(l5[chid == <%= stim %>, rltp ~ modl_ga], p),
+        quote = TRUE)
+axis(side = 1,
+     at = axTicks(side = 1),
+     labels = signif(10^axTicks(side = 1), digits = 1),
+     col = "gray35")
+axis(side = 2,
+     at = axTicks(side = 2),
+     labels = axTicks(side = 2),
+     col = "gray35")
+points(l5[chid == <%= stim %> & hitc != 1, rltp ~ modl_ga],
+       lwd = 1.5,
+       cex = 2,
+       col = "gray50")
+points(l5[chid == <%= stim %> & hitc == 1, rltp ~ modl_ga],
+       lwd = 1.5,
+       cex = 2,
+       col = "darkred")
+@
+\begin{figure}[h!]
+\centering
+\includegraphics[height=3.5in,keepaspectratio]{<%= paste0(fname, "-summ_", stim) %>}
+\caption*{Activity distribution for <%= l5_sngl[chid == stim, sanitize(unique(chnm))] %>. 
+Each dot indicates the AC$_\text{50}$ value for the winning model and the relative efficacy. 
+Relative efficacy is the efficacy ($\mathit{modl\_tp}$) scaled such that the cutoff for 
+the endpoint is 1. Red points indicate an active hit-call; grey points indicate 
+inactive hit-calls.}
+\end{figure}
+\par

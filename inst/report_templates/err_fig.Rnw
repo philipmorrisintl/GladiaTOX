@@ -1,0 +1,27 @@
+%% brew depends: a, aes, l5, c1, c2
+
+<%
+err_aes <- aes[aid == a,
+               ifelse(.N > 1, 
+                      aeid[analysis_direction == "up"],
+                      aeid),
+               by = acid][ , V1]
+dat_n <- nrow(l5[chid %in% c(c1, c2) & aeid %in% err_aes])
+%>
+
+<% if (dat_n > 0) { -%>
+
+\setkeys{Gin}{width=1\textwidth}
+\begin{figure}[H]
+\caption*{<%= sanitize(aes[aid == a, unique(anm)]) %>}
+\centering
+<<<%= paste0("aid_", a) %>,fig=TRUE,strip.white=true,echo=FALSE,height=4.3,width=12>>=
+suppressWarnings(tcplPlotErrBar(<%= c1 %>, <%= c2 %>, c(<%= paste(err_aes, collapse = ", ") %>)))
+@
+\end{figure}
+
+<% } else { %>
+
+No data for the compounds of interest. 
+
+<% } %> %% END DATA CHECK IF-STATEMENT

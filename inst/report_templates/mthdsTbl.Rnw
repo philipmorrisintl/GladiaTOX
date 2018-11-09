@@ -1,0 +1,28 @@
+%% no dependencies 
+
+<<echo=FALSE,results=tex>>=
+lvls <- c(2, 3, 5)
+mthds <- lapply(lvls, tcplMthdList)
+lvls <- rep(lvls, sapply(mthds, nrow))
+mthds <- rbindlist(mthds)
+invisible(mthds[ , Level := as.integer(lvls)])
+setcolorder(mthds, c(4, 1:3))
+setnames(mthds, c("Level", "ID", "Name", "Description"))
+mthds_tbl <- xtable(mthds)
+suppressWarnings(align(mthds_tbl) <- "lP{1cm}P{1cm}P{5cm}P{9cm}")
+
+add.to.row <- list(pos = list(0), command = NULL) 
+command <- paste0("\\hline\n\\endhead\n",
+                  "\\hline\n",
+                  "\\multicolumn{4}{l}", 
+                  "{\\footnotesize Continued on next page}\n", 
+                  "\\endfoot\n",
+                  "\\endlastfoot\n")
+add.to.row$command <- command
+print(mthds_tbl, hline.after=-1, floating = FALSE,
+      tabular.environment = "longtable",
+      table.placement = "H",
+      add.to.row = add.to.row,
+      include.rownames = FALSE)
+@
+

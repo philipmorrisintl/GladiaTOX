@@ -1,0 +1,42 @@
+%% weave depends: piedat
+
+<<echo=FALSE,results=tex>>=
+piedat_cap <- paste("Aggregate results, by endpoint, used to construct pie",
+                    "diagrams. Data is reported in potency:",
+                    "$-\\log\\left(10^x/10^6\\right)$, where $x$ is the",
+                    "AC$_{50}$ value in micromolar.",
+                    "$\\bar{x}_{\\text{Pot}}$ -- the mean potency for active",
+                    "samples;",
+                    "$s_{\\text{Pot}}$ -- standard deviation of",
+                    "$\\bar{x}_{\\text{Pot}}$;", 
+                    "$N$ -- the number of active samples.")
+piedat <- rbindlist(piedat)
+setorder(piedat, chid, aeid)
+
+chnms <- paste0(unique(piedat$chnm), " (chid: ", unique(piedat$chid), ")")
+chid_lens <- c(0, which(!duplicated(piedat$chnm)) - 1)
+
+piedat <- piedat[ , list(chid, sanitize(aenm), ptmn, ptsd, nsmp)]
+setnames(piedat, c("chid", "Assay endpoint", "$\\bar{x}_{\\text{Pot}}$", 
+                   "$s_{\\text{Pot}}$", "$N$"))
+pie_tbl <- xtable(piedat, caption = piedat_cap)
+suppressWarnings(align(pie_tbl) <- "lP{1.13cm}P{12cm}P{1.13cm}P{1.13cm}P{1.13cm}")
+add.to.row <- list(pos = list(0), command = NULL) 
+cont_note <- paste0("\\hline\n\\endhead\n",
+                    "\\hline\n",
+                    "\\multicolumn{5}{l}",
+                    "{\\footnotesize Continued on next page}\n", 
+                    "\\endfoot\n",
+                    "\\endlastfoot\n")
+add.to.row <- list(pos = as.list(chid_lens), 
+                   command = c(cont_note, 
+                               paste0(" \\multicolumn{5}{C{16.5cm}}{", 
+                                      chnms,
+                                      "} \\\\ ")))
+print(pie_tbl, hline.after=-1, floating = FALSE,
+      tabular.environment = "longtable",
+      add.to.row = add.to.row,
+      include.rownames = FALSE,
+      sanitize.text.function = function(x) x)
+@
+

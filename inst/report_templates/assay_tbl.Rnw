@@ -1,0 +1,37 @@
+%% Weave depends: aes
+
+<<echo=FALSE,results=tex>>=
+asmry_cap <- paste("Overview of assays tested. An assay component is made up",
+                   "of a readout and a treatment duration. Most, if not all",
+                   "assay components (identified by `acid') are analyzed for",
+                   "both increasing and decreasing signal, yielding two assay",
+                   "endpoints (identified by `aeid') for each acid.",
+                   "readout -- a combination of assay and its readout;",
+                   "acid(s) -- the acid(s) associated with the assay",
+                   "and readout;",
+                   "time(s) -- the treatment duration corresponding",
+                   "to the listed acid(s);",
+                   "description -- a description of the assay/readout",
+                   "combination.")
+asmry <- xtable(unique(aes[ , 
+                            list(readout = clps,
+                                 `acid(s)` = clps_acid,
+                                 `times(s)` = clps_time,
+                                 description = paste(assay_component_desc,
+                                                     "Positive control(s) for this readout:",
+                                                     clps_ctrl))]),
+                caption = asmry_cap)
+suppressWarnings(align(asmry) <- "lP{6cm}P{1.5cm}P{1.5cm}P{7.5cm}")
+add.to.row <- list(pos = list(0), command = NULL) 
+command <- paste0("\\hline\n\\endhead\n",
+                  "\\hline\n",
+                  "\\multicolumn{3}{l}", 
+                  "{\\footnotesize Continued on next page}\n", 
+                  "\\endfoot\n",
+                  "\\endlastfoot\n")
+add.to.row$command <- command
+print(asmry, hline.after=-1, floating = FALSE,
+      tabular.environment = "longtable",
+      add.to.row = add.to.row,
+      include.rownames = FALSE)
+@

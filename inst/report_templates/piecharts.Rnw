@@ -1,0 +1,77 @@
+%% brew depends: c1, c2
+%% weave depends: l5, aes
+
+<<echo=FALSE,results=hide>>=
+psb <- l5[chid %in% c(<%= c1 %>, <%= c2 %>)]
+psb[ , pot := 10^modl_acb]
+psb[is.na(pot), pot := 1e6]
+psb[ , pot := -log10(pot/1e6)]
+
+mpsb <-  psb[ ,
+             list(ptmn = ifelse(lw(pot > 0) > 0, mean(pot[pot > 0]), 0),
+                  ptsd = ifelse(lw(pot > 0) > 2, sd(pot[pot > 0]), NA_real_)),
+             by = list(aeid, aenm, chid, chnm)]
+
+colfunc <- colorRampPalette(brewer.pal(6, "Set1"))
+invisible(aes[ , clps_col := colfunc(lu(clps_anm))[as.factor(clps_anm)]])
+
+rng <- range(mpsb[ptmn > 0, c(ptmn, ptmn + ptsd)], na.rm = TRUE)
+rng <- log10(10^-rng*1e6)
+rng <- pretty(ifelse(rng < 0, floor(rng), ceiling(rng)))
+piedat <- list()
+@
+
+<% for (tm in unique(aes[ , timepoint_hr[order(timepoint_hr)]])) { -%>
+
+\hfill \par
+\setkeys{Gin}{width=1\textwidth}
+\begin{centering}
+\begin{figure}[H]
+\caption*{<%= tm %> hours}
+
+\begin{subfigure}{0.49\textwidth}
+\caption{<%= sanitize(cd[chid == c1, unique(chnm)]) %>}
+<<<%= paste0("pie-ch", c1, "hr", gsub("[:.:]", "", tm)) %>,fig=true,strip.white=true,echo=false,height=4,width=4>>=
+ae_sub <- aes[ , 
+               list(aeid = aeid[which(timepoint_hr == <%= tm %>)],
+                    col = unique(clps_col)), 
+               keyby = clps_dir][unique(aes$clps_dir)]
+suppressWarnings(invisible(ae_sub[ , lbl := letters]))
+piedat[["<%= paste0(c1, "-", tm) %>"]] <- tcplPlotPie(chid = <%= c1 %>,
+                                                      mrks = 10^rng, 
+                                                      aeid = ae_sub$aeid,
+                                                      col = ae_sub$col,
+                                                      lbl = ae_sub$lbl) 
+            
+@
+\end{subfigure} 
+\begin{subfigure}{0.49\textwidth}
+\caption{<%= sanitize(cd[chid == c2, unique(chnm)]) %>}
+<<<%= paste0("pie-ch", c2, "hr", gsub("[:.:]", "", tm)) %>,fig=true,strip.white=true,echo=false,height=4,width=4>>=
+piedat[["<%= paste0(c2, "-", tm) %>"]] <- tcplPlotPie(chid = <%= c2 %>,
+                                                      mrks = 10^rng, 
+                                                      aeid = ae_sub$aeid,
+                                                      col = ae_sub$col,
+                                                      lbl = ae_sub$lbl) 
+@
+\end{subfigure} 
+
+\end{figure}
+\end{centering}
+\par
+
+<% } %> %% END TM PIE LOOP
+
+\hfill \par
+\setkeys{Gin}{width=1\textwidth}
+\begin{centering}
+\begin{figure}[H]
+<<<%= paste0("pie-lgnd") %>,fig=true,strip.white=true,echo=false,height=3,width=8>>=
+
+tcplPlotPieLgnd(aenm = ae_sub[ , paste0("(", lbl, ") ", clps_dir)],
+                ncol = 3, 
+                col = ae_sub$col)
+@
+\end{figure}
+\end{centering}
+\par

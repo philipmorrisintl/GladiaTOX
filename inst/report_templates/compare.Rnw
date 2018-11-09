@@ -1,0 +1,149 @@
+%% Create fp ('file-pointer') to simplify syntax
+<% fp <- function(x) {system.file("report_templates", x, package = "GladiaTOX")} %>
+
+%% Insert report header
+<% brew(fp("header.Rnw")) %>
+
+%% Source report data
+<% source(fp("brewData.R"), local = TRUE) %>
+
+%% Load data specific to the compare report
+<%
+cd <- tcplLoadChem(field = "chid", val = c(c1, c2))
+c1nm <- sanitize(cd[chid == c1, unique(chnm)])
+c2nm <- sanitize(cd[chid == c2, unique(chnm)])
+%>
+
+%% Insert weave data
+<% brew(fp("weaveData.Rnw")) %>
+
+\begin{document}
+\SweaveOpts{concordance=true}
+\hyphenpenalty=10000
+\tolerance=10000
+
+%% Create title page
+\begin{titlepage}
+    \begin{center}
+        \includegraphics[width=\textwidth]{<%= system.file("report_templates", "pmi_logo.jpg", package = "GladiaTOX") %>} \\
+        \vspace{2cm}
+        \Huge \textbf{High-Content Screening Chemical Comparison Report} \\
+        \vspace{2cm}
+        \LARGE
+        <%= report_title %> \\ \hfill \\
+        <%= c1nm %> \\
+        \& \\
+        <%= c2nm %> \\ \hfill \\
+        Study Name: <%= asnm %> \\
+        \vspace{2cm}
+        Prepared By: \\
+        <%= report_author %> \\
+        \vspace{2cm}
+        \Sexpr{format(Sys.Date(), format = "%B %d, %Y")} \\
+        \vfill
+        \normalsize
+        \emph{Technical assistance in preparing this report provided by Filer Consulting.}
+    \end{center}
+\end{titlepage}
+\clearpage
+
+%% Add table of contents
+\setcounter{tocdepth}{2}
+\tableofcontents
+\clearpage
+
+\section{Study Overview}
+
+This report compares the results for <%= c1nm %> (ID: <%= c1 %>) and <%= c2nm %> (ID: <%= c2 %>) from the <%= asnm %> study. This study included \Sexpr{l5[ , lu(chid)]} unique chemicals tested across \Sexpr{aes[ , lu(aid)]} multiplexed high-content assays. The \Sexpr{aes[ , lu(aid)]} multiplexed assays, broken out by treatment duration, produced \Sexpr{aes[ , lu(acid)]} components or readouts, that were analyzed for both increases or decreases in concentration-dependent activity. Section \ref{assay_tbl} provides an overview of the assays tested within this study.
+
+<%= c1nm %> was tested a total of \Sexpr{stim_smry[chid == <%= c1 %>, N_tested]} time(s) over \Sexpr{stim_smry[chid == <%= c1 %>, N_endpoint]} unique assay endpoint(s), and was active in \Sexpr{stim_smry[chid == <%= c1 %>, N_tested]} test(s). Out of the \Sexpr{stim_smry[chid == <%= c1 %>, N_endpoint]} unique endpoint(s), <%= c1nm %> was active in \Sexpr{stim_smry[chid == <%= c1 %>, N_unique_hit]}. The summary statistics for the active concentration series can be found in section \ref{<%= c1 %>_summtbl}.
+
+<%= c2nm %> was tested a total of \Sexpr{stim_smry[chid == <%= c2 %>, N_tested]} time(s) over \Sexpr{stim_smry[chid == <%= c2 %>, N_endpoint]} unique assay endpoint(s), and was active in \Sexpr{stim_smry[chid == <%= c2 %>, N_tested]} test(s). Out of the \Sexpr{stim_smry[chid == <%= c2 %>, N_endpoint]} unique endpoint(s), <%= c2nm %> was active in \Sexpr{stim_smry[chid == <%= c2 %>, N_unique_hit]}. The summary statistics for the active concentration series can be found in section \ref{<%= c2 %>_summtbl}. 
+
+%% Add the summary file, passed by the user
+<%= if (!is.null(sumfile)) brew(sumfile) %>
+\clearpage
+
+\subsection{Assay Overview Table}
+\label{assay_tbl}
+%% Insert assay overview table
+<% brew(fp("assay_tbl.Rnw")) %>
+\clearpage
+
+\section{MEC Piechart Plots}
+
+<% brew(fp("piecharts.Rnw")) %>
+\clearpage
+
+\subsection{MEC Data}
+<% brew(fp("pieTbl.Rnw")) %>
+
+<% for (stim in c(c1, c2)) { -%>
+\clearpage
+
+\section{<%= sanitize(cd[chid == stim, unique(chnm)]) %> Overview}
+
+<% brew(fp("stim_text.Rnw")) %>
+
+<% brew(fp("stim_info.Rnw")) %>
+
+<% brew(fp("stim_dist_fig.Rnw")) %>
+\clearpage
+
+\subsection{Summary Table} 
+\label{<%= stim %>_summtbl}
+<% brew(fp("stim_summtbl.Rnw")) %>
+\clearpage
+
+\subsection{Concentration-Response Plots} 
+\label{<%= stim %>_crplt}
+<% brew(fp("crplt.Rnw")) %>
+
+<% } %> %% END STIM FOR-LOOP
+\clearpage
+
+\section{Assay Summaries}
+
+<% for (a in aes[ , unique(aid)]) { -%>
+\clearpage
+
+\subsection{<%= aes[J(a), sanitize(unique(anm))] %>}
+
+\subsubsection{<%= c1nm %> vs. <%= c2nm %> for <%= aes[J(a), sanitize(unique(anm))] %>.}
+<% brew(fp("err_fig.Rnw")) %>
+
+\subsubsection{Endpoint overview for <%= aes[J(a), sanitize(unique(anm))] %>.}
+<% brew(fp("aeid_smry.Rnw")) %>
+
+\subsubsection{Data transformations for <%= aes[J(a), sanitize(unique(anm))] %>.}
+
+<% brew(fp("dataTrans.Rnw")) %>
+
+<% } %> %% END ASSAY FOR-LOOP
+
+\appendix
+
+\section{Figure Explanations}
+
+<% brew(fp("err_labeled.Rnw")) %>
+\clearpage
+
+<% brew(fp("pie_labeled.Rnw")) %>
+\clearpage
+
+<% brew(fp("crv_labeled.Rnw")) %>
+\clearpage
+
+\section{Flag Descriptions}
+\label{apdx-flag}
+
+<% brew(fp("flagDesc.Rnw")) %>
+\clearpage
+
+\section{Normalization Methods}
+\label{apdx-norm}
+
+<% brew(fp("mthdsTbl.Rnw")) %>
+
+
+\end{document}
