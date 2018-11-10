@@ -60,4 +60,3 @@ aes <- aes[aeid %in% l5_sngl[ , unique(aeid)]]
 setkey(aes, aid)
 save(l5, l5_sngl, aes, pcdat, file = "brewdat.RData")
 
-## END
