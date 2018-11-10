@@ -52,7 +52,7 @@ unsrturl.bst
 userdata/*
 
 # R manual pages
-man/*
+#man/*
 
 # R temp dir
 tmp/*
@@ -61,7 +61,7 @@ tmp/*
 R-functions/*
 
 # R namespace
-NAMESPACE
+#NAMESPACE
 
 # produced vignettes
 vignettes/*.html
