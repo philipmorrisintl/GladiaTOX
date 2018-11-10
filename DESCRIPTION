@@ -6,7 +6,7 @@ biocViews:
     Normalization,
     Preprocessing
 Title: R Package for Processing High Content Screening data
-Version: 0.99.1
+Version: 0.99.2
 Author: Vincenzo Belcastro [aut, cre],
         Dayne L Filer <dayne.filer@gmail.com> [aut],
         Stephane Cano [aut]
