@@ -42,3 +42,4 @@ tcplAddModel(pars = params, modl = "hill")
 \code{\link{tcplObjCnst}}, \code{\link{tcplObjHill}},
 \code{\link{tcplObjGnls}}, \code{\link{constrOptim}}
 }
+

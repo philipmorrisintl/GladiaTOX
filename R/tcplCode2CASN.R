@@ -52,8 +52,9 @@ tcplCode2CASN <- function(code) {
 
         code <- as.numeric(sapply(code, strsplit, "")[[1]])
         clen <- length(code)
-        test <- sum((clen - 1):1 * code[1:(clen - 1)]) %% 10 == code[clen]
-        code <- paste(paste(code[1:(clen - 3)], collapse=""),
+        test <- sum((clen - 1):1 * code[seq_len((clen - 1))]) %% 
+            10 == code[clen]
+        code <- paste(paste(code[seq_len((clen - 3))], collapse=""),
                       paste(code[(clen - 2):(clen - 1)], collapse=""),
                       code[clen],
                       sep="-")

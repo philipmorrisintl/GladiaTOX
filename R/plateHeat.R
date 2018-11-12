@@ -21,7 +21,7 @@
 #' @param rown Integer, the number of rows on the plate
 #' @param coln Integer, the number of columns on the plate
 #' @param main Character of length 1, the title/main
-#' @param argn Numeric of length 2, the minimum and maximum values to constrain
+#' @param arng Numeric of length 2, the minimum and maximum values to constrain
 #' the color scale
 #'
 #' @note
@@ -65,26 +65,26 @@
                 xaxs="i",
                 yaxs="i")
     box(which="plot")
-    abline(v=1:(coln - 1) + 0.5)
-    abline(h=1:(rown - 1) + 0.5)
+    abline(v=seq_len((coln - 1)) + 0.5)
+    abline(h=seq_len((rown - 1)) + 0.5)
     axis(side=3,
-         at=1:coln,
+         at=seq_len(coln),
          tick=FALSE,
-         labels=sprintf("%02d", 1:coln),
+         labels=sprintf("%02d", seq_len(coln)),
          cex=0.75)
     axis(side=2,
-         at=1:rown,
+         at=seq_len(rown),
          tick=FALSE,
-         labels=sprintf("%02d", 1:rown),
+         labels=sprintf("%02d", seq_len(rown)),
          cex=0.75,
          las=2)
-    allwells <- expand.grid(1:coln, 1:rown)
+    allwells <- expand.grid(seq_len(coln), seq_len(rown))
     .drawCircles(x=allwells[ , 1],
                  y=allwells[ , 2],
                  r=0.4,
                  border="gray30")
     wcol <- myPal(500)[as.numeric(cut(c(vals, arng), breaks=500))]
-    wcol <- wcol[1:(length(vals))]
+    wcol <- wcol[seq_len(length(vals))]
     .drawCircles(x=coli,
                  y=rowi,
                  r=0.4,

@@ -157,7 +157,7 @@ mc3_mthds <- function() {
         bval.apid.1owconc.med=function(aeids) {
 
             e1 <- bquote(dat[J(.(aeids)),
-                             bval := median(cval[cndx %in% 1:2 & wllt == "t"],
+                             bval := median(cval[cndx %in% seq_len(2) & wllt == "t"],
                                             na.rm=TRUE),
                              by=list(aeid, apid)])
             list(e1)
@@ -186,7 +186,7 @@ mc3_mthds <- function() {
         bval.apid.nwllslowconc.med=function(aeids) {
 
             e1 <- bquote(dat[J(.(aeids)),
-                             bval := median(cval[(cndx %in% 1:2 & wllt == "t") |
+                             bval := median(cval[(cndx %in% seq_len(2) & wllt == "t") |
                                                  wllt == "n"],
                                             na.rm=TRUE),
                              by=list(aeid, apid)])
@@ -197,7 +197,7 @@ mc3_mthds <- function() {
         bval.spid.lowconc.med=function(aeids) {
 
             e1 <- bquote(dat[J(.(aeids)),
-                             bval := median(cval[cndx %in% 1:3 & wllt == "t"],
+                             bval := median(cval[cndx %in% seq_len(3) & wllt == "t"],
                                             na.rm=TRUE),
                              by=list(aeid, spid, repi)])
             list(e1)
@@ -403,7 +403,7 @@ mc3_mthds <- function() {
         resp.scale.mad.log2fc=function(aeids) {
 
             e1 <- bquote(dat[J(.(aeids)),
-                             bmad := mad(resp[cndx %in% 1:2 & wllt == "t"],
+                             bmad := mad(resp[cndx %in% seq_len(2) & wllt == "t"],
                                          na.rm=TRUE),
                              by=aeid])
             e2 <- bquote(dat[J(.(aeids)), resp := log2(1.2)/(3*bmad)*resp])
@@ -440,7 +440,7 @@ mc3_mthds <- function() {
         resp.shiftneg.3bmad=function(aeids) {
 
             e1 <- bquote(dat[J(.(aeids)),
-                             bmad := mad(resp[cndx %in% 1:2 & wllt == "t"],
+                             bmad := mad(resp[cndx %in% seq_len(2) & wllt == "t"],
                                          na.rm=TRUE),
                              by=aeid])
             e2 <- bquote(dat[aeid %in% .(aeids) & resp < -3 * bmad, resp := 0])
@@ -452,7 +452,7 @@ mc3_mthds <- function() {
         resp.shiftneg.6bmad=function(aeids) {
 
             e1 <- bquote(dat[J(.(aeids)),
-                             bmad := mad(resp[cndx %in% 1:2 & wllt == "t"],
+                             bmad := mad(resp[cndx %in% seq_len(2) & wllt == "t"],
                                          na.rm=TRUE),
                              by=aeid])
             e2 <- bquote(dat[aeid %in% .(aeids) & resp < -6 * bmad, resp := 0])
@@ -464,7 +464,7 @@ mc3_mthds <- function() {
         resp.shiftneg.10bmad=function(aeids) {
 
             e1 <- bquote(dat[J(.(aeids)),
-                             bmad := mad(resp[cndx %in% 1:2 & wllt == "t"],
+                             bmad := mad(resp[cndx %in% seq_len(2) & wllt == "t"],
                                          na.rm=TRUE),
                              by=aeid])
             e2 <- bquote(dat[aeid %in% .(aeids) & resp < -10 * bmad, resp := 0])
@@ -476,7 +476,7 @@ mc3_mthds <- function() {
         resp.blineshift.3bmad.repi=function(aeids) {
 
             e1 <- bquote(dat[J(.(aeids)),
-                             wndw := mad(resp[cndx %in% 1:2 & wllt == "t"],
+                             wndw := mad(resp[cndx %in% seq_len(2) & wllt == "t"],
                                          na.rm=TRUE) * 3,
                              by=aeid])
             e2 <- bquote(dat[aeid %in% .(aeids) & wllt %in% c("t", "c", "o"),
@@ -499,7 +499,7 @@ mc3_mthds <- function() {
         resp.blineshift.3bmad.spid=function(aeids) {
 
             e1 <- bquote(dat[J(.(aeids)),
-                             wndw := mad(resp[cndx %in% 1:2 & wllt == "t"],
+                             wndw := mad(resp[cndx %in% seq_len(2) & wllt == "t"],
                                          na.rm=TRUE) * 3,
                              by=aeid])
             e2 <- bquote(dat[aeid %in% .(aeids) & wllt %in% c("t", "c", "o"),

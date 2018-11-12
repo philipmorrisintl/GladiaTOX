@@ -57,12 +57,12 @@ exportResultForToxpiGUI <- function(asid, tp, outfile, stat) {
 
     ## preapre slice info
     tf <- grepl(paste0("_", tp), dat$anm)
-    endpoints <- sort(unique(getsplit(dat$acnm, "_", 1:2)[tf]))
+    endpoints <- sort(unique(getsplit(dat$acnm, "_", seq_len(2))[tf]))
     slices <- c(endpoints[!grepl("Cell count", endpoints)], "Cell count")
     slices1 <- getsplit(slices, "_", 1)
     cnts <- table(slices1)[match(slices1, names(table(slices1)))]
     nslices <- sum(slices %in% endpoints)
-    mat.rows <- c(1:nslices,
+    mat.rows <- c(seq_len(nslices),
                   rep(nslices + 1, sum(grepl("Cell count", endpoints))))
     mat.cols <- c(match(slices[slices %in% endpoints], endpoints),
                   which(grepl("Cell count", endpoints)))
@@ -70,7 +70,7 @@ exportResultForToxpiGUI <- function(asid, tp, outfile, stat) {
     pmat[cbind(mat.rows, mat.cols)] <- "x"
     n <- cnts[!duplicated(names(cnts))]
     name <- c("YlGn", "Reds", "Purples", "YlGnBu", "Blues", "Greys", "BuPu",
-              "Oranges", "BuGn")[1:length(n)]
+              "Oranges", "BuGn")[seq_len(length(n))]
     colFunc <- function(xx, yy) brewer.pal(n=9, name=yy)[3:(xx + 2)]
     colors <- as.character(unlist(mapply(colFunc, n, name)))
     slices_text <- sprintf("# %s!%s!%s!-ln(x)", slices, round(25/cnts), colors)
@@ -85,17 +85,17 @@ exportResultForToxpiGUI <- function(asid, tp, outfile, stat) {
     ## something like dcast(dat, acnm ~ chnm, unLogMean)
     rownames <- mat$chnm
     mat <- data.matrix(as.matrix(mat)[, 2:ncol(mat)])
-    colnames <- getsplit(colnames(mat), "_", 1:2)
+    colnames <- getsplit(colnames(mat), "_", seq_len(2))
     mat <- matrix(as.numeric(mat), nrow(mat), ncol(mat))
     rownames(mat)=rownames
     colnames(mat)=colnames
     mat <- mat[, match(colnames, endpoints)]
     col.max <- apply(mat, 2, function(xx) max(xx, na.rm=TRUE))
-    for (kk in 1:ncol(mat)) {
+    for (kk in seq_len(ncol(mat))) {
         mat[is.na(mat[, kk]), kk] <- col.max[kk]
     }
-    mat <- cbind(data.frame(Row=1:nrow(mat),
-                            Source=paste0("source", 1:nrow(mat)),
+    mat <- cbind(data.frame(Row=seq_len(nrow(mat)),
+                            Source=paste0("source", seq_len(nrow(mat))),
                             CASRN=NA,
                             Name=rownames(mat)),
                  mat)

@@ -81,7 +81,7 @@ tcplPlotPie <- function(chid, mrks, aeid, col=NULL, lbl=NULL) {
     y3 <- vector(mode="numeric")
     y4 <- vector(mode="numeric")
 
-    for (j in 1:length(aeid)) {
+    for (j in seq_len(length(aeid))) {
 
         theta <- seq(angls[j],
                      angls[j + 1],

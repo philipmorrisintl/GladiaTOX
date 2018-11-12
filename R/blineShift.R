@@ -43,7 +43,7 @@ blineShift <- function(resp, logc, wndw) {
     if (any(is.na(resp))) return(resp)
     if (nconc < 4) return(resp)
 
-    low <- 1:max(ceiling(nconc/4), 2)
+    low <- seq_len(max(ceiling(nconc/4), 2))
     rsub <- resp[which(logc %in% uconc[low])]
     csub <- logc[which(logc %in% uconc[low])]
     low_med <- median(rsub)

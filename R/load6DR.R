@@ -13,6 +13,9 @@
 #'
 #' @description
 #' \code{.load6DR} loads dose-response data for tcpl6.
+#' 
+#' @param ae Assay endpoint
+#' 
 
 .load6DR <- function(ae) {
 

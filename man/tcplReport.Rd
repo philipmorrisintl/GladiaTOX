@@ -5,8 +5,7 @@
 \title{Generate a report}
 \usage{
 tcplReport(type, asid, params = NULL, odir = getwd(), report_author,
-  report_title = "Report", sumfile = NULL,
-  keep.intermediates = FALSE)
+  report_title = "Report", sumfile = NULL, keep.intermediates = FALSE)
 }
 \arguments{
 \item{type}{The type of report to generate}
@@ -71,3 +70,4 @@ report_title = "Processing report")
 }
 
 }
+

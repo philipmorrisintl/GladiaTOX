@@ -188,7 +188,7 @@ tcplWriteData <- function(dat, lvl, type) {
 
         } else {
 
-            rbins <- split(1:n, ceiling(seq_along(1:n)/1e6))
+            rbins <- split(seq_len(n), ceiling(seq_along(seq_len(n))/1e6))
             lapply(rbins,
                    function(x) tcplAppend(dat=dat[x], tbl=tbl, db=db))
 

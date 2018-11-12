@@ -42,7 +42,7 @@ registerMthd <- function(lvl, mthd, desc, nddr=0L, type) {
     if (length(lvl) > 1) stop("'lvl' must be an integer of length 1.")
     if (!type %in% c("mc", "sc")) stop("Invalid 'type' value.")
     if (type == "mc" & !lvl %in% c(2, 3, 5, 6)) stop("Invalid 'lvl' value.")
-    if (type == "sc" & !lvl %in% 1:2) stop("Invalid 'lvl' value.")
+    if (type == "sc" & !lvl %in% seq_len(2)) stop("Invalid 'lvl' value.")
 
     mb <- paste(Sys.info()[c("login", "user",
                              "effective_user")], collapse=".")

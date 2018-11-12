@@ -26,4 +26,4 @@ lu(c(TRUE, TRUE, FALSE))
 Other tcpl abbreviations: \code{\link{is.odd}},
   \code{\link{lu}}, \code{\link{sink.reset}}
 }
-\concept{tcpl abbreviations}
+

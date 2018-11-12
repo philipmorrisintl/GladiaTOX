@@ -16,7 +16,7 @@
 
 ###--------------------------- Draw Left Panel ----------------------------###
 
-    layout(mat=matrix(1:2, nrow=1), widths=c(4, 5.5), heights=3.5)
+    layout(mat=matrix(seq_len(2), nrow=1), widths=c(4, 5.5), heights=3.5)
     on.exit(layout(1))
 
     opar <- par()[c("pty", "mar", "family")]
@@ -228,7 +228,7 @@
             }
 
             par(new=TRUE)
-            plot.window(xlim=par()$usr[1:2], ylim=hlim)
+            plot.window(xlim=par()$usr[seq_len(2)], ylim=hlim)
             points(resp[hi] ~ logc[hi], cex=0.5, lwd=2.5, col="gray60")
 
             axis(side=4,
@@ -251,7 +251,7 @@
             }
 
             par(new=TRUE)
-            plot.window(xlim=par()$usr[1:2], ylim=llim)
+            plot.window(xlim=par()$usr[seq_len(2)], ylim=llim)
             points(resp[lo] ~ logc[lo], cex=0.5, lwd=2.5, col="gray60")
 
             axis(side=4,

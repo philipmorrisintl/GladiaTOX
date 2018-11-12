@@ -120,7 +120,7 @@ sc1 <- function(ac, wr=FALSE) {
     dat[ , c('bval', 'pval', 'resp') := NA_real_]
 
     ## Apply the normalization methods
-    exprs <- lapply(1:nrow(ms),
+    exprs <- lapply(seq_len(nrow(ms)),
                     function(x) {
                         do.call(mthd_funcs[[ms[x, mthd]]],
                                 list(aeids=ms[ , aeid][[x]]))

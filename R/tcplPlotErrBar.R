@@ -129,7 +129,7 @@ tcplPlotErrBar <- function(c1, c2, aeid, ngrp=NULL) {
          font=2)
     points(m2$mom ~ m2$tc, col=m2$col)
     w <- strwidth("o")/2
-    for (i in 1:nrow(m2)) {
+    for (i in seq_len(nrow(m2))) {
         lines(x=rep(m2[i, tc], 2),
               y=m2[i, c(mom - sem, mom + sem)],
               col=m2[i, col])
@@ -152,7 +152,7 @@ tcplPlotErrBar <- function(c1, c2, aeid, ngrp=NULL) {
                            collapse=", "),
                      "]"))
 
-    legend(x=mean(par()$usr[1:2]),
+    legend(x=mean(par()$usr[seq_len(2)]),
            y=.line2user(1, 1),
            legend=ltxt,
            fill=c(rf(10)[5], bf(10)[5]),

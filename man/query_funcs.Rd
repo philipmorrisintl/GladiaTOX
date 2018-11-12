@@ -6,8 +6,7 @@
 \alias{tcplSendQuery}
 \title{Wrappers for sending queries and fetching results}
 \usage{
-tcplQuery(query, db = getOption("TCPL_DB"),
-  drvr = getOption("TCPL_DRVR"))
+tcplQuery(query, db = getOption("TCPL_DB"), drvr = getOption("TCPL_DRVR"))
 
 tcplSendQuery(query, db = getOption("TCPL_DB"),
   drvr = getOption("TCPL_DRVR"))
@@ -48,3 +47,4 @@ tcplQuery("SELECT * FROM assay;")
 options(conf_store)
 
 }
+

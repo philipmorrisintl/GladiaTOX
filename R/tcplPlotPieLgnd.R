@@ -41,8 +41,8 @@ tcplPlotPieLgnd <- function(aenm, ncol=2, col=NULL, fit.labels=TRUE) {
     plot.new()
     plot.window(ylim=c(0, nc + 1), xlim=c(0, 10*ncol), asp=NA)
 
-    yval <- rep(nc:1, ncol)[1:n]
-    xval <- rep(seq(0, (ncol - 1)*10, 10), each=nc)[1:n]
+    yval <- rep(nc:1, ncol)[seq_len(n)]
+    xval <- rep(seq(0, (ncol - 1)*10, 10), each=nc)[seq_len(n)]
     points(xval, yval, pch=22, bg=colvec, cex=2)
     scl <- ifelse(fit.labels, 9/max(strwidth(aenm)), 1)
     text(xval + 0.5, yval, aenm, adj=c(0, 0.5), cex=scl)

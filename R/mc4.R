@@ -72,7 +72,7 @@ mc4 <- function(ae, wr=FALSE) {
     stime <- Sys.time()
 
     ## Calculate the baseline mad
-    dat[ , bmad := mad(resp[cndx %in% 1:2 & wllt == "t"], na.rm=TRUE)]
+    dat[ , bmad := mad(resp[cndx %in% seq_len(2) & wllt == "t"], na.rm=TRUE)]
 
     ## Remove neutral control before fitting
     dat <- dat[wllt %in% c("t", "c", "o")]

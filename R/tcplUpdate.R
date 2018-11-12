@@ -51,7 +51,7 @@ tcplUpdate <- function(what, id, flds) {
 
     qf <- paste("UPDATE", i, "%s", "WHERE", what, "=", id)
 
-    for (i in 1:nrow(flds)) {
+    for (i in seq_len(nrow(flds))) {
         inst <- paste0(names(flds), "=", "\"", flds[i], "\"", collapse=", ")
         inst <- paste("SET", inst)
         qf[i] <- sprintf(qf[i], inst)

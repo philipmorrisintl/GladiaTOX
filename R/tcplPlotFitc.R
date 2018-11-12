@@ -52,7 +52,7 @@ tcplPlotFitc <- function(fitc=NULL, main=NULL, fitc_sub=NULL) {
                        "#1F78B4", "#762A83"))
 
         clrs <- data.table(
-            edge=1:8,
+            edge=seq_len(8),
             r=col2rgb(colorRampPalette(mypal)(8))["red", ]/255,
             g=col2rgb(colorRampPalette(mypal)(8))["green", ]/255,
             b=col2rgb(colorRampPalette(mypal)(8))["blue", ]/255
@@ -63,7 +63,7 @@ tcplPlotFitc <- function(fitc=NULL, main=NULL, fitc_sub=NULL) {
         vmin <- min(vals[ , N])
 
         b <- unlist(lapply(0:7, function(x) { vmax/((vmax/vmin)^(1/8))^x }))
-        b <- round(rev(b[1:7]), 0)
+        b <- round(rev(b[seq_len(7)]), 0)
 
         vals[N <= b[1],            col := clrs[edge == 1, col]]
         vals[N <= b[2] & N > b[1], col := clrs[edge == 2, col]]

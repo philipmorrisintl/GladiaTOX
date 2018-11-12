@@ -326,7 +326,7 @@ mc6_mthds <- function() {
             e5  <- bquote(dr[wllt == "t", incl := t1 & t2 & t3])
             e6  <- bquote(setkey(dr, cndx))
             e7  <- bquote(dr[wllt == "t" & incl,
-                             test := all(resp[cndx[1:3]] - resp[cndx[2:4]] > 0),
+                             test := all(resp[cndx[seq_len(3)]] - resp[cndx[2:4]] > 0),
                              by=list(m4id, repi)])
             e8  <- bquote(dr[ , fval := lw(test)/.N, by=m4id])
             e9  <- bquote(f[[.(mthd)]] <- dr[which(test),

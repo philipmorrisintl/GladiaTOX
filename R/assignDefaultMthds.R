@@ -64,7 +64,7 @@ assignDefaultMthds <- function(asid) {
         lvl=3,
         id=atbl$aeid,
         mthd_id=c(39, 9, 7),
-        ordr=1:3,
+        ordr=seq_len(3),
         type="mc")
 
     tcplMthdAssign(

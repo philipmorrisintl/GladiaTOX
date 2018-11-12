@@ -26,4 +26,4 @@ sink.reset()
 Other tcpl abbreviations: \code{\link{is.odd}},
   \code{\link{lu}}, \code{\link{lw}}
 }
-\concept{tcpl abbreviations}
+

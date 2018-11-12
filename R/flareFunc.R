@@ -60,7 +60,7 @@ flareFunc <- function(val, coli, rowi, apid, r){
                       rowi=rep(rowi, nrep),
                       apid=rep(apid, nrep),
                       ordr=rep(ordr, nrep),
-                      index=rep(1:nrep, each=val_len),
+                      index=rep(seq_len(nrep), each=val_len),
                       cold=rep(adjc, each=val_len),
                       rowd=rep(adjr, each=val_len),
                       adjd=rep(adjd, each=val_len))

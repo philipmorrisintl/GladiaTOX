@@ -28,3 +28,4 @@ tcplCode2CASN("C09812420") ## Invalid CASRN will give a warning
 tcplCode2CASN("CNOCAS0015") ## The underscore is reinserted for NOCAS codes
 
 }
+

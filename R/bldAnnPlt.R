@@ -16,7 +16,8 @@
 #' 
 #' @param study.data Legacy study annotation file from biobanking
 #' @param vehicle.mapping List of vehicles to treatments mapping
-#' @param study.id Study identifier to be registered in GladiaTOX DB
+#' @param posctr.doses Vector of positive control doses
+#' @param phase Study phase
 #' 
 #' @details
 #' Function used only when processing historical data
@@ -46,14 +47,14 @@
 
     ## build data table
     DT <- NULL
-    for(kk in 1:dim(study.data)[1]) {
+    for(kk in seq_len(nrow(study.data))) {
 
         dt <- NULL
 
         ## compound column
         dt$stimulus <- NULL
         compound <- splitString(study.data$COMPOUND.1[kk])
-        for(cc in 1:4) {
+        for(cc in seq_len(4)) {
             col <- c(rep(compound[cc],6),
                      getVehicle(vehicle.mapping,compound[cc]))
             if(cc != 4)
@@ -71,12 +72,12 @@
         ## dose column
         dt$`stimulus concentration` <- NULL
         doses <- NULL
-        for(ii in 1:6)
+        for(ii in seq_len(6))
             doses[[ii]] <- splitString(
                 study.data[[paste0("Compound1Dose", ii)]][kk])
-        for(ii in 1:4) {
+        for(ii in seq_len(4)) {
             dd <- NULL
-            for(iii in 1:6)
+            for(iii in seq_len(6))
                 dd <- c(dd, doses[[iii]][ii])
             dd <- c(dd, "", posctr.doses[ii])
             dd[!dd %in% ""] <- paste(dd[!dd%in%""], "uM")
@@ -92,8 +93,8 @@
         dt$plate <- rep(kk, 96)
 
         ## tube
-        dt$tube<- paste0(rep(toupper(letters[1:8]), 12),
-                         unlist(lapply(1:12,function(xx){rep(xx, 8)})))
+        dt$tube<- paste0(rep(toupper(letters[seq_len(8)]), 12),
+                         unlist(lapply(seq_len(12),function(xx){rep(xx, 8)})))
 
         ## well type
         dt$well_type <- rep("", 96)

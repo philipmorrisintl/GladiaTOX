@@ -46,7 +46,7 @@
     }
 
     invisible(
-        lapply(1:length(x),
+        lapply(seq_len(length(x)),
                function(i) {
                    xv <- cos(angles) * r[i] + x[i]
                    yv <- sin(angles) * r[i] + y[i]

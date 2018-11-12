@@ -105,7 +105,7 @@ tcplPlotWin <- function(chid, aeid, bline="bmad", collapse=TRUE) {
                    by=c("aeid", "logc", "spid")]
     }
 
-    colfunc <- colorRampPalette(brewer.pal(n=9, name="Greens")[-c(1:3)])
+    colfunc <- colorRampPalette(brewer.pal(n=9, name="Greens")[-c(seq_len(3))])
     grns <- colfunc(rsp[ , lu(spid)])
     p <- list(ylim=range(rsp$true_resp*1.2, y0),
               font.lab=2,
@@ -131,7 +131,7 @@ tcplPlotWin <- function(chid, aeid, bline="bmad", collapse=TRUE) {
          angle=ifelse(useBmad, 45, -45))
     points(rsp$true_resp ~ rsp$logc,
            col=grns[as.factor(rsp[ , spid])])
-    for (i in 1:nrow(sub)) {
+    for (i in seq_len(nrow(sub))) {
         tcplAddModel(sub[i],
                      adj=switch(sub[i, adir], down=-1, 1),
                      col=grns[as.factor(sub$spid)[i]])

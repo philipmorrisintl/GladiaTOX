@@ -44,3 +44,4 @@ Note, the default value for ordr.fitc is \code{TRUE} in
 tcplMakeAeidPlts(aeid = 10, lvl = 6, ordr.fitc = FALSE)
 
 }
+
