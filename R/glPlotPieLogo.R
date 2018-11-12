@@ -32,9 +32,9 @@ glPlotPieLogo <- function(){
     data = NULL
     data$slice = rep(paste0("slice",seq_len(nslices)),3)
     data$value = c(
-        c(rep(6.75, 5), rep(0, 12), 5, 5.5, seq(4, 7, by = (7-4)/12)[-13], 6.75),
-        c(rep(0, 5), 7.5, 7.5, rep(0, 12), seq(0, 2.5, by = 2.5/11), 0),
-        c(rep(0, 19), seq(0, 1, by = 1/11), 0))
+        c(rep(6.75, 5), rep(0, 12), 5, 5.5, seq(4, 7, by=(7-4)/12)[-13], 6.75),
+        c(rep(0, 5), 7.5, 7.5, rep(0, 12), seq(0, 2.5, by=2.5/11), 0),
+        c(rep(0, 19), seq(0, 1, by=1/11), 0))
     data$layer <- c(rep("l3",nslices), rep("l2",nslices), rep("l1",nslices))
     data = as.data.frame(data)
     data$slice = factor(data$slice, levels = paste0("slice",seq_len(nslices)))
@@ -46,7 +46,8 @@ glPlotPieLogo <- function(){
     before = 47; after = 48
     logo = ggplot(data, aes(x = slice, y = value)) +
         geom_bar(stat="identity", aes(fill = layer), color="gray60") +
-        geom_hline(color="gray", yintercept = yintercept, size=.3, linetype="dashed") +
+        geom_hline(color="gray", yintercept = yintercept, size=.3, 
+                   linetype="dashed") +
         geom_hline(color="white", yintercept = 0.5, size=5, linetype="solid") +
         scale_fill_manual(values = c("#533B22", "#917546", "#33190C")) +
         theme_minimal() +

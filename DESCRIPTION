@@ -5,14 +5,14 @@ biocViews: Software,
     Normalization,
     Preprocessing
 Title: R Package for Processing High Content Screening data
-Version: 0.99.3
+Version: 0.99.4
 Author: Vincenzo Belcastro [aut, cre],
     Dayne L Filer <dayne.filer@gmail.com> [aut],
     Stephane Cano [aut]
 Maintainer: PMP S.A. R Support <DL.RSupport@pmi.com>
 Description: GladiaTOX is an open-source solution for HCS data processing and
     reporting that expands the toxcast pipeline package.
-License: GPL-2, file COPYING
+License: GPL-2
 Depends:
     R (>= 3.2.0),
     data.table (>= 1.9.4)

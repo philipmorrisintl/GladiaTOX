@@ -1,7 +1,9 @@
 %% brew depends: l5_sngl, stim
 %% weave depends: l5
 
-<<<%= paste0("summ_", stim) %>,fig=TRUE,strip.white=true,echo=FALSE,height=5.2,width=6.5,include=FALSE>>=
+<% mylabel <- paste0("summ_", stim) %>
+
+<<<%= mylabel %>,fig=TRUE,strip.white=true,echo=FALSE,height=5.2,width=6.5,include=FALSE>>=
 p <- list(xlab = expression(paste("Concentration (",mu,"M)")),
           ylab = "Relative Efficacy",
           main = "",

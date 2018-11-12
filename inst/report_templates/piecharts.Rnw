@@ -22,6 +22,8 @@ piedat <- list()
 @
 
 <% for (tm in unique(aes[ , timepoint_hr[order(timepoint_hr)]])) { -%>
+<% mylabel1 <- paste0("pie-ch", c1, "hr", gsub("[:.:]", "", tm)) %>
+<% mylabel2 <- paste0("pie-ch", c2, "hr", gsub("[:.:]", "", tm)) %>
 
 \hfill \par
 \setkeys{Gin}{width=1\textwidth}
@@ -31,7 +33,7 @@ piedat <- list()
 
 \begin{subfigure}{0.49\textwidth}
 \caption{<%= sanitize(cd[chid == c1, unique(chnm)]) %>}
-<<<%= paste0("pie-ch", c1, "hr", gsub("[:.:]", "", tm)) %>,fig=true,strip.white=true,echo=false,height=4,width=4>>=
+<<<%= mylabel1 %>,fig=true,strip.white=true,echo=false,height=4,width=4>>=
 ae_sub <- aes[ , 
                list(aeid = aeid[which(timepoint_hr == <%= tm %>)],
                     col = unique(clps_col)), 
@@ -47,7 +49,7 @@ piedat[["<%= paste0(c1, "-", tm) %>"]] <- tcplPlotPie(chid = <%= c1 %>,
 \end{subfigure} 
 \begin{subfigure}{0.49\textwidth}
 \caption{<%= sanitize(cd[chid == c2, unique(chnm)]) %>}
-<<<%= paste0("pie-ch", c2, "hr", gsub("[:.:]", "", tm)) %>,fig=true,strip.white=true,echo=false,height=4,width=4>>=
+<<<%= mylabel2 %>,fig=true,strip.white=true,echo=false,height=4,width=4>>=
 piedat[["<%= paste0(c2, "-", tm) %>"]] <- tcplPlotPie(chid = <%= c2 %>,
                                                       mrks = 10^rng, 
                                                       aeid = ae_sub$aeid,

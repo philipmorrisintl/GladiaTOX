@@ -23,10 +23,10 @@ tcplSendQuery <- function(query, db=getOption("TCPL_DB"),
                           drvr=getOption("TCPL_DRVR")) {
 
                                         #Check for valid inputs
-    if (length(query) != 1 | class(query) != "character") {
+    if (length(query) != 1 | !is(query, "character")) {
         stop("The input 'query' must be a character of length one.")
     }
-    if (length(db) != 1 | class(db) != "character") {
+    if (length(db) != 1 | !is(db, "character")) {
         stop("The input 'db' must be a character of length one.")
     }
 

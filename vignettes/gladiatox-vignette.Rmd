@@ -15,7 +15,7 @@ package: GladiaTOX
 output:
   BiocStyle::html_document
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{GladiaTOX: R Package for Processing High Content Screening data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

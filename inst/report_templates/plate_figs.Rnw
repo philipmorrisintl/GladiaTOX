@@ -3,11 +3,12 @@
 
 <% apid_vals <- l2[acid == ac, unique(apid)] %>
 <% for (i in seq_along(apid_vals)) { -%>
+<% mylabel <- paste0("acid", ac, "plate", i) %>
 
 \hfill \par
 \setkeys{Gin}{width=1\linewidth}
 \begin{figure}[H]
-<<<%= paste0("acid", ac, "plate", i) %>,fig=true,strip.white=true,echo=false,height=8,width=12>>=
+<<<%= mylabel %>,fig=true,strip.white=true,echo=false,height=8,width=12>>=
 tcplPlotPlate(dat = l2, apid = "<%= apid_vals[i]%>", id = <%= ac %>)
 @
 \end{figure}
@@ -21,11 +22,12 @@ pcids <- l5[spid %in% pc_spid & aeid == up_aeid, m4id]
 
 <% if (length(pcids) > 0) { -%>
 <% for (pcid in pcids) { -%>
+<% mylabel <- paste0("m4id", pcid) %>
 
 \hfill \par
 \setkeys{Gin}{width=0.9\linewidth}
 \begin{figure}[H]
-<<<%= paste0("m4id", pcid) %>,fig=true,strip.white=true,echo=false,height=7,width=12>>=
+<<<%= mylabel %>,fig=true,strip.white=true,echo=false,height=7,width=12>>=
 tcplPlotM4ID(m4id = <%= pcid %>, lvl = 6, bline = "coff")
 @
 \end{figure}

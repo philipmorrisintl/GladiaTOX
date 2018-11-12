@@ -14,12 +14,13 @@ ac_grps <- split(stim_ac, ceiling(seq_along(stim_ac)/6))
 \begin{centering}
 \begin{figure}[H]
 <% for (ac in ac_grps[[ac_grp]]) { -%>
+<% mylabel <- paste0("stim", stim, "acid", ac) %>
 \begin{subfigure}{0.49\textwidth}
 <% if (which(ac == ac_grps[[ac_grp]]) == 1) { -%> 
 \addtocounter{subfigure}{<%= (ac_grp - 1)*6 %>} 
 <% } %>
 \caption{<%= sanitize(aes[acid == ac, unique(acnm)]) %>}
-<<<%= paste0("stim", stim, "acid", ac) %>,fig=true,strip.white=true,echo=false,height=4,width=5,include=false>>=
+<<<%= mylabel %>,fig=true,strip.white=true,echo=false,height=4,width=5,include=false>>=
 
 ae_vec <- c(<%= aes[acid == ac, paste(aeid, collapse = ", ")] %>)
 tcplPlotWin(chid = <%= stim %>, aeid = ae_vec, collapse = TRUE, bline = "coff")
