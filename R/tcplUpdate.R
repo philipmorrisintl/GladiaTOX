@@ -17,7 +17,7 @@
 
 tcplUpdate <- function(what, id, flds) {
 
-    lens <- c(length(id), sapply(flds, length))
+    lens <- c(length(id), vapply(flds, length, integer(1)))
     if (!identical(max(lens), min(lens))) {
         stop(
             "The length of 'id' and the lengths of each list element in 'flds'",
@@ -59,7 +59,7 @@ tcplUpdate <- function(what, id, flds) {
 
     res <- lapply(qf, tcplSendQuery)
 
-    test <- !sapply(res, isTRUE)
+    test <- !vapply(res, isTRUE, logical(1))
     if (any(test)) {
         warning("Error updating the following ids: ",
                 paste(id[test], collapse=", "))

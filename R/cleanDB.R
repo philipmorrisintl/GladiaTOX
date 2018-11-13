@@ -19,10 +19,12 @@
 
     v <- tcplConfList()
     p <- names(v)
-    pn <- sapply(p, nchar)
-    sep <- sapply(pn, function(x) paste(rep(" ", 11 - x), collapse=""))
+    pn <- vapply(p, nchar, integer(1))
+    sep <- vapply(pn, function(x) paste(rep(" ", 11 - x), collapse=""),
+                  character(1))
     sep <- paste0(":", sep)
-    cs <- sapply(seq_along(v), function(x) paste(p[x], v[[x]], sep=sep[x]))
+    cs <- vapply(seq_along(v), function(x) paste(p[x], v[[x]], sep=sep[x]),
+                 "character")
 
     packageStartupMessage("Current database settings:\n  ",
                           paste(cs, collapse="\n  "),
@@ -34,7 +36,7 @@
         tbls <- unname(unlist(tcplQuery("SHOW TABLES;")))
         keep <- c(grep("_methods", tbls, value=TRUE), "mc5_fit_categories")
         reset_qs <- paste0("TRUNCATE TABLE ", tbls[!tbls %in% keep], ";")
-        sapply(reset_qs, tcplSendQuery)
+        vapply(reset_qs, tcplSendQuery, "")
     }
 
 }

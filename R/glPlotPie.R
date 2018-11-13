@@ -66,7 +66,8 @@ glPlotPie <- function(asid, chnms=NULL, acids=NULL, aeids=NULL,
     dat <- merge(annotations, data, by="aeid")
 
     ## strip endpoint names
-    dat[ , aenm := sapply(strsplit(as.character(aenm), "_"), "[[", 2)]
+    dat[ , aenm := vapply(strsplit(as.character(aenm), "_"), 
+                          function(xx) xx[[2]], character(1))]
 
     ## select samples based on min rmse + filter columns
     dat <- dat[, .SD[which.min(modl_rmse)], by=c("spid", "acnm")]

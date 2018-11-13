@@ -3,7 +3,7 @@
 <<echo=FALSE,results=tex>>=
 lvls <- c(2, 3, 5)
 mthds <- lapply(lvls, tcplMthdList)
-lvls <- rep(lvls, sapply(mthds, nrow))
+lvls <- rep(lvls, vapply(mthds, nrow, numeric(1)))
 mthds <- rbindlist(mthds)
 invisible(mthds[ , Level := as.integer(lvls)])
 setcolorder(mthds, c(4, 1:3))

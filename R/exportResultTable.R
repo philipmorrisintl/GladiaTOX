@@ -40,7 +40,8 @@ exportResultTable <- function(asid, stats, outfile) {
     dat <- merge(dat, aetbl, by="aeid")
 
     dat <- dat[, .SD[which.min(modl_rmse)], by=c("spid", "acnm")]
-    dat[ , aenm := sapply(strsplit(as.character(aenm), "_"), "[[", 1)]
+    dat[ , aenm := vapply(strsplit(as.character(aenm), "_"), 
+                          function(xx) xx[[1]], character(1))]
 
     for(stat in stats) dat[ , (stat) := 10^get(stat)]
 

@@ -47,7 +47,7 @@ tcplAICProb <- function(...) {
 
     aics <- list(...)
 
-    lens <- sapply(aics, length)
+    lens <- vapply(aics, length, integer(1))
     if (abs(max(lens) - min(lens)) > 0) stop("All inputs must be same length.")
 
     maic <- pmin(..., na.rm=TRUE)

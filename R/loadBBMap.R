@@ -19,8 +19,10 @@
 #' @note PMI-specific
 #' @importFrom stringr str_extract
 #' @import data.table
-.loadBBMap <- function(input) {
+#' 
 
+.loadBBMap <- function(input) {
+    
     dat <- .readInput(input)
 
     dat[ , waid := as.integer(substr(u_smkid,  1,  9))]

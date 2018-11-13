@@ -50,7 +50,8 @@ glPlotPosCtrl <- function(asid) {
 
     datatab <- merge(datatab, aeidtbl, by="aeid")
 
-    datatab[ , aenm := sapply(strsplit(as.character(aenm), "_"), "[[", 1)]
+    datatab[ , aenm := vapply(strsplit(as.character(aenm), "_"), 
+                              function(xx) xx[[1]], character(1))]
 
     pntshp <- 10^datatab$logc
     pntshp[!datatab$wllt == "c"] <- NA

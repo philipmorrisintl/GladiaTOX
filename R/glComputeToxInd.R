@@ -48,7 +48,8 @@ glComputeToxInd <- function(asid, tp=NULL, stat=quote(modl_acc)) {
                  c("aeid", "aenm"))
 
     dat <- dat[, .SD[which.min(modl_rmse)], by=c("spid", "acnm")]
-    dat[ , aenm := sapply(strsplit(as.character(aenm), "_"), "[[", 2)]
+    dat[ , aenm := vapply(strsplit(as.character(aenm), "_"), 
+                          function(xx) xx[[2]], character(1))]
     xprtcols <- c("asnm", "chid", "chnm", "logc_min", "logc_max", "spid",
                   "aid", "anm", "acid", "acnm", "aeid", "aenm", "modl_ga",
                   "modl_tp", "modl_acb", "modl_acc", "fitc")

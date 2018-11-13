@@ -46,7 +46,8 @@ glPlotStat <- function(asid, ref.chm=NULL, stat=quote(modl_acc)) {
     dat <- tcplPrepOtpt(tcplLoadData(lvl=5, fld="aeid", val=aetbl$aeid))
     dat <- merge(dat, aetbl, by=c("aeid", "aenm"))
     dat <- dat[ , .SD[which.min(modl_rmse)], by=c("spid", "acnm")]
-    dat[ , aenm := sapply(strsplit(as.character(aenm), "_"), "[[", 2)]
+    dat[ , aenm := vapply(strsplit(as.character(aenm), "_"), 
+                          function(xx) xx[[2]], character(1))]
     dat$aenm_wrap <- str_wrap(string=dat$aenm, width=15)
 
     dat[ , stat := 10^eval(stat)]

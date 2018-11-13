@@ -6,7 +6,7 @@
 #####################################################################
 
 #-------------------------------------------------------------------------------
-# exportResultForToxpiGui: create the result table compatible to toxpi GUI
+# exportResultForToxpiGUI: create the result table compatible to toxpi GUI
 #-------------------------------------------------------------------------------
 
 #' @title Create the result table for the asi in input
@@ -49,7 +49,8 @@ exportResultForToxpiGUI <- function(asid, tp, outfile, stat) {
                  c("aeid", "aenm"))
 
     dat <- dat[, .SD[which.min(modl_rmse)], by=c("spid", "acnm")]
-    dat[ , aenm := sapply(strsplit(as.character(aenm), "_"), "[[", 1)]
+    dat[ , aenm := vapply(strsplit(as.character(aenm), "_"), 
+                          function(xx) xx[[1]], character(1))]
     xprtcols <- c("asnm", "chid", "chnm", "logc_min", "logc_max", "spid",
                   "aid", "anm", "acid", "acnm", "aeid", "aenm", "modl_ga",
                   "modl_tp", "modl_acb", "modl_acc", "fitc")

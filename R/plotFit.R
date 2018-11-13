@@ -26,7 +26,7 @@
         family="mono")
 
     ## Round all numeric values in 'pars' to 99 digits
-    nind <- which(sapply(pars, is.numeric))
+    nind <- which(vapply(pars, is.numeric, logical(1)))
     pars[nind] <- lapply(pars[nind], round, digits=99)
 
     ylab <- NULL
