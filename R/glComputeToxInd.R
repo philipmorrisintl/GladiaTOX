@@ -43,23 +43,29 @@ glComputeToxInd <- function(asid, tp=NULL, stat=quote(modl_acc)) {
     dat <- tcplLoadData(5, "aeid", tcplLoadAeid("asid", asid)$aeid)
     dat <- tcplPrepOtpt(dat)
     othrIDs <- c("asnm", "aid", "anm", "acid", "acnm")
-    dat <- merge(dat,
-                 tcplLoadAeid("asid", asid, add.fld=othrIDs),
-                 c("aeid", "aenm"))
+    dat <- merge(
+        dat,
+        tcplLoadAeid("asid", asid, add.fld=othrIDs),
+        c("aeid", "aenm")
+    )
 
     dat <- dat[, .SD[which.min(modl_rmse)], by=c("spid", "acnm")]
-    dat[ , aenm := vapply(strsplit(as.character(aenm), "_"), 
-                          function(xx) xx[[2]], character(1))]
-    xprtcols <- c("asnm", "chid", "chnm", "logc_min", "logc_max", "spid",
-                  "aid", "anm", "acid", "acnm", "aeid", "aenm", "modl_ga",
-                  "modl_tp", "modl_acb", "modl_acc", "fitc")
+    dat[ , aenm := vapply(
+        strsplit(as.character(aenm), "_"),
+        function(xx) xx[[2]], character(1)
+    )]
+    xprtcols <- c(
+        "asnm", "chid", "chnm", "logc_min", "logc_max", "spid",
+        "aid", "anm", "acid", "acnm", "aeid", "aenm", "modl_ga",
+        "modl_tp", "modl_acb", "modl_acc", "fitc"
+    )
     dat <- dat[ , .SD, .SDcols=xprtcols]
 
     if(!is.null(tp))
         dat <- dat[grepl(paste0("_", tp), anm)]
 
     dat <- dat[, mean(10^eval(stat), na.rm=TRUE),
-               by=c("chnm", "aenm")]
+        by=c("chnm", "aenm")]
 
     ## log scale data
     dat$V1[dat$V1 > 1e6] <- 1e6
@@ -68,8 +74,9 @@ glComputeToxInd <- function(asid, tp=NULL, stat=quote(modl_acc)) {
     dat[, V1 := (V1 - min(V1, na.rm=TRUE))/diff(range(V1, na.rm=TRUE)),
         by="aenm"]
     dat <- dat[, mean(V1, na.rm=TRUE), by="chnm"]
-    dat$chnm <- factor(dat$chnm, levels=dat$chnm[order(dat$V1,
-                                                       decreasing=TRUE)])
-
+    dat$chnm <- factor(
+        dat$chnm,
+        levels=dat$chnm[order(dat$V1,decreasing=TRUE)]
+    )
     return(dat)
 }

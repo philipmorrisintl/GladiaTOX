@@ -74,10 +74,12 @@ tcplPrepOtpt <- function(dat, ids=NULL) {
             warning("'acid' field is not in dat. No 'acid' mapping performed.")
         } else {
             if ("acnm" %in% dnames) dat[ , acnm := NULL]
-            dat <- merge(x=tcplLoadAcid("acid", dat[ , unique(acid)]),
-                         y=dat,
-                         by="acid",
-                         all.y=TRUE)
+            dat <- merge(
+                x=tcplLoadAcid("acid", dat[ , unique(acid)]),
+                y=dat,
+                by="acid",
+                all.y=TRUE
+            )
         }
     }
 
@@ -87,10 +89,12 @@ tcplPrepOtpt <- function(dat, ids=NULL) {
         } else {
             if ("aenm" %in% dnames) dat[ , aenm := NULL]
             if ("resp_unit" %in% dnames) dat[ , resp_unit := NULL]
-            dat <- merge(x=tcplLoadAeid("aeid", dat[ , unique(aeid)]),
-                         y=dat,
-                         by="aeid",
-                         all.y=TRUE)
+            dat <- merge(
+                x=tcplLoadAeid("aeid", dat[ , unique(aeid)]),
+                y=dat,
+                by="aeid",
+                all.y=TRUE
+            )
             dat <- merge(dat, tcplLoadUnit(dat[ , unique(aeid)]), by="aeid")
         }
     }

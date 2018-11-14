@@ -74,64 +74,68 @@ tcplWriteData <- function(dat, lvl, type) {
 
     if (lvl == 4) {
 
-        mc4_cols <- c("aeid",
-                      "bmad",
-                      "spid",
-                      "resp_max",
-                      "resp_min",
-                      "max_mean",
-                      "max_mean_conc",
-                      "max_med",
-                      "max_med_conc",
-                      "logc_max",
-                      "logc_min",
-                      "cnst",
-                      "hill",
-                      "hcov",
-                      "gnls",
-                      "gcov",
-                      "cnst_er",
-                      "cnst_aic",
-                      "cnst_rmse",
-                      "cnst_prob",
-                      "hill_tp",
-                      "hill_tp_sd",
-                      "hill_ga",
-                      "hill_ga_sd",
-                      "hill_gw",
-                      "hill_gw_sd",
-                      "hill_er",
-                      "hill_er_sd",
-                      "hill_aic",
-                      "hill_rmse",
-                      "hill_prob",
-                      "gnls_tp",
-                      "gnls_tp_sd",
-                      "gnls_ga",
-                      "gnls_ga_sd",
-                      "gnls_gw",
-                      "gnls_gw_sd",
-                      "gnls_la",
-                      "gnls_la_sd",
-                      "gnls_lw",
-                      "gnls_lw_sd",
-                      "gnls_er",
-                      "gnls_er_sd",
-                      "gnls_aic",
-                      "gnls_rmse",
-                      "gnls_prob",
-                      "nconc",
-                      "npts",
-                      "nrep",
-                      "nmed_gtbl",
-                      "tmpi",
-                      "modified_by")
+        mc4_cols <- c(
+            "aeid",
+            "bmad",
+            "spid",
+            "resp_max",
+            "resp_min",
+            "max_mean",
+            "max_mean_conc",
+            "max_med",
+            "max_med_conc",
+            "logc_max",
+            "logc_min",
+            "cnst",
+            "hill",
+            "hcov",
+            "gnls",
+            "gcov",
+            "cnst_er",
+            "cnst_aic",
+            "cnst_rmse",
+            "cnst_prob",
+            "hill_tp",
+            "hill_tp_sd",
+            "hill_ga",
+            "hill_ga_sd",
+            "hill_gw",
+            "hill_gw_sd",
+            "hill_er",
+            "hill_er_sd",
+            "hill_aic",
+            "hill_rmse",
+            "hill_prob",
+            "gnls_tp",
+            "gnls_tp_sd",
+            "gnls_ga",
+            "gnls_ga_sd",
+            "gnls_gw",
+            "gnls_gw_sd",
+            "gnls_la",
+            "gnls_la_sd",
+            "gnls_lw",
+            "gnls_lw_sd",
+            "gnls_er",
+            "gnls_er_sd",
+            "gnls_aic",
+            "gnls_rmse",
+            "gnls_prob",
+            "nconc",
+            "npts",
+            "nrep",
+            "nmed_gtbl",
+            "tmpi",
+            "modified_by"
+        )
 
         mc4_agg_cols <- c(paste0("m", 0:4, "id"), "aeid")
 
-        tcplAppend(dat=copy(dat[ , unique(.SD) , .SDcols=mc4_cols]),
-                   tbl="mc4",
-                   db=getOption("TCPL_DB"))
+        tcplAppend(
+            dat=copy(dat[ , unique(.SD) , .SDcols=mc4_cols]),
+            tbl="mc4",
+            db=getOption("TCPL_DB")
+        )
 
         qformat <- "SELECT m4id, aeid, tmpi FROM mc4 WHERE aeid IN (%s);"
         qstring <- sprintf(qformat, paste0("\"", ids, "\"", collapse=","))
@@ -142,26 +146,32 @@ tcplWriteData <- function(dat, lvl, type) {
 
         dat <- m4id_map[dat]
 
-        tcplAppend(dat=dat[ , .SD, .SDcols=mc4_agg_cols],
-                   tbl="mc4_agg",
-                   db=getOption("TCPL_DB"))
-
+        tcplAppend(
+            dat=dat[ , .SD, .SDcols=mc4_agg_cols],
+            tbl="mc4_agg",
+            db=getOption("TCPL_DB")
+        )
+        
     } else if (lvl == 2 & type == "sc")  {
 
-        sc2_cols <- c("aeid",
-                      "bmad",
-                      "spid",
-                      "max_med",
-                      "hitc",
-                      "coff",
-                      "tmpi",
-                      "modified_by")
+        sc2_cols <- c(
+            "aeid",
+            "bmad",
+            "spid",
+            "max_med",
+            "hitc",
+            "coff",
+            "tmpi",
+            "modified_by"
+        )
 
         sc2_agg_cols <- c(paste0("s", 0:2, "id"), "aeid")
 
-        tcplAppend(dat=copy(dat[ , unique(.SD) , .SDcols=sc2_cols]),
-                   tbl="sc2",
-                   db=getOption("TCPL_DB"))
+        tcplAppend(
+            dat=copy(dat[ , unique(.SD) , .SDcols=sc2_cols]),
+            tbl="sc2",
+            db=getOption("TCPL_DB")
+        )
 
         qformat <- "SELECT s2id, aeid, tmpi FROM sc2 WHERE aeid IN (%s);"
         qstring <- sprintf(qformat, paste0("\"", ids, "\"", collapse=","))
@@ -172,9 +182,11 @@ tcplWriteData <- function(dat, lvl, type) {
 
         dat <- s2id_map[dat]
 
-        tcplAppend(dat=dat[ , .SD, .SDcols=sc2_agg_cols],
-                   tbl="sc2_agg",
-                   db=getOption("TCPL_DB"))
+        tcplAppend(
+            dat=dat[ , .SD, .SDcols=sc2_agg_cols],
+            tbl="sc2_agg",
+            db=getOption("TCPL_DB")
+        )
 
     } else {
 
@@ -189,8 +201,10 @@ tcplWriteData <- function(dat, lvl, type) {
         } else {
 
             rbins <- split(seq_len(n), ceiling(seq_along(seq_len(n))/1e6))
-            lapply(rbins,
-                   function(x) tcplAppend(dat=dat[x], tbl=tbl, db=db))
+            lapply(
+                rbins,
+                function(x) tcplAppend(dat=dat[x], tbl=tbl, db=db)
+            )
 
         }
 

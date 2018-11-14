@@ -50,8 +50,10 @@ glPlotPosCtrl <- function(asid) {
 
     datatab <- merge(datatab, aeidtbl, by="aeid")
 
-    datatab[ , aenm := vapply(strsplit(as.character(aenm), "_"), 
-                              function(xx) xx[[1]], character(1))]
+    datatab[ , aenm := vapply(
+        strsplit(as.character(aenm), "_"), 
+        function(xx) xx[[1]], character(1)
+    )]
 
     pntshp <- 10^datatab$logc
     pntshp[!datatab$wllt == "c"] <- NA
@@ -64,11 +66,15 @@ glPlotPosCtrl <- function(asid) {
     pp <- NULL
     for(a in sort(unique(datatab$aid))) {
         pp[[a]] <-
-            ggplot(subset(datatab, datatab$aid == a),
-                   aes(x=wllt, y=resp, fill=u_boxtrack)) +
-            geom_point(aes(fill=u_boxtrack, shape=PosCtr_cntn),
-                       col="black", size=1,
-                       position=position_jitterdodge(jitter.width=0.05)) +
+            ggplot(
+                subset(datatab, datatab$aid == a),
+                aes(x=wllt, y=resp, fill=u_boxtrack)
+            ) +
+            geom_point(
+                aes(fill=u_boxtrack, shape=PosCtr_cntn),
+                col="black", size=1,
+                position=position_jitterdodge(jitter.width=0.05)
+            ) +
             geom_boxplot(aes(col=u_boxtrack), alpha=0, lwd=0.5) +
             scale_y_continuous(name="log2FC", limits=c(-4.5, 4.5)) +
             facet_grid(anm~aenm)

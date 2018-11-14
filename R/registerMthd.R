@@ -44,18 +44,28 @@ registerMthd <- function(lvl, mthd, desc, nddr=0L, type) {
     if (type == "mc" & !lvl %in% c(2, 3, 5, 6)) stop("Invalid 'lvl' value.")
     if (type == "sc" & !lvl %in% seq_len(2)) stop("Invalid 'lvl' value.")
 
-    mb <- paste(Sys.info()[c("login", "user",
-                             "effective_user")], collapse=".")
+    mb <- paste(
+        Sys.info()[c(
+            "login",
+            "user",
+            "effective_user"
+            )],
+        collapse="."
+    )
 
     dat <- data.table(modified_by=rep(mb, length(mthd)))
-    dat[ ,
-    (c(paste0(type, lvl, "_mthd"), "desc")) := list(mthd, desc)]
+    dat[ , (c(
+            paste0(type, lvl, "_mthd"),
+            "desc"
+        )) := list(mthd, desc)]
 
     if (lvl == 6L) dat[ , nddr := nddr]
 
-    tcplAppend(dat=dat,
-               tbl=paste0(type, lvl, "_methods"),
-               db=getOption("TCPL_DB"))
+    tcplAppend(
+        dat=dat,
+        tbl=paste0(type, lvl, "_methods"),
+        db=getOption("TCPL_DB")
+    )
 
 }
 

@@ -58,7 +58,7 @@
 #' @export
 
 tcplRun <- function(asid=NULL, slvl, elvl, id=NULL, type="mc",
-                    mc.cores=NULL, outfile=NULL, runname=NULL) {
+    mc.cores=NULL, outfile=NULL, runname=NULL) {
 
     ## Variable-binding to pass R CMD Check
                                         # acid <- aeid <- NULL
@@ -67,8 +67,10 @@ tcplRun <- function(asid=NULL, slvl, elvl, id=NULL, type="mc",
     options(warn=1)
     on.exit(options(warn=owarn))
 
-    user <- paste(Sys.info()[c("login", "user", "effective_user")],
-                  collapse=".")
+    user <- paste(
+        Sys.info()[c("login", "user", "effective_user")],
+        collapse="."
+    )
 
     stime <- Sys.time()
 
@@ -99,8 +101,10 @@ tcplRun <- function(asid=NULL, slvl, elvl, id=NULL, type="mc",
         sink(logcon, append=TRUE, type="message")
         on.exit(sink.reset(), add=TRUE)
         on.exit(close.connection(logcon), add=TRUE)
-        on.exit(message("Output appended to log file:", outfile, "\n"), 
-                add=TRUE)
+        on.exit(
+            message("Output appended to log file:", outfile, "\n"), 
+            add=TRUE
+        )
         message("\n\n\n")
         message(
             "RUNDATE -- ", format(stime, "%y%m%d; %H:%M"), "\n",
@@ -131,8 +135,10 @@ tcplRun <- function(asid=NULL, slvl, elvl, id=NULL, type="mc",
             res$l1_failed <- names(which(res$l1 != TRUE))
             id <- id[which(res$l1[names(id)] == TRUE)]
             if (length(id) == 0) {
-                warning("Pipeline stopped early at level 1; processing errors ",
-                        "occured with all given acids by level 1.")
+                warning(
+                    "Pipeline stopped early at level 1; processing errors ",
+                    "occured with all given acids by level 1."
+                )
                 ttime <- round(difftime(Sys.time(), stime, units="min"), 2)
                 ttime <- paste(unclass(ttime), units(ttime))
                 message("\n\nTotal processing time:", ttime, "\n\n")
@@ -156,8 +162,10 @@ tcplRun <- function(asid=NULL, slvl, elvl, id=NULL, type="mc",
             res$l2_failed <- names(which(res$l2 != TRUE))
             id <- id[which(res$l2[names(id)] == TRUE)]
             if (length(id) == 0) {
-                warning("Pipeline stopped early at level 2; processing errors ",
-                        "occured with all given acids by level 2.")
+                warning(
+                    "Pipeline stopped early at level 2; processing errors ",
+                    "occured with all given acids by level 2."
+                )
                 ttime <- round(difftime(Sys.time(), stime, units="min"), 2)
                 ttime <- paste(unclass(ttime), units(ttime))
                 message("\n\nTotal processing time:", ttime, "\n\n")
@@ -181,8 +189,10 @@ tcplRun <- function(asid=NULL, slvl, elvl, id=NULL, type="mc",
             res$l3_failed <- names(which(res$l3 != TRUE))
             id <- id[which(res$l3[names(id)] == TRUE)]
             if (length(id) == 0) {
-                warning("Pipeline stopped early at level 3; processing errors ",
-                        "occured with all given acids by level 3.")
+                warning(
+                    "Pipeline stopped early at level 3; processing errors ",
+                    "occured with all given acids by level 3."
+                )
                 ttime <- round(difftime(Sys.time(), stime, units="min"), 2)
                 ttime <- paste(unclass(ttime), units(ttime))
                 message("\n\nTotal processing time:", ttime, "\n\n")
@@ -211,8 +221,10 @@ tcplRun <- function(asid=NULL, slvl, elvl, id=NULL, type="mc",
             res$l4_failed <- names(which(res$l4 != TRUE))
             id <- id[which(res$l4[names(id)] == TRUE)]
             if (length(id) == 0) {
-                warning("Pipeline stopped early at level 4; processing errors ",
-                        "occured with all given acids by level 4.")
+                warning(
+                    "Pipeline stopped early at level 4; processing errors ",
+                    "occured with all given acids by level 4."
+                )
                 ttime <- round(difftime(Sys.time(), stime, units="min"), 2)
                 ttime <- paste(unclass(ttime), units(ttime))
                 message("\n\nTotal processing time:", ttime, "\n\n")
@@ -236,8 +248,10 @@ tcplRun <- function(asid=NULL, slvl, elvl, id=NULL, type="mc",
             res$l5_failed <- names(which(res$l5 != TRUE))
             id <- id[which(res$l5[names(id)] == TRUE)]
             if (length(id) == 0) {
-                warning("Pipeline stopped early at level 5; processing errors ",
-                        "occured with all given acids by level 5.")
+                warning(
+                    "Pipeline stopped early at level 5; processing errors ",
+                    "occured with all given acids by level 5."
+                )
                 ttime <- round(difftime(Sys.time(), stime, units="min"), 2)
                 ttime <- paste(unclass(ttime), units(ttime))
                 message("\n\nTotal processing time:", ttime, "\n\n")
@@ -261,8 +275,10 @@ tcplRun <- function(asid=NULL, slvl, elvl, id=NULL, type="mc",
             res$l6_failed <- names(which(res$l6 != TRUE))
             id <- id[which(res$l6[names(id)] == TRUE)]
             if (length(id) == 0) {
-                warning("Pipeline stopped early at level 6; processing errors ",
-                        "occured with all given acids by level 6.")
+                warning(
+                    "Pipeline stopped early at level 6; processing errors ",
+                    "occured with all given acids by level 6."
+                )
                 ttime <- round(difftime(Sys.time(), stime, units="min"), 2)
                 ttime <- paste(unclass(ttime), units(ttime))
                 message("\n\nTotal processing time:", ttime, "\n\n")
@@ -296,8 +312,10 @@ tcplRun <- function(asid=NULL, slvl, elvl, id=NULL, type="mc",
             res$l1_failed <- names(which(res$l1 != TRUE))
             id <- id[which(res$l1[names(id)] == TRUE)]
             if (length(id) == 0) {
-                warning("Pipeline stopped early at level 1; processing errors ",
-                        "occured with all given acids by level 1.")
+                warning(
+                    "Pipeline stopped early at level 1; processing errors ",
+                    "occured with all given acids by level 1."
+                )
                 ttime <- round(difftime(Sys.time(), stime, units="min"), 2)
                 ttime <- paste(unclass(ttime), units(ttime))
                 message("\n\nTotal processing time:", ttime, "\n\n")
@@ -326,8 +344,10 @@ tcplRun <- function(asid=NULL, slvl, elvl, id=NULL, type="mc",
             res$l2_failed <- names(which(res$l2 != TRUE))
             id <- id[which(res$l2[names(id)] == TRUE)]
             if (length(id) == 0) {
-                warning("Pipeline stopped early at level 2; processing errors ",
-                        "occured with all given acids by level 2.")
+                warning(
+                    "Pipeline stopped early at level 2; processing errors ",
+                    "occured with all given acids by level 2."
+                )
                 ttime <- round(difftime(Sys.time(), stime, units="min"), 2)
                 ttime <- paste(unclass(ttime), units(ttime))
                 message("\n\nTotal processing time:", ttime, "\n\n")

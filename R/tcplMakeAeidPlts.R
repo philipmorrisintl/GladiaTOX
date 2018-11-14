@@ -45,7 +45,7 @@
 #' @export
 
 tcplMakeAeidPlts <- function(aeid, lvl=4L, fname=NULL, odir=getwd(),
-                             ordr.fitc=TRUE, clib=NULL) {
+    ordr.fitc=TRUE, clib=NULL) {
 
     ## Variable-binding to pass R CMD Check
     spid <- m4id <- NULL
@@ -73,17 +73,26 @@ tcplMakeAeidPlts <- function(aeid, lvl=4L, fname=NULL, odir=getwd(),
     prs <- list(type="mc", fld="m4id", val=dat[ , unique(m4id)])
 
     agg <- do.call(tcplLoadData, args=c(lvl="agg", prs))
-    flg <- if (lvl < 6L) NULL else do.call(
-                                       tcplLoadData,
-                                       args=c(lvl=6L, prs))
+    flg <- if (lvl < 6L) {
+            NULL
+        } else {
+            do.call(
+                tcplLoadData,
+                args=c(lvl=6L, prs)
+            )
+        }
 
     if (is.null(fname)) {
-        fname <- file.path(odir,
-                           paste(paste0("AEID", aeid),
-                                 paste0("L", lvl),
-                                 tcplLoadAeid("aeid", aeid)$aenm,
-                                 format(Sys.Date(), "%y%m%d.pdf"),
-                                 sep="_"))
+        fname <- file.path(
+            odir,
+            paste(
+                paste0("AEID", aeid),
+                paste0("L", lvl),
+                tcplLoadAeid("aeid", aeid)$aenm,
+                format(Sys.Date(), "%y%m%d.pdf"),
+                sep="_"
+            )
+        )
     }
 
     graphics.off()

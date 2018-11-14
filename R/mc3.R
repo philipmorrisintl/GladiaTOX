@@ -167,8 +167,10 @@ mc3 <- function(ac, wr=FALSE) {
 
     res <- TRUE
 
-    outcols <- c("m0id", "m1id", "m2id", "acid", "aeid",
-                 "bval", "pval", "logc", "resp")
+    outcols <- c(
+        "m0id", "m1id", "m2id", "acid", "aeid",
+        "bval", "pval", "logc", "resp"
+    )
     dat <- dat[ , .SD, .SDcols=outcols]
 
     ## Load into mc3 table -- else return results
@@ -178,9 +180,11 @@ mc3 <- function(ac, wr=FALSE) {
 
         ttime <- round(difftime(Sys.time(), stime, units="sec"), 2)
         ttime <- paste(unclass(ttime), units(ttime))
-        message("Wrote L3 ACID", ac, " (AEIDS: ",
-                paste(dat[ , unique(aeid)], collapse=", "),
-                "; ", nrow(dat), " rows; ", ttime, ")\n", sep="")
+        message(
+            "Wrote L3 ACID", ac, " (AEIDS: ",
+            paste(dat[ , unique(aeid)], collapse=", "),
+            "; ", nrow(dat), " rows; ", ttime, ")\n", sep=""
+        )
     } else {
         res <- c(list(res), list(dat))
     }

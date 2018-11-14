@@ -62,10 +62,12 @@ tcplCalcVmad <- function(inputs, aeid=NULL, notes=NULL) {
     if (is.null(aeid)) return(val)
 
     db <- getOption("TCPL_DB")
-    tcplDelete(tbl="assay_component_endpoint_vmad",
-               fld="aeid",
-               val=aeid,
-               db=db)
+    tcplDelete(
+        tbl="assay_component_endpoint_vmad",
+        fld="aeid",
+        val=aeid,
+        db=db
+    )
     tcplCascade(lvl=5, type="mc", id=aeid)
     clps <- paste(inputs, collapse=";")
     out <- data.table(aeid=aeid, vmad=val, notes=notes, inputs=clps)

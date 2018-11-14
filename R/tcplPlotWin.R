@@ -51,8 +51,10 @@ tcplPlotWin <- function(chid, aeid, bline="bmad", collapse=TRUE) {
     data_type <- tcplLoadAeid("aeid", aeid, add.fld="normalized_data_type")
     data_type <- data_type[ , unique(normalized_data_type)]
     if (length(data_type) > 1) {
-        stop("This function does not currently support plotting multiple ",
-             "scales on the same plot.")
+        stop(
+            "This function does not currently support plotting multiple ",
+            "scales on the same plot."
+        )
     }
 
     if (is.na(data_type)) data_type <- ""
@@ -101,60 +103,79 @@ tcplPlotWin <- function(chid, aeid, bline="bmad", collapse=TRUE) {
 
     if (collapse) {
         rsp <- rsp[ ,
-                   list(true_resp=mean(true_resp)),
-                   by=c("aeid", "logc", "spid")]
+            list(true_resp=mean(true_resp)),
+            by=c("aeid", "logc", "spid")
+        ]
     }
 
     colfunc <- colorRampPalette(brewer.pal(n=9, name="Greens")[-c(seq_len(3))])
     grns <- colfunc(rsp[ , lu(spid)])
-    p <- list(ylim=range(rsp$true_resp*1.2, y0),
-              font.lab=2,
-              col="black",
-              cex=2,
-              xlab=expression(bold(paste("Concentration (",mu,"M)"))),
-              ylab=ylab,
-              main="",
-              bty="n",
-              xaxt="n",
-              yaxt="n",
-              type="n")
+    p <- list(
+        ylim=range(rsp$true_resp*1.2, y0),
+        font.lab=2,
+        col="black",
+        cex=2,
+        xlab=expression(bold(paste("Concentration (",mu,"M)"))),
+        ylab=ylab,
+        main="",
+        bty="n",
+        xaxt="n",
+        yaxt="n",
+        type="n"
+    )
     par(mar=c(4, 4, 1, 1) + 0.1)
     do.call(what=plot, args=c(rsp$true_resp ~ rsp$logc, p), quote=TRUE)
     useBmad <- bline != "coff"
-    rect(xleft=par()$usr[1],
-         xright=par()$usr[2],
-         ybottom=-1*ifelse(useBmad, 3*sub[ , max(bmad)], sub[ , max(coff)]),
-         ytop=ifelse(useBmad, 3*sub[ , max(bmad)], sub[ , max(coff)]),
-         border=NA,
-         col="gray70",
-         density=15,
-         angle=ifelse(useBmad, 45, -45))
-    points(rsp$true_resp ~ rsp$logc,
-           col=grns[as.factor(rsp[ , spid])])
+    rect(
+        xleft=par()$usr[1],
+        xright=par()$usr[2],
+        ybottom=-1*ifelse(useBmad, 3*sub[ , max(bmad)], sub[ , max(coff)]),
+        ytop=ifelse(useBmad, 3*sub[ , max(bmad)], sub[ , max(coff)]),
+        border=NA,
+        col="gray70",
+        density=15,
+        angle=ifelse(useBmad, 45, -45)
+    )
+    points(
+        rsp$true_resp ~ rsp$logc,
+        col=grns[as.factor(rsp[ , spid])]
+    )
     for (i in seq_len(nrow(sub))) {
-        tcplAddModel(sub[i],
-                     adj=switch(sub[i, adir], down=-1, 1),
-                     col=grns[as.factor(sub$spid)[i]])
+        tcplAddModel(
+            sub[i],
+            adj=switch(sub[i, adir], down=-1, 1),
+            col=grns[as.factor(sub$spid)[i]]
+        )
     }
-    legend(x=ifelse(which.max(abs(par()$usr[3:4])) == 2, "topleft",
-                      "bottomleft"),
-           legend=paste0(sub$spid, " (", sub$modl, ")",
-                           " - ", sub$u_boxtrack),
-           col=grns[as.factor(sub$spid)],
-           bty="n",
-           pch=1,
-           cex=0.5)
-    axis(side=1,
-         at=axTicks(side=1),
-         labels=signif(10^axTicks(side=1), digits=2),
-         font=1,
-         lwd=2,
-         col="gray35")
-    axis(side=2,
-         at=axTicks(side=2),
-         labels=axTicks(side=2),
-         font=1,
-         lwd=2,
-         col="gray35")
+    legend(
+        x=ifelse(
+            which.max(abs(par()$usr[3:4])) == 2, "topleft",
+            "bottomleft"
+        ),
+        legend=paste0(
+            sub$spid, " (", sub$modl, ")",
+            " - ", sub$u_boxtrack
+        ),
+        col=grns[as.factor(sub$spid)],
+        bty="n",
+        pch=1,
+        cex=0.5
+    )
+    axis(
+        side=1,
+        at=axTicks(side=1),
+        labels=signif(10^axTicks(side=1), digits=2),
+        font=1,
+        lwd=2,
+        col="gray35"
+    )
+    axis(
+        side=2,
+        at=axTicks(side=2),
+        labels=axTicks(side=2),
+        font=1,
+        lwd=2,
+        col="gray35"
+    )
 
 }

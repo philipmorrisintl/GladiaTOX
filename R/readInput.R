@@ -32,13 +32,17 @@
         if (isValidJSON(x, asText=FALSE)) {
             x <- do.call(rbind, fromJSON(x, simplify=TRUE))
             x <- as.data.table(x)
-            x[] <- lapply(as.data.table(x),
-                          na.string="",
-                          type.convert,
-                          as.is=TRUE)
+            x[] <- lapply(
+                as.data.table(x),
+                na.string="",
+                type.convert,
+                as.is=TRUE
+            )
         } else {
-            stop("Provided input does appear",
-                 "to be JSON or a data.frame object.")
+            stop(
+                "Provided input does appear",
+                "to be JSON or a data.frame object."
+            )
         }
         x[]
     }

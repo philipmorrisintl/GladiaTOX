@@ -50,22 +50,28 @@ tcplAppend <- function(dat, tbl, db) {
 
         tempTbl <- "temp_table"
         if (dbExistsTable(dbcon, tempTbl)) dbRemoveTable(dbcon, tempTbl)
-        dbWriteTable(conn=dbcon,
-                     name=tempTbl,
-                     value=dat,
-                     row.names=FALSE,
-                     append=FALSE)
+        dbWriteTable(
+            conn=dbcon,
+            name=tempTbl,
+            value=dat,
+            row.names=FALSE,
+            append=FALSE
+        )
 
         ## Add any columns to input data.frame that are in target table,
         ## then merge
         tmp_flds <- names(dat)
-        status <- dbSendQuery(dbcon,
-                              paste("INSERT INTO", tbl,
-                                    "(", paste(tmp_flds, collapse=","), ")",
-                                    "SELECT",
-                                    paste(tmp_flds, collapse=","),
-                                    "FROM",
-                                    tempTbl))
+        status <- dbSendQuery(
+            dbcon,
+            paste(
+                "INSERT INTO", tbl,
+                "(", paste(tmp_flds, collapse=","), ")",
+                "SELECT",
+                paste(tmp_flds, collapse=","),
+                "FROM",
+                tempTbl
+            )
+        )
         ## Remove temporary table
         dbRemoveTable(dbcon, tempTbl)
 
@@ -79,22 +85,27 @@ tcplAppend <- function(dat, tbl, db) {
             stop(
                 "Must configure TCPL_USER, ",
                 "TCPL_HOST, and TCPL_PASS options. See ",
-                "?tcplConf for more details.")
+                "?tcplConf for more details."
+            )
         }
 
-        db_pars <- list(drv=MySQL(),
-                        user=getOption("TCPL_USER"),
-                        password=getOption("TCPL_PASS"),
-                        host=getOption("TCPL_HOST"),
-                        dbname=db)
+        db_pars <- list(
+            drv=MySQL(),
+            user=getOption("TCPL_USER"),
+            password=getOption("TCPL_PASS"),
+            host=getOption("TCPL_HOST"),
+            dbname=db
+        )
 
         dbcon <- do.call(dbConnect, db_pars)
 
-        dbWriteTable(conn=dbcon,
-                     name=tbl,
-                     value=dat,
-                     row.names=FALSE,
-                     append=TRUE)
+        dbWriteTable(
+            conn=dbcon,
+            name=tbl,
+            value=dat,
+            row.names=FALSE,
+            append=TRUE
+        )
 
         dbDisconnect(dbcon)
 
@@ -104,9 +115,11 @@ tcplAppend <- function(dat, tbl, db) {
 
     if (is.null(db_pars)) {
 
-        stop(getOption("TCPL_DRVR"),
-             " is not a supported database system. See ",
-             "?tcplConf for more details.")
+        stop(
+            getOption("TCPL_DRVR"),
+            " is not a supported database system. See ",
+            "?tcplConf for more details."
+        )
 
     }
 

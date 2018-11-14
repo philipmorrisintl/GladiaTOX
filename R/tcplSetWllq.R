@@ -45,27 +45,37 @@ tcplSetWllq <- function(ids, wllq, type) {
     }
 
     if (length(type) > 1 | !(type %in% c("mc", "sc"))) {
-        stop("Invalid 'type' value: ",
-             "must be of length 1 and either 'mc' or 'sc.'")
+        stop(
+            "Invalid 'type' value: ",
+            "must be of length 1 and either 'mc' or 'sc.'"
+        )
     }
 
     id_str <- paste(ids, collapse=", ")
     tbl <- switch(type, mc="mc0",  sc="sc0")
     fld <- switch(type, mc="m0id", sc="s0id")
 
-    qf1 <- paste("SELECT", fld, ", acid", "FROM", tbl, "WHERE", fld, "IN (%s);")
+    qf1 <- paste(
+        "SELECT", fld, ", acid",
+        "FROM", tbl, "WHERE", fld, "IN (%s);"
+    )
     qs1 <- sprintf(qf1, id_str)
 
     dat <- tcplQuery(qs1)
     miss <- !(ids %in% dat[ , get(fld)])
 
     if (any(miss)) {
-        stop("No changes made. The following ids ",
-             "are missing from the database:\n",
-             paste(ids[miss], collapse="\n"))
+        stop(
+            "No changes made. The following ids ",
+            "are missing from the database:\n",
+            paste(ids[miss], collapse="\n")
+        )
     }
 
-    qf2 <- paste("UPDATE", tbl, "SET wllq =", wllq, "WHERE", fld, "IN (%s);")
+    qf2 <- paste(
+        "UPDATE", tbl, "SET wllq =",
+        wllq, "WHERE", fld, "IN (%s);"
+    )
     qs2 <- sprintf(qf2, id_str)
 
     tcplSendQuery(qs2)

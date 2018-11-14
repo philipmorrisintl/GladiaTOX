@@ -95,25 +95,25 @@ tcplLoadData <- function(lvl, fld=NULL, val=NULL, type="mc") {
 
         qformat <-
             "
-      SELECT
-        m0id,
-        mc0.waid as waid,
-        spid,
-        acid,
-        apid,
-        rowi,
-        coli,
-        wllt,
-        vhid,
-        wllq,
-        conc,
-        rval
-      FROM
-        assay_plate_well,
-        mc0
-      WHERE
-        mc0.waid=assay_plate_well.waid
-      "
+            SELECT
+                m0id,
+                mc0.waid as waid,
+                spid,
+                acid,
+                apid,
+                rowi,
+                coli,
+                wllt,
+                vhid,
+                wllq,
+                conc,
+                rval
+            FROM
+                assay_plate_well,
+                mc0
+            WHERE
+                mc0.waid=assay_plate_well.waid
+            "
 
     }
 
@@ -123,24 +123,24 @@ tcplLoadData <- function(lvl, fld=NULL, val=NULL, type="mc") {
 
         qformat <-
             "
-      SELECT
-        s0id,
-        spid,
-        acid,
-        apid,
-        rowi,
-        coli,
-        wllt,
-        vhid,
-        wllq,
-        conc,
-        rval
-      FROM
-        assay_plate_well,
-        sc0
-      WHERE
-        sc0.waid=assay_plate_well.waid
-      "
+            SELECT
+                s0id,
+                spid,
+                acid,
+                apid,
+                rowi,
+                coli,
+                wllt,
+                vhid,
+                wllq,
+                conc,
+                rval
+            FROM
+                assay_plate_well,
+                sc0
+            WHERE
+                sc0.waid=assay_plate_well.waid
+            "
 
     }
 
@@ -150,30 +150,30 @@ tcplLoadData <- function(lvl, fld=NULL, val=NULL, type="mc") {
 
         qformat <-
             "
-      SELECT
-        mc1.m0id,
-        m1id,
-        spid,
-        mc1.acid,
-        apid,
-        rowi,
-        coli,
-        wllt,
-        vhid,
-        wllq,
-        conc,
-        rval,
-        cndx,
-        repi
-      FROM
-        assay_plate_well,
-        mc0,
-        mc1
-      WHERE
-        mc0.waid=assay_plate_well.waid
-        AND
-        mc0.m0id=mc1.m0id
-      "
+            SELECT
+                mc1.m0id,
+                m1id,
+                spid,
+                mc1.acid,
+                apid,
+                rowi,
+                coli,
+                wllt,
+                vhid,
+                wllq,
+                conc,
+                rval,
+                cndx,
+                repi
+            FROM
+                assay_plate_well,
+                mc0,
+                mc1
+            WHERE
+                mc0.waid=assay_plate_well.waid
+                AND
+                mc0.m0id=mc1.m0id
+            "
 
     }
 
@@ -183,28 +183,28 @@ tcplLoadData <- function(lvl, fld=NULL, val=NULL, type="mc") {
 
         qformat <-
             "
-      SELECT
-        sc1.s0id,
-        s1id,
-        spid,
-        sc1.acid,
-        aeid,
-        apid,
-        rowi,
-        coli,
-        wllt,
-        vhid,
-        logc,
-        resp
-      FROM
-        assay_plate_well,
-        sc0,
-        sc1
-      WHERE
-        sc0.waid=assay_plate_well.waid
-        AND
-        sc0.s0id=sc1.s0id
-      "
+            SELECT
+                sc1.s0id,
+                s1id,
+                spid,
+                sc1.acid,
+                aeid,
+                apid,
+                rowi,
+                coli,
+                wllt,
+                vhid,
+                logc,
+                resp
+            FROM
+                assay_plate_well,
+                sc0,
+                sc1
+            WHERE
+                sc0.waid=assay_plate_well.waid
+                AND
+                sc0.s0id=sc1.s0id
+            "
 
     }
 
@@ -214,33 +214,33 @@ tcplLoadData <- function(lvl, fld=NULL, val=NULL, type="mc") {
 
         qformat <-
             "
-      SELECT
-        mc2.m0id,
-        mc2.m1id,
-        m2id,
-        spid,
-        mc2.acid,
-        apid,
-        rowi,
-        coli,
-        wllt,
-        vhid,
-        conc,
-        cval,
-        cndx,
-        repi
-      FROM
-        assay_plate_well,
-        mc0,
-        mc1,
-        mc2
-      WHERE
-        mc0.waid=assay_plate_well.waid
-        AND
-        mc0.m0id=mc1.m0id
-        AND
-        mc1.m0id=mc2.m0id
-      "
+            SELECT
+                mc2.m0id,
+                mc2.m1id,
+                m2id,
+                spid,
+                mc2.acid,
+                apid,
+                rowi,
+                coli,
+                wllt,
+                vhid,
+                conc,
+                cval,
+                cndx,
+                repi
+            FROM
+                assay_plate_well,
+                mc0,
+                mc1,
+                mc2
+            WHERE
+                mc0.waid=assay_plate_well.waid
+                AND
+                mc0.m0id=mc1.m0id
+                AND
+                mc1.m0id=mc2.m0id
+            "
 
     }
 
@@ -250,17 +250,17 @@ tcplLoadData <- function(lvl, fld=NULL, val=NULL, type="mc") {
 
         qformat <-
             "
-      SELECT
-        s2id,
-        spid,
-        aeid,
-        bmad,
-        max_med,
-        hitc,
-        coff
-      FROM
-        sc2
-      "
+            SELECT
+                s2id,
+                spid,
+                aeid,
+                bmad,
+                max_med,
+                hitc,
+                coff
+            FROM
+                sc2
+            "
 
     }
 
@@ -270,19 +270,19 @@ tcplLoadData <- function(lvl, fld=NULL, val=NULL, type="mc") {
 
         qformat <-
             "
-      SELECT
-        sc2_agg.aeid,
-        sc2_agg.s2id,
-        sc2_agg.s1id,
-        sc2_agg.s0id,
-        logc,
-        resp
-      FROM
-        sc1,
-        sc2_agg
-      WHERE
-        sc1.s1id=sc2_agg.s1id
-      "
+            SELECT
+                sc2_agg.aeid,
+                sc2_agg.s2id,
+                sc2_agg.s1id,
+                sc2_agg.s0id,
+                logc,
+                resp
+            FROM
+                sc1,
+                sc2_agg
+            WHERE
+                sc1.s1id=sc2_agg.s1id
+            "
 
     }
 
@@ -292,34 +292,34 @@ tcplLoadData <- function(lvl, fld=NULL, val=NULL, type="mc") {
 
         qformat <-
             "
-      SELECT
-        mc3.m0id,
-        mc3.m1id,
-        mc3.m2id,
-        m3id,
-        spid,
-        aeid,
-        logc,
-        resp,
-        cndx,
-        wllt,
-        vhid,
-        apid,
-        rowi,
-        coli,
-        repi
-      FROM
-        assay_plate_well,
-        mc0,
-        mc1,
-        mc3
-      WHERE
-        mc0.waid=assay_plate_well.waid
-        AND
-        mc0.m0id=mc1.m0id
-        AND
-        mc1.m0id=mc3.m0id
-      "
+            SELECT
+                mc3.m0id,
+                mc3.m1id,
+                mc3.m2id,
+                m3id,
+                spid,
+                aeid,
+                logc,
+                resp,
+                cndx,
+                wllt,
+                vhid,
+                apid,
+                rowi,
+                coli,
+                repi
+            FROM
+                assay_plate_well,
+                mc0,
+                mc1,
+                mc3
+            WHERE
+                mc0.waid=assay_plate_well.waid
+                AND
+                mc0.m0id=mc1.m0id
+                AND
+                mc1.m0id=mc3.m0id
+            "
 
     }
 
@@ -329,21 +329,21 @@ tcplLoadData <- function(lvl, fld=NULL, val=NULL, type="mc") {
 
         qformat <-
             "
-      SELECT
-        mc4_agg.aeid,
-        mc4_agg.m4id,
-        mc4_agg.m3id,
-        mc4_agg.m2id,
-        mc4_agg.m1id,
-        mc4_agg.m0id,
-        logc,
-        resp
-      FROM
-        mc3,
-        mc4_agg
-      WHERE
-        mc3.m3id=mc4_agg.m3id
-      "
+            SELECT
+                mc4_agg.aeid,
+                mc4_agg.m4id,
+                mc4_agg.m3id,
+                mc4_agg.m2id,
+                mc4_agg.m1id,
+                mc4_agg.m0id,
+                logc,
+                resp
+            FROM
+                mc3,
+                mc4_agg
+            WHERE
+                mc3.m3id=mc4_agg.m3id
+            "
 
     }
 
@@ -353,61 +353,61 @@ tcplLoadData <- function(lvl, fld=NULL, val=NULL, type="mc") {
 
         qformat <-
             "
-      SELECT
-        m4id,
-        aeid,
-        spid,
-        bmad,
-        resp_max,
-        resp_min,
-        max_mean,
-        max_mean_conc,
-        max_med,
-        max_med_conc,
-        logc_max,
-        logc_min,
-        cnst,
-        hill,
-        hcov,
-        gnls,
-        gcov,
-        cnst_er,
-        cnst_aic,
-        cnst_rmse,
-        cnst_prob,
-        hill_tp,
-        hill_tp_sd,
-        hill_ga,
-        hill_ga_sd,
-        hill_gw,
-        hill_gw_sd,
-        hill_er,
-        hill_er_sd,
-        hill_aic,
-        hill_rmse,
-        hill_prob,
-        gnls_tp,
-        gnls_tp_sd,
-        gnls_ga,
-        gnls_ga_sd,
-        gnls_gw,
-        gnls_gw_sd,
-        gnls_la,
-        gnls_la_sd,
-        gnls_lw,
-        gnls_lw_sd,
-        gnls_er,
-        gnls_er_sd,
-        gnls_aic,
-        gnls_rmse,
-        gnls_prob,
-        nconc,
-        npts,
-        nrep,
-        nmed_gtbl
-      FROM
-        mc4
-      "
+            SELECT
+                m4id,
+                aeid,
+                spid,
+                bmad,
+                resp_max,
+                resp_min,
+                max_mean,
+                max_mean_conc,
+                max_med,
+                max_med_conc,
+                logc_max,
+                logc_min,
+                cnst,
+                hill,
+                hcov,
+                gnls,
+                gcov,
+                cnst_er,
+                cnst_aic,
+                cnst_rmse,
+                cnst_prob,
+                hill_tp,
+                hill_tp_sd,
+                hill_ga,
+                hill_ga_sd,
+                hill_gw,
+                hill_gw_sd,
+                hill_er,
+                hill_er_sd,
+                hill_aic,
+                hill_rmse,
+                hill_prob,
+                gnls_tp,
+                gnls_tp_sd,
+                gnls_ga,
+                gnls_ga_sd,
+                gnls_gw,
+                gnls_gw_sd,
+                gnls_la,
+                gnls_la_sd,
+                gnls_lw,
+                gnls_lw_sd,
+                gnls_er,
+                gnls_er_sd,
+                gnls_aic,
+                gnls_rmse,
+                gnls_prob,
+                nconc,
+                npts,
+                nrep,
+                nmed_gtbl
+            FROM
+                mc4
+            "
 
     }
 
@@ -417,80 +417,80 @@ tcplLoadData <- function(lvl, fld=NULL, val=NULL, type="mc") {
 
         qformat <-
             "
-      SELECT
-        m5id,
-        mc5.m4id,
-        mc5.aeid,
-        spid,
-        bmad,
-        resp_max,
-        resp_min,
-        max_mean,
-        max_mean_conc,
-        max_med,
-        max_med_conc,
-        logc_max,
-        logc_min,
-        cnst,
-        hill,
-        hcov,
-        gnls,
-        gcov,
-        cnst_er,
-        cnst_aic,
-        cnst_rmse,
-        cnst_prob,
-        hill_tp,
-        hill_tp_sd,
-        hill_ga,
-        hill_ga_sd,
-        hill_gw,
-        hill_gw_sd,
-        hill_er,
-        hill_er_sd,
-        hill_aic,
-        hill_rmse,
-        hill_prob,
-        gnls_tp,
-        gnls_tp_sd,
-        gnls_ga,
-        gnls_ga_sd,
-        gnls_gw,
-        gnls_gw_sd,
-        gnls_la,
-        gnls_la_sd,
-        gnls_lw,
-        gnls_lw_sd,
-        gnls_er,
-        gnls_er_sd,
-        gnls_aic,
-        gnls_rmse,
-        gnls_prob,
-        nconc,
-        npts,
-        nrep,
-        nmed_gtbl,
-        hitc,
-        modl,
-        fitc,
-        coff,
-        actp,
-        modl_er,
-        modl_tp,
-        modl_ga,
-        modl_gw,
-        modl_la,
-        modl_lw,
-        modl_rmse,
-        modl_prob,
-        modl_acc,
-        modl_acb
-      FROM
-        mc4,
-        mc5
-      WHERE
-        mc4.m4id=mc5.m4id
-      "
+            SELECT
+                m5id,
+                mc5.m4id,
+                mc5.aeid,
+                spid,
+                bmad,
+                resp_max,
+                resp_min,
+                max_mean,
+                max_mean_conc,
+                max_med,
+                max_med_conc,
+                logc_max,
+                logc_min,
+                cnst,
+                hill,
+                hcov,
+                gnls,
+                gcov,
+                cnst_er,
+                cnst_aic,
+                cnst_rmse,
+                cnst_prob,
+                hill_tp,
+                hill_tp_sd,
+                hill_ga,
+                hill_ga_sd,
+                hill_gw,
+                hill_gw_sd,
+                hill_er,
+                hill_er_sd,
+                hill_aic,
+                hill_rmse,
+                hill_prob,
+                gnls_tp,
+                gnls_tp_sd,
+                gnls_ga,
+                gnls_ga_sd,
+                gnls_gw,
+                gnls_gw_sd,
+                gnls_la,
+                gnls_la_sd,
+                gnls_lw,
+                gnls_lw_sd,
+                gnls_er,
+                gnls_er_sd,
+                gnls_aic,
+                gnls_rmse,
+                gnls_prob,
+                nconc,
+                npts,
+                nrep,
+                nmed_gtbl,
+                hitc,
+                modl,
+                fitc,
+                coff,
+                actp,
+                modl_er,
+                modl_tp,
+                modl_ga,
+                modl_gw,
+                modl_la,
+                modl_lw,
+                modl_rmse,
+                modl_prob,
+                modl_acc,
+                modl_acb
+            FROM
+                mc4,
+                mc5
+            WHERE
+                mc4.m4id=mc5.m4id
+            "
 
     }
 
@@ -500,22 +500,22 @@ tcplLoadData <- function(lvl, fld=NULL, val=NULL, type="mc") {
 
         qformat <-
             "
-      SELECT
-        mc6.aeid,
-        m6id,
-        mc6.m4id,
-        m5id,
-        spid,
-        mc6_mthd_id,
-        flag,
-        fval,
-        fval_unit
-      FROM
-        mc4,
-        mc6
-      WHERE
-        mc6.m4id=mc4.m4id
-      "
+            SELECT
+                mc6.aeid,
+                m6id,
+                mc6.m4id,
+                m5id,
+                spid,
+                mc6_mthd_id,
+                flag,
+                fval,
+                fval_unit
+            FROM
+                mc4,
+                mc6
+            WHERE
+                mc6.m4id=mc4.m4id
+            "
 
     }
 
@@ -528,13 +528,17 @@ tcplLoadData <- function(lvl, fld=NULL, val=NULL, type="mc") {
         wtest <- lvl == 4 | (lvl == 2 & type == "sc")
         qformat <- paste(qformat, if (wtest) "WHERE" else "AND")
 
-        qformat <- paste0(qformat,
-                          "  ",
-                          paste(fld, "IN (%s)", collapse=" AND "))
+        qformat <- paste0(
+            qformat,
+            "  ",
+            paste(fld, "IN (%s)", collapse=" AND ")
+        )
         qformat <- paste0(qformat, ";")
 
         if (!is.list(val)) val <- list(val)
-        val <- lapply(val, function(x) paste0("\"", x, "\"", collapse=","))
+        val <- lapply(
+            val, function(x) paste0("\"", x, "\"", collapse=",")
+        )
 
         qstring <- do.call(sprintf, args=c(qformat, val))
 

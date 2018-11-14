@@ -111,8 +111,8 @@ tcplPlotFits <- function(dat, agg, flg=NULL, ordr.fitc=FALSE, bline="bmad") {
             flg[!is.na(fval),
                 flgo := paste0(mc6_mthd_id, " (", signif(fval, 3), ")")]
             flg <- flg[ ,
-                       list(flgo=paste(unique(flgo), collapse="; ")),
-                       by=m4id]
+                list(flgo=paste(unique(flgo), collapse="; ")),
+                by=m4id]
             setkey(flg, m4id)
             dat <- flg[dat]
         } else {

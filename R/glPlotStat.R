@@ -46,8 +46,10 @@ glPlotStat <- function(asid, ref.chm=NULL, stat=quote(modl_acc)) {
     dat <- tcplPrepOtpt(tcplLoadData(lvl=5, fld="aeid", val=aetbl$aeid))
     dat <- merge(dat, aetbl, by=c("aeid", "aenm"))
     dat <- dat[ , .SD[which.min(modl_rmse)], by=c("spid", "acnm")]
-    dat[ , aenm := vapply(strsplit(as.character(aenm), "_"), 
-                          function(xx) xx[[2]], character(1))]
+    dat[ , aenm := vapply(
+        strsplit(as.character(aenm), "_"), 
+        function(xx) xx[[2]], character(1)
+    )]
     dat$aenm_wrap <- str_wrap(string=dat$aenm, width=15)
 
     dat[ , stat := 10^eval(stat)]
@@ -70,13 +72,15 @@ glPlotStat <- function(asid, ref.chm=NULL, stat=quote(modl_acc)) {
             ref.chm,
             unique(dat$chnm)[!unique(dat$chnm) %in% ref.chm]
         )
-                       )
+    )
     pp <- NULL
     for(a in sort(unique(dat$aid))) {
         from <- min(unique(dat$logc_min[dat$aid %in% a]))
         to <- max(unique(dat$logc_max[dat$aid %in% a]))
-        breaks <- formatC(round(10^seq(from, to, by=(to-from)/10), 3),
-                          mode="real")
+        breaks <- formatC(
+            round(10^seq(from, to, by=(to-from)/10), 3),
+            mode="real"
+        )
 
         pp[[a]] <-
             ggplot(subset(dat, dat$aid == a), aes(x=chnm, y=stat, col=chnm)) +
@@ -87,8 +91,10 @@ glPlotStat <- function(asid, ref.chm=NULL, stat=quote(modl_acc)) {
             ) +
             theme_bw() +
             annotation_logticks(sides="l") +
-            theme(axis.text.x=element_text(angle=90, hjust=1, vjust=0.5),
-                  axis.title.x=element_blank()) +
+            theme(
+                axis.text.x=element_text(angle=90, hjust=1, vjust=0.5),
+                axis.title.x=element_blank()
+            ) +
             guides(col=guide_legend(title="Chemical")) +
             facet_grid(anm~aenm_wrap)
     }

@@ -24,9 +24,11 @@ tcplMthdAssign <- function(lvl, id, mthd_id, ordr=NULL, type) {
     id_name <- if (type == "mc" & lvl == 2) "acid" else "aeid"
     flds <- c(id_name, sprintf("%s%s_mthd_id", type, lvl))
 
-    dat <- expand.grid(id=id,
-                       mthd=mthd_id,
-                       stringsAsFactors=FALSE)
+    dat <- expand.grid(
+        id=id,
+        mthd=mthd_id,
+        stringsAsFactors=FALSE
+    )
     dat <- as.data.table(dat)
 
     if ((lvl < 4 & type == "mc") | (lvl == 1 & type == "sc")) {
@@ -41,13 +43,17 @@ tcplMthdAssign <- function(lvl, id, mthd_id, ordr=NULL, type) {
 
     setnames(dat, old=c("id", "mthd"), flds)
 
-    mb <- paste(Sys.info()[c("login", "user", "effective_user")],
-                collapse=".")
+    mb <- paste(
+        Sys.info()[c("login", "user", "effective_user")],
+        collapse="."
+    )
     dat[ , modified_by := mb]
 
-    tcplAppend(dat=dat,
-               tbl=paste0(type, lvl, "_", flds[1]),
-               db=getOption("TCPL_DB"))
+    tcplAppend(
+        dat=dat,
+        tbl=paste0(type, lvl, "_", flds[1]),
+        db=getOption("TCPL_DB")
+    )
 
     tcplCascade(lvl=lvl, type=type, id=id)
 

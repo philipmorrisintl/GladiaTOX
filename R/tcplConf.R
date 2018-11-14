@@ -13,7 +13,7 @@
 #' @export
 
 tcplConf <- function (drvr=NULL, user=NULL, pass=NULL, host=NULL,
-                      db=NULL, int=NULL) {
+    db=NULL, int=NULL) {
 
     ## Variable-binding to pass R CMD Check
     Value <- NULL
@@ -30,9 +30,11 @@ tcplConf <- function (drvr=NULL, user=NULL, pass=NULL, host=NULL,
     if (!is.null(drvr)) {
 
         if (!drvr %in% c("SQLite", "MySQL")) {
-            stop(drvr,
-                 " is not a supported database driver. Must be 'SQLite' or ",
-                 "'MySQL'.")
+            stop(
+                drvr,
+                " is not a supported database driver. Must be 'SQLite' or ",
+                "'MySQL'."
+            )
         }
 
         if (drvr == "SQLite") {
@@ -49,7 +51,8 @@ tcplConf <- function (drvr=NULL, user=NULL, pass=NULL, host=NULL,
                     "The 'max_allowed_packet' MySQL server setting is set to ",
                     mxp, " bytes. It is recommended that you increase it to ",
                     "1073741824 bytes to ensure larger queries run without ",
-                    "error.")
+                    "error."
+                )
             }
         }
 

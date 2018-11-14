@@ -28,14 +28,15 @@
 
     ## auxiliary function to split strings
     splitString <- function(string) {
-        return(unlist(lapply(as.character(string),
-                             function(xx){ xxx<- strsplit(xx, ",")[[1]]
-                                 if(length(xxx)==3) {
-                                     return(c(xxx, ""))
-                                 } else {
-                                     return(xxx)
-                                 }
-                             })))
+        return(unlist(lapply(
+            as.character(string),
+            function(xx){ xxx<- strsplit(xx, ",")[[1]]
+                if(length(xxx)==3) {
+                    return(c(xxx, ""))
+                } else {
+                    return(xxx)
+                }
+            })))
     }
 
     ## auxiliary function to get vehicle
@@ -55,17 +56,31 @@
         dt$stimulus <- NULL
         compound <- splitString(study.data$COMPOUND.1[kk])
         for(cc in seq_len(4)) {
-            col <- c(rep(compound[cc],6),
-                     getVehicle(vehicle.mapping,compound[cc]))
+            col <- c(
+                rep(compound[cc],6),
+                getVehicle(vehicle.mapping,compound[cc])
+            )
             if(cc != 4)
-                col<- c(col,
-                        as.character(vehicle.mapping$Compound[
-                            vehicle.mapping$Assay %in% 
-                                study.data$END.POINT[kk]]))
+                col<- c(
+                    col,
+                    as.character(
+                        vehicle.mapping$Compound[
+                            vehicle.mapping$Assay %in% study.data$END.POINT[kk]]
+                    )
+                )
             else
-                col<- c(col,as.character(unique(vehicle.mapping$Vehicle[
-                  vehicle.mapping$Compound %in% vehicle.mapping$Compound[
-                    vehicle.mapping$Assay %in% study.data$END.POINT[kk]]])))
+                col<- c(
+                    col,
+                    as.character(
+                        unique(
+                            vehicle.mapping$Vehicle[
+                                vehicle.mapping$Compound %in%
+                                    vehicle.mapping$Compound[
+                                        vehicle.mapping$Assay %in%
+                                            study.data$END.POINT[kk]]]
+                        )
+                    )
+                )
             dt$stimulus<- c(dt$stimulus, rep(col, 3))
         }
 
@@ -93,21 +108,24 @@
         dt$plate <- rep(kk, 96)
 
         ## tube
-        dt$tube<- paste0(rep(toupper(letters[seq_len(8)]), 12),
-                         unlist(lapply(seq_len(12),function(xx){rep(xx, 8)})))
+        dt$tube<- paste0(
+            rep(toupper(letters[seq_len(8)]), 12),
+            unlist(lapply(seq_len(12), function(xx) { rep(xx, 8) }))
+        )
 
         ## well type
         dt$well_type <- rep("", 96)
         dt$well_type[!grepl("G", dt$tube) & !grepl("H", dt$tube) &
-                       !dt$stimulus %in% ""]<- "t"
+            !dt$stimulus %in% ""]<- "t"
         dt$well_type[grepl("G",dt$tube) & !dt$stimulus %in% ""] <- "n"
         dt$well_type[grepl("H",dt$tube)] <- "c"
         dt$well_type[grepl("H",dt$tube) &
-                     dt$`stimulus concentration` %in% ""] <- "n"
+            dt$`stimulus concentration` %in% ""] <- "n"
 
         ## Vehicle ID
-        dt$vehicle_name <- as.character(vehicle.mapping$Vehicle[
-          match(dt$stimulus,vehicle.mapping$Compound)])
+        dt$vehicle_name <- as.character(
+            vehicle.mapping$Vehicle[match(
+                dt$stimulus,vehicle.mapping$Compound)])
         dt$vehicle_name[is.na(dt$vehicle_name)] <-
             as.character(dt$stimulus[is.na(dt$vehicle_name)])
 
@@ -134,7 +152,7 @@
 
         ## smkID
         dt$smkid <- rep("", 96)
-#        dt$smkid[dt$well_type %in% "t"] <- "NOSMKID"
+        ## dt$smkid[dt$well_type %in% "t"] <- "NOSMKID"
 
         ## Well format
         dt$`well format` <- rep("96-well", 96)
@@ -143,9 +161,16 @@
         dt$assay <- paste(dt$endpoint, dt$`exposure duration`, sep="_")
 
         ## Study date
-        dt$Date <- rep(format(as.Date(study.data$STUDY.CREATION.DATE[kk],
-                                      format="%m/%d/%y"), "%Y-%m-%d"), 96)
-
+        dt$Date <- rep(
+            format(
+                as.Date(
+                    study.data$STUDY.CREATION.DATE[kk],
+                    format="%m/%d/%y"
+                ),
+                "%Y-%m-%d"
+            ), 96
+        )
+        
         ## Sample ID
         dt$u_boxtrack <- rep(as.character(study.data$SAMPLE.ID[kk]), 96)
 

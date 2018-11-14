@@ -47,16 +47,20 @@ glPlotToxInd <- function(asid, tp=NULL, stat=quote(modl_acc)) {
     print(
         ggplot(dat, aes(x=chnm, y=V1)) +
         geom_point() +
-        geom_label_repel(aes(label=chnm), size=4, data=dat, fill="gray80",
-                   fontface="plain") +
+        geom_label_repel(
+            aes(label=chnm), size=4, data=dat, fill="gray80",
+            fontface="plain"
+        ) +
         ylim(c(0,1)) +
         labs(x="Index", y="Severity score") +
         theme_minimal() +
-        theme(legend.position="None",
-              axis.title.x=element_text(size=10),
-              axis.title.y=element_text(size=10),
-              axis.text.y=element_text(size=10),
-#              plot.title=element_blank(),
-              axis.text.x=element_blank())
+        theme(
+            legend.position="None",
+            axis.title.x=element_text(size=10),
+            axis.title.y=element_text(size=10),
+            axis.text.y=element_text(size=10),
+            ## plot.title=element_blank(),
+            axis.text.x=element_blank()
+        )
     )
 }

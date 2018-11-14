@@ -15,14 +15,18 @@
 
 tcplLoadAeid <- function(fld=NULL, val=NULL, add.fld=NULL) {
 
-    out <- c("assay_component_endpoint.aeid",
-             "assay_component_endpoint.assay_component_endpoint_name")
+    out <- c(
+        "assay_component_endpoint.aeid",
+        "assay_component_endpoint.assay_component_endpoint_name"
+    )
 
-    qstring <- .buildAssayQ(out=out,
-                            tblo=c(1, 2, 4, 3, 6),
-                            fld=fld,
-                            val=val,
-                            add.fld=add.fld)
+    qstring <- .buildAssayQ(
+        out=out,
+        tblo=c(1, 2, 4, 3, 6),
+        fld=fld,
+        val=val,
+        add.fld=add.fld
+    )
 
     dat <- tcplQuery(query=qstring, db=getOption("TCPL_DB"))
 

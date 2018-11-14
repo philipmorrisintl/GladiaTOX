@@ -50,9 +50,11 @@ tcplWriteLvl0 <- function(dat, type) {
 
     if (!type %in% c("mc", "sc")) stop("Invalid 'type', see help page.")
 
-    tcplWriteData(dat=dat[ , list(waid, acid, rval, wllq)],
-                  lvl=0L,
-                  type=type)
+    tcplWriteData(
+        dat=dat[ , list(waid, acid, rval, wllq)],
+        lvl=0L,
+        type=type
+    )
 
 }
 

@@ -33,7 +33,8 @@
 #' @export
 #'
 glPlotPie <- function(asid, chnms=NULL, acids=NULL, aeids=NULL,
-                      expos.time.ordr=NULL, stat=quote(modl_acc)){
+    expos.time.ordr=NULL, stat=quote(modl_acc)) {
+
     ## load study annotations
     t1 <- tcplLoadAsid(fld="asid", val=asid)
     t2 <- tcplLoadAid(fld="asid", val=asid)
@@ -56,31 +57,34 @@ glPlotPie <- function(asid, chnms=NULL, acids=NULL, aeids=NULL,
     t4 <- unique(tcplLoadWaid()[, c("apid", "spid"), with=FALSE])
     data <- merge(
         merge(t1, t2, by=intersect(colnames(t1), colnames(t2))),
-        merge(t3, t4, by="spid"), by="spid")
+        merge(t3, t4, by="spid"), by="spid"
+    )
 
     ## filter for chemical names
     if(!is.null(chnms))
         data=data[chnm%in%chnms]
 
-                                        # merge annotations and data
+    ## merge annotations and data
     dat <- merge(annotations, data, by="aeid")
 
     ## strip endpoint names
-    dat[ , aenm := vapply(strsplit(as.character(aenm), "_"), 
-                          function(xx) xx[[2]], character(1))]
+    dat[ , aenm := vapply(
+        strsplit(as.character(aenm), "_"), 
+        function(xx) xx[[2]], character(1)
+    )]
 
     ## select samples based on min rmse + filter columns
     dat <- dat[, .SD[which.min(modl_rmse)], by=c("spid", "acnm")]
 
     ## extract exposure time
     dat[ , expTm := unlist(
-               lapply(
-                   dat$anm,
-                   function(xx) {
-                       strsplit(xx, "_")[[1]][2]
-                   }
-               )
-           )]
+        lapply(
+            dat$anm,
+            function(xx) {
+                strsplit(xx, "_")[[1]][2]
+            }
+        )
+    )]
     if(!is.null(expos.time.ordr)){
         dat <- dat[dat$expTm%in%expos.time.ordr, ]
         dat$expTm <- factor(dat$expTm, levels=expos.time.ordr)
@@ -91,7 +95,7 @@ glPlotPie <- function(asid, chnms=NULL, acids=NULL, aeids=NULL,
         by=c("chnm", "aenm", "expTm")]
     dat[, stat_text := stat_val]
     dat[, stat_val := abs(stat_val - max(stat_val, na.rm=TRUE)) +
-              min(stat_val, na.rm=TRUE)]
+        min(stat_val, na.rm=TRUE)]
 
     ## y intercepts for horizontal grey lines
     yintercept <- seq((min(dat$stat_val, na.rm=TRUE)),
@@ -99,10 +103,12 @@ glPlotPie <- function(asid, chnms=NULL, acids=NULL, aeids=NULL,
 
     print(
         ggplot(dat, aes(x=aenm, y=stat_val, fill=aenm)) +
-        geom_bar(stat="identity", position=position_dodge(width=0.9),
-                 width=1, color="gray60") +
-        geom_hline(color="gray", yintercept=yintercept, size=.3,
-                   linetype="dashed") +
+        geom_bar(
+            stat="identity", position=position_dodge(width=0.9),
+            width=1, color="gray60") +
+        geom_hline(
+            color="gray", yintercept=yintercept, size=.3,
+            linetype="dashed") +
         scale_fill_brewer(palette="Pastel1") +
         theme_minimal() +
         theme(
