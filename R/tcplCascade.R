@@ -49,42 +49,98 @@ tcplCascade <- function(lvl, type, id) {
 
     if (type == "mc") {
 
-        if (lvl == 0) tcplDelete(tbl="mc0", fld="acid", val=id, db=db)
-        if (lvl <= 1) tcplDelete(tbl="mc1", fld="acid", val=id, db=db)
-        if (lvl <= 2) tcplDelete(tbl="mc2", fld="acid", val=id, db=db)
+        if (lvl == 0) {
+            tcplDelete(
+                tbl="mc0", fld="acid", val=id, db=db
+            )
+        }
+        if (lvl <= 1) {
+            tcplDelete(
+                tbl="mc1", fld="acid", val=id, db=db
+            )
+        }
+        if (lvl <= 2) {
+            tcplDelete(
+                tbl="mc2", fld="acid", val=id, db=db
+            )
+        }
         if (lvl <  3) {
             id <- suppressWarnings(
-                try(tcplLoadAeid("acid", id)$aeid, silent=TRUE))
+                try(tcplLoadAeid("acid", id)$aeid, silent=TRUE)
+            )
         }
-        if (is(id, "try-error")) return(TRUE)
-        if (lvl <= 3) tcplDelete(tbl="mc3", fld="aeid", val=id, db=db)
-        if (lvl <= 4) tcplDelete(tbl="mc4", fld="aeid", val=id, db=db)
-        if (lvl <= 4) tcplDelete(tbl="mc4_agg", fld="aeid", val=id,
-                                 db=db)
-        if (lvl <= 5) tcplDelete(tbl="mc5", fld="aeid", val=id, db=db)
-        if (lvl <= 6) tcplDelete(tbl="mc6", fld="aeid", val=id, db=db)
+        if (is(id, "try-error")) {
+            return(TRUE)
+        }
+        if (lvl <= 3) {
+            tcplDelete(
+                tbl="mc3", fld="aeid", val=id, db=db
+            )
+        }
+        if (lvl <= 4) {
+            tcplDelete(
+                tbl="mc4", fld="aeid", val=id, db=db
+            )
+        }
+        if (lvl <= 4) {
+            tcplDelete(
+                tbl="mc4_agg", fld="aeid", val=id, db=db
+            )
+        }
+        if (lvl <= 5) {
+            tcplDelete(
+                tbl="mc5", fld="aeid", val=id, db=db
+            )
+        }
+        if (lvl <= 6) {
+            tcplDelete(
+                tbl="mc6", fld="aeid", val=id, db=db
+            )
+        }
 
     }
 
     if (type == "sc") {
 
-        if (lvl == 0) tcplDelete(tbl="sc0", fld="acid", val=id, db=db)
+        if (lvl == 0) {
+            tcplDelete(
+                tbl="sc0", fld="acid", val=id, db=db
+            )
+        }
         if (lvl <  1) {
             id <- suppressWarnings(
-                try(tcplLoadAeid("acid", id)$aeid, silent=TRUE))
+                try(
+                    tcplLoadAeid("acid", id)$aeid, silent=TRUE
+                )
+            )
         }
-        if (is(id, "try-error")) return(TRUE)
-        if (lvl <= 1) tcplDelete(tbl="sc1", fld="aeid", val=id, db=db)
-        if (lvl <= 2) tcplDelete(tbl="sc2", fld="aeid", val=id, db=db)
-        if (lvl <= 2) tcplDelete(tbl="sc2_agg", fld="aeid", val=id,
-                                 db=db)
+        if (is(id, "try-error")) {
+            return(TRUE)
+        }
+        if (lvl <= 1) {
+            tcplDelete(
+                tbl="sc1", fld="aeid", val=id, db=db
+            )
+        }
+        if (lvl <= 2) {
+            tcplDelete(
+                tbl="sc2", fld="aeid", val=id, db=db
+            )
+        }
+        if (lvl <= 2) {
+            tcplDelete(
+                tbl="sc2_agg", fld="aeid", val=id, db=db
+            )
+        }
 
     }
 
     ttime <- round(difftime(Sys.time(), stime, units="sec"), 2)
     ttime <- paste(unclass(ttime), units(ttime))
-    message("Completed delete cascade for ", length(id), " ids (", ttime,
-            ")\n", sep="")
+    message(
+        "Completed delete cascade for ", length(id),
+        " ids (", ttime, ")\n", sep=""
+    )
 
 }
 

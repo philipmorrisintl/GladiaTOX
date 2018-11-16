@@ -47,8 +47,13 @@ tcplLoadVehicle <- function(field=NULL, val=NULL) {
     if (!is.null(field)) {
 
         qformat <- paste(qformat, "WHERE %s IN (%s);")
-        qstring <- sprintf(qformat, field, paste0("\"", val, "\"",
-                                                  collapse=","))
+        qstring <- sprintf(
+            qformat,
+            field,
+            paste0(
+                "\"", val, "\"", collapse=","
+            )
+        )
 
     } else {
 

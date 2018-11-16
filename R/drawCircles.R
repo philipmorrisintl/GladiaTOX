@@ -46,16 +46,20 @@
     }
 
     invisible(
-        lapply(seq_len(length(x)),
-               function(i) {
-                   xv <- cos(angles) * r[i] + x[i]
-                   yv <- sin(angles) * r[i] + y[i]
-                   polygon(xv, yv,
-                           border=border[i],
-                           col=col[i],
-                           lty=lty[i],
-                           lwd=lwd[i])
-               })
+        lapply(
+            seq_len(length(x)),
+            function(i) {
+                xv <- cos(angles) * r[i] + x[i]
+                yv <- sin(angles) * r[i] + y[i]
+                polygon(
+                    xv, yv,
+                    border=border[i],
+                    col=col[i],
+                    lty=lty[i],
+                    lwd=lwd[i]
+                )
+            }
+        )
     )
 
 }

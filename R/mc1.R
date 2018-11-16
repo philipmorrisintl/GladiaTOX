@@ -73,10 +73,8 @@ mc1 <- function(ac, wr=FALSE) {
     setkeyv(dat, c('acid', 'apid', 'coli', 'rowi', 'spid', 'conc'))
     ## Define rpid column for test compound wells
     nconc <- dat[wllt == "t" ,
-                 list(n=lu(conc)),
-                 by=list(
-                     acid, apid, spid)][ , list(
-                    nconc=min(n)), by=acid]
+        list(n=lu(conc)),
+        by=list(acid, apid, spid)][ , list(nconc=min(n)), by=acid]
     dat[wllt == "t" & acid %in% nconc[nconc > 1, acid],
         rpid := paste(acid, spid, wllt, apid, "rep1", conc, sep="_")]
     dat[wllt == "t" & acid %in% nconc[nconc == 1, acid],
@@ -94,7 +92,7 @@ mc1 <- function(ac, wr=FALSE) {
     }
     dat[ , rpid := dat_rpid]
     rm(dat_rpid)
-                                        # Remove conc values from rpid
+    ## Remove conc values from rpid
     dat[ , rpid := sub("_([^_]+)$", "", rpid, useBytes=TRUE)]
 
     ## Define concentration index
@@ -123,8 +121,10 @@ mc1 <- function(ac, wr=FALSE) {
 
     ttime <- round(difftime(Sys.time(), stime, units="sec"), 2)
     ttime <- paste(unclass(ttime), units(ttime))
-    message("Processed L1 ACID", ac, " (", nrow(dat),
-            " rows; ", ttime, ")\n", sep="")
+    message(
+        "Processed L1 ACID", ac, " (", nrow(dat),
+        " rows; ", ttime, ")\n", sep=""
+    )
 
     res <- TRUE
 
@@ -138,8 +138,10 @@ mc1 <- function(ac, wr=FALSE) {
 
         ttime <- round(difftime(Sys.time(), stime, units="sec"), 2)
         ttime <- paste(unclass(ttime), units(ttime))
-        message("Wrote L1 ACID", ac, " (", nrow(dat),
-                " rows; ", ttime, ")\n", sep="")
+        message(
+            "Wrote L1 ACID", ac, " (", nrow(dat),
+            " rows; ", ttime, ")\n", sep=""
+        )
     } else {
         res <- c(res, list(dat))
     }

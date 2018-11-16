@@ -80,58 +80,64 @@ mc4 <- function(ae, wr=FALSE) {
     ## Check to see if all samples should be fit
     fit_all <- as.logical(tcplLoadAeid("aeid", ae, "fit_all")$fit_all)
 
-    fitpars <- c("resp_max",
-                 "resp_min",
-                 "max_mean",
-                 "max_mean_conc",
-                 "max_med",
-                 "max_med_conc",
-                 "logc_max",
-                 "logc_min",
-                 "cnst",
-                 "hill",
-                 "hcov",
-                 "gnls",
-                 "gcov",
-                 "cnst_er",
-                 "cnst_aic",
-                 "cnst_rmse",
-                 "hill_tp",
-                 "hill_tp_sd",
-                 "hill_ga",
-                 "hill_ga_sd",
-                 "hill_gw",
-                 "hill_gw_sd",
-                 "hill_er",
-                 "hill_er_sd",
-                 "hill_aic",
-                 "hill_rmse",
-                 "gnls_tp",
-                 "gnls_tp_sd",
-                 "gnls_ga",
-                 "gnls_ga_sd",
-                 "gnls_gw",
-                 "gnls_gw_sd",
-                 "gnls_la",
-                 "gnls_la_sd",
-                 "gnls_lw",
-                 "gnls_lw_sd",
-                 "gnls_er",
-                 "gnls_er_sd",
-                 "gnls_aic",
-                 "gnls_rmse",
-                 "nconc",
-                 "npts",
-                 "nrep",
-                 "nmed_gtbl")
+    fitpars <- c(
+        "resp_max",
+        "resp_min",
+        "max_mean",
+        "max_mean_conc",
+        "max_med",
+        "max_med_conc",
+        "logc_max",
+        "logc_min",
+        "cnst",
+        "hill",
+        "hcov",
+        "gnls",
+        "gcov",
+        "cnst_er",
+        "cnst_aic",
+        "cnst_rmse",
+        "hill_tp",
+        "hill_tp_sd",
+        "hill_ga",
+        "hill_ga_sd",
+        "hill_gw",
+        "hill_gw_sd",
+        "hill_er",
+        "hill_er_sd",
+        "hill_aic",
+        "hill_rmse",
+        "gnls_tp",
+        "gnls_tp_sd",
+        "gnls_ga",
+        "gnls_ga_sd",
+        "gnls_gw",
+        "gnls_gw_sd",
+        "gnls_la",
+        "gnls_la_sd",
+        "gnls_lw",
+        "gnls_lw_sd",
+        "gnls_er",
+        "gnls_er_sd",
+        "gnls_aic",
+        "gnls_rmse",
+        "nconc",
+        "npts",
+        "nrep",
+        "nmed_gtbl"
+    )
 
     ## Fit the data by spid
     dat[ ,
-    (c("tmpi", fitpars)) := c(.GRP,
-                              tcplFit(logc=logc,
-                                      resp=resp,
-                                      bmad=bmad,
-                                      force.fit=fit_all)),
+    (c("tmpi", fitpars)) := c(
+        .GRP,
+        tcplFit(
+            logc=logc,
+            resp=resp,
+            bmad=bmad,
+            force.fit=fit_all
+        )
+    ),
     by=spid]
 
     ## Calculate the aic probabilities
@@ -140,8 +146,10 @@ mc4 <- function(ae, wr=FALSE) {
 
     ttime <- round(difftime(Sys.time(), stime, units="sec"), 2)
     ttime <- paste(unclass(ttime), units(ttime))
-    message("Processed L4 AEID", ae, " (", nrow(dat),
-            " rows; ", ttime, ")\n", sep="")
+    message(
+        "Processed L4 AEID", ae, " (", nrow(dat),
+        " rows; ", ttime, ")\n", sep=""
+    )
 
     res <- TRUE
 
@@ -152,8 +160,10 @@ mc4 <- function(ae, wr=FALSE) {
 
         ttime <- round(difftime(Sys.time(), stime, units="sec"), 2)
         ttime <- paste(unclass(ttime), units(ttime))
-        message("Wrote L4 AEID", ae, " (", nrow(dat),
-                " rows; ", ttime, ")\n", sep="")
+        message(
+            "Wrote L4 AEID", ae, " (", nrow(dat),
+            " rows; ", ttime, ")\n", sep=""
+        )
     } else {
         res <- c(list(res), list(dat))
     }

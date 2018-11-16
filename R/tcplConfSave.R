@@ -15,15 +15,19 @@
 tcplConfSave <- function () {
 
     if(any(sapply(tcplConfList(), is.null))) {
-        stop("One of the tcpl settings is NULL. Saving the configuration file ",
-             "with a NULL setting\nwill keep the package from loading in ",
-             "future sessions.")
+        stop(
+            "One of the tcpl settings is NULL. Saving the configuration file ",
+            "with a NULL setting\nwill keep the package from loading in ",
+            "future sessions."
+        )
     }
 
     drvr <- options()$TCPL_DRVR
     if (!drvr %in% c("SQLite", "MySQL")) {
-        stop(drvr, " is not a supported database driver. Must be 'SQLite' or ",
-             "'MySQL'.")
+        stop(
+            drvr, " is not a supported database driver. Must be 'SQLite' or ",
+            "'MySQL'."
+        )
     }
     drvr <- shQuote(drvr)
 

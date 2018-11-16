@@ -34,17 +34,23 @@
     ## set well types
     DT$well_type <- rep("",nrow(study.data))
     DT$well_type[DT$stimulus %in%
-                 vehicle.mapping$chms[vehicle.mapping$type=="t"]] <- "t"
+        vehicle.mapping$chms[vehicle.mapping$type=="t"]] <- "t"
     DT$well_type[DT$stimulus %in%
-                 vehicle.mapping$chms[vehicle.mapping$type=="c"]] <- "c"
+        vehicle.mapping$chms[vehicle.mapping$type=="c"]] <- "c"
     DT$well_type[DT$stimulus %in%
-                 unique(vehicle.mapping$vehs)] <- "n"
+        unique(vehicle.mapping$vehs)] <- "n"
     ## load vehicle info
-    vehs <- c(as.character(vehicle.mapping$vehs),
-             unique(as.character(vehicle.mapping$vehs)))
-    DT$vehicle_name <- vehs[match(DT$stimulus,
-                                 c(as.character(vehicle.mapping$chms),
-                                   unique(as.character(vehicle.mapping$vehs))))]
+    vehs <- c(
+        as.character(vehicle.mapping$vehs),
+        unique(as.character(vehicle.mapping$vehs))
+    )
+    DT$vehicle_name <- vehs[match(
+        DT$stimulus,
+        c(
+            as.character(vehicle.mapping$chms),
+            unique(as.character(vehicle.mapping$vehs))
+        )
+    )]
     ## load other study info
     DT$study <- study.data$sstudyid
     DT$study.phase <- phase
@@ -57,8 +63,12 @@
     DT$`well format` <- study.data$u_tubetype
     DT$assay <- paste(DT$endpoint,DT$`exposure duration`,sep="_")
     DT$Date <- study.data$createdt
-    DT$u_boxtrack <- unlist(lapply(as.character(study.data$u_boxtrack),
-                                  function(x){strsplit(x,"_")[[1]][1]}))
+    DT$u_boxtrack <- unlist(
+        lapply(
+            as.character(study.data$u_boxtrack),
+            function(x){strsplit(x,"_")[[1]][1]}
+        )
+    )
     DT$s_sampleid <- study.data$s_sampleid
 
     return(data.frame(DT,check.names=FALSE))

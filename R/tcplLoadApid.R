@@ -40,43 +40,51 @@
 tcplLoadApid <- function(fld=NULL, val=NULL) {
 
     if (!is.null(fld)) {
-        vfield <- c("apid", "aid", "date_plate", "date_treat", "date_harvest",
-                    "cell_passage", "cell_lot")
+        vfield <- c(
+            "apid", "aid", "date_plate", "date_treat", "date_harvest",
+            "cell_passage", "cell_lot"
+        )
         if (!all(fld %in% vfield)) stop("Invalid 'fld' value(s).")
     }
 
     qformat <-
         "
-    SELECT
-      assay_plate.apid,
-      aid,
-      old_name,
-      date_plate,
-      date_treat,
-      date_harvest,
-      cell_passage,
-      cell_lot,
-      hr_barcode,
-      u_boxtrack
-    FROM assay_plate
-      LEFT JOIN bb_apid_map
-      ON assay_plate.apid=bb_apid_map.apid
+        SELECT
+            assay_plate.apid,
+            aid,
+            old_name,
+            date_plate,
+            date_treat,
+            date_harvest,
+            cell_passage,
+            cell_lot,
+            hr_barcode,
+            u_boxtrack
+        FROM assay_plate
+            LEFT JOIN bb_apid_map ON assay_plate.apid=bb_apid_map.apid
     "
 
     if (!is.null(fld)) {
 
-        fld <- .prepField(fld=fld,
-                          tbl=c("bb_apid_map", "assay_plate"),
-                          db=options()$TCPL_DB)
+        fld <- .prepField(
+            fld=fld,
+            tbl=c("bb_apid_map", "assay_plate"),
+            db=options()$TCPL_DB
+        )
 
         qformat <- paste(qformat, "WHERE")
-        qformat <- paste0(qformat,
-                          "  ",
-                          paste(fld, "IN (%s)", collapse=" AND "))
+        qformat <- paste0(
+            qformat,
+            "  ",
+            paste(fld, "IN (%s)", collapse=" AND ")
+        )
         qformat <- paste0(qformat, ";")
 
         if (!is.list(val)) val <- list(val)
-        val <- lapply(val, function(x) paste0("\"", x, "\"", collapse=","))
+        val <- lapply(
+            val,
+            function(x) paste0("\"", x, "\"", collapse=",")
+        )
 
         qstring <- do.call(sprintf, args=c(qformat, val))
 

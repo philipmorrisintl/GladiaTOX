@@ -20,9 +20,11 @@ tcplMthdLoad <- function(lvl, id=NULL, type="mc") {
     if (type == "sc" & !lvl %in% seq_len(2)) stop("Invalid 'lvl' value.")
 
     id_name <- if (type == "mc" & lvl == 2) "acid" else "aeid"
-    flds <- c(id_name,
-              "b.%s_mthd AS mthd",
-              "b.%s_mthd_id AS mthd_id")
+    flds <- c(
+        id_name,
+        "b.%s_mthd AS mthd",
+        "b.%s_mthd_id AS mthd_id"
+    )
     if ((lvl < 4 & type == "mc") | (lvl == 1 & type == "sc")) {
         flds <- c(flds, "a.exec_ordr AS ordr")
     }
@@ -30,9 +32,11 @@ tcplMthdLoad <- function(lvl, id=NULL, type="mc") {
 
     tbls <- c(paste0("%s_", id_name, " AS a"), "%s_methods AS b")
 
-    qformat <- paste("SELECT", paste(flds, collapse=","),
-                     "FROM", paste(tbls, collapse=","),
-                     "WHERE a.%s_mthd_id=b.%s_mthd_id")
+    qformat <- paste(
+        "SELECT", paste(flds, collapse=","),
+        "FROM", paste(tbls, collapse=","),
+        "WHERE a.%s_mthd_id=b.%s_mthd_id"
+    )
     qformat <- gsub("%s", paste0(type, lvl), qformat)
 
     if (!is.null(id)) {
@@ -41,7 +45,9 @@ tcplMthdLoad <- function(lvl, id=NULL, type="mc") {
     }
 
     if ((lvl < 4 & type == "mc") | (lvl == 1 & type == "sc")) {
-        qstring <- paste0(qformat, " ORDER BY ", id_name, ", a.exec_ordr")
+        qstring <- paste0(
+            qformat, " ORDER BY ", id_name, ", a.exec_ordr"
+        )
     } else {
         qstring <- qformat
     }
@@ -55,8 +61,10 @@ tcplMthdLoad <- function(lvl, id=NULL, type="mc") {
 
     len_miss <- lw(!id %in% dat[[id_name]])
     if (len_miss > 0) {
-        warning(len_miss, " of the given ids do not have ", type, lvl,
-                " methods.")
+        warning(
+            len_miss, " of the given ids do not have ", type, lvl,
+            " methods."
+        )
     }
 
     dat[]

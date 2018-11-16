@@ -20,15 +20,22 @@
     v <- tcplConfList()
     p <- names(v)
     pn <- vapply(p, nchar, integer(1))
-    sep <- vapply(pn, function(x) paste(rep(" ", 11 - x), collapse=""),
-                  character(1))
+    sep <- vapply(
+        pn, function(x) paste(rep(" ", 11 - x), collapse=""),
+        character(1)
+    )
     sep <- paste0(":", sep)
-    cs <- vapply(seq_along(v), function(x) paste(p[x], v[[x]], sep=sep[x]),
-                 "character")
+    cs <- vapply(
+        seq_along(v),
+        function(x) paste(p[x], v[[x]], sep=sep[x]),
+        "character"
+    )
 
-    packageStartupMessage("Current database settings:\n  ",
-                          paste(cs, collapse="\n  "),
-                          "\nAre you sure you want to erase all content?")
+    packageStartupMessage(
+        "Current database settings:\n  ",
+        paste(cs, collapse="\n  "),
+        "\nAre you sure you want to erase all content?"
+    )
 
     x <- readline("Type 'yes' to proceed or anything else to cancel. ")
 

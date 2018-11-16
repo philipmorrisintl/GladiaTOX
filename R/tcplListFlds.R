@@ -51,22 +51,25 @@ tcplListFlds <- function(tbl, db=getOption("TCPL_DB")) {
 
         qformat <-
             "
-      SELECT
-        `COLUMN_NAME`
-      FROM
-        `INFORMATION_SCHEMA`.`COLUMNS`
-      WHERE
-        `TABLE_SCHEMA`='%s'
-        AND
-        `TABLE_NAME`='%s';
-      "
+            SELECT
+                `COLUMN_NAME`
+            FROM
+                `INFORMATION_SCHEMA`.`COLUMNS`
+            WHERE
+                `TABLE_SCHEMA`='%s'
+            AND
+                `TABLE_NAME`='%s';
+            "
 
         return(tcplQuery(sprintf(qformat, db, tbl), db)[ , COLUMN_NAME])
 
     }
 
-    stop(getOption("TCPL_DRVR"), " is not a supported database system. See ",
-         "?tcplConf for more details.")
+    stop(
+        getOption("TCPL_DRVR"),
+        " is not a supported database system. See ",
+        "?tcplConf for more details."
+    )
 
 }
 

@@ -73,8 +73,10 @@ tcplSubsetChid <- function(dat, flag=TRUE) {
     chid <- NULL
 
     if (!"m5id" %in% names(dat)) {
-        stop("'dat' must be a data.table with level 5 data. ",
-             "See ?tcplLoadData for more information.")
+        stop(
+            "'dat' must be a data.table with level 5 data. ",
+            "See ?tcplLoadData for more information."
+        )
     }
     if (!"casn" %in% names(dat)) dat <- tcplPrepOtpt(dat)
 

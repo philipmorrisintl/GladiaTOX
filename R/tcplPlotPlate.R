@@ -87,14 +87,18 @@ tcplPlotPlate <- function(dat, apid, id=NULL, quant=c(0.001, 0.999)) {
 
     sub[, nwlt := paste0(wllt, cndx)]
 
-    ap_size <- do.call(if (idnm == "acid") "tcplLoadAcid" else "tcplLoadAeid",
-                       list(fld=idnm, val=id, add.fld="assay_footprint"))
+    ap_size <- do.call(
+        if (idnm == "acid") "tcplLoadAcid" else "tcplLoadAeid",
+        list(fld=idnm, val=id, add.fld="assay_footprint")
+    )
     setnames(ap_size, c("aid", "anm", "nwll"))
 
     ap_size[ , nwll := as.numeric(gsub("[^0-9]", "", nwll))]
-    plate_dim <- data.table(nwll=c(6, 12, 24, 48, 96, 384, 1536),
-                            coln=c(3,  4,  6,  8, 12,  24,   48),
-                            rown=c(2,  3,  4,  6,  8,  16,   32))
+    plate_dim <- data.table(
+        nwll=c(6, 12, 24, 48, 96, 384, 1536),
+        coln=c(3,  4,  6,  8, 12,  24,   48),
+        rown=c(2,  3,  4,  6,  8,  16,   32)
+    )
     setkey(plate_dim, nwll)
     setkey(ap_size, nwll)
     ap_size <- plate_dim[ap_size]
@@ -109,19 +113,23 @@ tcplPlotPlate <- function(dat, apid, id=NULL, quant=c(0.001, 0.999)) {
         arng <- dat[get(idnm) == id, range(get(vlnm), na.rm=TRUE)]
     } else {
         arng <- dat[get(idnm) == id,
-                    quantile(get(vlnm), c(0.001, 0.999), na.rm=TRUE)]
+            quantile(get(vlnm), c(0.001, 0.999), na.rm=TRUE)]
     }
 
-    with(data=sub[aid == id],
-         .plateHeat(vals=val,
-                    rowi=rowi,
-                    coli=coli,
-                    wllt=nwlt,
-                    wllq=wllq,
-                    rown=ap_size[ , rown],
-                    coln=ap_size[, coln],
-                    main=cat_name,
-                    arng=arng))
+    with(
+        data=sub[aid == id],
+        .plateHeat(
+            vals=val,
+            rowi=rowi,
+            coli=coli,
+            wllt=nwlt,
+            wllq=wllq,
+            rown=ap_size[ , rown],
+            coln=ap_size[, coln],
+            main=cat_name,
+            arng=arng
+        )
+    )
 
 }
 

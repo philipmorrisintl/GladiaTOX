@@ -38,14 +38,14 @@ tcplLoadVmad <- function(aeid=NULL) {
 
     qformat <-
         "
-    SELECT
-      aeid,
-      vmad,
-      inputs,
-      notes
-    FROM
-      assay_component_endpoint_vmad
-    "
+        SELECT
+            aeid,
+            vmad,
+            inputs,
+            notes
+        FROM
+            assay_component_endpoint_vmad
+        "
     if (!is.null(aeid)) qformat <- paste(qformat, "WHERE aeid IN (%s)")
 
     qstring <- sprintf(qformat, paste(aeid, collapse=","))

@@ -60,21 +60,23 @@ interlaceFunc <- function(val, intq, coli, rowi, apid, r) {
     adjr <- rep(adj, times=adj_len)
     adjd <- 1/as.matrix(dist(cbind(2*adjc,adjr)))[,1]
     adjd[1] <- 1
-    dat <- data.table(val=rep(val, nrep),
-                      coli=rep(coli, nrep),
-                      rowi=rep(rowi, nrep),
-                      apid=rep(apid, nrep),
-                      intq=rep(intq, nrep),
-                      ordr=rep(ordr, nrep),
-                      index=rep(seq_len(nrep), each=val_len),
-                      cold=rep(adjc, each=val_len),
-                      rowd=rep(adjr, each=val_len),
-                      adjd=rep(adjd, each=val_len))
+    dat <- data.table(
+        val=rep(val, nrep),
+        coli=rep(coli, nrep),
+        rowi=rep(rowi, nrep),
+        apid=rep(apid, nrep),
+        intq=rep(intq, nrep),
+        ordr=rep(ordr, nrep),
+        index=rep(seq_len(nrep), each=val_len),
+        cold=rep(adjc, each=val_len),
+        rowd=rep(adjr, each=val_len),
+        adjd=rep(adjd, each=val_len)
+    )
 
     dat[, coli := coli + cold]
     dat[, rowi := rowi + rowd]
     dat[, intv := sum(val * adjd, na.rm=TRUE)/nrep -
-              max(val * adjd, na.rm=TRUE)/nrep,
+        max(val * adjd, na.rm=TRUE)/nrep,
         by=list(apid, intq, coli, rowi)]
     dat[index == 1, intv][order(ordr)][]
 

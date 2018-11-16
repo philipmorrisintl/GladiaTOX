@@ -14,8 +14,9 @@
 
 tcplConfList <- function(show.pass=FALSE) {
 
-    opts <- list("TCPL_DB", "TCPL_USER", "TCPL_HOST", "TCPL_DRVR",
-                 "TCPL_INT")
+    opts <- list(
+        "TCPL_DB", "TCPL_USER", "TCPL_HOST", "TCPL_DRVR", "TCPL_INT"
+    )
     if (show.pass) opts <- c(opts, "TCPL_PASS")
     do.call(options, opts)
 

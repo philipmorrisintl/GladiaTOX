@@ -70,19 +70,25 @@ tcplAddModel <- function(pars, modl=NULL, adj=NULL, ...) {
     cnst <- function(x) 0*x
     hill <- function(x) with(pars, hill_tp*adj/(1 + 10^((hill_ga - x)*hill_gw)))
     gnls <- function(x) {
-        with(pars, {
-            h1 <- (1/(1 + 10^((gnls_ga - x)*gnls_gw)))
-            h2 <- (1/(1 + 10^((x - gnls_la)*gnls_lw)))
-            gnls_tp*adj*h1*h2
-        })
+        with(
+            pars, {
+                h1 <- (1/(1 + 10^((gnls_ga - x)*gnls_gw)))
+                h2 <- (1/(1 + 10^((x - gnls_la)*gnls_lw)))
+                gnls_tp*adj*h1*h2
+            }
+        )
     }
-
-    do.call(curve,
-            list(as.name(modl),
-                 add=TRUE,
-                 from=pars$logc_min,
-                 to=pars$logc_max,
-                 n=1e4,
-                 ...))
+    
+    do.call(
+        curve,
+        list(
+            as.name(modl),
+            add=TRUE,
+            from=pars$logc_min,
+            to=pars$logc_max,
+            n=1e4,
+            ...
+        )
+    )
 
 }

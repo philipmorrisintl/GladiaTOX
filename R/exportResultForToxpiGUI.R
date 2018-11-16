@@ -44,16 +44,22 @@ exportResultForToxpiGUI <- function(asid, tp, outfile, stat) {
     dat <- tcplLoadData(lvl=5, fld="aeid", val=tcplLoadAeid("asid", asid)$aeid)
     dat <- tcplPrepOtpt(dat)
     othrIDs <- c("asnm", "aid", "anm", "acid", "acnm")
-    dat <- merge(dat,
-                 tcplLoadAeid("asid", asid, add.fld=othrIDs),
-                 c("aeid", "aenm"))
+    dat <- merge(
+        dat,
+        tcplLoadAeid("asid", asid, add.fld=othrIDs),
+        c("aeid", "aenm")
+    )
 
     dat <- dat[, .SD[which.min(modl_rmse)], by=c("spid", "acnm")]
-    dat[ , aenm := vapply(strsplit(as.character(aenm), "_"), 
-                          function(xx) xx[[1]], character(1))]
-    xprtcols <- c("asnm", "chid", "chnm", "logc_min", "logc_max", "spid",
-                  "aid", "anm", "acid", "acnm", "aeid", "aenm", "modl_ga",
-                  "modl_tp", "modl_acb", "modl_acc", "fitc")
+    dat[ , aenm := vapply(
+        strsplit(as.character(aenm), "_"), 
+        function(xx) xx[[1]], character(1)
+    )]
+    xprtcols <- c(
+        "asnm", "chid", "chnm", "logc_min", "logc_max", "spid",
+        "aid", "anm", "acid", "acnm", "aeid", "aenm", "modl_ga",
+        "modl_tp", "modl_acb", "modl_acc", "fitc"
+    )
     dat <- dat[ , .SD, .SDcols=xprtcols]
 
     ## preapre slice info
@@ -63,15 +69,21 @@ exportResultForToxpiGUI <- function(asid, tp, outfile, stat) {
     slices1 <- getsplit(slices, "_", 1)
     cnts <- table(slices1)[match(slices1, names(table(slices1)))]
     nslices <- sum(slices %in% endpoints)
-    mat.rows <- c(seq_len(nslices),
-                  rep(nslices + 1, sum(grepl("Cell count", endpoints))))
-    mat.cols <- c(match(slices[slices %in% endpoints], endpoints),
-                  which(grepl("Cell count", endpoints)))
+    mat.rows <- c(
+        seq_len(nslices),
+        rep(nslices + 1, sum(grepl("Cell count", endpoints)))
+    )
+    mat.cols <- c(
+        match(slices[slices %in% endpoints], endpoints),
+        which(grepl("Cell count", endpoints))
+    )
     pmat <- matrix("", length(slices), length(endpoints))
     pmat[cbind(mat.rows, mat.cols)] <- "x"
     n <- cnts[!duplicated(names(cnts))]
-    name <- c("YlGn", "Reds", "Purples", "YlGnBu", "Blues", "Greys", "BuPu",
-              "Oranges", "BuGn")[seq_len(length(n))]
+    name <- c(
+        "YlGn", "Reds", "Purples", "YlGnBu", "Blues", "Greys", "BuPu",
+        "Oranges", "BuGn"
+    )[seq_len(length(n))]
     colFunc <- function(xx, yy) brewer.pal(n=9, name=yy)[3:(xx + 2)]
     colors <- as.character(unlist(mapply(colFunc, n, name)))
     slices_text <- sprintf("# %s!%s!%s!-ln(x)", slices, round(25/cnts), colors)
@@ -95,14 +107,22 @@ exportResultForToxpiGUI <- function(asid, tp, outfile, stat) {
     for (kk in seq_len(ncol(mat))) {
         mat[is.na(mat[, kk]), kk] <- col.max[kk]
     }
-    mat <- cbind(data.frame(Row=seq_len(nrow(mat)),
-                            Source=paste0("source", seq_len(nrow(mat))),
-                            CASRN=NA,
-                            Name=rownames(mat)),
-                 mat)
+    mat <- cbind(
+        data.frame(
+            Row=seq_len(nrow(mat)),
+            Source=paste0("source", seq_len(nrow(mat))),
+            CASRN=NA,
+            Name=rownames(mat)
+        ),
+        mat
+    )
     ## write info on file
-    write.table(slices_tab, file=outfile, quote=TRUE, row.names=FALSE,
-                col.names=FALSE, sep=",")
-    write.table(mat,file=outfile, quote=TRUE, row.names=FALSE,
-                sep=",", append=TRUE)
+    write.table(
+        slices_tab, file=outfile, quote=TRUE, row.names=FALSE,
+        col.names=FALSE, sep=","
+    )
+    write.table(
+        mat,file=outfile, quote=TRUE, row.names=FALSE,
+        sep=",", append=TRUE
+    )
 }

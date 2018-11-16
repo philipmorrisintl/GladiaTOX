@@ -56,7 +56,7 @@
 #' @import data.table
 #' @export
 tcplLoadChem <- function(field=NULL, val=NULL, exact=TRUE,
-                         include.spid=TRUE) {
+    include.spid=TRUE) {
 
     ## Variable-binding to pass R CMD Check
     code <- casn <- chid <- chnm <- NULL

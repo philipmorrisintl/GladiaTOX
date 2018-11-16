@@ -28,14 +28,14 @@ tcplLoadUnit <- function(aeid) {
 
     qformat <-
         "
-    SELECT
-      aeid,
-      normalized_data_type AS resp_unit
-    FROM
-      assay_component_endpoint
-    WHERE
-      aeid IN (%s);
-    "
+        SELECT
+            aeid,
+            normalized_data_type AS resp_unit
+        FROM
+            assay_component_endpoint
+        WHERE
+            aeid IN (%s);
+        "
 
     qstring <- sprintf(qformat, paste(aeid, collapse=","))
 

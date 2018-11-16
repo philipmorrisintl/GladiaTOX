@@ -40,57 +40,65 @@
 tcplLoadWaid <- function(fld=NULL, val=NULL) {
 
     if (!is.null(fld)) {
-        vfield <- c("apid", "aid", "date_plate", "date_treat", "date_harvest",
-                    "cell_passage", "cell_lot", "waid", "spid", "rowi", "coli",
-                    "wllt", "vhid", "conc", "gui_sample_id")
+        vfield <- c(
+            "apid", "aid", "date_plate", "date_treat", "date_harvest",
+            "cell_passage", "cell_lot", "waid", "spid", "rowi", "coli",
+            "wllt", "vhid", "conc", "gui_sample_id"
+        )
         if (!all(fld %in% vfield)) stop("Invalid 'fld' value(s).")
     }
 
     qformat <-
         "
-    SELECT
-      assay_plate_well.waid,
-      assay_plate_well.apid,
-      aid,
-      spid,
-      rowi,
-      coli,
-      wllt,
-      vhid,
-      conc,
-      date_plate,
-      date_treat,
-      date_harvest,
-      cell_passage,
-      cell_lot,
-      gui_sample_id,
-      hr_barcode,
-      old_name,
-      s_sampleid,
-      u_boxtrack
-    FROM assay_plate_well
-      LEFT JOIN assay_plate
-      ON assay_plate_well.apid=assay_plate.apid
-        LEFT JOIN bb_waid_map
-        ON assay_plate_well.waid=bb_waid_map.waid
-          LEFT JOIN bb_apid_map
-          ON assay_plate_well.apid=bb_apid_map.apid
+        SELECT
+            assay_plate_well.waid,
+            assay_plate_well.apid,
+            aid,
+            spid,
+            rowi,
+            coli,
+            wllt,
+            vhid,
+            conc,
+            date_plate,
+            date_treat,
+            date_harvest,
+            cell_passage,
+            cell_lot,
+            gui_sample_id,
+            hr_barcode,
+            old_name,
+            s_sampleid,
+            u_boxtrack
+        FROM assay_plate_well
+            LEFT JOIN assay_plate
+                ON assay_plate_well.apid=assay_plate.apid
+            LEFT JOIN bb_waid_map
+                ON assay_plate_well.waid=bb_waid_map.waid
+            LEFT JOIN bb_apid_map
+                ON assay_plate_well.apid=bb_apid_map.apid
     "
 
     if (!is.null(fld)) {
 
-        fld <- .prepField(fld=fld,
-                          tbl=c("assay_plate", "assay_plate_well"),
-                          db=options()$TCPL_DB)
+        fld <- .prepField(
+            fld=fld,
+            tbl=c("assay_plate", "assay_plate_well"),
+            db=options()$TCPL_DB
+        )
 
         qformat <- paste(qformat, "WHERE")
-        qformat <- paste0(qformat,
-                          "  ",
-                          paste(fld, "IN (%s)", collapse=" AND "))
+        qformat <- paste0(
+            qformat,
+            "  ",
+            paste(fld, "IN (%s)", collapse=" AND ")
+        )
         qformat <- paste0(qformat, ";")
 
         if (!is.list(val)) val <- list(val)
-        val <- lapply(val, function(x) paste0("\"", x, "\"", collapse=","))
+        val <- lapply(
+            val, function(x) paste0("\"", x, "\"", collapse=",")
+        )
 
         qstring <- do.call(sprintf, args=c(qformat, val))
 

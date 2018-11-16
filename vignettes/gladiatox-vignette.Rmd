@@ -84,7 +84,7 @@ glPlotPieLogo()
 
 
 ## Deployed database
-The GladiaTOX installatioin includes the deployment of a sqlite database (`sql/gladiatoxdb.sqlite` folder). The database already contains fully processed study, with
+The GladiaTOX installation includes the deployment of a sqlite database (`sql/gladiatoxdb.sqlite` folder). The database already contains fully processed study, with
 
 - asid: 1 (assay source id), the unique study identifier
 - asnm: StudyI (assay source name), the names of the study
@@ -130,7 +130,7 @@ tcplConf(drvr = "MySQL",
 # Data and metadata for vignette
 In this section we will explore one simple way for loading data in the database. The following chunks prepare the metadata and data in R objects (data.frame) prior database loading.
 
-The following commands loads the data for vignette, and set the output directoty, `outdir`, to the working directory. Change it accordingly to the folder path where your reports have to be saved.
+The following commands loads the data for vignette, and set the output directory, `outdir`, to the working directory. Change it accordingly to the folder path where your reports have to be saved.
 ```{r, eval=FALSE, include=FALSE, echo=TRUE}
 load(system.file("extdata", "data_for_vignette.rda", package="GladiaTOX"))
 outdir <- getwd()
@@ -176,12 +176,12 @@ head(dat)
 ```{r, eval=TRUE, echo=FALSE, include=TRUE}
 print(head(dat), row.names = FALSE)
 ```
-This table contains the raw fluoroscence quantification values: `measure_val`; `rowi` and `coli` are the row and column indexes; `machine_name` is the channel name and is used to join this table with the assay table above; `u_boxtrack` is the plate identified and is used to join the table with the plate table.
+This table contains the raw fluorescence quantification values: `measure_val`; `rowi` and `coli` are the row and column indexes; `machine_name` is the channel name and is used to join this table with the assay table above; `u_boxtrack` is the plate identified and is used to join the table with the plate table.
 
 # Database loading
-In this sections data and metadata will be loaded in the GladiaTOX database. Let's set the study paramenters, study name and phase of the new study phase to be loaded in the database and processed.
+In this sections data and metadata will be loaded in the GladiaTOX database. Let's set the study parameters, study name and phase of the new study phase to be loaded in the database and processed.
 ```{r, eval=TRUE}
-## Set study paramenters
+## Set study parameters
 std.nm <- "SampleStudy" # study name
 phs.nm <- "PhaseII" # study phase
 ```
@@ -196,7 +196,7 @@ loadAnnot(plate, assay, NULL)
 ## List of studies after loading
 tcplLoadAsid()
 ```
-The `loadAnnot` function call registers multiple study paramenters in the database, including the creation of the new assay source id (asid). The asid identifies the pair study name, study phase. The asid is what will be used to load raw data of the study, process the study and generate reports.
+The `loadAnnot` function call registers multiple study parameters in the database, including the creation of the new assay source id (asid). The asid identifies the pair study name, study phase. The asid is what will be used to load raw data of the study, process the study and generate reports.
 
 ## Load raw data in database
 The `asid` just created can be retrieved by querying the database and specify the study name and phase.
@@ -221,7 +221,7 @@ assignDefaultMthds(asid = asid)
 With the default selection, raw data is normalized by computing the log2 fold change of values in each well against the median of the corresponding controls.
 
 ## Compute the noise band
-The package computes a noise band to discriminate concentration series that are active versus those that are not. The default behaviour is to compute noise band margins separetely for each endpoint. Margins correspond to 3 times the baseline median absolute deviation of vehicle responses. The following code computes the cutoffs and store them in the database.
+The package computes a noise band to discriminate concentration series that are active versus those that are not. The default behaviour is to compute noise band margins separately for each endpoint. Margins correspond to 3 times the baseline median absolute deviation of vehicle responses. The following code computes the cutoffs and store them in the database.
 ```{r, echo=TRUE, eval=TRUE, include=TRUE, results='hide', message=FALSE, warning=FALSE}
 res <- tcplRun(asid = asid, slvl = 1, elvl = 3)
 aeids <- tcplLoadAeid(fld = "asid", val = asid)$aeid
@@ -232,10 +232,10 @@ error = function(e) NULL)},
 as.integer(aeids))
 res <- tcplRun(asid = asid, slvl = 1, elvl = 6)
 ```
-In the original work (*Filer et al., 2016*), the default behaviour is to compute noise band margins based on the response of the lowest two concetrations of the series. That assumes that no response is observed at those concentrations. The current package overcome that assumption and extend the list of functionalities. The database design was modified accordingly.
+In the original work (*Filer et al., 2016*), the default behaviour is to compute noise band margins based on the response of the lowest two concentrations of the series. That assumes that no response is observed at those concentrations. The current package overcome that assumption and extend the list of functionalities. The database design was modified accordingly.
 
 ## Quality control report
-Quality control is the mean to check the quality of the data produced in the lab. Each experimental plate is controlled. Plates not passing the control step are filtered out. Quality control is commonly based on a visual inspection. The packace exposes functionalities to generate a self contained pdf file with plate heatmaps and positive control plots.
+Quality control is the mean to check the quality of the data produced in the lab. Each experimental plate is controlled. Plates not passing the control step are filtered out. Quality control is commonly based on a visual inspection. The package exposes functionalities to generate a self contained pdf file with plate heatmaps and positive control plots.
 ```{r, echo=TRUE, eval=FALSE, include=TRUE, message=FALSE, warning=FALSE, results='hide'}
 ## QC report
 tcplReport(type = "qc", asid = asid, report_author = "report author",
@@ -265,10 +265,10 @@ m4id <- tcplLoadData(lvl = 4L, fld = c("spid", "aeid"), val = list(spid, aeid))[
 ```{r, eval=TRUE, fig.width=14, fig.height=8, dev=c('svg'), fig.cap='Example of Positive control (chlorambucil chemical) plot with three concentrations, and three technical replicates per concentration.'}
 tcplPlotM4ID(m4id = m4id, lvl = 6, bline = "coff")
 ```
-The panel on the right side shows a set of information including goodness of fit. In this particular eaxmple no info is available since the series has to few concentration to fit a model (4 concentrations is the minimum number to perform a fit).
+The panel on the right side shows a set of information including goodness of fit. In this particular example no info is available since the series has to few concentration to fit a model (4 concentrations is the minimum number to perform a fit).
 
 ### Data masking
-QC report is mainly used to check the quality of the plates. For example, in case the respose of a positive control of an assay stays within the noiseband, then the user may decide to filter that plate out. Below is shown the code to mask plate *S-000030318*.
+QC report is mainly used to check the quality of the plates. For example, in case the response of a positive control of an assay stays within the noiseband, then the user may decide to filter that plate out. Below is shown the code to mask plate *S-000030318*.
 ```{r, eval=TRUE, echo=TRUE, include=TRUE}
 apid <- tcplLoadApid()[u_boxtrack%in%"S-000030318", apid] # plate id
 waids <- tcplLoadWaid(fld="apid", val=apid)$waid #well ids
@@ -279,11 +279,11 @@ The masked plate will not be processed and will not be included in the final rep
 
 # Data processing and reporting
 ## Process data
-Now that the user has selected the processing methods, cutoffs computed, and bad quality plates masked, all information is in palce to start processing the data with the following command.
+Now that the user has selected the processing methods, cutoffs computed, and bad quality plates masked, all information is in place to start processing the data with the following command.
 ```{r, echo=TRUE, eval=TRUE, results='hide', message=FALSE, warning=FALSE}
 res <- tcplRun(asid = asid, slvl = 1, elvl = 6)
 ```
-The `tcplRun` returns a list of vectors of logical values used to check processing status. The resulting processed data is automatically stored in the database along with the statistics computed. Satistics include activity concentrations (AC10 and AC50) and minimal effective concentrations (MECs).
+The `tcplRun` returns a list of vectors of logical values used to check processing status. The resulting processed data is automatically stored in the database along with the statistics computed. Statistics include activity concentrations (AC10 and AC50) and minimal effective concentrations (MECs).
 
 ## Data reporting
 The `tcplReport` function, with option `type = "all"`, triggers the generation of the full processing report. The pdf file created includes summary tables, dose-response curves (as seen later), and other plots for all chemicals tested in the study.
@@ -319,7 +319,7 @@ tcplPlotWin(chid = chid, aeid = aeids, bline = "bmad", collapse = TRUE)
 The plot shows all replicated dose-response curves. Each curve represents the fitting result on an experimental plate. Only best fits are reported.
 
 # Additional reporting plots
-Additional reporting plots, not included in the full report, can be obtained as described below. Boxplot of minimal effective concentrations can be obtained running the following chunk. An exmaple of boxplot is reported below. MEC values are shown as dots. Low MECs correspond to high toxicity.
+Additional reporting plots, not included in the full report, can be obtained as described below. Boxplot of minimal effective concentrations can be obtained running the following chunk. An example of boxplot is reported below. MEC values are shown as dots. Low MECs correspond to high toxicity.
 ```{r, eval=TRUE, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, results='hide'}
 fname <- paste0(format(Sys.Date(), format="%y%m%d"), "_ASID", asid,"_MEC.pdf")
 fname <- file.path(outdir, fname)

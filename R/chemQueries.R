@@ -16,14 +16,14 @@
         SELECT * FROM 
         (
         SELECT 
-          spid, 
-          chemical.*
+            spid, 
+            chemical.*
         FROM chemical 
         LEFT JOIN sample ON sample.chid = chemical.chid
         UNION ALL
         SELECT 
-          spid, 
-          chemical.*
+            spid, 
+            chemical.*
         FROM sample
         LEFT JOIN chemical ON sample.chid = chemical.chid
         WHERE  chemical.chid IS NULL
@@ -34,12 +34,14 @@
 
     if (!is.null(field)) {
 
-        nfld <- switch(field,
-                       spid="spid",
-                       chid="chid",
-                       casn="casn",
-                       code="casn",
-                       "chnm")
+        nfld <- switch(
+            field,
+            spid="spid",
+            chid="chid",
+            casn="casn",
+            code="casn",
+            "chnm"
+        )
 
         if (field == "code") val <- suppressWarnings(sapply(val, tcplCode2CASN))
 
@@ -61,13 +63,9 @@
         }
 
     } else {
-
         qstring <- qformat
-
     }
-
     qstring
-
 }
 
 #-------------------------------------------------------------------------------
@@ -84,22 +82,22 @@
 
     if (!is.null(field)) {
 
-        nfld <- switch(field,
-                       chid="chid",
-                       clib="clib")
+        nfld <- switch(
+            field,
+            chid="chid",
+            clib="clib"
+        )
 
         qformat <- paste(qformat, "WHERE %s IN (%s);")
-        qstring <- sprintf(qformat, nfld,
-                           paste0("\"", val, "\"", collapse=","))
+        qstring <- sprintf(
+            qformat, nfld,
+            paste0("\"", val, "\"", collapse=",")
+        )
 
     } else {
-
         qstring <- paste0(qformat, ";")
-
     }
-
     qstring
-
 }
 
 #-------------------------------------------------------------------------------

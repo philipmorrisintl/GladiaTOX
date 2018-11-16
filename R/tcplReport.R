@@ -73,9 +73,9 @@
 #' @export
 
 tcplReport <- function(type, asid, params=NULL, odir=getwd(),
-                       report_author,
-                       report_title="Report", sumfile=NULL,
-                       keep.intermediates=FALSE) {
+    report_author,
+    report_title="Report", sumfile=NULL,
+    keep.intermediates=FALSE) {
 
     ## Check type
     if (!type %in% c("compare", "qc", "all", "test")) {
@@ -108,18 +108,24 @@ tcplReport <- function(type, asid, params=NULL, odir=getwd(),
     }
 
     ## Create the file name based upon report type and input data
-    labl <- switch(type,
-                   compare=paste0("Compare_", c1, "_", c2),
-                   qc="QC",
-                   all="AllCompounds",
-                   test="Test")
+    labl <- switch(
+        type,
+        compare=paste0("Compare_", c1, "_", c2),
+        qc="QC",
+        all="AllCompounds",
+        test="Test"
+    )
 
-    fname <- paste0(format(Sys.Date(), "%y%m%d_"), "HCS_", labl, "_ASID", asid)
+    fname <- paste0(
+        format(Sys.Date(), "%y%m%d_"), "HCS_", labl, "_ASID", asid
+    )
 
     ## Path to the template file
-    tmp_fp <- file.path(system.file(package="GladiaTOX"),
-                        "report_templates",
-                        paste0(type, ".Rnw"))
+    tmp_fp <- file.path(
+        system.file(package="GladiaTOX"),
+        "report_templates",
+        paste0(type, ".Rnw")
+    )
 
     ## Expand path to sumfile
     if (!is.null(sumfile)) sumfile <- normalizePath(sumfile)

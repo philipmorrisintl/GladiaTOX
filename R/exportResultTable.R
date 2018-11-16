@@ -40,12 +40,15 @@ exportResultTable <- function(asid, stats, outfile) {
     dat <- merge(dat, aetbl, by="aeid")
 
     dat <- dat[, .SD[which.min(modl_rmse)], by=c("spid", "acnm")]
-    dat[ , aenm := vapply(strsplit(as.character(aenm), "_"), 
-                          function(xx) xx[[1]], character(1))]
+    dat[ , aenm := vapply(
+        strsplit(as.character(aenm), "_"), 
+        function(xx) xx[[1]], character(1)
+    )]
 
     for(stat in stats) dat[ , (stat) := 10^get(stat)]
 
-    dat <- dat[ , .SD, .SDcols=c("asnm", "chnm", "anm", "acnm", "aenm", stats)]
+    dat <- dat[ , .SD,
+        .SDcols=c("asnm", "chnm", "anm", "acnm", "aenm", stats)]
 
     write.table(dat, file=outfile, quote=TRUE, row.names=FALSE, sep=",")
 }

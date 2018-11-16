@@ -98,54 +98,79 @@ sc1_mthds <- function() {
 
         bval.apid.nwlls.med=function(aeids) {
 
-            e1 <- bquote(dat[J(.(aeids)),
-                             bval := median(rval[wllt == "n"], na.rm=TRUE),
-                             by=list(aeid, apid)])
+            e1 <- bquote(
+                dat[J(.(aeids)),
+                    bval := median(
+                        rval[wllt == "n"], na.rm=TRUE
+                    ),
+                    by=list(aeid, apid)]
+            )
             list(e1)
 
         },
 
         bval.apid.twlls.med=function(aeids) {
 
-            e1 <- bquote(dat[J(.(aeids)),
-                             bval := median(rval[wllt == "t"], na.rm=TRUE),
-                             by=list(aeid, apid)])
+            e1 <- bquote(
+                dat[J(.(aeids)),
+                    bval := median(
+                        rval[wllt == "t"], na.rm=TRUE
+                    ),
+                    by=list(aeid, apid)]
+            )
             list(e1)
 
         },
 
         bval.apid.tn.med=function(aeids) {
 
-            e1 <- bquote(dat[J(.(aeids)),
-                             bval := median(rval[wllt %in% c("t", "n")],
-                                            na.rm=TRUE),
-                             by=list(aeid, apid)])
+            e1 <- bquote(
+                dat[J(.(aeids)),
+                    bval := median(
+                        rval[wllt %in% c("t", "n")],
+                        na.rm=TRUE
+                    ),
+                    by=list(aeid, apid)]
+            )
             list(e1)
 
         },
 
         pval.apid.pwlls.med=function(aeids) {
 
-            e1 <- bquote(dat[J(.(aeids)),
-                             pval := median(rval[wllt == "p"], na.rm=TRUE),
-                             by=list(aeid, apid)])
+            e1 <- bquote(
+                dat[J(.(aeids)),
+                    pval := median(
+                        rval[wllt == "p"], na.rm=TRUE
+                    ),
+                    by=list(aeid, apid)]
+            )
             list(e1)
 
         },
 
         pval.apid.or.aeid.pwlls.med=function(aeids) {
 
-            e1 <- bquote(dat[J(.(aeids)),
-                             pval := median(rval[wllt == "p"], na.rm=TRUE),
-                             by=list(aeid, apid)])
-            e2 <- bquote(dat[J(.(aeids)),
-                             temp := median(pval,
-                                            na.rm=TRUE),
-                             by=list(aeid)])
+            e1 <- bquote(
+                dat[J(.(aeids)),
+                    pval := median(
+                        rval[wllt == "p"], na.rm=TRUE
+                    ),
+                    by=list(aeid, apid)]
+            )
+            e2 <- bquote(
+                dat[J(.(aeids)),
+                    temp := median(
+                        pval,
+                        na.rm=TRUE
+                    ),
+                    by=list(aeid)]
+            )
             e3 <- bquote(
                 dat[aeid %in% .(aeids) & (is.na(pval) | is.infinite(pval)),
                     pval := temp,
-                    by=list(aeid)])
+                    by=list(aeid)]
+            )
             e4 <- bquote(dat[ , temp := NULL])
             list(e1,e2,e3,e4)
 
@@ -153,22 +178,32 @@ sc1_mthds <- function() {
 
         pval.apid.mwlls.med=function(aeids) {
 
-            e1 <- bquote(dat[J(.(aeids)),
-                             pval := median(rval[wllt == "m"], na.rm=TRUE),
-                             by=list(aeid, apid)])
+            e1 <- bquote(
+                dat[J(.(aeids)),
+                    pval := median(
+                        rval[wllt == "m"], na.rm=TRUE
+                    ),
+                    by=list(aeid, apid)]
+            )
             list(e1)
 
         },
 
         pval.apid.medpcbyconc.max=function(aeids) {
 
-            e1 <- bquote(dat[J(.(aeids)),
-                             temp := median(rval[wllt %in% c("c", "p")],
-                                            na.rm=TRUE),
-                             by=list(aeid, apid, wllt, conc)])
-            e2 <- bquote(dat[J(.(aeids)),
-                             pval := max(temp, na.rm=TRUE),
-                             by=list(aeid, apid)])
+            e1 <- bquote(
+                dat[J(.(aeids)),
+                    temp := median(
+                        rval[wllt %in% c("c", "p")],
+                        na.rm=TRUE
+                    ),
+                    by=list(aeid, apid, wllt, conc)]
+            )
+            e2 <- bquote(
+                dat[J(.(aeids)),
+                    pval := max(temp, na.rm=TRUE),
+                    by=list(aeid, apid)]
+            )
             e3 <- bquote(dat[ , temp := NULL])
             list(e1, e2, e3)
 
@@ -176,13 +211,19 @@ sc1_mthds <- function() {
 
         pval.apid.medpcbyconc.min=function(aeids) {
 
-            e1 <- bquote(dat[J(.(aeids)),
-                             temp := median(rval[wllt %in% c("c", "p")],
-                                            na.rm=TRUE),
-                             by=list(aeid, apid, wllt, conc)])
-            e2 <- bquote(dat[J(.(aeids)),
-                             pval := min(temp, na.rm=TRUE),
-                             by=list(aeid, apid)])
+            e1 <- bquote(
+                dat[J(.(aeids)),
+                    temp := median(
+                        rval[wllt %in% c("c", "p")],
+                        na.rm=TRUE
+                    ),
+                    by=list(aeid, apid, wllt, conc)]
+            )
+            e2 <- bquote(
+                dat[J(.(aeids)),
+                    pval := min(temp, na.rm=TRUE),
+                    by=list(aeid, apid)]
+            )
             e3 <- bquote(dat[ , temp := NULL])
             list(e1, e2, e3)
 
@@ -190,13 +231,19 @@ sc1_mthds <- function() {
 
         pval.apid.medncbyconc.min=function(aeids) {
 
-            e1 <- bquote(dat[J(.(aeids)),
-                             temp := median(rval[wllt %in% c("m","o")],
-                                            na.rm=TRUE),
-                             by=list(aeid, apid, wllt, conc)])
-            e2 <- bquote(dat[J(.(aeids)),
-                             pval := min(temp, na.rm=TRUE),
-                             by=list(aeid, apid)])
+            e1 <- bquote(
+                dat[J(.(aeids)),
+                    temp := median(
+                        rval[wllt %in% c("m","o")],
+                        na.rm=TRUE
+                    ),
+                    by=list(aeid, apid, wllt, conc)]
+            )
+            e2 <- bquote(
+                dat[J(.(aeids)),
+                    pval := min(temp, na.rm=TRUE),
+                    by=list(aeid, apid)]
+            )
             e3 <- bquote(dat[ , temp := NULL])
             list(e1, e2, e3)
 
@@ -211,8 +258,10 @@ sc1_mthds <- function() {
 
         resp.pc=function(aeids) {
 
-            e1 <- bquote(dat[J(.(aeids)),
-                             resp := (rval - bval)/(pval - bval)*100])
+            e1 <- bquote(
+                dat[J(.(aeids)),
+                    resp := (rval - bval)/(pval - bval)*100]
+            )
             list(e1)
 
         },

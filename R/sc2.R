@@ -101,8 +101,10 @@ sc2 <- function(ae, wr=FALSE) {
 
     res <- TRUE
 
-    outcols <- c("s0id", "s1id", "spid", "aeid", "max_med",
-                 "bmad", "coff", "hitc", "tmpi")
+    outcols <- c(
+        "s0id", "s1id", "spid", "aeid", "max_med",
+        "bmad", "coff", "hitc", "tmpi"
+    )
     dat <- dat[ , .SD, .SDcols=outcols]
 
     ## Load into sc2 table -- else return results

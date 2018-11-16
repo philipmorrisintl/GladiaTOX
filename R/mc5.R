@@ -217,17 +217,19 @@ mc5 <- function(ae, wr=FALSE) {
     dat[is.na(cnst), hitc := -1L]
 
     ## Add model fields
-    modl_pars <- c("modl_acb",
-                   "modl_acc",
-                   "modl_ac10",
-                   "modl_er",
-                   "modl_tp",
-                   "modl_ga",
-                   "modl_gw",
-                   "modl_la",
-                   "modl_lw",
-                   "modl_rmse",
-                   "modl_prob")
+    modl_pars <- c(
+        "modl_acb",
+        "modl_acc",
+        "modl_ac10",
+        "modl_er",
+        "modl_tp",
+        "modl_ga",
+        "modl_gw",
+        "modl_la",
+        "modl_lw",
+        "modl_rmse",
+        "modl_prob"
+    )
     dat[ , (modl_pars) := NA_real_]
     dat[modl == "cnst", modl_er := cnst_er]
     dat[modl == "cnst", modl_rmse := cnst_rmse]
@@ -269,8 +271,10 @@ mc5 <- function(ae, wr=FALSE) {
 
     res <- TRUE
 
-    outcols <- c("m4id", "aeid", "modl", "hitc", "fitc",
-                 "coff", "actp", modl_pars)
+    outcols <- c(
+        "m4id", "aeid", "modl", "hitc", "fitc",
+        "coff", "actp", modl_pars
+    )
     dat <- dat[ , .SD, .SDcols=outcols]
 
     ## Load into mc5 table -- else return results
