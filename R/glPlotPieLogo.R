@@ -65,15 +65,8 @@ glPlotPieLogo <- function(){
             axis.ticks.x = element_blank(),
             axis.text.x = element_blank()) +
         geom_label(
-<<<<<<< HEAD
             aes(label = c(rep("", before), "GladiaTOX", rep("", after)),
                 y = c(rep(0, before), 5, rep(0, after))),
-=======
-            aes(
-                label = c(rep("", before), "GladiaTOX", rep("", after)),
-                y = c(rep(0, before), 6.5, rep(0, after))
-            ),
->>>>>>> 914d298cb82422fcf9b6ff3cf0a28c5e86f4ef0b
             colour = c(rep("white", before), "white", rep("white", after)), 
             size = c(rep(0, before), 18, rep(0, after)),
             fontface = "bold", family = "mono", fill = "#533B22") +
