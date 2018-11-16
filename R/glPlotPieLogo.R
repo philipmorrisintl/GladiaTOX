@@ -45,9 +45,9 @@ glPlotPieLogo <- function(){
     
     before = 47; after = 48
     logo = ggplot(data, aes(x = slice, y = value)) +
-        geom_bar(stat="identity", aes(fill = layer), color="gray60") +
         geom_hline(color="gray", yintercept = yintercept, size=.3, 
                    linetype="dashed") +
+        geom_bar(stat="identity", aes(fill = layer), color="gray60") +
         geom_hline(color="white", yintercept = 0.5, size=5, linetype="solid") +
         scale_fill_manual(values = c("#533B22", "#917546", "#33190C")) +
         theme_minimal() +
@@ -66,7 +66,7 @@ glPlotPieLogo <- function(){
             axis.text.x = element_blank()) +
         geom_label(
             aes(label = c(rep("", before), "GladiaTOX", rep("", after)),
-                y = c(rep(0, before), 6.5, rep(0, after))),
+                y = c(rep(0, before), 5, rep(0, after))),
             colour = c(rep("white", before), "white", rep("white", after)), 
             size = c(rep(0, before), 18, rep(0, after)),
             fontface = "bold", family = "mono", fill = "#533B22") +
