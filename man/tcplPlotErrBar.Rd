@@ -22,4 +22,3 @@ None
 \description{
 \code{tcplPlotErrBar} creates the error bar plots.
 }
-

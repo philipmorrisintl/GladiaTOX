@@ -14,6 +14,8 @@
 
 tcplConfReset <- function () {
 
+    conf_file <- .getConfFile()
+    
     message(
         "###################################################################",
         "",
@@ -31,7 +33,7 @@ tcplConfReset <- function () {
         "",
         "###################################################################",
         sep="\n",
-        file=file.path(system.file(package="GladiaTOX"), "TCPL.config"),
+        file=file.path(conf_file),
         append=FALSE
     )
 

@@ -14,6 +14,8 @@
 
 tcplConfSave <- function () {
 
+    conf_file <- .getConfFile()
+    
     if(any(sapply(tcplConfList(), is.null))) {
         stop(
             "One of the tcpl settings is NULL. Saving the configuration file ",
@@ -58,7 +60,7 @@ tcplConfSave <- function () {
         "\n",
         "###################################################################\n",
         sep=" ",
-        file=file.path(system.file(package="GladiaTOX"), "TCPL.config"),
+        file=file.path(conf_file),
         append=FALSE
     )
 

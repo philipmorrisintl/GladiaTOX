@@ -63,4 +63,3 @@ tcplAddModel(pars = p2, modl = "hill", adj = 1/log2(5), lty = "dashed")
 \seealso{
 \code{\link{Models}}, \code{\link{tcplPlotFits}}
 }
-

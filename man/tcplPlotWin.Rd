@@ -38,4 +38,3 @@ print(aeid)
 tcplPlotWin(chid = chid, aeid = aeid, bline="bmad", collapse=TRUE)
 
 }
-

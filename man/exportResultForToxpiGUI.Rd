@@ -36,4 +36,3 @@ exportResultForToxpiGUI(asid=1L, tp="4h", outfile=out, stat=quote(modl_acc))
 options(conf_store)
 
 }
-

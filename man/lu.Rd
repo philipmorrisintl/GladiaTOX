@@ -26,4 +26,4 @@ lu(c(1, 1, 2, 3))
 Other tcpl abbreviations: \code{\link{is.odd}},
   \code{\link{lw}}, \code{\link{sink.reset}}
 }
-
+\concept{tcpl abbreviations}
