@@ -12,6 +12,6 @@
 #' 
 #' @return A data.table containing level <%= LVL %> data for the given fields.
 #' 
-#' @seealso \code{\link{tcplQuery}}, \code{\link{data.table}}
+#' @seealso \code{\link{gtoxQuery}}, \code{\link{data.table}}
 #' 
 #' @family data loading functions

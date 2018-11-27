@@ -11,7 +11,7 @@
 
 #' @title Plot plate heatmap
 #'
-#' @description Plot plate heatmap, to be used with tcplPlotPlate
+#' @description Plot plate heatmap, to be used with gtoxPlotPlate
 #'
 #' @param vals Numeric, the well values
 #' @param rowi Integer, the row index
@@ -142,7 +142,7 @@
         par(mar=rep(0, 4), family="mono", new=FALSE)
         plot.new()
         warning("Could not add the legend. Please adjust device size. See",
-                " ?tcplPlotPlate for more information.")
+                " ?gtoxPlotPlate for more information.")
     } else {
         par(mar=c(2.1, 0, 2.1, 6.1), family="mono")
         plot.window(

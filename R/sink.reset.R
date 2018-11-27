@@ -23,7 +23,7 @@
 #' 
 #' @return None
 #'
-#' @family tcpl abbreviations
+#' @family gtox abbreviations
 #' @seealso \code{\link{sink}}, \code{\link{sink.number}}
 #' @export
 

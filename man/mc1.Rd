@@ -10,7 +10,7 @@ mc1(ac, wr = FALSE)
 \arguments{
 \item{ac}{Integer of length 1, assay component id (acid) for processing.}
 
-\item{wr}{Logical, whether the processed data should be written to the tcpl
+\item{wr}{Logical, whether the processed data should be written to the gtox
 database}
 }
 \value{
@@ -20,15 +20,15 @@ the success of processing and the second element is a data.table containing
 the processed data
 }
 \description{
-\code{mc1} loads level 0 data from the tcpl 
+\code{mc1} loads level 0 data from the gtox 
 database for the given id and performs level 1 
 multiple-concentration processing. 
 The processed data is then loaded into the mc1 table and 
-all subsequent data is deleted with \code{\link{tcplCascade}}. See details 
+all subsequent data is deleted with \code{\link{gtoxCascade}}. See details 
 for more information.
 
 The individual processing functions are no longer exported, as it is 
-typically more convenient and suggested to use the \code{\link{tcplRun}} 
+typically more convenient and suggested to use the \code{\link{gtoxRun}} 
 wrapper function.
 }
 \details{
@@ -41,5 +41,4 @@ processing functions: \code{\link{mc2}},
   \code{\link{mc3}}, \code{\link{mc4}}, \code{\link{mc5}},
   \code{\link{mc6}}
 }
-\concept{multiple-concentration data 
-processing functions}
+

@@ -14,7 +14,7 @@
 #' @templateVar type mc
 #'
 #' @param ae Integer of length 1, assay endpoint id (aeid) for processing.
-#' @param wr Logical, whether the processed data should be written to the tcpl
+#' @param wr Logical, whether the processed data should be written to the gtox
 #' database
 #'
 #' @details
@@ -24,7 +24,7 @@
 #' \code{\link{Models}}. When a chemical has more than one sample, the function
 #' fits each sample seperately.
 #'
-#' @seealso \code{\link{tcplFit}}, \code{\link{Models}}
+#' @seealso \code{\link{gtoxFit}}, \code{\link{Models}}
 #'
 #' @import data.table
 #' @importFrom stats mad
@@ -51,7 +51,7 @@ mc4 <- function(ae, wr=FALSE) {
     stime <- Sys.time()
 
     ## Load level 3 data
-    dat <- tcplLoadData(lvl=3L, type="mc", fld="aeid", val=ae)
+    dat <- gtoxLoadData(lvl=3L, type="mc", fld="aeid", val=ae)
     dat <- dat[wllt %in% c("t", "c", "o", "n")]
 
     ## Check if any level 3 data was loaded
@@ -78,7 +78,7 @@ mc4 <- function(ae, wr=FALSE) {
     dat <- dat[wllt %in% c("t", "c", "o")]
 
     ## Check to see if all samples should be fit
-    fit_all <- as.logical(tcplLoadAeid("aeid", ae, "fit_all")$fit_all)
+    fit_all <- as.logical(gtoxLoadAeid("aeid", ae, "fit_all")$fit_all)
 
     fitpars <- c(
         "resp_max",
@@ -131,7 +131,7 @@ mc4 <- function(ae, wr=FALSE) {
     dat[ ,
     (c("tmpi", fitpars)) := c(
         .GRP,
-        tcplFit(
+        gtoxFit(
             logc=logc,
             resp=resp,
             bmad=bmad,
@@ -142,7 +142,7 @@ mc4 <- function(ae, wr=FALSE) {
 
     ## Calculate the aic probabilities
     aic_probs <- c("cnst_prob", "hill_prob", "gnls_prob")
-    dat[ , (aic_probs) := tcplAICProb(cnst_aic, hill_aic, gnls_aic)]
+    dat[ , (aic_probs) := gtoxAICProb(cnst_aic, hill_aic, gnls_aic)]
 
     ttime <- round(difftime(Sys.time(), stime, units="sec"), 2)
     ttime <- paste(unclass(ttime), units(ttime))
@@ -156,7 +156,7 @@ mc4 <- function(ae, wr=FALSE) {
     ## Load into mc4 & mc4_agg tables -- else return results
     if (wr) {
         stime <- Sys.time()
-        tcplWriteData(dat=dat, lvl=4L, type="mc")
+        gtoxWriteData(dat=dat, lvl=4L, type="mc")
 
         ttime <- round(difftime(Sys.time(), stime, units="sec"), 2)
         ttime <- paste(unclass(ttime), units(ttime))

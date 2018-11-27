@@ -11,28 +11,28 @@
 #'
 #' @description 
 #' These functions send a query to the given database, and are the access point
-#' for all tcpl functions that query or update the tcpl database.
+#' for all gtox functions that query or update the gtox database.
 #' 
 #' @param query Character of length 1, the query string
-#' @inheritParams tcplConf
+#' @inheritParams gtoxConf
 #' 
 #' @details
-#' Currently, the tcpl package only supports the "MySQL" and "SQLite" database
+#' Currently, the gtox package only supports the "MySQL" and "SQLite" database
 #' drivers.
 #' 
-#' \code{tcplQuery} returns a data.table object with the query results.
-#' \code{tcplSendQuery} sends a query, but does not fetch any results, and 
+#' \code{gtoxQuery} returns a data.table object with the query results.
+#' \code{gtoxSendQuery} sends a query, but does not fetch any results, and 
 #' returns 'TRUE' or the error message given by the database. 
 #' 
 #' @examples
 #' 
 #' ## Store the current config settings, so they can be reloaded at the end 
 #' ## of the examples
-#' conf_store <- tcplConfList()
-#' tcplConfDefault()
+#' conf_store <- gtoxConfList()
+#' gtoxConfDefault()
 #' 
-#' tcplQuery("SELECT 'Hello World';")
-#' tcplQuery("SELECT * FROM assay;")
+#' gtoxQuery("SELECT 'Hello World';")
+#' gtoxQuery("SELECT * FROM assay;")
 #'  
 #' ## Reset configuration
 #' options(conf_store)

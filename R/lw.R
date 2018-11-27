@@ -22,7 +22,7 @@
 #' 
 #' @return The length of the \code{TRUE} values in \code{x}
 #' 
-#' @family tcpl abbreviations
+#' @family gtox abbreviations
 #' @seealso \code{\link{length}}, \code{\link{which}}
 #' @export
 

@@ -139,17 +139,17 @@ mc5_mthds <- function() {
         },
 
         vmad3=function() {
-            e1 <- bquote(coff <- c(coff, 3*tcplLoadVmad(aeid=ae)$vmad))
+            e1 <- bquote(coff <- c(coff, 3*gtoxLoadVmad(aeid=ae)$vmad))
             list(e1)
         },
 
         vmad5=function() {
-            e1 <- bquote(coff <- c(coff, 5*tcplLoadVmad(aeid=ae)$vmad))
+            e1 <- bquote(coff <- c(coff, 5*gtoxLoadVmad(aeid=ae)$vmad))
             list(e1)
         },
 
         vmad10=function() {
-            e1 <- bquote(coff <- c(coff, 10*tcplLoadVmad(aeid=ae)$vmad))
+            e1 <- bquote(coff <- c(coff, 10*gtoxLoadVmad(aeid=ae)$vmad))
             list(e1)
         }
 

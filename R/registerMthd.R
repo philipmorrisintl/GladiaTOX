@@ -12,7 +12,7 @@
 #' @title Add a new analysis method
 #'
 #' @description
-#' \code{registerMthd} registers a new analysis method to the tcpl
+#' \code{registerMthd} registers a new analysis method to the gtox
 #' databases.
 #'
 #' @param lvl Integer of length 1, the level for the analysis method
@@ -61,7 +61,7 @@ registerMthd <- function(lvl, mthd, desc, nddr=0L, type) {
 
     if (lvl == 6L) dat[ , nddr := nddr]
 
-    tcplAppend(
+    gtoxAppend(
         dat=dat,
         tbl=paste0(type, lvl, "_methods"),
         db=getOption("TCPL_DB")

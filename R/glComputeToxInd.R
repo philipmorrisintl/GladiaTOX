@@ -27,8 +27,8 @@
 #' @examples
 #' ## Store the current config settings, so they can be reloaded at the end
 #' ## of the examples
-#' conf_store <- tcplConfList()
-#' tcplConfDefault()
+#' conf_store <- gtoxConfList()
+#' gtoxConfDefault()
 #'
 #' ## Compute toxicological severity index
 #' dat <- glComputeToxInd(asid = 1L)
@@ -40,12 +40,12 @@
 #'
 glComputeToxInd <- function(asid, tp=NULL, stat=quote(modl_acc)) {
     ## save data for toxPi GUI visualizatiion
-    dat <- tcplLoadData(5, "aeid", tcplLoadAeid("asid", asid)$aeid)
-    dat <- tcplPrepOtpt(dat)
+    dat <- gtoxLoadData(5, "aeid", gtoxLoadAeid("asid", asid)$aeid)
+    dat <- gtoxPrepOtpt(dat)
     othrIDs <- c("asnm", "aid", "anm", "acid", "acnm")
     dat <- merge(
         dat,
-        tcplLoadAeid("asid", asid, add.fld=othrIDs),
+        gtoxLoadAeid("asid", asid, add.fld=othrIDs),
         c("aeid", "aenm")
     )
 

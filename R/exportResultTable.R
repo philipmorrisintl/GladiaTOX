@@ -32,9 +32,9 @@
 #'
 exportResultTable <- function(asid, stats, outfile) {
     aetblFlds <- c("asid", "aid", "anm", "acnm", "asnm")
-    aetbl<- tcplLoadAeid(fld="asid", val=asid, add.fld=aetblFlds)
-    tdat <- tcplLoadData(lvl=5, fld="aeid", val=aetbl$aeid)
-    chmtbl <- tcplLoadChem(field="spid", val=tdat$spid)
+    aetbl<- gtoxLoadAeid(fld="asid", val=asid, add.fld=aetblFlds)
+    tdat <- gtoxLoadData(lvl=5, fld="aeid", val=aetbl$aeid)
+    chmtbl <- gtoxLoadChem(field="spid", val=tdat$spid)
 
     dat <- merge(chmtbl, tdat, by="spid")
     dat <- merge(dat, aetbl, by="aeid")

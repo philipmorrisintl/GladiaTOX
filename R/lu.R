@@ -22,7 +22,7 @@
 #' 
 #' @return The unique of the \code{TRUE} values in \code{x}
 #' 
-#' @family tcpl abbreviations
+#' @family gtox abbreviations
 #' @seealso \code{\link{unique}}, \code{\link{which}}
 #' @export
 

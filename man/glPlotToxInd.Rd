@@ -30,10 +30,11 @@ chemical.
 \examples{
 ## Store the current config settings, so they can be reloaded at the end
 ## of the examples
-conf_store <- tcplConfList()
-tcplConfDefault()
+conf_store <- gtoxConfList()
+gtoxConfDefault()
 
 ## Compute and plot toxicological severity index
 glPlotToxInd(asid=1L)
 
 }
+

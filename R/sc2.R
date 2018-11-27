@@ -14,7 +14,7 @@
 #' @templateVar type sc
 #'
 #' @param ae Integer of length 1, assay endpoint id (aeid) for processing.
-#' @param wr Logical, whether the processed data should be written to the tcpl
+#' @param wr Logical, whether the processed data should be written to the gtox
 #' database
 #'
 #' @details
@@ -47,7 +47,7 @@ sc2 <- function(ae, wr=FALSE) {
     stime <- Sys.time()
 
     ## Load level 1 data
-    dat <- tcplLoadData(lvl=1L, type="sc", fld="aeid", val=ae)
+    dat <- gtoxLoadData(lvl=1L, type="sc", fld="aeid", val=ae)
 
     ## Check if any level 1 data was loaded
     if (nrow(dat) == 0) {
@@ -78,7 +78,7 @@ sc2 <- function(ae, wr=FALSE) {
     mthd_funcs <- sc2_mthds()
 
     ## Load cutoff methods
-    ms <- tcplMthdLoad(lvl=2L, id=ae, type="sc")
+    ms <- gtoxMthdLoad(lvl=2L, id=ae, type="sc")
     if (nrow(ms) == 0) {
         warning("No level 5 methods for AEID", ae, " -- cutoff will be 0.")
     }
@@ -110,7 +110,7 @@ sc2 <- function(ae, wr=FALSE) {
     ## Load into sc2 table -- else return results
     if (wr) {
         stime <- Sys.time()
-        tcplWriteData(dat=dat, lvl=2L, type="sc")
+        gtoxWriteData(dat=dat, lvl=2L, type="sc")
 
         ttime <- round(difftime(Sys.time(), stime, units="sec"), 2)
         ttime <- paste(unclass(ttime), units(ttime))

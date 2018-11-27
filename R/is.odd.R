@@ -19,7 +19,7 @@
 #'
 #' @return \code{TRUE} for odd integers and \code{FALSE} for even integers.
 #'
-#' @family tcpl abbreviations
+#' @family gtox abbreviations
 
 is.odd <- function(x) {
 

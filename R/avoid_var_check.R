@@ -19,7 +19,7 @@ if(getRversion() >= "2.15.1"){
                     "assay_footprint"))
     globalVariables(c("chid", "asid", "aid", "acnm", "machine_name", 
                     "burst_assay", "fit_all", "gui_sample_id", "well", "rowi",
-                    "coli", "conc", "vhid", "J", "tcplIDs", "rval",
+                    "coli", "conc", "vhid", "J", "gtoxIDs", "rval",
                     "measure_val", "wllq", "chem_desc", "add_info", "logc",
                     "mean_resp", "tc", "GRP", "mom", "sem", "pot", "modl_acb",
                     "ptmn", "ptsd", "tmn", "up", "nsmp", "nwlt", "adir", 

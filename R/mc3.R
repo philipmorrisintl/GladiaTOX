@@ -46,7 +46,7 @@ mc3 <- function(ac, wr=FALSE) {
     stime <- Sys.time()
 
     ## Load level 2 data
-    dat <- tcplLoadData(lvl=2L, type="mc", fld="acid", val=ac)
+    dat <- gtoxLoadData(lvl=2L, type="mc", fld="acid", val=ac)
 
     ## Check if any level 2 data was loaded
     if (nrow(dat) == 0) {
@@ -68,14 +68,14 @@ mc3 <- function(ac, wr=FALSE) {
     stime <- Sys.time()
 
     ## Force all concentrations to 3 significant figures
-    ## NOTE: This differs from tcpl. tcpl uses a sigfig of 1!!
+    ## NOTE: This differs from gtox. gtox uses a sigfig of 1!!
     dat[ , conc := signif(conc, 3)]
 
     ## Add column for log10 concentration
     dat[ , logc := log10(conc)]
 
     ## Load aeid mapping information.
-    aeid_info <- tcplLoadAeid("acid", ac)[ , list(acid, aeid)]
+    aeid_info <- gtoxLoadAeid("acid", ac)[ , list(acid, aeid)]
     setkey(aeid_info, acid)
 
     ## Check for acids for aeids
@@ -95,7 +95,7 @@ mc3 <- function(ac, wr=FALSE) {
     setkey(dat, aeid)
 
     ## Load normalization methods
-    ms <- tcplMthdLoad(lvl=3L, id=dat[ , unique(aeid)], type="mc")
+    ms <- gtoxMthdLoad(lvl=3L, id=dat[ , unique(aeid)], type="mc")
     ms <- ms[ , list(aeid, mthd, ordr)]
 
     ## Check for aeids for methods
@@ -176,7 +176,7 @@ mc3 <- function(ac, wr=FALSE) {
     ## Load into mc3 table -- else return results
     if (wr) {
         stime <- Sys.time()
-        tcplWriteData(dat=dat, lvl=3L, type="mc")
+        gtoxWriteData(dat=dat, lvl=3L, type="mc")
 
         ttime <- round(difftime(Sys.time(), stime, units="sec"), 2)
         ttime <- paste(unclass(ttime), units(ttime))

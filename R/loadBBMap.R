@@ -30,7 +30,7 @@
 
     dat[ , u_boxtrack := gsub("_.*$", "", u_boxtrack)]
 
-    tcplRegister("bb_waid", unique(dat[ , list(waid, s_sampleid)]))
-    tcplRegister("bb_apid", unique(dat[ , list(apid, u_boxtrack)]))
+    gtoxRegister("bb_waid", unique(dat[ , list(waid, s_sampleid)]))
+    gtoxRegister("bb_apid", unique(dat[ , list(apid, u_boxtrack)]))
 
 }

@@ -39,7 +39,7 @@ ae_sub <- aes[ ,
                     col = unique(clps_col)), 
                keyby = clps_dir][unique(aes$clps_dir)]
 suppressWarnings(invisible(ae_sub[ , lbl := letters]))
-piedat[["<%= paste0(c1, "-", tm) %>"]] <- tcplPlotPie(chid = <%= c1 %>,
+piedat[["<%= paste0(c1, "-", tm) %>"]] <- gtoxPlotPie(chid = <%= c1 %>,
                                                       mrks = 10^rng, 
                                                       aeid = ae_sub$aeid,
                                                       col = ae_sub$col,
@@ -50,7 +50,7 @@ piedat[["<%= paste0(c1, "-", tm) %>"]] <- tcplPlotPie(chid = <%= c1 %>,
 \begin{subfigure}{0.49\textwidth}
 \caption{<%= sanitize(cd[chid == c2, unique(chnm)]) %>}
 <<<%= mylabel2 %>,fig=true,strip.white=true,echo=false,height=4,width=4>>=
-piedat[["<%= paste0(c2, "-", tm) %>"]] <- tcplPlotPie(chid = <%= c2 %>,
+piedat[["<%= paste0(c2, "-", tm) %>"]] <- gtoxPlotPie(chid = <%= c2 %>,
                                                       mrks = 10^rng, 
                                                       aeid = ae_sub$aeid,
                                                       col = ae_sub$col,
@@ -70,7 +70,7 @@ piedat[["<%= paste0(c2, "-", tm) %>"]] <- tcplPlotPie(chid = <%= c2 %>,
 \begin{figure}[H]
 <<<%= paste0("pie-lgnd") %>,fig=true,strip.white=true,echo=false,height=3,width=8>>=
 
-tcplPlotPieLgnd(aenm = ae_sub[ , paste0("(", lbl, ") ", clps_dir)],
+gtoxPlotPieLgnd(aenm = ae_sub[ , paste0("(", lbl, ") ", clps_dir)],
                 ncol = 3, 
                 col = ae_sub$col)
 @

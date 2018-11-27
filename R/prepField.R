@@ -25,7 +25,7 @@
 
 .prepField <- function(fld, tbl, db) {
 
-    tbl_flds <- lapply(tbl, tcplListFlds, db=db)
+    tbl_flds <- lapply(tbl, gtoxListFlds, db=db)
     pre <- rep(NA_character_, length(fld))
 
     for (i in seq_along(tbl)) {

@@ -6,8 +6,8 @@
 library(xtable)
 
 ## Data to be loaded for the brew steps
-asnm <- sanitize(tcplLoadAsid("asid", asid)$asnm)
-aes <- tcplLoadAeid("asid", asid, 
+asnm <- sanitize(gtoxLoadAsid("asid", asid)$asnm)
+aes <- gtoxLoadAeid("asid", asid, 
                     c("acid", 
                       "acnm",
                       "aid",
@@ -17,9 +17,9 @@ aes <- tcplLoadAeid("asid", asid,
                       "timepoint_hr",
                       "assay_component_desc"))
 
-l2 <- tcplLoadData(2, "acid", aes[ , unique(acid)])
+l2 <- gtoxLoadData(2, "acid", aes[ , unique(acid)])
 
-pcdat <- tcplPrepOtpt(unique(l2[wllt == "c", list(spid, acid, apid)]))
+pcdat <- gtoxPrepOtpt(unique(l2[wllt == "c", list(spid, acid, apid)]))
 
 aes <- merge(aes, 
              unique(pcdat[ , list(acid, pos_ctrl = chnm)]), 
@@ -52,9 +52,9 @@ aes[ ,
                         MoreArgs = list(replacement = ""))]
 
 
-l5 <- tcplLoadData(5, "aeid", aes$aeid)
-l5 <- tcplPrepOtpt(l5)
-l5_sngl <- tcplSubsetChid(l5)
+l5 <- gtoxLoadData(5, "aeid", aes$aeid)
+l5 <- gtoxPrepOtpt(l5)
+l5_sngl <- gtoxSubsetChid(l5)
 
 aes <- aes[aeid %in% l5_sngl[ , unique(aeid)]]
 setkey(aes, aid)

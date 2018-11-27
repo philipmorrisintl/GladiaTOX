@@ -22,7 +22,7 @@
 #' @param add.fld Character, additional field(s) to include, but not query/
 #' subset on
 #' 
-#' @return A character containing the query to send to tcplQuery
+#' @return A character containing the query to send to gtoxQuery
 #' 
 #' @import data.table
 

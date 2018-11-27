@@ -6,7 +6,7 @@
 #####################################################################
 
 #-------------------------------------------------------------------------------
-# .ChemQ: Create tcplLoadChem query string 
+# .ChemQ: Create gtoxLoadChem query string 
 #-------------------------------------------------------------------------------
 
 .ChemQ <- function(field, val, exact) {
@@ -43,7 +43,7 @@
             "chnm"
         )
 
-        if (field == "code") val <- suppressWarnings(sapply(val, tcplCode2CASN))
+        if (field == "code") val <- suppressWarnings(sapply(val, gtoxCode2CASN))
 
         qformat <- paste(qformat, "WHERE")
 
@@ -73,7 +73,7 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# .ClibQ: Create tcplLoadClib query string 
+# .ClibQ: Create gtoxLoadClib query string 
 #-------------------------------------------------------------------------------
 
 .ClibQ <- function(field, val) {

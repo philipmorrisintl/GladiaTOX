@@ -44,7 +44,7 @@ mc2 <- function(ac, wr=FALSE) {
     stime <- Sys.time()
 
     ## Load level 1 data
-    dat <- tcplLoadData(lvl=1L, type="mc", fld="acid", val=ac)
+    dat <- gtoxLoadData(lvl=1L, type="mc", fld="acid", val=ac)
 
     ## Check if any level 1 data was loaded
     if (nrow(dat) == 0) {
@@ -76,7 +76,7 @@ mc2 <- function(ac, wr=FALSE) {
     dat <- dat[wllq == 1]
 
     ## Load correction methods
-    ms <- tcplMthdLoad(lvl=2L, id=ac, type="mc")
+    ms <- gtoxMthdLoad(lvl=2L, id=ac, type="mc")
     if (nrow(ms) == 0) {
         warning("ACID",
                 ac,
@@ -126,7 +126,7 @@ mc2 <- function(ac, wr=FALSE) {
     ## Load into mc2 table -- else return results
     if (wr) {
         stime <- Sys.time()
-        tcplWriteData(dat=dat, lvl=2L, type="mc")
+        gtoxWriteData(dat=dat, lvl=2L, type="mc")
 
         ttime <- round(difftime(Sys.time(), stime, units="sec"), 2)
         ttime <- paste(unclass(ttime), units(ttime))

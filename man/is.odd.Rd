@@ -17,7 +17,7 @@ is.odd(x)
 integers.
 }
 \seealso{
-Other tcpl abbreviations: \code{\link{lu}},
+Other gtox abbreviations: \code{\link{lu}},
   \code{\link{lw}}, \code{\link{sink.reset}}
 }
-\concept{tcpl abbreviations}
+

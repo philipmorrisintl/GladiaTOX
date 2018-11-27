@@ -12,7 +12,7 @@
 #' @title Convert assay names to their abbreviations
 #' 
 #' @description 
-#' \code{.convertNames} converts the assay names as they appear in the tcpl
+#' \code{.convertNames} converts the assay names as they appear in the gtox
 #' database to their respective abbreviations
 #' 
 #' @param names Character, strings to convert
@@ -27,8 +27,8 @@
     names <- sub("anm",  "assay_name", names)
     names <- sub("asnm", "assay_source_name", names)
     names <- sub("asph", "assay_source_phase", names)
-    names <- sub("tcpl_waid", "waid", names)
-    names <- sub("tcpl_apid", "apid", names)
+    names <- sub("gtox_waid", "waid", names)
+    names <- sub("gtox_apid", "apid", names)
 
     names
 

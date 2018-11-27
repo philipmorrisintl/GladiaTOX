@@ -23,7 +23,7 @@ lu(c(TRUE, TRUE, FALSE))
 \seealso{
 \code{\link{length}}, \code{\link{which}}
 
-Other tcpl abbreviations: \code{\link{is.odd}},
+Other gtox abbreviations: \code{\link{is.odd}},
   \code{\link{lu}}, \code{\link{sink.reset}}
 }
-\concept{tcpl abbreviations}
+

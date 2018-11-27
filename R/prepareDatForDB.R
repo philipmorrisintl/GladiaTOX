@@ -34,8 +34,8 @@
 prepareDatForDB <- function(asid, dat) {
     
     # Prepare data for loading into the database
-    acid_map <- tcplLoadAcid("asid", asid, c("aid", "machine_name"))
-    well_dat <- tcplLoadWaid("aid", acid_map[ , unique(aid)])
+    acid_map <- gtoxLoadAcid("asid", asid, c("aid", "machine_name"))
+    well_dat <- gtoxLoadWaid("aid", acid_map[ , unique(aid)])
     setkey(well_dat, u_boxtrack, coli, rowi)
     setkey(dat, u_boxtrack, coli, rowi)
     dat <- well_dat[dat]

@@ -57,7 +57,7 @@ This report summarizes the results from the <%= asnm %> study. This study includ
 
 Section \ref{assay_tbl} provides an overview of the assays tested within this study. Section \ref{stim_tbl} provides an overview of the stimuli tested within this study.
 
-The text below this point is not in the report format. It is added based on an additional file passed to the \texttt{tcplReportAsid} function.
+The text below this point is not in the report format. It is added based on an additional file passed to the \texttt{gtoxReportAsid} function.
 
 %% Add the summary file, passed by the user
 <%= if (!is.null(sumfile)) brew(sumfile) %>

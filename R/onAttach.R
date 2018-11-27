@@ -7,7 +7,7 @@
 
 .onAttach <- function(libname, pkgname) {
 
-    v <- tcplConfList()
+    v <- gtoxConfList()
     p <- names(v)
     pn <- vapply(p, nchar, integer(1))
     sep <- vapply(
@@ -25,8 +25,8 @@
         as.character(utils::packageVersion("GladiaTOX")),
         ") loaded with the following settings:\n  ",
         paste(cs, collapse="\n  "),
-        "\nDefault settings stored in tcpl config file. See ",
-        "?tcplConf for more information."
+        "\nDefault settings stored in gtox config file. See ",
+        "?gtoxConf for more information."
     )
 
 }

@@ -22,7 +22,7 @@ response data}
 None
 }
 \description{
-\code{registerMthd} registers a new analysis method to the tcpl
+\code{registerMthd} registers a new analysis method to the gtox
 databases.
 }
 \details{
@@ -30,3 +30,4 @@ databases.
 the methods, ie. \code{mc2_mthds}. 'nddr' only applies to level 6
 methods.
 }
+

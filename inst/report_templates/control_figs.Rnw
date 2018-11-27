@@ -12,7 +12,7 @@ pcids <- l5[spid %in% pcdat[acid == ac, spid] & aeid == up_aeid, m4id]
 \setkeys{Gin}{width=1\textwidth}
 \begin{figure}[H]
 <<<%= mylabel %>,fig=true,strip.white=true,echo=false,height=7,width=12>>=
-tcplPlotM4ID(m4id = <%= pcid %>, lvl = 6, bline = "coff")
+gtoxPlotM4ID(m4id = <%= pcid %>, lvl = 6, bline = "coff")
 @
 \end{figure}
 \par

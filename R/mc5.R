@@ -56,7 +56,7 @@ mc5 <- function(ae, wr=FALSE) {
     stime <- Sys.time()
 
     ## Load level 4 data
-    dat <- tcplLoadData(lvl=4L, type="mc", fld="aeid", val=ae)
+    dat <- gtoxLoadData(lvl=4L, type="mc", fld="aeid", val=ae)
 
     ## Check if any level 4 data was loaded
     if (nrow(dat) == 0) {
@@ -81,7 +81,7 @@ mc5 <- function(ae, wr=FALSE) {
     mthd_funcs <- mc5_mthds()
 
     ## Load cutoff methods
-    ms <- tcplMthdLoad(lvl=5L, id=ae, type="mc")
+    ms <- gtoxMthdLoad(lvl=5L, id=ae, type="mc")
     if (nrow(ms) == 0) {
         warning("No level 5 methods for AEID", ae, " -- cutoff will be 0.")
     }
@@ -110,8 +110,8 @@ mc5 <- function(ae, wr=FALSE) {
 ###--------------------- Bin the Dose-Response Sets -----------------------###
 
     ## Calculate AC05 and AC95
-    dat[ , hill_95 := tcplHillACXX(95, hill_tp, hill_ga, hill_gw)]
-    dat[ , gnls_95 := tcplHillACXX(95, gnls_tp, gnls_ga, gnls_gw)]
+    dat[ , hill_95 := gtoxHillACXX(95, hill_tp, hill_ga, hill_gw)]
+    dat[ , gnls_95 := gtoxHillACXX(95, gnls_tp, gnls_ga, gnls_gw)]
 
     ## Add a few helper columns
     dat[ , coff_upper := 1.2 * coff]
@@ -241,10 +241,10 @@ mc5 <- function(ae, wr=FALSE) {
     dat[modl == "hill", modl_rmse := hill_rmse]
     dat[modl == "hill", modl_prob := hill_prob]
     dat[modl == "hill" & hill_tp >= 3 * bmad,
-        modl_acb := tcplHillConc(3 * bmad, hill_tp, hill_ga, hill_gw)]
+        modl_acb := gtoxHillConc(3 * bmad, hill_tp, hill_ga, hill_gw)]
     dat[modl == "hill" & hill_tp >= coff,
-        modl_acc := tcplHillConc(coff, hill_tp, hill_ga, hill_gw)]
-    dat[modl == "hill", modl_ac10 := tcplHillACXX(
+        modl_acc := gtoxHillConc(coff, hill_tp, hill_ga, hill_gw)]
+    dat[modl == "hill", modl_ac10 := gtoxHillACXX(
                             10, hill_tp, hill_ga, hill_gw)]
     dat[modl == "gnls", modl_er := gnls_er]
     dat[modl == "gnls", modl_tp := gnls_tp]
@@ -255,10 +255,10 @@ mc5 <- function(ae, wr=FALSE) {
     dat[modl == "gnls", modl_rmse := gnls_rmse]
     dat[modl == "gnls", modl_prob := gnls_prob]
     dat[modl == "gnls" & gnls_tp >= 3 * bmad,
-        modl_acb := tcplHillConc(3 * bmad, gnls_tp, gnls_ga, gnls_gw)]
+        modl_acb := gtoxHillConc(3 * bmad, gnls_tp, gnls_ga, gnls_gw)]
     dat[modl == "gnls" & gnls_tp >= coff,
-        modl_acc := tcplHillConc(coff,     gnls_tp, gnls_ga, gnls_gw)]
-    dat[modl == "gnls", modl_ac10 := tcplHillACXX(
+        modl_acc := gtoxHillConc(coff,     gnls_tp, gnls_ga, gnls_gw)]
+    dat[modl == "gnls", modl_ac10 := gtoxHillACXX(
                             10, gnls_tp, gnls_ga, gnls_gw)]
 
     ## Add activity probability
@@ -280,7 +280,7 @@ mc5 <- function(ae, wr=FALSE) {
     ## Load into mc5 table -- else return results
     if (wr) {
         stime <- Sys.time()
-        tcplWriteData(dat=dat, lvl=5L, type="mc")
+        gtoxWriteData(dat=dat, lvl=5L, type="mc")
 
         ttime <- round(difftime(Sys.time(), stime, units="sec"), 2)
         ttime <- paste(unclass(ttime), units(ttime))

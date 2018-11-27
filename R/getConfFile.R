@@ -13,7 +13,7 @@
     if (conf_file == "") {
         stop(
             "Must add 'TCPL_CONF' environment variable to .Renviron file to ",
-            "store configuration settings. See ?tcplConf for more information."
+            "store configuration settings. See ?gtoxConf for more information."
         )
     } else if (file.exists(conf_file)) {
         if (file.access(conf_file, mode=2) != 0) {

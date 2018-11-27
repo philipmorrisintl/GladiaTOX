@@ -6,13 +6,13 @@
 #####################################################################
 
 #-------------------------------------------------------------------------------
-# .load6DR: Load data for tcpl6
+# .load6DR: Load data for gtox6
 #-------------------------------------------------------------------------------
 
-#' @title Load data for tcpl6
+#' @title Load data for gtox6
 #'
 #' @description
-#' \code{.load6DR} loads dose-response data for tcpl6.
+#' \code{.load6DR} loads dose-response data for gtox6.
 #' 
 #' @param ae Assay endpoint
 #' 
@@ -54,7 +54,7 @@
 
     qstring <- sprintf(qformat, ae)
 
-    dat <- tcplQuery(query=qstring, db=getOption("TCPL_DB"))
+    dat <- gtoxQuery(query=qstring, db=getOption("TCPL_DB"))
 
     dat[]
 

@@ -23,7 +23,7 @@ lu(c(1, 1, 2, 3))
 \seealso{
 \code{\link{unique}}, \code{\link{which}}
 
-Other tcpl abbreviations: \code{\link{is.odd}},
+Other gtox abbreviations: \code{\link{is.odd}},
   \code{\link{lw}}, \code{\link{sink.reset}}
 }
-\concept{tcpl abbreviations}
+

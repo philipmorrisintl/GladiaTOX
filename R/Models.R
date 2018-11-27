@@ -12,7 +12,7 @@
 #' @description 
 #' These functions take in the dose-response data and the model parameters, and
 #' return a likelyhood value. They are intended to be optimized using 
-#' \code{\link{constrOptim}} in the \code{\link{tcplFit}} function.
+#' \code{\link{constrOptim}} in the \code{\link{gtoxFit}} function.
 #'
 #' @param p Numeric, the parameter values. See details for more information.
 #' @param lconc Numeric, the log10 concentration values

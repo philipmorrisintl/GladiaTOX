@@ -14,7 +14,7 @@
 #' @templateVar type sc
 #'
 #' @param ac Integer of length 1, assay component id (acid) for processing.
-#' @param wr Logical, whether the processed data should be written to the tcpl
+#' @param wr Logical, whether the processed data should be written to the gtox
 #' database
 #'
 #' @details
@@ -48,7 +48,7 @@ sc1 <- function(ac, wr=FALSE) {
     stime <- Sys.time()
 
     ## Load level 0 data
-    dat <- tcplLoadData(lvl=0L, type="sc", fld="acid", val=ac)
+    dat <- gtoxLoadData(lvl=0L, type="sc", fld="acid", val=ac)
 
     ## Check if any level 0 data was loaded
     if (nrow(dat) == 0) {
@@ -75,7 +75,7 @@ sc1 <- function(ac, wr=FALSE) {
     dat[ , logc := log10(conc)]
 
     ## Load aeid mapping information.
-    aeid_info <- tcplLoadAeid("acid", ac)[ , list(acid, aeid)]
+    aeid_info <- gtoxLoadAeid("acid", ac)[ , list(acid, aeid)]
     setkey(aeid_info, acid)
 
     ## Check for acids for aeids
@@ -93,7 +93,7 @@ sc1 <- function(ac, wr=FALSE) {
     setkey(dat, aeid)
 
     ## Load normalization methods
-    ms <- tcplMthdLoad(lvl=1L, id=dat[ , unique(aeid)], type="sc")
+    ms <- gtoxMthdLoad(lvl=1L, id=dat[ , unique(aeid)], type="sc")
     ms <- ms[ , list(aeid, mthd, ordr)]
 
     ## Check for aeids for methods
@@ -162,7 +162,7 @@ sc1 <- function(ac, wr=FALSE) {
     ## Load into sc1 table -- else return results
     if (wr) {
         stime <- Sys.time()
-        tcplWriteData(dat=dat, lvl=1L, type="sc")
+        gtoxWriteData(dat=dat, lvl=1L, type="sc")
 
         ttime <- round(difftime(Sys.time(), stime, units="sec"), 2)
         ttime <- paste(unclass(ttime), units(ttime))

@@ -37,54 +37,54 @@
     delete <- readline(prompt=prmpt)
     if (delete != "y") return()
 
-    ids <- tcplLoadAcid(fld="asid", val=asid, add.fld=c("aid", "aeid"))
-    plt <- tcplLoadApid(fld="aid", val=unique(ids$aid))
-    wll <- tcplLoadWaid(fld="apid", val=(plt$apid))
-    tcplCascade(lvl=0L, type="mc", id=ids$acid)
-    tcplCascade(lvl=0L, type="sc", id=ids$acid)
-    tcplDelete(
+    ids <- gtoxLoadAcid(fld="asid", val=asid, add.fld=c("aid", "aeid"))
+    plt <- gtoxLoadApid(fld="aid", val=unique(ids$aid))
+    wll <- gtoxLoadWaid(fld="apid", val=(plt$apid))
+    gtoxCascade(lvl=0L, type="mc", id=ids$acid)
+    gtoxCascade(lvl=0L, type="sc", id=ids$acid)
+    gtoxDelete(
         tbl="assay_source",
         fld="asid",
         val=asid,
         db=getOption("TCPL_DB")
     )
-    tcplDelete(
+    gtoxDelete(
         tbl="assay",
         fld="aid",
         val=unique(ids$aid),
         db=getOption("TCPL_DB")
     )
-    tcplDelete(
+    gtoxDelete(
         tbl="assay_component",
         fld="acid",
         val=unique(ids$acid),
         db= getOption("TCPL_DB")
     )
-    tcplDelete(
+    gtoxDelete(
         tbl="assay_compnent_endpoint",
         fld="aeid",
         val=unique(ids$aeid),
         db=getOption("TCPL_DB")
     )
-    tcplDelete(
+    gtoxDelete(
         tbl="assay_plate",
         fld="aid",
         val=unique(ids$aid),
         db=getOption("TCPL_DB")
     )
-    tcplDelete(
+    gtoxDelete(
         tbl="assay_plate_well",
         fld="apid",
         val=unique(plt$apid),
         db=getOption("TCPL_DB")
     )
-    tcplDelete(
+    gtoxDelete(
         tbl="bb_apid_map",
         fld="apid",
         val=unique(plt$apid),
         db=getOption("TCPL_DB")
     )
-    tcplDelete(
+    gtoxDelete(
         tbl="bb_waid_map",
         fld="waid",
         val=unique(wll$waid),

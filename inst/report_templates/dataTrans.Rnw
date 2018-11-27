@@ -2,7 +2,7 @@
 %% weave depends: aes
 
 <<echo=FALSE,results=tex>>=
-ctran <- tcplMthdLoad(2, aes[J(<%= a %>), acid])[ , list(acid, mthd_id, ordr, mthd)]
+ctran <- gtoxMthdLoad(2, aes[J(<%= a %>), acid])[ , list(acid, mthd_id, ordr, mthd)]
 setorder(ctran, acid, ordr)
 ctran <- ctran[ , list(Methods = paste(paste0(mthd_id, " (", mthd, ")"), collapse = "; ")), by = acid]
 ctran_cap <- paste("Assay component-specific data transformations. These",
@@ -23,9 +23,9 @@ print(ctran_tbl,
 
 <<echo=FALSE,results=tex>>=
 ae <- aes[J(<%= a %>), aeid]
-etran <- list(tcplMthdLoad(lvl = 3, id = ae)[ , lvl := 3],
-              tcplMthdLoad(lvl = 5, id = ae)[ , lvl := 5],
-              tcplMthdLoad(lvl = 6, id = ae)[ , lvl := 6])
+etran <- list(gtoxMthdLoad(lvl = 3, id = ae)[ , lvl := 3],
+              gtoxMthdLoad(lvl = 5, id = ae)[ , lvl := 5],
+              gtoxMthdLoad(lvl = 6, id = ae)[ , lvl := 6])
 etran <- rbindlist(etran, fill = TRUE)[ , nddr := NULL]
 setorder(etran, aeid, lvl, ordr)
 etran <- etran[ , list(Methods = paste(paste0(mthd_id, " (", mthd, ")"), collapse = "; ")), by = list(aeid, lvl)]

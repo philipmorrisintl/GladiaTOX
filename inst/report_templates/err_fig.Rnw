@@ -17,7 +17,7 @@ dat_n <- nrow(l5[chid %in% c(c1, c2) & aeid %in% err_aes])
 \caption*{<%= sanitize(aes[aid == a, unique(anm)]) %>}
 \centering
 <<<%= mylabel %>,fig=TRUE,strip.white=true,echo=FALSE,height=4.3,width=12>>=
-suppressWarnings(tcplPlotErrBar(<%= c1 %>, <%= c2 %>, c(<%= paste(err_aes, collapse = ", ") %>)))
+suppressWarnings(gtoxPlotErrBar(<%= c1 %>, <%= c2 %>, c(<%= paste(err_aes, collapse = ", ") %>)))
 @
 \end{figure}
 

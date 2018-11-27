@@ -14,7 +14,7 @@
 #' @templateVar type mc
 #'
 #' @param ac Integer of length 1, assay component id (acid) for processing.
-#' @param wr Logical, whether the processed data should be written to the tcpl
+#' @param wr Logical, whether the processed data should be written to the gtox
 #' database
 #'
 #' @details
@@ -44,7 +44,7 @@ mc1 <- function(ac, wr=FALSE) {
     stime <- Sys.time()
 
     ## Load level 0 data
-    dat <- tcplLoadData(lvl=0L, type="mc", fld="acid", val=ac)
+    dat <- gtoxLoadData(lvl=0L, type="mc", fld="acid", val=ac)
 
     ## Check if any level 0 data was loaded
     if (nrow(dat) == 0) {
@@ -134,7 +134,7 @@ mc1 <- function(ac, wr=FALSE) {
     ## Load into mc1 table -- else return results
     if (wr) {
         stime <- Sys.time()
-        tcplWriteData(dat=dat, lvl=1L, type="mc")
+        gtoxWriteData(dat=dat, lvl=1L, type="mc")
 
         ttime <- round(difftime(Sys.time(), stime, units="sec"), 2)
         ttime <- paste(unclass(ttime), units(ttime))

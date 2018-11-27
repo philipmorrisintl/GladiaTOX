@@ -45,7 +45,7 @@ mc6 <- function(ae, wr=FALSE) {
     stime <- Sys.time()
 
     ## Load the mc6 flags
-    ms <- tcplMthdLoad(lvl=6L, id=ae, type="mc")
+    ms <- gtoxMthdLoad(lvl=6L, id=ae, type="mc")
     if (nrow(ms) == 0) {
         warning("No level 6 methods assigned to AEID", ae, ".")
         if(wr) return(TRUE) else return(list(TRUE, NULL))
@@ -53,7 +53,7 @@ mc6 <- function(ae, wr=FALSE) {
     setkey(ms, mthd_id)
 
     ## Load level 5 and, if needed, level 3 data
-    ft <- tcplLoadData(lvl=5L, type="mc", fld="aeid", val=ae)
+    ft <- gtoxLoadData(lvl=5L, type="mc", fld="aeid", val=ae)
     setkey(ft, m4id)
     if (any(ms$nddr)) {
         dr <- .load6DR(ae)
@@ -108,7 +108,7 @@ mc6 <- function(ae, wr=FALSE) {
             return(TRUE)
         }
 
-        tcplWriteData(dat=f, lvl=6L, type="mc")
+        gtoxWriteData(dat=f, lvl=6L, type="mc")
 
         ttime <- round(difftime(Sys.time(), stime, units="sec"), 2)
         ttime <- paste(unclass(ttime), units(ttime))

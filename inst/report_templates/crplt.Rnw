@@ -23,7 +23,7 @@ ac_grps <- split(stim_ac, ceiling(seq_along(stim_ac)/6))
 <<<%= mylabel %>,fig=true,strip.white=true,echo=false,height=4,width=5,include=false>>=
 
 ae_vec <- c(<%= aes[acid == ac, paste(aeid, collapse = ", ")] %>)
-tcplPlotWin(chid = <%= stim %>, aeid = ae_vec, collapse = TRUE, bline = "coff")
+gtoxPlotWin(chid = <%= stim %>, aeid = ae_vec, collapse = TRUE, bline = "coff")
 
 @
 \includegraphics[height=0.25\textheight,keepaspectratio]{<%= paste0(fname, "-stim", stim, "acid", ac) %>}

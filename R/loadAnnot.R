@@ -83,27 +83,27 @@ loadAnnot <- function(plate, assay, outFile="out.json") {
     }
 
     ## Register chemicals/stimulants
-    chnmloaded <- unique(tcplLoadChem()$chnm)
+    chnmloaded <- unique(gtoxLoadChem()$chnm)
     chnm <- unique(plate[wllt != "n", chnm])
-    tcplRegister("chid", flds=list(chnm=chnm[!chnm%in%chnmloaded]))
+    gtoxRegister("chid", flds=list(chnm=chnm[!chnm%in%chnmloaded]))
     plate <- merge(
         plate,
-        unique(tcplLoadChem()[ , list(chid, chnm)]),
+        unique(gtoxLoadChem()[ , list(chid, chnm)]),
         by="chnm", all.x=TRUE
     )
 
     ## Register sample IDs
     plate[ , spid := paste0(chnm, "_Pl", plate, "_", tstamp)]
-    tcplRegister("spid", flds=unique(plate[wllt == "t", list(spid, chid)]))
+    gtoxRegister("spid", flds=unique(plate[wllt == "t", list(spid, chid)]))
 
     ## Register vehicles
-    vhloaded <- unique(tcplLoadVehicle()$vehicle_name)
+    vhloaded <- unique(gtoxLoadVehicle()$vehicle_name)
     vhl <- unique(plate[ , list(vehicle_name)])$vehicle_name
-    tcplRegister("vehicle", list(vehicle_name=vhl[!vhl%in%vhloaded]))
-    plate <- merge(plate, tcplLoadVehicle(), by="vehicle_name", all.x=TRUE)
+    gtoxRegister("vehicle", list(vehicle_name=vhl[!vhl%in%vhloaded]))
+    plate <- merge(plate, gtoxLoadVehicle(), by="vehicle_name", all.x=TRUE)
 
     ## Register the study
-    tcplRegister("asid", unique(plate[ , list(asnm, asph)]))
+    gtoxRegister("asid", unique(plate[ , list(asnm, asph)]))
 
     ## Read assay data
     assay <- .readInput(assay)
@@ -134,15 +134,15 @@ loadAnnot <- function(plate, assay, outFile="out.json") {
     )
     assay <- merge(
         assay,
-        tcplLoadAsid(
+        gtoxLoadAsid(
             fld=c("asnm","asph"),
             val=list(assay$asnm, assay$asph)
         ),
         by=c("asnm", "asph")
     )
-    ##  assay <- merge(assay, tcplLoadAsid("asnm", assay$asnm), by="asnm")
+    ##  assay <- merge(assay, gtoxLoadAsid("asnm", assay$asnm), by="asnm")
     assay <- assay[order(gsub("_[0-9]+h", "", aenm), timepoint_hr)]
-    tcplRegister(
+    gtoxRegister(
         "aid",
         unique(
             assay[ , list(asid, anm, timepoint_hr, assay_footprint)]
@@ -150,19 +150,19 @@ loadAnnot <- function(plate, assay, outFile="out.json") {
     )
     assay <- merge(
         assay,
-        unique(tcplLoadAid("asid", assay$asid)[ , list(anm, aid)]),
+        unique(gtoxLoadAid("asid", assay$asid)[ , list(anm, aid)]),
         by="anm"
     )
     assay <- assay[order(gsub("_[0-9]+h", "", aenm), timepoint_hr)]
 
     ## Add components & endpoints for the assays
-    tcplRegister(
+    gtoxRegister(
         "acid", unique(assay[ , list(aid, acnm, machine_name)])
     )
     assay <- merge(
         assay,
         unique(
-            tcplLoadAcid(
+            gtoxLoadAcid(
                 fld="asid",
                 assay$asid
             )[ , list(acid, acnm)]
@@ -172,7 +172,7 @@ loadAnnot <- function(plate, assay, outFile="out.json") {
     assay <- assay[order(gsub("_[0-9]+h", "", aenm), timepoint_hr)]
     assay[ , analysis_direction := ifelse(grepl('_dn$', aenm), "down", "up")]
     assay[ , c("burst_assay", "fit_all") := list(0, 0)]
-    tcplRegister(
+    gtoxRegister(
         "aeid",
         unique(
             assay[ , list(
@@ -184,7 +184,7 @@ loadAnnot <- function(plate, assay, outFile="out.json") {
 
     ## Add a new plate to the study
     plate <- merge(plate, unique(assay[ , list(aid, anm)]), by="anm")
-    tcplRegister(
+    gtoxRegister(
         "apid",
         unique(
             plate[ , list(aid, date_treat, date_harvest, hr_barcode)]
@@ -192,7 +192,7 @@ loadAnnot <- function(plate, assay, outFile="out.json") {
     )
     plate <- merge(
         plate,
-        tcplLoadApid()[ , list(apid, hr_barcode)],
+        gtoxLoadApid()[ , list(apid, hr_barcode)],
         by="hr_barcode"
     )
 
@@ -201,7 +201,7 @@ loadAnnot <- function(plate, assay, outFile="out.json") {
     plate[ , rowi := match(toupper(str_extract(well, '[A-Z]+')), LETTERS)]
     plate[ , coli := as.numeric(str_extract(well, '[0-9]+'))]
     plate[ , conc := as.numeric(str_extract(conc, '\\d+\\.*\\d*'))]
-    tcplRegister(
+    gtoxRegister(
         "waid",
         unique(
             plate[ , list(
@@ -210,19 +210,19 @@ loadAnnot <- function(plate, assay, outFile="out.json") {
             )]
         )
     )
-    waid <- tcplLoadWaid(fld="apid", plate$apid)
+    waid <- gtoxLoadWaid(fld="apid", plate$apid)
 
     ## Register s_sampleid and u_boxtrack when in the table.
     if (!is.null(plate$u_boxtrack)) {
         setkey(plate, apid, rowi, coli)
         setkey(waid,  apid, rowi, coli)
         plate <- merge(plate, waid[ , list(waid,  apid, rowi, coli)])
-        tcplRegister(
+        gtoxRegister(
             "bb_apid",
             unique(plate[ , list(apid, u_boxtrack)])
         )
         if (!is.null(plate$s_sampleid)) {
-            tcplRegister(
+            gtoxRegister(
                 "bb_waid",
                 unique(plate[ , list(waid, s_sampleid)])
             )
@@ -233,10 +233,10 @@ loadAnnot <- function(plate, assay, outFile="out.json") {
         setkey(waid, gui_sample_id)
         outTbl <- waid[J(plate[order(inOrdr), gui_sample_id]),
             list(waid, apid, hr_barcode)]
-        outTbl[ , tcplIDs := paste(
+        outTbl[ , gtoxIDs := paste(
             sprintf('%09d', waid), sprintf('%09d', apid))]
         outTbl[ , comment := sub(paste0('_', tstamp), "", hr_barcode)]
-        cat(toJSON(outTbl[ , list(comment, tcplIDs)]), file=outFile)
+        cat(toJSON(outTbl[ , list(comment, gtoxIDs)]), file=outFile)
     }
 
     return(TRUE)

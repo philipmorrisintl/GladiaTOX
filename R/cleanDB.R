@@ -17,7 +17,7 @@
 
 .cleanDB <- function() {
 
-    v <- tcplConfList()
+    v <- gtoxConfList()
     p <- names(v)
     pn <- vapply(p, nchar, integer(1))
     sep <- vapply(
@@ -40,10 +40,10 @@
     x <- readline("Type 'yes' to proceed or anything else to cancel. ")
 
     if (x == "yes") {
-        tbls <- unname(unlist(tcplQuery("SHOW TABLES;")))
+        tbls <- unname(unlist(gtoxQuery("SHOW TABLES;")))
         keep <- c(grep("_methods", tbls, value=TRUE), "mc5_fit_categories")
         reset_qs <- paste0("TRUNCATE TABLE ", tbls[!tbls %in% keep], ";")
-        vapply(reset_qs, tcplSendQuery, "")
+        vapply(reset_qs, gtoxSendQuery, "")
     }
 
 }

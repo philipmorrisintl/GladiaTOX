@@ -20,7 +20,7 @@ if (is.null(params$aids)) {
 %>
 
 <<echo=FALSE>>=
-l2 <- tcplLoadData(2, "acid", aes[ , unique(acid)])
+l2 <- gtoxLoadData(2, "acid", aes[ , unique(acid)])
 @
 
 \begin{document}
@@ -61,7 +61,7 @@ This report summarizes the results from the <%= asnm %> study (ID: <%= asid %>).
 
 Section \ref{assay_tbl} provides an overview of the assays tested within this study. Section \ref{stim_tbl} provides an overview of the stimuli tested within this study.
 
-The text below this point is not in the report format. It is added based on an additional file passed to the \texttt{tcplReportAsid} function.
+The text below this point is not in the report format. It is added based on an additional file passed to the \texttt{gtoxReportAsid} function.
 
 %% Add the summary file, passed by the user
 <%= if (!is.null(sumfile)) brew(sumfile) %>

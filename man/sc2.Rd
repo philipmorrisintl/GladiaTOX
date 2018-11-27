@@ -10,7 +10,7 @@ sc2(ae, wr = FALSE)
 \arguments{
 \item{ae}{Integer of length 1, assay endpoint id (aeid) for processing.}
 
-\item{wr}{Logical, whether the processed data should be written to the tcpl
+\item{wr}{Logical, whether the processed data should be written to the gtox
 database}
 }
 \value{
@@ -20,15 +20,15 @@ the success of processing and the second element is a data.table containing
 the processed data
 }
 \description{
-\code{sc2} loads level 1 data from the tcpl 
+\code{sc2} loads level 1 data from the gtox 
 database for the given id and performs level 2 
 single-concentration processing. 
 The processed data is then loaded into the sc2 table and 
-all subsequent data is deleted with \code{\link{tcplCascade}}. See details 
+all subsequent data is deleted with \code{\link{gtoxCascade}}. See details 
 for more information.
 
 The individual processing functions are no longer exported, as it is 
-typically more convenient and suggested to use the \code{\link{tcplRun}} 
+typically more convenient and suggested to use the \code{\link{gtoxRun}} 
 wrapper function.
 }
 \details{
@@ -42,5 +42,4 @@ call.
 Other single-concentration data 
 processing functions: \code{\link{sc1}}
 }
-\concept{single-concentration data 
-processing functions}
+
