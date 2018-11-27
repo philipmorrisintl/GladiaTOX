@@ -14,7 +14,7 @@ Description: GladiaTOX is an open-source solution for HCS data processing and
     reporting that expands the toxcast pipeline package.
 License: GPL-2
 Depends:
-    R (>= 3.5.0),
+    R (>= 3.6.0),
     data.table (>= 1.9.4)
 Imports:
     DBI,
