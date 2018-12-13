@@ -32,4 +32,3 @@ loadAnnot(plate, assay, NULL)
 }
 
 }
-

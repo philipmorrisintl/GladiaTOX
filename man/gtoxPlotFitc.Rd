@@ -32,4 +32,3 @@ gtoxConfDefault()
 gtoxPlotFitc()
 
 }
-

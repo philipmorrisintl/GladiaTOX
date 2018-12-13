@@ -26,4 +26,4 @@ sink.reset()
 Other gtox abbreviations: \code{\link{is.odd}},
   \code{\link{lu}}, \code{\link{lw}}
 }
-
+\concept{gtox abbreviations}

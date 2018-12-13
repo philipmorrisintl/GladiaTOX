@@ -22,4 +22,3 @@ None
 \description{
 \code{gtoxPlotErrBar} creates the error bar plots.
 }
-

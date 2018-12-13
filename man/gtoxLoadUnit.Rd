@@ -20,4 +20,3 @@ with the response units for the given assay endpoint ids (aeid).
 \seealso{
 \code{\link{gtoxQuery}}, \code{\link{data.table}}
 }
-

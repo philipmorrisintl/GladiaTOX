@@ -39,4 +39,3 @@ The user should only write level 0 data, which is written with
 \code{\link{gtoxCascade}}, \code{\link{gtoxAppend}},
 \code{\link{gtoxWriteLvl0}}
 }
-

@@ -37,4 +37,3 @@ gtoxConfDefault()
 glPlotToxInd(asid=1L)
 
 }
-

@@ -31,4 +31,3 @@ gtoxLoadVehicle()
 options(conf_store)
 
 }
-

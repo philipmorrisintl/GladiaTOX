@@ -67,4 +67,3 @@ options(conf_store)
 \seealso{
 \code{\link{gtoxPlotFits}}, \code{\link{gtoxMakeAeidPlts}}
 }
-

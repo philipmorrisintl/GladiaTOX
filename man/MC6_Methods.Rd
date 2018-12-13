@@ -90,8 +90,8 @@ available in the package vignette, "Pipeline_Overview."
   real responses.}
 }
 }
+
 \seealso{
 \code{\link{mc6}}, \code{\link{Method functions}} to query what
 methods get applied to each aeid
 }
-

@@ -38,4 +38,3 @@ dat <- glComputeToxInd(asid = 1L)
 dat[]
 
 }
-

@@ -23,4 +23,3 @@ None
 \description{
 \code{gtoxPlotPie} creates the piechart plots.
 }
-

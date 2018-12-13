@@ -55,4 +55,3 @@ gtoxLoadChem(field = "chnm", val = "chromium")
 options(conf_store)
 
 }
-

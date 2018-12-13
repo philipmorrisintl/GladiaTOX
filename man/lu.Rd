@@ -26,4 +26,4 @@ lu(c(1, 1, 2, 3))
 Other gtox abbreviations: \code{\link{is.odd}},
   \code{\link{lw}}, \code{\link{sink.reset}}
 }
-
+\concept{gtox abbreviations}

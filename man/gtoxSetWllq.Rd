@@ -34,4 +34,3 @@ gtoxSetWllq(ids = 1633, wllq = 0, type = "mc")
 options(conf_store)
 
 }
-

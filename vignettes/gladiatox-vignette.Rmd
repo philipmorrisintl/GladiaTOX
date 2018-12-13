@@ -36,10 +36,10 @@ outdir <- getwd()
 #NOTE ssh to chp893
 library(devtools)
 library(roxygen2)
-setwd("~/gladiatox-bck/")
+setwd("~/GladiaTOX/")
 roxygenize()
 load_all()
-setwd("~/gladiatox-bck/tmp/")
+setwd("~/GladiaTOX/tmp/")
 outdir <- getwd()
 ```
 

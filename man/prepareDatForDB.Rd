@@ -28,4 +28,3 @@ dat <- prepareDatForDB(asid, dat)
 }
 
 }
-
