@@ -116,9 +116,10 @@ gtoxRun <- function(asid=NULL, slvl, elvl, id=NULL, type="mc",
         )
         message("\n\n")
     }
-
+    
+    detected_cores = max(detectCores()-1, 1, na.rm=TRUE)
     if (is.null(mc.cores)) {
-        ncores <- min(length(id), detectCores() - 1)
+        ncores <- min(length(id), detected_cores)
     } else {
         ncores <- mc.cores
     }
@@ -213,7 +214,7 @@ gtoxRun <- function(asid=NULL, slvl, elvl, id=NULL, type="mc",
         ## Change ids from acid to aeid, if necessary
         if (slvl <  4L | !is.null(asid)) id <- gtoxLoadAeid("acid", id)$aeid
         names(id) <- paste0("AEID", id)
-        if (is.null(mc.cores)) ncores <- min(length(id), detectCores() - 1)
+        if (is.null(mc.cores)) ncores <- min(length(id), detected_cores)
 
         ## Do level 4 processing
         if (slvl <= 4L) {
@@ -336,7 +337,7 @@ gtoxRun <- function(asid=NULL, slvl, elvl, id=NULL, type="mc",
         ## Change ids from acid to aeid, if necessary
         if (slvl <  2L | !is.null(asid)) id <- gtoxLoadAeid("acid", id)$aeid
         names(id) <- paste0("AEID", id)
-        if (is.null(mc.cores)) ncores <- min(length(id), detectCores() - 1)
+        if (is.null(mc.cores)) ncores <- min(length(id), detected_cores)
 
         ## Do level 2 processing
         if (slvl <= 2L) {
