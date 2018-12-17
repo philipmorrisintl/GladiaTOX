@@ -223,14 +223,14 @@ With the default selection, raw data is normalized by computing the log2 fold ch
 ## Compute the noise band
 The package computes a noise band to discriminate concentration series that are active versus those that are not. The default behaviour is to compute noise band margins separately for each endpoint. Margins correspond to 3 times the baseline median absolute deviation of vehicle responses. The following code computes the cutoffs and store them in the database.
 ```{r, echo=TRUE, eval=TRUE, include=TRUE, results='hide', message=FALSE, warning=FALSE}
-res <- gtoxRun(asid = asid, slvl = 1, elvl = 3)
+res <- gtoxRun(asid = asid, slvl = 1, elvl = 3, mc.cores = 2)
 aeids <- gtoxLoadAeid(fld = "asid", val = asid)$aeid
 tmp <- mapply(function(xx){
 tryCatch(gtoxCalcVmad(inputs = xx, aeid = xx, 
 notes = "computed within study"), 
 error = function(e) NULL)},
 as.integer(aeids))
-res <- gtoxRun(asid = asid, slvl = 1, elvl = 6)
+res <- gtoxRun(asid = asid, slvl = 1, elvl = 6, mc.cores = 2)
 ```
 In the original work (*Filer et al., 2016*), the default behaviour is to compute noise band margins based on the response of the lowest two concentrations of the series. That assumes that no response is observed at those concentrations. The current package overcome that assumption and extend the list of functionalities. The database design was modified accordingly.
 
@@ -281,7 +281,7 @@ The masked plate will not be processed and will not be included in the final rep
 ## Process data
 Now that the user has selected the processing methods, cutoffs computed, and bad quality plates masked, all information is in place to start processing the data with the following command.
 ```{r, echo=TRUE, eval=TRUE, results='hide', message=FALSE, warning=FALSE}
-res <- gtoxRun(asid = asid, slvl = 1, elvl = 6)
+res <- gtoxRun(asid = asid, slvl = 1, elvl = 6, mc.cores = 2)
 ```
 The `gtoxRun` returns a list of vectors of logical values used to check processing status. The resulting processed data is automatically stored in the database along with the statistics computed. Statistics include activity concentrations (AC10 and AC50) and minimal effective concentrations (MECs).
 

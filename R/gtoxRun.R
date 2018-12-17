@@ -47,7 +47,7 @@
 #' ## Process data for asid 1
 #' 
 #' ## Process data
-#' gtoxRun(asid = 1L, slvl = 1, elvl = 6)
+#' gtoxRun(asid = 1L, slvl = 1, elvl = 6, mc.cores = 2)
 #' 
 #' @return A list containing the results from each level of processing. Each
 #' level processed will return a named logical vector, indicating the success

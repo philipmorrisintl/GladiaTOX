@@ -31,6 +31,6 @@ for endpoints with "down" analysis direction, 'resp.multneg1' (6).
 assignDefaultMthds(asid = 1L)
 
 ## Process data
-gtoxRun(asid = 1L, slvl = 1, elvl = 6)
+gtoxRun(asid = 1L, slvl = 1, elvl = 6, mc.cores = 2)
 
 }
