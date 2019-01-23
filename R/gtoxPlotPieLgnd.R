@@ -19,7 +19,11 @@
 #' @param col Vector of colors
 #' @param fit.labels Boolean, if TRUE, scale the text to fit
 #'
+#' @examples
 #'
+#' ## Create pie legend
+#' gtoxPlotPieLgnd("Cytotoxicity")
+#' 
 #' @return None
 #'
 #' @importFrom stats sd

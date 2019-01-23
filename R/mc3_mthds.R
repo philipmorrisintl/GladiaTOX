@@ -18,7 +18,7 @@
 #'
 #' @return A list of functions
 #'
-#' @seealso \code{\link{mc3}}, \code{\link{gtoxMthdLoad}} to query what methods
+#' @seealso \code{\link{mc3}}, \code{\link{tcplMthdLoad}} to query what methods
 #' get applied to each aeid
 #'
 #' @details

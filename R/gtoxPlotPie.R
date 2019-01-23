@@ -20,6 +20,12 @@
 #' @param col Vector of colors
 #' @param lbl  Vector with pie labels (optional)
 #'
+#' @examples
+#'
+#' ## Create a pie plot for report
+#' tcplConfDefault()
+#' gtoxPlotPie(3, 2, 1:5)
+#' 
 #' @return None
 #'
 #' @importFrom stats sd
@@ -28,16 +34,18 @@
 #' @import data.table
 #' @importFrom graphics text polygon legend lines axis par strwidth plot.new
 #' @importFrom graphics plot.window
+#' @importFrom tcpl tcplPrepOtpt lw 
+#' 
 #' @export
 
 gtoxPlotPie <- function(chid, mrks, aeid, col=NULL, lbl=NULL) {
 
     mrks <- -log10(mrks/1e6)
 
-    cdat <- gtoxLoadChem("chid", chid)
+    cdat <- tcplLoadChem("chid", chid)
 
-    dat <- gtoxLoadData(5, c("aeid", "spid"), list(aeid, cdat$spid))
-    dat <- gtoxPrepOtpt(dat)
+    dat <- tcplLoadData(5, c("aeid", "spid"), list(aeid, cdat$spid))
+    dat <- tcplPrepOtpt(dat)
 
     dat[ , pot := 10^modl_acb]
     dat[is.na(pot), pot := 1e6]

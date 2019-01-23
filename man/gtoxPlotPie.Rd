@@ -23,3 +23,10 @@ None
 \description{
 \code{gtoxPlotPie} creates the piechart plots.
 }
+\examples{
+
+## Create a pie plot for report
+tcplConfDefault()
+gtoxPlotPie(3, 2, 1:5)
+
+}

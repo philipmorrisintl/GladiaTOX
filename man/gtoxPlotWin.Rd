@@ -30,9 +30,9 @@ Any values for 'bline' other than 'coff' will use 3*bmad.
 }
 \examples{
 
-chid <- gtoxLoadChem(field="chnm", val="acrylamide", include.spid=FALSE)$chid
+chid <- tcplLoadChem(field="chnm", val="acrylamide", include.spid=FALSE)$chid
 print(chid)
-aeid <- gtoxLoadAeid(fld=c("asid","aenm"), 
+aeid <- tcplLoadAeid(fld=c("asid","aenm"), 
           val=list(1L, "GSH content_GSH content_4h_dn"), add.fld="asid")$aeid
 print(aeid)
 gtoxPlotWin(chid = chid, aeid = aeid, bline="bmad", collapse=TRUE)

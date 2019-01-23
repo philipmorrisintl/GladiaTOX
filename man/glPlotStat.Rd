@@ -25,8 +25,8 @@ This funtion is useful to show the MEC trend over control chemical
 \examples{
 ## Store the current config settings, so they can be reloaded at the end
 ## of the examples
-conf_store <- gtoxConfList()
-gtoxConfDefault()
+conf_store <- tcplConfList()
+tcplConfDefault()
 
 ## Create boxplot of MEC
 ## plots in a pdf file.

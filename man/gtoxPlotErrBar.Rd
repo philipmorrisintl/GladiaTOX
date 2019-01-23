@@ -22,3 +22,10 @@ None
 \description{
 \code{gtoxPlotErrBar} creates the error bar plots.
 }
+\examples{
+## Make plot
+
+tcplConfDefault()
+gtoxPlotErrBar(1,3,2)
+
+}

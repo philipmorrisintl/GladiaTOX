@@ -21,8 +21,8 @@
 #' @examples
 #' ## Store the current config settings, so they can be reloaded at the end 
 #' ## of the examples
-#' conf_store <- gtoxConfList()
-#' gtoxConfDefault()
+#' conf_store <- tcplConfList()
+#' tcplConfDefault()
 #' 
 #' ## Prepare for analysis before QC + process data
 #' gtoxLoadVehicle()
@@ -61,7 +61,7 @@ gtoxLoadVehicle <- function(field=NULL, val=NULL) {
 
     }
 
-    dat <- gtoxQuery(query=qstring)
+    dat <- tcplQuery(query=qstring)
 
     if (nrow(dat) == 0) {
         warning("The given ", field,"(s) are not in the gtox database.")

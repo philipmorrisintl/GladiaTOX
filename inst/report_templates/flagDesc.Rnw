@@ -1,7 +1,7 @@
 %% no dependencies 
 
 <<echo=FALSE,results=tex>>=
-flgs <- gtoxMthdList(6)[ , nddr := NULL]
+flgs <- tcplMthdList(6)[ , nddr := NULL]
 setnames(flgs, c("Flag ID", "Flag Name", "Flag Description"))
 flgs_tbl <- xtable(flgs)
 suppressWarnings(align(flgs_tbl) <- "lP{1.5cm}P{4cm}P{10cm}")

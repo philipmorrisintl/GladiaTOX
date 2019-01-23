@@ -13,11 +13,16 @@
 #' @description This function deletes all data from the database and preserves 
 #' the method tables. 
 #' 
+#' @importFrom tcpl tcplQuery tcplSendQuery tcplConfList
+#' 
 #' @note PMI-specific
+#' 
+#' @return none
+#' 
 
 .cleanDB <- function() {
 
-    v <- gtoxConfList()
+    v <- tcplConfList()
     p <- names(v)
     pn <- vapply(p, nchar, integer(1))
     sep <- vapply(
@@ -40,10 +45,10 @@
     x <- readline("Type 'yes' to proceed or anything else to cancel. ")
 
     if (x == "yes") {
-        tbls <- unname(unlist(gtoxQuery("SHOW TABLES;")))
+        tbls <- unname(unlist(tcplQuery("SHOW TABLES;")))
         keep <- c(grep("_methods", tbls, value=TRUE), "mc5_fit_categories")
         reset_qs <- paste0("TRUNCATE TABLE ", tbls[!tbls %in% keep], ";")
-        vapply(reset_qs, gtoxSendQuery, "")
+        vapply(reset_qs, tcplSendQuery, "")
     }
 
 }

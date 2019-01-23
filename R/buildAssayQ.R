@@ -39,8 +39,8 @@
     fld     <- .convertNames(fld)
     add.fld <- .convertNames(add.fld)
 
-    fld <- .prepField(fld=fld, tbl=tblo, db=getOption("TCPL_DB"))
-    add.fld <- .prepField(fld=add.fld, tbl=tblo, db=getOption("TCPL_DB"))
+    fld <- tcpl:::.prepField(fld=fld, tbl=tblo, db=getOption("TCPL_DB"))
+    add.fld <- tcpl:::.prepField(fld=add.fld, tbl=tblo, db=getOption("TCPL_DB"))
     afld <- c(fld, out, add.fld)
     afld <- afld[!duplicated(afld)]
 

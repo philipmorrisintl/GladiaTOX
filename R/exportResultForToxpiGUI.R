@@ -22,8 +22,8 @@
 #'
 #' @examples
 #' ## Export MEC (or AC50) values to be visualized in ToxPiGUI
-#' conf_store <- gtoxConfList()
-#' gtoxConfDefault()
+#' conf_store <- tcplConfList()
+#' tcplConfDefault()
 #'
 #' out <- "export_for_toxpiGUI.csv"
 #' exportResultForToxpiGUI(asid=1L, tp="4h", outfile=out, stat=quote(modl_acc))
@@ -36,17 +36,18 @@
 #' @importFrom tidyr spread
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom utils write.table
+#' @importFrom tcpl tcplLoadAeid tcplPrepOtpt
 #'
 #' @export
 #'
 exportResultForToxpiGUI <- function(asid, tp, outfile, stat) {
     ## save data for toxPi GUI visualizatiion
-    dat <- gtoxLoadData(lvl=5, fld="aeid", val=gtoxLoadAeid("asid", asid)$aeid)
-    dat <- gtoxPrepOtpt(dat)
+    dat <- tcplLoadData(lvl=5, fld="aeid", val=tcplLoadAeid("asid", asid)$aeid)
+    dat <- tcplPrepOtpt(dat)
     othrIDs <- c("asnm", "aid", "anm", "acid", "acnm")
     dat <- merge(
         dat,
-        gtoxLoadAeid("asid", asid, add.fld=othrIDs),
+        tcplLoadAeid("asid", asid, add.fld=othrIDs),
         c("aeid", "aenm")
     )
 

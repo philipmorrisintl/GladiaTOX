@@ -22,8 +22,8 @@
 #' @examples
 #' ## Store the current config settings, so they can be reloaded at the end 
 #' ## of the examples
-#' conf_store <- gtoxConfList()
-#' gtoxConfDefault()
+#' conf_store <- tcplConfList()
+#' tcplConfDefault()
 #' 
 #' ## Prepare for analysis before QC + process data
 #' gtoxLoadApid()
@@ -35,6 +35,7 @@
 #' parameters
 #'
 #' @import data.table
+#' @importFrom tcpl tcplConfList
 #' @export
 
 gtoxLoadApid <- function(fld=NULL, val=NULL) {
@@ -66,7 +67,7 @@ gtoxLoadApid <- function(fld=NULL, val=NULL) {
 
     if (!is.null(fld)) {
 
-        fld <- .prepField(
+        fld <- tcpl:::.prepField(
             fld=fld,
             tbl=c("bb_apid_map", "assay_plate"),
             db=options()$TCPL_DB
@@ -94,7 +95,7 @@ gtoxLoadApid <- function(fld=NULL, val=NULL) {
 
     }
 
-    dat <- suppressWarnings(gtoxQuery(query=qstring))
+    dat <- suppressWarnings(tcplQuery(query=qstring))
 
     if (nrow(dat) == 0) {
         warning("The given ", fld,"(s) are not in the gtox database.")

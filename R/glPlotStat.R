@@ -22,8 +22,8 @@
 #' @examples
 #' ## Store the current config settings, so they can be reloaded at the end
 #' ## of the examples
-#' conf_store <- gtoxConfList()
-#' gtoxConfDefault()
+#' conf_store <- tcplConfList()
+#' tcplConfDefault()
 #'
 #' ## Create boxplot of MEC
 #' ## plots in a pdf file.
@@ -37,13 +37,15 @@
 #'
 #' @import ggplot2
 #' @importFrom stringr str_wrap
+#' @importFrom tcpl tcplLoadAeid tcplPrepOtpt tcplConfList
+#' 
 #' @export
 #'
 glPlotStat <- function(asid, ref.chm=NULL, stat=quote(modl_acc)) {
 
     addFlds <- c("asid", "aid", "anm", "acnm")
-    aetbl <- gtoxLoadAeid(fld="asid", val=asid, add.fld=addFlds)
-    dat <- gtoxPrepOtpt(gtoxLoadData(lvl=5, fld="aeid", val=aetbl$aeid))
+    aetbl <- tcplLoadAeid(fld="asid", val=asid, add.fld=addFlds)
+    dat <- tcplPrepOtpt(tcplLoadData(lvl=5, fld="aeid", val=aetbl$aeid))
     dat <- merge(dat, aetbl, by=c("aeid", "aenm"))
     dat <- dat[ , .SD[which.min(modl_rmse)], by=c("spid", "acnm")]
     dat[ , aenm := vapply(

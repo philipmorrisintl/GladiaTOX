@@ -23,8 +23,8 @@ information for the given field and values.
 \examples{
 ## Store the current config settings, so they can be reloaded at the end 
 ## of the examples
-conf_store <- gtoxConfList()
-gtoxConfDefault()
+conf_store <- tcplConfList()
+tcplConfDefault()
 
 ## Prepare for analysis before QC + process data
 gtoxLoadApid()

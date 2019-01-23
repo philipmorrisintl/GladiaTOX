@@ -24,8 +24,8 @@ delete cascade for the affected assay components.
 \examples{
 ## Store the current config settings, so they can be reloaded at the end
 ## of the examples
-conf_store <- gtoxConfList()
-gtoxConfDefault()
+conf_store <- tcplConfList()
+tcplConfDefault()
 
 ## Set well quality to zero for specific lvl zero ids.
 gtoxSetWllq(ids = 1633, wllq = 0, type = "mc")

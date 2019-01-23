@@ -20,8 +20,8 @@
 #' @examples
 #' ## Store the current config settings, so they can be reloaded at the end 
 #' ## of the examples
-#' conf_store <- gtoxConfList()
-#' gtoxConfDefault()
+#' conf_store <- tcplConfList()
+#' tcplConfDefault()
 #' 
 #' ## Prepare for analysis before QC + process data
 #' gtoxLoadVmad()
@@ -32,6 +32,7 @@
 #' @return A data.table containing cutoff values for the given aeids.
 #'
 #' @import data.table
+#' @importFrom tcpl lw
 #' @export
 
 gtoxLoadVmad <- function(aeid=NULL) {
@@ -50,7 +51,7 @@ gtoxLoadVmad <- function(aeid=NULL) {
 
     qstring <- sprintf(qformat, paste(aeid, collapse=","))
 
-    dat <- gtoxQuery(query=qstring, db=getOption("TCPL_DB"))
+    dat <- tcplQuery(query=qstring, db=getOption("TCPL_DB"))
 
     if (nrow(dat) == 0) {
         warning("The given aeid(s) do not have cutoff values.")

@@ -21,8 +21,8 @@
 #' @examples
 #' ## Store the current config settings, so they can be reloaded at the end
 #' ## of the examples
-#' conf_store <- gtoxConfList()
-#' gtoxConfDefault()
+#' conf_store <- tcplConfList()
+#' tcplConfDefault()
 #'
 #' ## Create boxplot for all endpoints and chemicals tested. Useful to save
 #' ## plots in a pdf file.
@@ -36,16 +36,18 @@
 #'
 #' @note PMI-specific
 #' @import ggplot2
+#' @importFrom tcpl tcplLoadAid tcplLoadAeid
+#' 
 #' @export
 #'
 
 glPlotPosCtrl <- function(asid) {
-    plates <- gtoxLoadApid("aid", gtoxLoadAid("asid", asid)$aid)
+    plates <- gtoxLoadApid("aid", tcplLoadAid("asid", asid)$aid)
     plates <- plates[ , list(apid, u_boxtrack)]
 
-    datatab <- merge(gtoxLoadData(lvl=3), plates, by="apid")
+    datatab <- merge(tcplLoadData(lvl=3), plates, by="apid")
     addFlds <- c("aid", "anm", "analysis_direction")
-    aeidtbl <- gtoxLoadAeid(fld="aeid", val=datatab$aeid, add.fld=addFlds)
+    aeidtbl <- tcplLoadAeid(fld="aeid", val=datatab$aeid, add.fld=addFlds)
     aeidtbl <- aeidtbl[analysis_direction == "up" | grepl("Cell count", aenm)]
 
     datatab <- merge(datatab, aeidtbl, by="aeid")

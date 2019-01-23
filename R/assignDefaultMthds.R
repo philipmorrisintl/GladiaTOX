@@ -27,47 +27,49 @@
 #' @examples
 #' 
 #' ## Prepare for analysis before QC + process data
+#' tcplConfDefault()
 #' assignDefaultMthds(asid = 1L)
 #' 
 #' ## Process data
-#' gtoxRun(asid = 1L, slvl = 1, elvl = 6, mc.cores = 2)
+#' tcplRun(asid = 1L, slvl = 1, elvl = 6, mc.cores = 2)
 #' 
 #' @return None
 #' @import data.table
+#' @importFrom tcpl tcplLoadAeid tcplMthdClear tcplMthdAssign
 #' @export
 #'
 assignDefaultMthds <- function(asid) {
 
-    atbl <- gtoxLoadAeid(
+    atbl <- tcplLoadAeid(
         fld="asid",
         val=asid,
         add.fld=c("acid", "analysis_direction"))
 
     ## Clear all existing methods
-    gtoxMthdClear(lvl=2, atbl$acid, type="mc")
-    gtoxMthdClear(lvl=3, atbl$aeid, type="mc")
-    gtoxMthdClear(lvl=5, atbl$aeid, type="mc")
-    gtoxMthdClear(lvl=6, atbl$aeid, type="mc")
+    tcplMthdClear(lvl=2, atbl$acid, type="mc")
+    tcplMthdClear(lvl=3, atbl$aeid, type="mc")
+    tcplMthdClear(lvl=5, atbl$aeid, type="mc")
+    tcplMthdClear(lvl=6, atbl$aeid, type="mc")
 
     ## Update normalized_data_type to log2_fold_induction
     atbl[ , normalized_data_type := "log2_fold_induction"]
-    gtoxUpdate(
+    tcplUpdate(
         what="aeid",
         id=atbl$aeid,
         flds=atbl[ , list(normalized_data_type)])
 
     ## Assign level 2 methods (none for all acid values)
-    gtoxMthdAssign(lvl=2, id=unique(atbl$acid), mthd_id=1, ordr=1, type="mc")
+    tcplMthdAssign(lvl=2, id=unique(atbl$acid), mthd_id=1, ordr=1, type="mc")
 
     ## Assign level 3 methods
-    gtoxMthdAssign(
+    tcplMthdAssign(
         lvl=3,
         id=atbl$aeid,
         mthd_id=c(39, 9, 7),
         ordr=seq_len(3),
         type="mc")
 
-    gtoxMthdAssign(
+    tcplMthdAssign(
         lvl=3,
         id=atbl[analysis_direction == "down", aeid],
         mthd_id=6,
@@ -75,10 +77,10 @@ assignDefaultMthds <- function(asid) {
         type="mc")
 
     ## Assign level 5 methods
-    gtoxMthdAssign(lvl=5, id=atbl$aeid, mthd_id=9, type="mc")
+    tcplMthdAssign(lvl=5, id=atbl$aeid, mthd_id=9, type="mc")
 
     ## Assign level 6 methods
-    gtoxMthdAssign(
+    tcplMthdAssign(
         lvl=6,
         id=atbl$aeid,
         mthd_id=c(6:8, 10:12, 15:16),

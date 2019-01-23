@@ -8,8 +8,8 @@ library(RColorBrewer)
 
 ## data needed for weaving
 load("brewdat.RData")
-l3 <- gtoxLoadData(3, "aeid", aes$aeid)
-l3 <- gtoxPrepOtpt(l3)
+l3 <- tcplLoadData(3, "aeid", aes$aeid)
+l3 <- tcplPrepOtpt(l3)
 l5[ , rltp := modl_tp/coff]
 stim_smry <- l5[!is.na(chnm), 
                 list(N_endpoint = lu(aeid), 
@@ -18,5 +18,5 @@ stim_smry <- l5[!is.na(chnm),
                      N_unique_hit = lu(aeid[hitc == 1])), 
                 by = list(chnm, chid)][order(chid)]
 invisible(stim_smry[ , chnm := sanitize(chnm)])
-chem_tbl <- gtoxLoadChem(include.spid = FALSE)
+chem_tbl <- tcplLoadChem(include.spid = FALSE)
 @

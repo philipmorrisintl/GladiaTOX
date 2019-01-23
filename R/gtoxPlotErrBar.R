@@ -20,20 +20,27 @@
 #' @param ngrp Integer, the number of "slots" to draw; overridden if the
 #' number of aeid values is greater than 'ngrp'
 #'
-#' @return None
-#'
+#' @examples
+#' ## Make plot
+#' 
+#' tcplConfDefault()
+#' gtoxPlotErrBar(1,3,2)
+#' 
 #' @importFrom stats sd
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom grDevices colorRampPalette
 #' @import data.table
 #' @importFrom graphics text abline points legend lines axis par strwidth
+#' @importFrom tcpl tcplPrepOtpt tcplLoadAeid lu
 #' @export
+#' 
+#' @return None
 
 gtoxPlotErrBar <- function(c1, c2, aeid, ngrp=NULL) {
 
     ## Load necessary data
-    cd <- gtoxLoadChem(field="chid", val=c(c1, c2))
-    dat <- gtoxLoadData(
+    cd <- tcplLoadChem(field="chid", val=c(c1, c2))
+    dat <- tcplLoadData(
         lvl=3,
         fld=c("spid", "aeid"),
         val=list(cd$spid, aeid)
@@ -41,10 +48,10 @@ gtoxPlotErrBar <- function(c1, c2, aeid, ngrp=NULL) {
     if (nrow(dat) == 0) {
         stop("No data for the given inputs.")
     }
-    dat <- gtoxPrepOtpt(dat)
+    dat <- tcplPrepOtpt(dat)
 
     ## Get data type, and set default range
-    data_type <- gtoxLoadAeid("aeid", aeid, add.fld="normalized_data_type")
+    data_type <- tcplLoadAeid("aeid", aeid, add.fld="normalized_data_type")
     data_type <- data_type[ , unique(normalized_data_type)]
     if (length(data_type) > 1) {
         stop(

@@ -19,10 +19,10 @@
 #' 
 #' 
 #' @details
-#' These functions are used to populate the gtox database with the necessary
+#' These functions are used to populate the tcpl database with the necessary
 #' annotation information to complete the processing. As shown in the package
 #' vignette, the package requires some information about the samples and assays
-#' before data can be loaded into the gtox database. 
+#' before data can be loaded into the tcpl database. 
 #' 
 #' Depending on what is being registered, different information is required. 
 #' The following table lists the fields that can be registered/updated by these
@@ -52,31 +52,31 @@
 #' 
 #' ## Store the current config settings, so they can be reloaded at the end 
 #' ## of the examples
-#' conf_store <- gtoxConfList()
-#' gtoxConfDefault()
+#' conf_store <- tcplConfList()
+#' tcplConfDefault()
 #' 
 #' ## Load current ASID information
-#' gtoxLoadAsid()
+#' tcplLoadAsid()
 #' 
 #' ## Register a new assay source
-#' gtoxRegister(what = "asid", flds = list(asnm = "example_asid", 
+#' tcplRegister(what = "asid", flds = list(asnm = "example_asid", 
 #'                                         asph = "example_phase"))
 #' 
 #' ## Show the newly registered ASID
-#' gtoxLoadAsid(add.fld = "assay_source_desc")
+#' tcplLoadAsid(add.fld = "assay_source_desc")
 #' 
 #' ## Notice that the newly created ASID does not have an assay_source_desc.
 #' ## The field could have been defined during the registration process, but
-#' ## can also be updated using gtoxUpdate
-#' i1 <- gtoxLoadAsid()[asnm == "example_asid", asid]
-#' gtoxUpdate(what = "asid", 
+#' ## can also be updated using tcplUpdate
+#' i1 <- tcplLoadAsid()[asnm == "example_asid", asid]
+#' tcplUpdate(what = "asid", 
 #'            id = i1, 
 #'            flds = list(assay_source_desc = "example asid description"))
-#' gtoxLoadAsid(add.fld = "assay_source_desc")
+#' tcplLoadAsid(add.fld = "assay_source_desc")
 #' 
 #' ## Remove the created ASID. Note: Manually deleting primary keys can cause
 #' ## serious database problems and should not generally be done. 
-#' gtoxSendQuery(paste0("DELETE FROM assay_source WHERE asid = ", i1, ";"))
+#' tcplSendQuery(paste0("DELETE FROM assay_source WHERE asid = ", i1, ";"))
 #' 
 #' ## Reset configuration
 #' options(conf_store)

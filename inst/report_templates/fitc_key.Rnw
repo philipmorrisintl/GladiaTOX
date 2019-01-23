@@ -3,7 +3,7 @@
 \centering
 \rotatebox{90}{
 <<<%= paste0("fitc_key") %>, fig=true, strip.white=true, echo=FALSE, height=5, width=8.5>>=
-gtoxPlotFitc()
+tcplPlotFitc()
 @
 }
 \end{figure}

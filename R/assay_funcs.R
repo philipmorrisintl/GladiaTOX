@@ -22,36 +22,38 @@
 #' 
 #' @details
 #' Each element in the assay hierarchy has its own function, loading the ID and
-#' name for the given assay element. For example, \code{gtoxLoadAsid} will 
+#' name for the given assay element. For example, \code{tcplLoadAsid} will 
 #' return the assay source ID (asid) and assay source name (asnm). 
 #' 
 #' @examples
 #' ## Store the current config settings, so they can be reloaded at the end 
 #' ## of the examples
-#' conf_store <- gtoxConfList()
-#' gtoxConfDefault()
+#' conf_store <- tcplConfList()
+#' tcplConfDefault()
 #' 
 #' ## The load assay functions can be used without any parameters to list the 
 #' ## full list of registered assay elements:
-#' gtoxLoadAsid()
-#' gtoxLoadAeid()
+#' tcplLoadAsid()
+#' tcplLoadAeid()
 #' 
 #' ## Similarly, the user can add fields without doing any element selection:
-#' gtoxLoadAeid(add.fld = c("asid", "aid", "acid"))
+#' tcplLoadAeid(add.fld = c("asid", "aid", "acid"))
 #' 
 #' ## Or, the user can look only at a subset:
-#' gtoxLoadAeid(fld = "aeid", val = 1, add.fld = "asid")
+#' tcplLoadAeid(fld = "aeid", val = 1, add.fld = "asid")
 #' 
 #' ## The field can be any value in one of the corresponding assay element
 #' ## tables, but the functions also recognize the abbreviated version of
 #' ## the name fields.
-#' gtoxListFlds("assay")
-#' a1 <- gtoxLoadAeid(fld = "anm", val = "Apo Necro (casp37)_4h")
-#' a2 <- gtoxLoadAeid(fld = "assay_name", val = "Apo Necro (casp37)_4h")
+#' tcplListFlds("assay")
+#' a1 <- tcplLoadAeid(fld = "anm", val = "Apo Necro (casp37)_4h")
+#' a2 <- tcplLoadAeid(fld = "assay_name", val = "Apo Necro (casp37)_4h")
 #' identical(a1, a2)
 #' 
 #' ## Reset configuration
 #' options(conf_store)
 #' 
 #' @return A data.table containing the ID, name, and any additional fields.
+#' 
+#' @importFrom tcpl tcplConfList
 NULL

@@ -9,7 +9,7 @@
 
 %% Load data specific to the compare report
 <%
-cd <- gtoxLoadChem(field = "chid", val = c(c1, c2))
+cd <- tcplLoadChem(field = "chid", val = c(c1, c2))
 c1nm <- sanitize(cd[chid == c1, unique(chnm)])
 c2nm <- sanitize(cd[chid == c2, unique(chnm)])
 %>

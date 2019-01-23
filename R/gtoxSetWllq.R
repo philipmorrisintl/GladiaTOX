@@ -23,8 +23,8 @@
 #' @examples
 #' ## Store the current config settings, so they can be reloaded at the end
 #' ## of the examples
-#' conf_store <- gtoxConfList()
-#' gtoxConfDefault()
+#' conf_store <- tcplConfList()
+#' tcplConfDefault()
 #'
 #' ## Set well quality to zero for specific lvl zero ids.
 #' gtoxSetWllq(ids = 1633, wllq = 0, type = "mc")
@@ -35,6 +35,7 @@
 #' @return TRUE if successful.
 #'
 #' @import data.table
+#' @importFrom tcpl tcplConfList
 #' @export
 
 
@@ -61,7 +62,7 @@ gtoxSetWllq <- function(ids, wllq, type) {
     )
     qs1 <- sprintf(qf1, id_str)
 
-    dat <- gtoxQuery(qs1)
+    dat <- tcplQuery(qs1)
     miss <- !(ids %in% dat[ , get(fld)])
 
     if (any(miss)) {
@@ -78,9 +79,9 @@ gtoxSetWllq <- function(ids, wllq, type) {
     )
     qs2 <- sprintf(qf2, id_str)
 
-    gtoxSendQuery(qs2)
+    tcplSendQuery(qs2)
 
-    gtoxCascade(lvl=1, type=type, id=dat[ , unique(acid)])
+    tcpl:::tcplCascade(lvl=1, type=type, id=dat[ , unique(acid)])
 
     TRUE
 

@@ -23,6 +23,9 @@
 #' Function used only when processing historical data
 #' 
 #' @note PMI-specific
+#' 
+#' @return Annotation data table
+#' 
 
 .bldAnnPlt <- function(study.data, vehicle.mapping, posctr.doses, phase) {
 

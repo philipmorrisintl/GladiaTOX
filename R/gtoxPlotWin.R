@@ -28,9 +28,9 @@
 #'
 #' @examples
 #' 
-#' chid <- gtoxLoadChem(field="chnm", val="acrylamide", include.spid=FALSE)$chid
+#' chid <- tcplLoadChem(field="chnm", val="acrylamide", include.spid=FALSE)$chid
 #' print(chid)
-#' aeid <- gtoxLoadAeid(fld=c("asid","aenm"), 
+#' aeid <- tcplLoadAeid(fld=c("asid","aenm"), 
 #'           val=list(1L, "GSH content_GSH content_4h_dn"), add.fld="asid")$aeid
 #' print(aeid)
 #' gtoxPlotWin(chid = chid, aeid = aeid, bline="bmad", collapse=TRUE)
@@ -43,12 +43,13 @@
 #' @import data.table
 #' @importFrom graphics text polygon legend lines axis par strwidth plot.new
 #' @importFrom graphics plot.window
+#' @importFrom tcpl tcplLoadAeid lu tcplAddModel
 #' @export
 
 gtoxPlotWin <- function(chid, aeid, bline="bmad", collapse=TRUE) {
 
     ## Get data type, and set default range
-    data_type <- gtoxLoadAeid("aeid", aeid, add.fld="normalized_data_type")
+    data_type <- tcplLoadAeid("aeid", aeid, add.fld="normalized_data_type")
     data_type <- data_type[ , unique(normalized_data_type)]
     if (length(data_type) > 1) {
         stop(
@@ -81,13 +82,13 @@ gtoxPlotWin <- function(chid, aeid, bline="bmad", collapse=TRUE) {
 
     ## Load in concentration/response data and the fit data; mult by -1 for
     ## endpoints analyzed in the down direction
-    smp <- gtoxLoadChem(field="chid", val=chid)$spid
-    aes <- gtoxLoadAeid(
+    smp <- tcplLoadChem(field="chid", val=chid)$spid
+    aes <- tcplLoadAeid(
         fld="aeid", val=aeid, add.fld="analysis_direction")
-    rsp <- gtoxLoadData(lvl=3, fld=c("spid" ,"aeid"), val=list(smp, aeid))
-    sub <- gtoxLoadData(lvl=5, fld=c("spid" ,"aeid"), val=list(smp, aeid))
+    rsp <- tcplLoadData(lvl=3, fld=c("spid" ,"aeid"), val=list(smp, aeid))
+    sub <- tcplLoadData(lvl=5, fld=c("spid" ,"aeid"), val=list(smp, aeid))
     plt <- gtoxLoadApid(
-        fld="aid", val=gtoxLoadAeid(fld="aeid", val=aeid,
+        fld="aid", val=tcplLoadAeid(fld="aeid", val=aeid,
                                         add.fld="aid")$aid)
     rsp=merge(rsp, plt, by="apid")
     sub=merge(sub, unique(rsp[,list(spid,u_boxtrack)]), by="spid")
@@ -141,7 +142,7 @@ gtoxPlotWin <- function(chid, aeid, bline="bmad", collapse=TRUE) {
         col=grns[as.factor(rsp[ , spid])]
     )
     for (i in seq_len(nrow(sub))) {
-        gtoxAddModel(
+        tcplAddModel(
             sub[i],
             adj=switch(sub[i, adir], down=-1, 1),
             col=grns[as.factor(sub$spid)[i]]

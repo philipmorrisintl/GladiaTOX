@@ -30,8 +30,8 @@
 #' @examples
 #' ## Store the current config settings, so they can be reloaded at the end 
 #' ## of the examples
-#' conf_store <- gtoxConfList()
-#' gtoxConfDefault()
+#' conf_store <- tcplConfList()
+#' tcplConfDefault()
 #' 
 #' ## Prepare for analysis before QC + process data
 #' gtoxCalcVmad(inputs = 10L)
@@ -42,6 +42,8 @@
 #' @return None
 #' 
 #' @import data.table
+#' @importFrom stats mad
+#' 
 #' @export
 
 gtoxCalcVmad <- function(inputs, aeid=NULL, notes=NULL) {
@@ -53,7 +55,7 @@ gtoxCalcVmad <- function(inputs, aeid=NULL, notes=NULL) {
     inputs <- unique(inputs)
     aeid <- unique(aeid)
 
-    dat <- gtoxLoadData(lvl=3, fld="aeid", val=inputs)
+    dat <- tcplLoadData(lvl=3, fld="aeid", val=inputs)
     nveh <- dat[wllt == "n", .N]
     if (nveh < 1) stop("No vehicle data for the given inputs.")
 
@@ -62,16 +64,16 @@ gtoxCalcVmad <- function(inputs, aeid=NULL, notes=NULL) {
     if (is.null(aeid)) return(val)
 
     db <- getOption("TCPL_DB")
-    gtoxDelete(
+    tcpl:::tcplDelete(
         tbl="assay_component_endpoint_vmad",
         fld="aeid",
         val=aeid,
         db=db
     )
-    gtoxCascade(lvl=5, type="mc", id=aeid)
+    tcpl:::tcplCascade(lvl=5, type="mc", id=aeid)
     clps <- paste(inputs, collapse=";")
     out <- data.table(aeid=aeid, vmad=val, notes=notes, inputs=clps)
-    gtoxAppend(dat=out, tbl="assay_component_endpoint_vmad", db=db)
+    tcpl:::tcplAppend(dat=out, tbl="assay_component_endpoint_vmad", db=db)
 
 }
 

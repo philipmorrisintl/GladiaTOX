@@ -32,6 +32,7 @@ This funtion is useful to plot MEC or AC50 values
 \examples{
 
 ## Create a pie plot of MEC values for all chemicals tested in the study
+tcplConfDefault()
 glPlotPie(asid=1L)
 
 }

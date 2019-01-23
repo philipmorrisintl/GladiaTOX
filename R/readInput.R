@@ -23,6 +23,8 @@
 #' @importFrom utils type.convert
 #' @import data.table
 #' 
+#' @return none
+#' 
 
 .readInput <- function(x) {
 

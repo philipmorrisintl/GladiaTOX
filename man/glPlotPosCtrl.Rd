@@ -25,8 +25,8 @@ PMI-specific
 \examples{
 ## Store the current config settings, so they can be reloaded at the end
 ## of the examples
-conf_store <- gtoxConfList()
-gtoxConfDefault()
+conf_store <- tcplConfList()
+tcplConfDefault()
 
 ## Create boxplot for all endpoints and chemicals tested. Useful to save
 ## plots in a pdf file.

@@ -21,3 +21,9 @@ None
 \description{
 \code{gtoxPlotPieLgnd} creates the piechart plots.
 }
+\examples{
+
+## Create pie legend
+gtoxPlotPieLgnd("Cytotoxicity")
+
+}

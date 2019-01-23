@@ -9,7 +9,7 @@
 \setkeys{Gin}{width=1\linewidth}
 \begin{figure}[H]
 <<<%= mylabel %>,fig=true,strip.white=true,echo=false,height=8,width=12>>=
-gtoxPlotPlate(dat = l2, apid = "<%= apid_vals[i]%>", id = <%= ac %>)
+tcplPlotPlate(dat = l2, apid = "<%= apid_vals[i]%>", id = <%= ac %>)
 @
 \end{figure}
 \par
@@ -28,7 +28,7 @@ pcids <- l5[spid %in% pc_spid & aeid == up_aeid, m4id]
 \setkeys{Gin}{width=0.9\linewidth}
 \begin{figure}[H]
 <<<%= mylabel %>,fig=true,strip.white=true,echo=false,height=7,width=12>>=
-gtoxPlotM4ID(m4id = <%= pcid %>, lvl = 6, bline = "coff")
+tcplPlotM4ID(m4id = <%= pcid %>, lvl = 6, bline = "coff")
 @
 \end{figure}
 \par

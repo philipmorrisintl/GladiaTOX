@@ -25,21 +25,23 @@
 #' @examples
 #'
 #' ## Create a pie plot of MEC values for all chemicals tested in the study
+#' tcplConfDefault()
 #' glPlotPie(asid=1L)
 #' 
 #' @return None
 #'
 #' @import ggplot2
+#' @importFrom tcpl tcplLoadAid tcplLoadAcid tcplLoadAeid
 #' @export
 #'
 glPlotPie <- function(asid, chnms=NULL, acids=NULL, aeids=NULL,
     expos.time.ordr=NULL, stat=quote(modl_acc)) {
 
     ## load study annotations
-    t1 <- gtoxLoadAsid(fld="asid", val=asid)
-    t2 <- gtoxLoadAid(fld="asid", val=asid)
-    t3 <- gtoxLoadAcid(fld="aid", val=t2$aid)
-    t4 <- gtoxLoadAeid(fld="acid", val=t3$acid)
+    t1 <- tcplLoadAsid(fld="asid", val=asid)
+    t2 <- tcplLoadAid(fld="asid", val=asid)
+    t3 <- tcplLoadAcid(fld="aid", val=t2$aid)
+    t4 <- tcplLoadAeid(fld="acid", val=t3$acid)
     annotations <- merge(merge(
         merge(t1, t2, by="asid"), t3, by="aid"), t4, by="acid")
     ## filter for aeids in input
@@ -51,9 +53,9 @@ glPlotPie <- function(asid, chnms=NULL, acids=NULL, aeids=NULL,
         annotations <- annotations[acid%in%acids]
 
     ## load study data
-    t1 <- gtoxLoadData(lvl=4L, fld="aeid", val=annotations$aeid)
-    t2 <- gtoxLoadData(lvl=5L, fld="aeid", val=annotations$aeid)
-    t3 <- gtoxLoadChem()
+    t1 <- tcplLoadData(lvl=4L, fld="aeid", val=annotations$aeid)
+    t2 <- tcplLoadData(lvl=5L, fld="aeid", val=annotations$aeid)
+    t3 <- tcplLoadChem()
     t4 <- unique(gtoxLoadWaid()[, c("apid", "spid"), with=FALSE])
     data <- merge(
         merge(t1, t2, by=intersect(colnames(t1), colnames(t2))),
