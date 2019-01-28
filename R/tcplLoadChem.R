@@ -85,10 +85,10 @@ tcplLoadChem <- function(field=NULL, val=NULL, exact=TRUE,
     dat[ , code := NA_character_]
     dat[!is.na(casn) , code := paste0("C", gsub("-|_", "", casn))]
     dat[ , chid := as.integer(chid)]
-    dat <- unique(dat)
     dat[, chem_desc := as.character(chem_desc)]
     dat[, add_info := as.character(add_info)]
-
+    dat <- unique(dat)
+    
     if (include.spid) return (dat[])
 
     dat <- unique(dat[ , spid := NULL])
