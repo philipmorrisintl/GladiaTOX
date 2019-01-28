@@ -65,12 +65,6 @@ tcplRun <- function(asid=NULL, slvl, elvl, id=NULL, type="mc",
     ## Variable-binding to pass R CMD Check
                                         # acid <- aeid <- NULL
     
-    assignInNamespace("tcplLoadData", tcplLoadData, ns="tcpl")
-    assignInNamespace("mc1", mc1, ns="tcpl")
-    assignInNamespace("mc3_mthds", mc3_mthds, ns="tcpl")
-    assignInNamespace("mc5_mthds", mc5_mthds, ns="tcpl")
-    assignInNamespace("mc6_mthds", mc6_mthds, ns="tcpl")
-    
     owarn <- getOption("warn")
     options(warn=1)
     on.exit(options(warn=owarn))

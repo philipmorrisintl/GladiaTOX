@@ -46,49 +46,49 @@
     wll <- gtoxLoadWaid(fld="apid", val=(plt$apid))
     tcpl:::tcplCascade(lvl=0L, type="mc", id=ids$acid)
     tcpl:::tcplCascade(lvl=0L, type="sc", id=ids$acid)
-    tcpl:::tcplDelete(
+    tcplDelete(
         tbl="assay_source",
         fld="asid",
         val=asid,
         db=getOption("TCPL_DB")
     )
-    tcpl:::tcplDelete(
+    tcplDelete(
         tbl="assay",
         fld="aid",
         val=unique(ids$aid),
         db=getOption("TCPL_DB")
     )
-    tcpl:::tcplDelete(
+    tcplDelete(
         tbl="assay_component",
         fld="acid",
         val=unique(ids$acid),
         db= getOption("TCPL_DB")
     )
-    tcpl:::tcplDelete(
+    tcplDelete(
         tbl="assay_compnent_endpoint",
         fld="aeid",
         val=unique(ids$aeid),
         db=getOption("TCPL_DB")
     )
-    tcpl:::tcplDelete(
+    tcplDelete(
         tbl="assay_plate",
         fld="aid",
         val=unique(ids$aid),
         db=getOption("TCPL_DB")
     )
-    tcpl:::tcplDelete(
+    tcplDelete(
         tbl="assay_plate_well",
         fld="apid",
         val=unique(plt$apid),
         db=getOption("TCPL_DB")
     )
-    tcpl:::tcplDelete(
+    tcplDelete(
         tbl="bb_apid_map",
         fld="apid",
         val=unique(plt$apid),
         db=getOption("TCPL_DB")
     )
-    tcpl:::tcplDelete(
+    tcplDelete(
         tbl="bb_waid_map",
         fld="waid",
         val=unique(wll$waid),

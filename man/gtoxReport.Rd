@@ -64,8 +64,9 @@ can make use of brew and Sweave syntax, and all data loaded for the report.
 \examples{
 ## Generate full analysis report
 
-\dontrun{
 ## Generate report
+
+\dontrun{
 gtoxReport(type = "all", asid = 1L, report_author = "author", 
 report_title = "Processing report")
 }

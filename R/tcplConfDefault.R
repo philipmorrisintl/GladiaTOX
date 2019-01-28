@@ -14,6 +14,10 @@
 #' @description
 #' This function is used to set default configuration of the gtox sqlite DB.
 #' 
+#' @examples
+#' 
+#' tcplConfDefault()
+#' 
 #' @importFrom tcpl tcplConf
 #' @export
 #' 

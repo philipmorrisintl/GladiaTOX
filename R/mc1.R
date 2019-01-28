@@ -134,7 +134,7 @@ mc1 <- function(ac, wr=FALSE) {
     ## Load into mc1 table -- else return results
     if (wr) {
         stime <- Sys.time()
-        tcpl:::tcplWriteData(dat=dat, lvl=1L, type="mc")
+        tcplWriteData(dat=dat, lvl=1L, type="mc")
 
         ttime <- round(difftime(Sys.time(), stime, units="sec"), 2)
         ttime <- paste(unclass(ttime), units(ttime))

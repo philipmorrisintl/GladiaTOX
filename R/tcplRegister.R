@@ -95,7 +95,7 @@ tcplRegister <- function(what, flds) {
         flds[ , c(xtra) := NULL]
     }
 
-    tcpl:::tcplAppend(dat=flds, tbl=i[[1]], db=options()$TCPL_DB)
+    tcplAppend(dat=flds, tbl=i[[1]], db=options()$TCPL_DB)
 
     TRUE
 

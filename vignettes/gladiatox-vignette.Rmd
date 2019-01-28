@@ -208,8 +208,8 @@ print(asid)
 The `asid` and the `dat` objects are the inputs to the `prepareDatForDB` function used to join metadata stored in database to the raw data stored in the `dat` object.
 ```{r, echo=TRUE, eval=TRUE}
 # Prepare and load data
-dat <- prepareDatForDB(asid, dat)
-tcpl:::tcplWriteData(dat[ , list(acid, waid, wllq, rval)], lvl = 0, type = "mc")
+dat <- GladiaTOX:::.prepareDatForDB(asid, dat)
+tcplWriteData(dat[ , list(acid, waid, wllq, rval)], lvl = 0, type = "mc")
 ```
 Then the raw data is loaded in the database with the `tcplWriteData` function. Study whose `asid` is `2` is now ready to be processed.
 

@@ -56,8 +56,9 @@
 #' @examples
 #' ## Generate full analysis report
 #' 
-#' \dontrun{
 #' ## Generate report
+#' 
+#' \dontrun{
 #' gtoxReport(type = "all", asid = 1L, report_author = "author", 
 #' report_title = "Processing report")
 #' }

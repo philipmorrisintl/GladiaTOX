@@ -29,10 +29,9 @@
 #' 
 #' @import data.table
 #' @importFrom tcpl tcplLoadAcid
-#' @export
 #' 
 
-prepareDatForDB <- function(asid, dat) {
+.prepareDatForDB <- function(asid, dat) {
     
     # Prepare data for loading into the database
     acid_map <- tcplLoadAcid("asid", asid, c("aid", "machine_name"))

@@ -73,7 +73,7 @@ tcplLoadChem <- function(field=NULL, val=NULL, exact=TRUE,
         exact <- TRUE
     }
 
-    qstring <- tcpl:::.ChemQ(field=field, val=val, exact=exact)
+    qstring <- .ChemQ(field=field, val=val, exact=exact)
 
     dat <- tcplQuery(query=qstring)
 

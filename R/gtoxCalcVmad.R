@@ -64,7 +64,7 @@ gtoxCalcVmad <- function(inputs, aeid=NULL, notes=NULL) {
     if (is.null(aeid)) return(val)
 
     db <- getOption("TCPL_DB")
-    tcpl:::tcplDelete(
+    tcplDelete(
         tbl="assay_component_endpoint_vmad",
         fld="aeid",
         val=aeid,
@@ -73,7 +73,7 @@ gtoxCalcVmad <- function(inputs, aeid=NULL, notes=NULL) {
     tcpl:::tcplCascade(lvl=5, type="mc", id=aeid)
     clps <- paste(inputs, collapse=";")
     out <- data.table(aeid=aeid, vmad=val, notes=notes, inputs=clps)
-    tcpl:::tcplAppend(dat=out, tbl="assay_component_endpoint_vmad", db=db)
+    tcplAppend(dat=out, tbl="assay_component_endpoint_vmad", db=db)
 
 }
 
