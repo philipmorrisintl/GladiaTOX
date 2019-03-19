@@ -6,13 +6,13 @@
 #####################################################################
 
 #-------------------------------------------------------------------------------
-# tcplImportThermoDB: Import data from ThermoDB by study ID
+# gtoxImportThermoDB: Import data from ThermoDB by study ID
 #-------------------------------------------------------------------------------
 
 #' @title Import data from ThermoDB by study ID
 #'
 #' @description This function accesses the ThermoDB webservices and imports
-#' data from ThermoDB to the tcpl database.
+#' data from ThermoDB to the gtox database.
 #'
 #' @param asid Integer, the assay study/source ID to import data for
 #' @param verbose Logical, should the output from the curl be displayed?
@@ -20,15 +20,16 @@
 #' returned?
 #' @param store Character, the name of the store on ThermoDB to query
 #' @param type Character, the data type: 'mc' or 'sc'
+#' @param curlurl URL of the webservice
 #'
 #' @examples
 #' ## Fetches data from ThermoDB to load in GladiaTOX DB prior processing
-#' conf_store <- tcplConfList()
-#' tcplConfDefault()
+#' conf_store <- gtoxConfList()
+#' gtoxConfDefault()
 #' 
 #' \dontrun{
 #' ## Fetch data from ThermoDB
-#' dat <- tcplImportThermoDB(asid)
+#' dat <- gtoxImportThermoDB(asid)
 #' }
 #' 
 #' ## Reset configuration
@@ -39,12 +40,12 @@
 #' @import data.table
 #' @export
 
-tcplImportThermoDB <- function(asid, verbose=TRUE, write=FALSE,
+gtoxImportThermoDB <- function(asid, verbose=TRUE, write=FALSE,
                                store="STORE", type="mc",
                curlurl="http://pmichlauapp225.pmintl.net:2020/HTTPHCSConnect") {
 
-    acid_map <- tcplLoadAcid("asid", asid, c("aid", "machine_name"))
-    well_dat <- tcplLoadWaid("aid", acid_map[ , unique(aid)])
+    acid_map <- gtoxLoadAcid("asid", asid, c("aid", "machine_name"))
+    well_dat <- gtoxLoadWaid("aid", acid_map[ , unique(aid)])
 
     scans <- .ListsWrapper(store=store, verbose=verbose,
                curlurl=curlurl)
@@ -72,7 +73,7 @@ tcplImportThermoDB <- function(asid, verbose=TRUE, write=FALSE,
     dat[ , wllq := 1]
 
     if (write) {
-        tcplWriteData(dat[ , list(acid, waid, wllq, rval)],
+        gtoxWriteData(dat[ , list(acid, waid, wllq, rval)],
                       lvl=0, type=type)
     }
 

@@ -7,7 +7,7 @@
 assignDefaultMthds(asid)
 }
 \arguments{
-\item{asid}{Integer, the asid value(s) to assign the default methods to}
+\item{asid}{Integer, the asid value(s) to which assign the default methods}
 }
 \value{
 None

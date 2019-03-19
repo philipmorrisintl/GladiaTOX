@@ -35,7 +35,9 @@ Imports:
     ggplot2,
     ggrepel,
     tidyr,
-    utils
+    utils,
+    RCurl,
+    XML
 LazyData: TRUE
 VignetteBuilder: knitr
 Suggests:

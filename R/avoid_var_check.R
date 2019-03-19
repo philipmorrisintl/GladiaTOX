@@ -31,4 +31,6 @@ if(getRversion() >= "2.15.1"){
                     "hill_tp_sd", "hill_ga_sd", "hill_gw_sd", "gnls_la_sd",
                     "gnls_gw_sd", "gnls_ga_sd", "resp_min", "resp_max", "val"))
     globalVariables(c("casn", "m4id", "cnst_aic", "cnst_prob", "cnst_rmse"))
+    globalVariables(c("endt", "temp", "measure_id", "measure_tp", "upd"))
+    globalVariables(c("barcode", "b_tmp", "name", "n_tmp"))
 }

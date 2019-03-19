@@ -12,7 +12,7 @@
 #' @title Assign default processing methods
 #' @description Function to assign default processing method to asid in input
 #' 
-#' @param asid Integer, the asid value(s) to assign the default methods to
+#' @param asid Integer, the asid value(s) to which assign the default methods
 #'
 #' @details
 #' This function loads all components and endpoints for the given asid(s) in

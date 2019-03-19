@@ -12,6 +12,9 @@
 #' @title Parse output in .listScans
 #' @description This function parses the output from the .listScans function
 #' in the ThermoDB webservices.
+#' 
+#' @param xml_file XML formatted content from Thermo database
+#' 
 #' @note PMI-specific
 #' @importFrom XML xmlToList
 #' @import data.table
@@ -41,6 +44,9 @@
 #' @title Parse output in .listScans
 #' @description This function parses the output from the .listScans function
 #' in the ThermoDB webservices.
+#' 
+#' @param xml_file XML formatted content from Thermo database
+#' 
 #' @note PMI-specific
 #' @importFrom XML xmlToList
 #' @import data.table
@@ -252,7 +258,12 @@
 #-------------------------------------------------------------------------------
 
 #' @title List scans and protocols
-#' @description This function fetched and merges scan list and protocols.
+#' @description This function fetched and merges scan list and protocols
+#' 
+#' @param store The ThermoDB store to pull data from
+#' @param verbose Logical, should curl return the messages to the console?
+#' @param curlurl webservice URL
+#' 
 #' @note PMI-specific
 #' @import data.table
 
@@ -292,6 +303,8 @@
 #' @title Parse output in .getScanData
 #' @description This function parses the output from the .getScanData function
 #' in the ThermoDB webservices.
+#' 
+#' @param xml_file XML formatted content from Thermo database
 #' 
 #' @note PMI-specific
 #' 
@@ -432,6 +445,9 @@
 #' @title helper function for .parseGetScanData
 #' @description This function parses the individual wells within the
 #' .parseGetScanData function
+#' 
+#' @param l Content of a single well
+#' 
 #' @note PMI-specific
 #' @import data.table
 
