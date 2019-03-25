@@ -8,6 +8,9 @@
 #' @title Get the configuration file
 #' @description Get the configuration file location and check that it is
 #' writable
+#' @return Config file
+#' 
+
 .getConfFile <- function() {
     conf_file <- Sys.getenv("TCPL_CONF")
     if (conf_file == "") {

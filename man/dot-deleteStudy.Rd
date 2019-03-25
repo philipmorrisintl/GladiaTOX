@@ -12,6 +12,9 @@
 \item{db}{(optional) the databse to delete from, defaults to the current
 database settings}
 }
+\value{
+None
+}
 \description{
 \code{.deleteStudy} completely removes all data for a study from the 
 database.

@@ -20,6 +20,7 @@
 #' Function used only when processing historical data
 #'
 #' @note PMI-specific
+#' @return Table with assay information
 
 .buildAssayTab <- function(plate.mtd, chn.map) {
 

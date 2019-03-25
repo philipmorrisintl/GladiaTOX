@@ -6,6 +6,9 @@
 \usage{
 .getConfFile()
 }
+\value{
+Config file
+}
 \description{
 Get the configuration file location and check that it is
 writable

@@ -9,6 +9,9 @@
 \arguments{
 \item{input}{path to JSON file produced by the GUI}
 }
+\value{
+None
+}
 \description{
 This function parses the output from the GUI after the GladiaTOX
 IDs have been loaded into BioBanking and registers the BioBanking IDs into

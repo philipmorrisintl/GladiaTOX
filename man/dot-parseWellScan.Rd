@@ -9,6 +9,9 @@
 \arguments{
 \item{l}{Content of a single well}
 }
+\value{
+Parsed well information
+}
 \description{
 This function parses the individual wells within the
 .parseGetScanData function

@@ -18,6 +18,7 @@
 #' @note PMI-specific
 #' @importFrom XML xmlToList
 #' @import data.table
+#' @return Parsed protocol list
 
 .parseListProtocols <- function(xml_file) {
 
@@ -50,6 +51,7 @@
 #' @note PMI-specific
 #' @importFrom XML xmlToList
 #' @import data.table
+#' @return DB store entry table
 
 .parseListScans <- function(xml_file) {
 
@@ -99,6 +101,7 @@
 #' @importFrom RCurl basicTextGatherer curlOptions curlPerform
 #' @importFrom stringr str_locate
 #' @import data.table
+#' @return Parsed XML file
 
 .listScans <- function(store="STORE", verbose=TRUE, curlurl=curlurl) {
 
@@ -183,6 +186,7 @@
 #' @importFrom RCurl basicTextGatherer curlOptions curlPerform
 #' @importFrom stringr str_locate
 #' @import data.table
+#' @return List of protocols
 
 .listPrcls <- function(store="STORE", verbose=TRUE, curlurl=curlurl) {
 
@@ -266,6 +270,7 @@
 #' 
 #' @note PMI-specific
 #' @import data.table
+#' @return List of DB store entries
 
 .ListsWrapper <- function(store="STORE", verbose=TRUE, 
               curlurl=curlurl){
@@ -311,6 +316,7 @@
 #' @importFrom XML xmlToList
 #' @importFrom utils type.convert
 #' @import data.table
+#' @return Parsed well information
 
 .parseGetScanData <- function(xml_file) {
 
@@ -366,6 +372,7 @@
 #' @importFrom RCurl basicTextGatherer curlOptions curlPerform
 #' @importFrom stringr str_locate
 #' @import data.table
+#' @return Parsed XML file
 
 .getScanData <- function(upd, store="STORE", verbose=TRUE, curlurl=curlurl) {
 
@@ -450,6 +457,7 @@
 #' 
 #' @note PMI-specific
 #' @import data.table
+#' @return Parsed well information
 
 .parseWellScan <- function(l) {
 

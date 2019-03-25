@@ -26,6 +26,9 @@
 \item{arng}{Numeric of length 2, the minimum and maximum values to constrain
 the color scale}
 }
+\value{
+None
+}
 \description{
 Plot plate heatmap, to be used with gtoxPlotPlate
 }

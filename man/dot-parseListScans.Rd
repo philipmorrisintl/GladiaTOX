@@ -9,6 +9,9 @@
 \arguments{
 \item{xml_file}{XML formatted content from Thermo database}
 }
+\value{
+DB store entry table
+}
 \description{
 This function parses the output from the .listScans function
 in the ThermoDB webservices.

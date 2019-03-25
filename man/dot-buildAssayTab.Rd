@@ -11,6 +11,9 @@
 
 \item{chn.map}{List of endpoints to thermo channels mapping}
 }
+\value{
+Table with assay information
+}
 \description{
 This function parses plate annotations and create a mapping
 between assay endpoints and channels

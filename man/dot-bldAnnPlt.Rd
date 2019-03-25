@@ -15,6 +15,9 @@
 
 \item{phase}{Study phase}
 }
+\value{
+Data table with annotation info
+}
 \description{
 This function parses plate based legacy data annotation files,
 channel, positive control, and assay mapping to build a data.frame with 

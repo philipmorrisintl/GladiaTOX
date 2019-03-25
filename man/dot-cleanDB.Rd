@@ -6,6 +6,9 @@
 \usage{
 .cleanDB()
 }
+\value{
+None
+}
 \description{
 This function deletes all data from the database and preserves 
 the method tables.

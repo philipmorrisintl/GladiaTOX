@@ -11,6 +11,9 @@
 
 \item{side}{Line side}
 }
+\value{
+None
+}
 \description{
 Convert margin line to usr coordinates
 }

@@ -15,7 +15,7 @@
 #' @param side Line side
 #'
 #' @importFrom graphics grconvertX grconvertY
-#'
+#' @return None
 
 .line2user <- function(line, side) {
     lh <- par('cin')[2] * par('cex') * par('lheight')

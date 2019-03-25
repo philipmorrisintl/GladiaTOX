@@ -33,6 +33,8 @@
 #' @importFrom graphics lines rect
 #' @importFrom grDevices colorRampPalette
 #' @importFrom stats quantile
+#' 
+#' @return None
 
 .plateHeat <- function(vals, rowi, coli, wllt, wllq, rown, coln, main, arng) {
 

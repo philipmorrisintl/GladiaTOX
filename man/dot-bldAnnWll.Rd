@@ -13,6 +13,9 @@
 
 \item{phase}{Study phase to be registered in GladiaTOC DB}
 }
+\value{
+Data table with annotation info
+}
 \description{
 This function parses well based legacy data annotation files,
 channel, positive control, and assay mapping to build a data.frame with

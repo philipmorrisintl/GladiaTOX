@@ -27,6 +27,7 @@
 #' PMI-specific
 #' 
 #' @import data.table
+#' @return None
 
 .deleteStudy <- function(asid, db=NULL) {
 

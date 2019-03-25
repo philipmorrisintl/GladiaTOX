@@ -13,6 +13,9 @@
 
 \item{curlurl}{webservice URL}
 }
+\value{
+List of DB store entries
+}
 \description{
 This function fetched and merges scan list and protocols
 }

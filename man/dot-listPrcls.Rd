@@ -13,6 +13,9 @@
 
 \item{curlurl}{webservice URL}
 }
+\value{
+List of protocols
+}
 \description{
 This function queries the thermoDB webservices and returns a
 data.table with the available protocols stored on the server.

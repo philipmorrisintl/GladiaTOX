@@ -15,6 +15,9 @@
 
 \item{curlurl}{webservice URL}
 }
+\value{
+Parsed XML file
+}
 \description{
 This function queries the thermoDB webservices and returns a
 data.table with the data for the given scan

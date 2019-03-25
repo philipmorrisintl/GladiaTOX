@@ -9,6 +9,9 @@
 \arguments{
 \item{ae}{Assay endpoint}
 }
+\value{
+Data.table with level 6 gtox info
+}
 \description{
 \code{.load6DR} loads dose-response data for gtox6.
 }

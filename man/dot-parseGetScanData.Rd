@@ -9,6 +9,9 @@
 \arguments{
 \item{xml_file}{XML formatted content from Thermo database}
 }
+\value{
+Parsed well information
+}
 \description{
 This function parses the output from the .getScanData function
 in the ThermoDB webservices.

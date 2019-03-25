@@ -20,6 +20,7 @@
 #' @importFrom stringr str_extract
 #' @import data.table
 #' 
+#' @return None
 
 .loadBBMap <- function(input) {
     

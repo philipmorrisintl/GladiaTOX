@@ -22,6 +22,8 @@
 #' the last table containing i to i. ORDER OF FLD MATTERS!!
 #'
 #' @import data.table
+#' @return List of fields
+#' 
 
 .prepField <- function(fld, tbl, db) {
 

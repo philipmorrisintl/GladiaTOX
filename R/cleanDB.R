@@ -14,6 +14,7 @@
 #' the method tables. 
 #' 
 #' @note PMI-specific
+#' @return None
 
 .cleanDB <- function() {
 

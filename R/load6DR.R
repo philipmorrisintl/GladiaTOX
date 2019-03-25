@@ -15,7 +15,7 @@
 #' \code{.load6DR} loads dose-response data for gtox6.
 #' 
 #' @param ae Assay endpoint
-#' 
+#' @return Data.table with level 6 gtox info
 
 .load6DR <- function(ae) {
 

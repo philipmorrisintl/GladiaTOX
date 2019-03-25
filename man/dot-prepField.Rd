@@ -13,6 +13,9 @@
 
 \item{db}{Character, the database containing the tables}
 }
+\value{
+List of fields
+}
 \description{
 Paste appropriate table name to field name
 }

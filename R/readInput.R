@@ -23,6 +23,8 @@
 #' @importFrom utils type.convert
 #' @import data.table
 #' 
+#' @return Data frame with plate annotation
+#' 
 
 .readInput <- function(x) {
 

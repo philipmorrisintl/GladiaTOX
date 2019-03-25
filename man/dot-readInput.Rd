@@ -9,6 +9,9 @@
 \arguments{
 \item{x}{path to JSON file produced by the GUI}
 }
+\value{
+Data frame with plate annotation
+}
 \description{
 Parse GUI JSON output
 }
