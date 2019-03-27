@@ -40,20 +40,20 @@
 #' @import data.table
 #' @export
 
-gtoxImportThermoDB <- function(asid, verbose=TRUE, write=FALSE,
-                               store="STORE", type="mc",
-               curlurl="http://pmichlauapp225.pmintl.net:2020/HTTPHCSConnect") {
+gtoxImportThermoDB <- function(asid, verbose=TRUE, write=FALSE, store="STORE",
+            type="mc",
+            curlurl="http://pmichlauapp225.pmintl.net:2020/HTTPHCSConnect") {
 
     acid_map <- gtoxLoadAcid("asid", asid, c("aid", "machine_name"))
     well_dat <- gtoxLoadWaid("aid", acid_map[ , unique(aid)])
 
     scans <- .ListsWrapper(store=store, verbose=verbose,
-               curlurl=curlurl)
+                curlurl=curlurl)
 
     upds <- scans[scans$barcode %in% unique(well_dat$u_boxtrack), unique(upd)]
 
     dat <- lapply(upds, .getScanData, verbose=verbose, store=store,
-                  curlurl=curlurl)
+                    curlurl=curlurl)
     dat <- rbindlist(dat)
 
     dat$coli<- dat$coli + 1 #to be compatible with the database sample indexing
@@ -74,7 +74,7 @@ gtoxImportThermoDB <- function(asid, verbose=TRUE, write=FALSE,
 
     if (write) {
         gtoxWriteData(dat[ , list(acid, waid, wllq, rval)],
-                      lvl=0, type=type)
+                        lvl=0, type=type)
     }
 
     return(dat[])

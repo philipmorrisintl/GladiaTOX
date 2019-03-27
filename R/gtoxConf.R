@@ -12,8 +12,8 @@
 #' @rdname config_funcs
 #' @export
 
-gtoxConf <- function (drvr=NULL, user=NULL, pass=NULL, host=NULL,
-    db=NULL, int=NULL) {
+gtoxConf <- function (drvr=NULL, user=NULL, pass=NULL, host=NULL, db=NULL, 
+                        int=NULL) {
 
     ## Variable-binding to pass R CMD Check
     Value <- NULL

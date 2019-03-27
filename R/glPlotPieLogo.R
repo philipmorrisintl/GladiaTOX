@@ -46,7 +46,7 @@ glPlotPieLogo <- function(){
     before = 47; after = 48
     logo = ggplot(data, aes(x = slice, y = value)) +
         geom_hline(color="gray", yintercept = yintercept, size=.3, 
-                   linetype="dashed") +
+                linetype="dashed") +
         geom_bar(stat="identity", aes(fill = layer), color="gray60") +
         geom_hline(color="white", yintercept = 0.5, size=5, linetype="solid") +
         scale_fill_manual(values = c("#533B22", "#917546", "#33190C")) +

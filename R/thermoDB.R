@@ -28,9 +28,10 @@
 
     ## Parse out the ID, Name, & Version columns into a data.table object
     slst <- lapply(slst, "[", c("ID", "Name", "Version"))
-    slst <- data.table(prcl=sapply(slst, "[[", 1),
-                       name=sapply(slst, "[[", 2),
-                       vrs =sapply(slst, "[[", 3))
+    slst <- data.table(prcl=vapply(slst, function(xx){xx$ID}, character(1)),
+                        name=vapply(slst, function(xx){xx$Name}, character(1)),
+                        vrs=vapply(slst, function(xx){xx$Version}, 
+                                    character(1)))
 
     return(slst[])
 
@@ -62,19 +63,22 @@
     ## Parse out the UPD, Barcode, Name, ScanFinish, & ProtocolID columns into a
     ## ProtocolID object
     slst <- lapply(slst, "[",
-                   c("UPD", "Barcode", "Name", "ScanFinish", "ProtocolID"))
-    slst <- data.table(upd  =sapply(slst, "[[", 1),
-                       b_tmp=sapply(slst, "[[", 2),
-                       n_tmp=sapply(slst, "[[", 3),
-                       endt =sapply(slst, "[[", 4),
-                       prcl =sapply(slst, "[[", 5))
+                    c("UPD", "Barcode", "Name", "ScanFinish", "ProtocolID"))
+    slst <- data.table(upd=vapply(slst, function(xx){xx$UPD}, character(1)),
+                        b_tmp=vapply(slst, function(xx){xx$Barcode}, 
+                                        character(1)),
+                        n_tmp=vapply(slst, function(xx){xx$Name}, character(1)),
+                        endt=vapply(slst, function(xx){xx$ScanFinish}, 
+                                        character(1)),
+                        prcl=vapply(slst, function(xx){xx$ProtocolID}, 
+                                        character(1)))
 
     ## For NULL Barcode values, make the Barcode & Name "NULL" character strings
-    bmiss <- sapply(slst$b_tmp, is.null)
+    bmiss <- vapply(slst$b_tmp, is.null, logical(1))
     slst[bmiss,  barcode := "NULL"]
     slst[!bmiss, barcode := unlist(b_tmp)]
     slst[ , b_tmp := NULL]
-    nmiss <- sapply(slst$n_tmp, is.null)
+    nmiss <- vapply(slst$n_tmp, is.null, logical(1))
     slst[nmiss,  name := "NULL"]
     slst[!nmiss, name := unlist(n_tmp)]
     slst[ , n_tmp := NULL]
@@ -143,8 +147,8 @@
 
     ## Convigure the curl options, then perform the curl
     myOpts=curlOptions(verbose=verbose,
-                         writefunc=reader$update,
-                         header=FALSE)
+                        writefunc=reader$update,
+                        header=FALSE)
     curlPerform(url=curlurl,
                 httpheader=header,
                 postfields=body,
@@ -230,8 +234,8 @@
 
     ## Convigure the curl options, then perform the curl
     myOpts=curlOptions(verbose=verbose,
-                         writefunc=reader$update,
-                         header=FALSE)
+                        writefunc=reader$update,
+                        header=FALSE)
     curlPerform(url=curlurl,
                 httpheader=header,
                 postfields=body,
@@ -273,7 +277,7 @@
 #' @return List of DB store entries
 
 .ListsWrapper <- function(store="STORE", verbose=TRUE, 
-              curlurl=curlurl){
+                curlurl=curlurl){
 
     ## List scans
     list_scan <- .parseListScans(.listScans(store=store, verbose=verbose,
@@ -334,7 +338,7 @@
     mid_map <- as.data.table(sdat$MeasureSpecs)
     mid_map <- as.data.table(t(mid_map))
     setnames(mid_map, c("measure_id", "temp","machine_name", "measure_tp"))
-    null_names <- mid_map[ , sapply(machine_name, is.null)]
+    null_names <- mid_map[ , vapply(machine_name, is.null, logical(1))]
     mid_map[null_names, machine_name := temp]
     mid_map[ , temp := NULL]
     mid_map <- mid_map[ , lapply(.SD, function(x) type.convert(unlist(x)))]
@@ -392,7 +396,7 @@
             <ther1:Store>%s</ther1:Store>
             </ther1:Store>
             <ther1:Scan>
-              <ther1:UPD>%s</ther1:UPD>
+                <ther1:UPD>%s</ther1:UPD>
             </ther1:Scan>
             <ther1:IncludePasses>1</ther1:IncludePasses>
             <ther1:IncludeFields>0</ther1:IncludeFields>
@@ -422,8 +426,8 @@
 
     ## Convigure the curl options, then perform the curl
     myOpts=curlOptions(verbose=verbose,
-                         writefunc=reader$update,
-                         header=FALSE)
+                        writefunc=reader$update,
+                        header=FALSE)
     curlPerform(url=curlurl,
                 httpheader=header,
                 postfields=body,
@@ -469,7 +473,7 @@
     well_info <- l$WellSpec
     dat <- as.data.table(l$Passes$PassData$PassMeasures)
     dat <- data.table(measure_id =unlist(dat[1]),
-                      measure_val=unlist(dat[2]))
+                        measure_val=unlist(dat[2]))
     ## Extract the row and column indices from the provided list
     dat[ , c("rowi", "coli") := list(well_info$Row, well_info$Col)]
 

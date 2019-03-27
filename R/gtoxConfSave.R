@@ -16,7 +16,7 @@ gtoxConfSave <- function () {
 
     conf_file <- .getConfFile()
     
-    if(any(sapply(gtoxConfList(), is.null))) {
+    if(any(vapply(gtoxConfList(), is.null, logical(1)))) {
         stop(
             "One of the gtox settings is NULL. Saving the configuration file ",
             "with a NULL setting\nwill keep the package from loading in ",

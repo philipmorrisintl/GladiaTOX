@@ -32,8 +32,8 @@
 #' @import ggplot2
 #' @export
 #'
-glPlotPie <- function(asid, chnms=NULL, acids=NULL, aeids=NULL,
-    expos.time.ordr=NULL, stat=quote(modl_acc)) {
+glPlotPie <- function(asid, chnms=NULL, acids=NULL, aeids=NULL, 
+                        expos.time.ordr=NULL, stat=quote(modl_acc)) {
 
     ## load study annotations
     t1 <- gtoxLoadAsid(fld="asid", val=asid)

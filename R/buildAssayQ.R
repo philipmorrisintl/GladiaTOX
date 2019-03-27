@@ -36,7 +36,7 @@
 
     tblo <- tbls[tblo]
 
-    fld     <- .convertNames(fld)
+    fld <- .convertNames(fld)
     add.fld <- .convertNames(add.fld)
 
     fld <- .prepField(fld=fld, tbl=tblo, db=getOption("TCPL_DB"))
