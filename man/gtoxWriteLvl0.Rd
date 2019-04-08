@@ -42,3 +42,4 @@ This function should only be used to load level 0 data.
 \seealso{
 \code{\link{gtoxCascade}}, \code{\link{gtoxAppend}}
 }
+

@@ -99,7 +99,7 @@ gtoxRun <- function(asid=NULL, slvl, elvl, id=NULL, type="mc",
         logcon <- file(outfile, open="a")
         sink(logcon, append=TRUE)
         sink(logcon, append=TRUE, type="message")
-        on.exit(sink.reset(), add=TRUE)
+        on.exit(sink_reset(), add=TRUE)
         on.exit(close.connection(logcon), add=TRUE)
         on.exit(
             message("Output appended to log file:", outfile, "\n"), 

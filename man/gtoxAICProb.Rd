@@ -37,3 +37,4 @@ gtoxAICProb(m1, m2)
 \code{\link{gtoxFit}}, \code{\link{AIC}} for more information
 about AIC values.
 }
+

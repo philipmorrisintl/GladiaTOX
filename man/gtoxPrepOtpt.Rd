@@ -53,3 +53,4 @@ d3 <- gtoxPrepOtpt(d1) ## Also works if function is given d2
 options(conf_store)
 
 }
+

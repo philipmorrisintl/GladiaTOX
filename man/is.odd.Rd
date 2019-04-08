@@ -20,4 +20,4 @@ integers.
 Other gtox abbreviations: \code{\link{lu}},
   \code{\link{lw}}, \code{\link{sink.reset}}
 }
-\concept{gtox abbreviations}
+

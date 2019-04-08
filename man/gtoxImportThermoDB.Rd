@@ -4,8 +4,8 @@
 \alias{gtoxImportThermoDB}
 \title{Import data from ThermoDB by study ID}
 \usage{
-gtoxImportThermoDB(asid, verbose = TRUE, write = FALSE,
-  store = "STORE", type = "mc",
+gtoxImportThermoDB(asid, verbose = TRUE, write = FALSE, store = "STORE",
+  type = "mc",
   curlurl = "http://pmichlauapp225.pmintl.net:2020/HTTPHCSConnect")
 }
 \arguments{
@@ -43,3 +43,4 @@ dat <- gtoxImportThermoDB(asid)
 options(conf_store)
 
 }
+

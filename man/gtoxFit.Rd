@@ -42,3 +42,4 @@ gtoxAddModel(pars = params, modl = "hill")
 \code{\link{gtoxObjCnst}}, \code{\link{gtoxObjHill}},
 \code{\link{gtoxObjGnls}}, \code{\link{constrOptim}}
 }
+

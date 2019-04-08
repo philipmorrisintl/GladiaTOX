@@ -80,3 +80,4 @@ options(conf_store)
 \seealso{
 \code{\link{gtoxQuery}}, \code{\link{data.table}}
 }
+
