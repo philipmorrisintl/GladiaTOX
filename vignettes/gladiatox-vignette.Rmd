@@ -15,7 +15,8 @@ package: GladiaTOX
 output:
   BiocStyle::html_document
 vignette: >
-  %\VignetteIndexEntry{GladiaTOX: R Package for Processing High Content Screening data}
+  %\VignetteIndexEntry{GladiaTOX: R Package for Processing High Content 
+    Screening data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -32,7 +33,8 @@ library(GladiaTOX)
 outdir <- getwd()
 ```
 
-```{r, eval=FALSE, echo=FALSE, include=FALSE, message=FALSE, warning=FALSE, results='hide'}
+```{r, eval=FALSE, echo=FALSE, include=FALSE, message=FALSE,
+    warning=FALSE, results='hide'}
 #NOTE ssh to chp893
 library(devtools)
 library(roxygen2)
@@ -90,8 +92,8 @@ glPlotPieLogo()
 
 ## Deployed database
 The GladiaTOX installation includes the deployment of a sqlite database 
-(`sql/gladiatoxdb.sqlite` folder). The database already contains fully processed 
-study, with
+(`sql/gladiatoxdb.sqlite` folder).
+The database already contains fully processed study, with
 
 - asid: 1 (assay source id), the unique study identifier
 - asnm: StudyI (assay source name), the names of the study
@@ -120,9 +122,9 @@ file.path("/install_dir", "sql", "gladiatoxdb.sqlite")
 so no additional configurations are needed to complete the example below.
 
 In case you install the database schema or change location of the sqlite 
-database, then you must run the configuration command below and point to the new 
-database location. The following command assumes the new database is installed 
-at `my_folder_path`
+database, then you must run the configuration command below and point to the
+new database location. The following command assumes the new database is
+installed at `my_folder_path`
 ```{r, eval=FALSE, echo=TRUE, include=TRUE}
 gtoxConf(drvr = "SQLite",
          host = NA,
@@ -145,9 +147,9 @@ gtoxConf(drvr = "MySQL",
 ```
 
 # Data and metadata for vignette
-In this section we will explore one simple way for loading data in the database. 
-The following chunks prepare the metadata and data in R objects (data.frame) 
-prior database loading.
+In this section we will explore one simple way for loading data in the
+database. The following chunks prepare the metadata and data in R objects
+ (data.frame) prior database loading.
 
 The following commands loads the data for vignette, and set the output 
 directory, `outdir`, to the working directory. Change it accordingly to the 
@@ -156,8 +158,8 @@ folder path where your reports have to be saved.
 load(system.file("extdata", "data_for_vignette.rda", package="GladiaTOX"))
 outdir <- getwd()
 ```
-The command loads three objects in the environment. These objects are what users 
-need to prepare before study data can be loaded.
+The command loads three objects in the environment. These objects are what
+users need to prepare before study data can be loaded.
 
 ## `plate`: plate metadata
 The `plate` object stores metadata with plate information.
@@ -281,7 +283,8 @@ active versus those that are not. The default behaviour is to compute noise band
 margins separately for each endpoint. Margins correspond to 3 times the baseline
 median absolute deviation of vehicle responses. The following code computes the
 cutoffs and store them in the database.
-```{r, echo=TRUE, eval=TRUE, include=TRUE, results='hide', message=FALSE, warning=FALSE}
+```{r, echo=TRUE, eval=TRUE, include=TRUE, results='hide',
+    message=FALSE, warning=FALSE}
 res <- gtoxRun(asid = asid, slvl = 1, elvl = 3, mc.cores = 2)
 aeids <- gtoxLoadAeid(fld = "asid", val = asid)$aeid
 tmp <- mapply(function(xx){
@@ -303,7 +306,8 @@ lab. Each experimental plate is controlled. Plates not passing the control step
 are filtered out. Quality control is commonly based on a visual inspection. The
 package exposes functionalities to generate a self contained pdf file with plate
 heatmaps and positive control plots.
-```{r, echo=TRUE, eval=FALSE, include=TRUE, message=FALSE, warning=FALSE, results='hide'}
+```{r, echo=TRUE, eval=FALSE, include=TRUE, message=FALSE, warning=FALSE,
+    results='hide'}
 ## QC report
 gtoxReport(type = "qc", asid = asid, report_author = "report author",
 report_title = "Vignette QC report", odir = outdir)
@@ -320,7 +324,9 @@ acid <- gtoxLoadAcid(fld = c("aid", "acnm"), val = list(myaid, acnm))[, acid]
 l2 <- gtoxLoadData(lvl = 2L, fld = "acid", val = acid)
 ```
 
-```{r, eval=TRUE, fig=TRUE, fig.width=12, fig.height=8, dev=c('svg'), fig.cap='Example of heatmap of a plate raw values. Letters in well indicate the well type.'}
+```{r, eval=TRUE, fig=TRUE, fig.width=12, fig.height=8, dev=c('svg'),
+    fig.cap='Example of heatmap of a plate raw values.
+    Letters in well indicate the well type.'}
 gtoxPlotPlate(dat = l2, apid = apid, id = acid)
 ```
 
@@ -334,7 +340,10 @@ spid <- gtoxLoadWaid(fld = c("apid", "wllt"),
 m4id <- gtoxLoadData(lvl = 4L, fld = c("spid", "aeid"), 
                      val = list(spid, aeid))[, m4id]
 ```
-```{r, eval=TRUE, fig.width=14, fig.height=8, dev=c('svg'), fig.cap='Example of Positive control (chlorambucil chemical) plot with three concentrations, and three technical replicates per concentration.'}
+```{r, eval=TRUE, fig.width=14, fig.height=8, dev=c('svg'),
+    fig.cap='Example of Positive control (chlorambucil chemical)
+    plot with three concentrations, and three technical replicates
+    per concentration.'}
 gtoxPlotM4ID(m4id = m4id, lvl = 6, bline = "coff")
 ```
 The panel on the right side shows a set of information including goodness of 
@@ -374,7 +383,8 @@ The `gtoxReport` function, with option `type = "all"`, triggers the generation
 of the full processing report. The pdf file created includes summary tables, 
 dose-response curves (as seen later), and other plots for all chemicals tested
 in the study.
-```{r, eval=FALSE, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, results='hide'}
+```{r, eval=FALSE, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE,
+    results='hide'}
 ## Processing report
 gtoxReport(type = "all", asid = asid, report_author = "report author",
 report_title = "Vignette Processing report", odir = outdir)
@@ -392,7 +402,8 @@ add.fld="asid")$aeid
 ## level 4 id to plot
 m4id <- gtoxLoadData(lvl=4L)[(aeid==aeids & grepl("chromium", spid))]$m4id[1]
 ```
-```{r, eval=TRUE, fig.width=14, fig.height=8, dev=c('svg'), fig.cap='Best fit selection.'}
+```{r, eval=TRUE, fig.width=14, fig.height=8, dev=c('svg'),
+    fig.cap='Best fit selection.'}
 gtoxPlotM4ID(m4id = m4id, lvl = 6, bline = "coff")
 ```
 
@@ -402,7 +413,8 @@ since minimizing the Akaike information criteria (AIC).
 All winning models are combined into a single plot that is included in the pdf
 report. An example of winning model plot is shown in figure, for the very same
 chemical and endpoint used above.
-```{r, eval=TRUE, fig.width=8, fig.height=5, dev=c('svg'), fig.cap='Example of dose-response curves.'}
+```{r, eval=TRUE, fig.width=8, fig.height=5, dev=c('svg'),
+    fig.cap='Example of dose-response curves.'}
 ## Get chemical id to plot
 chid <- gtoxLoadChem(field = "chnm", val = "chromium",
 include.spid = FALSE)$chid
@@ -417,14 +429,16 @@ Additional reporting plots, not included in the full report, can be obtained as
 described below. Boxplot of minimal effective concentrations can be obtained
 running the following chunk. An example of boxplot is reported below. MEC values
 are shown as dots. Low MECs correspond to high toxicity.
-```{r, eval=TRUE, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE, results='hide'}
+```{r, eval=TRUE, echo=TRUE, include=TRUE, message=FALSE, warning=FALSE,
+    results='hide'}
 fname <- paste0(format(Sys.Date(), format="%y%m%d"), "_ASID", asid,"_MEC.pdf")
 fname <- file.path(outdir, fname)
 pdf(fname, width = 11, height = 7)
 glPlotStat(asid)
 dev.off()
 ```
-```{r, echo=FALSE, fig.width=8, fig.height=5, dev=c('svg'), fig.cap='Example of MEC barplot.'}
+```{r, echo=FALSE, fig.width=8, fig.height=5, dev=c('svg'),
+    fig.cap='Example of MEC barplot.'}
 knitr::include_graphics('MECfig.png')
 ```
 The MEC plot shows an example of MEC boxplot. In the example the GSH assay is
@@ -432,7 +446,9 @@ shown along with the two endpoints (GSH content and Cell count). Chemicals are
 listed in the legend to the right. Each dot in the plot represents an MEC value.
 
 MEC values can also be reported in a piechart. Below an example.
-```{r, eval=TRUE, echo=TRUE, include=TRUE, warning=FALSE, fig.width=10, fig.height=6, dev=c('svg'), fig.cap='Example of pie plots. The figure shows three chemicals and all endpoints.'}
+```{r, eval=TRUE, echo=TRUE, include=TRUE, warning=FALSE, fig.width=10,
+    fig.height=6, dev=c('svg'), fig.cap='Example of pie plots.
+    The figure shows three chemicals and all endpoints.'}
 chnms <- c("mercury", "o-cresol", "p-cresol")
 glPlotPie(asid, chnms = chnms)
 ```
@@ -442,14 +458,10 @@ endpoint. Numbers on the slides indicate the corresponding MEC means.
 
 Severity scores can also be computed and displayed. This score indicate the 
 average impact of chemicals across multiple endpoints.
-```{r, eval=TRUE, echo=TRUE, include=TRUE, warning=FALSE, fig.width=10, fig.height=6, dev=c('svg'), fig.cap='Example of severity score plot.'}
+```{r, eval=TRUE, echo=TRUE, include=TRUE, warning=FALSE, fig.width=10,
+    fig.height=6, dev=c('svg'), fig.cap='Example of severity score plot.'}
 glPlotToxInd(asid)
 ```
 Example of severity score plot reporting the full list of chemicals used in the
 study; y-axis reports the severity score value (normalized between 0 and 1); 
 x-axis in just the index of the chemical.
-
-
-
-
-
