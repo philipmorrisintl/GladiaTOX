@@ -21,9 +21,9 @@ This function computes the toxicological indicator value for
 the assay source id in input.
 }
 \details{
-This funtion is useful to compute toxicological indicator values. These
+This function is useful to compute toxicological indicator values. These
 values, for each chemical, represent an average impact of the chemical
-across the list of endpoints tested. The funtion transform the data to minus
+across the list of endpoints tested. The function transform the data to minus
 log scale. Hence the larger the indicator value, larger is the impact of the
 chemical.
 }
@@ -38,4 +38,3 @@ dat <- glComputeToxInd(asid = 1L)
 dat[]
 
 }
-

@@ -20,7 +20,7 @@ A list of ggplot objects, one per assay X timepoint.
 This function plots MEC values
 }
 \details{
-This funtion is useful to show the MEC trend over control chemical
+This function is useful to show the MEC trend over control chemical
 }
 \examples{
 ## Store the current config settings, so they can be reloaded at the end
@@ -37,4 +37,3 @@ pp[[1]]
 options(conf_store)
 
 }
-

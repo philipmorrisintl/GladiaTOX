@@ -18,14 +18,10 @@
 #' \code{sink_reset} identifies all sinks with \code{sink.number} then returns
 #' all output and messages back to the console.
 #' 
-#' @examples 
-#' sink_reset()
-#' 
 #' @return None
 #'
 #' @family gtox abbreviations
 #' @seealso \code{\link{sink}}, \code{\link{sink.number}}
-#' @export
 
 sink_reset <- function() {
 
@@ -33,7 +29,6 @@ sink_reset <- function() {
         sink(NULL)
         sink(NULL, type="message")
     }
-
 }
 
 #-------------------------------------------------------------------------------

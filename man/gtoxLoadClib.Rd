@@ -43,4 +43,3 @@ clib <- gtoxLoadClib()
 options(conf_store)
 
 }
-

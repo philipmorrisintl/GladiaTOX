@@ -33,7 +33,17 @@
 #' 
 #' ## The load assay functions can be used without any parameters to list the 
 #' ## full list of registered assay elements:
+#' 
+#' ## Assay source ID table
 #' gtoxLoadAsid()
+#' 
+#' ## Assay ID table
+#' gtoxLoadAid()
+#' 
+#' ## Assay component ID table
+#' gtoxLoadAcid()
+#' 
+#' ## Assay endpoint ID table
 #' gtoxLoadAeid()
 #' 
 #' ## Similarly, the user can add fields without doing any element selection:

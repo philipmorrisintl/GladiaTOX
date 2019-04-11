@@ -10,7 +10,7 @@
 #-------------------------------------------------------------------------------
 
 #' @title Box plot for positive control check
-#' @description This function plots positive controls as well as vehicel and
+#' @description This function plots positive controls as well as vehicle and
 #' treatments normalized values
 #'
 #' @param asid Assay source id

@@ -6,7 +6,7 @@
 #####################################################################
 
 #-------------------------------------------------------------------------------
-# .buildAssayTab: prepare assay table mapping info
+# buildAssayTab: prepare assay table mapping info
 #-------------------------------------------------------------------------------
 
 #' @title Prepare assay table mapping info
@@ -19,10 +19,10 @@
 #' @details
 #' Function used only when processing historical data
 #'
-#' @note PMI-specific
 #' @return Table with assay information
+#' @export
 
-.buildAssayTab <- function(plate.mtd, chn.map) {
+buildAssayTab <- function(plate.mtd, chn.map) {
 
     ## Merge channel mapping and data assay info
     tab <- as.data.frame(

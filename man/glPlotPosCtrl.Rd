@@ -13,7 +13,7 @@ glPlotPosCtrl(asid)
 A list of ggplot objects, one per assay X timepoint.
 }
 \description{
-This function plots positive controls as well as vehicel and
+This function plots positive controls as well as vehicle and
 treatments normalized values
 }
 \details{
@@ -37,4 +37,3 @@ pp[[1]]
 options(conf_store)
 
 }
-

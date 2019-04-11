@@ -8,7 +8,7 @@
 #' @title Draw a gtox Model onto an exisiting plot
 #'
 #' @description
-#' \code{gtoxAddModel} draws a a line for one of the gtox Models (see
+#' \code{gtoxAddModel} draws a line for one of the gtox Models (see
 #' \code{\link{Models}} for more information) onto an existing plot.
 #'
 #' @param pars List of parameters from level 4 or 5 output

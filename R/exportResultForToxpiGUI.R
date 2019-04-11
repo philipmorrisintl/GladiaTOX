@@ -18,7 +18,7 @@
 #' @param stat Character vector of statistic to export
 #'
 #' @details
-#' This funtion is useful to export results in a table format
+#' This function is useful to export results in a table format
 #'
 #' @examples
 #' ## Export MEC (or AC50) values to be visualized in ToxPiGUI

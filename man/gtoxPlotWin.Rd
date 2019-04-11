@@ -38,4 +38,3 @@ print(aeid)
 gtoxPlotWin(chid = chid, aeid = aeid, bline="bmad", collapse=TRUE)
 
 }
-

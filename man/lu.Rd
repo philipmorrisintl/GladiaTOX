@@ -24,6 +24,6 @@ lu(c(1, 1, 2, 3))
 \code{\link{unique}}, \code{\link{which}}
 
 Other gtox abbreviations: \code{\link{is.odd}},
-  \code{\link{lw}}, \code{\link{sink.reset}}
+  \code{\link{lw}}, \code{\link{sink_reset}}
 }
-
+\concept{gtox abbreviations}

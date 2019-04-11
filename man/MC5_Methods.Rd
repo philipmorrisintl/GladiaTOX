@@ -36,8 +36,8 @@ available in the package vignette, "Pipeline_Overview."
   \item{vmad10}{Add a cutoff value of 10*vmad.}
 }
 }
+
 \seealso{
 \code{\link{mc5}}, \code{\link{Method functions}} to query what
 methods get applied to each aeid
 }
-

@@ -28,4 +28,3 @@ gtoxCode2CASN("C09812420") ## Invalid CASRN will give a warning
 gtoxCode2CASN("CNOCAS0015") ## The underscore is reinserted for NOCAS codes
 
 }
-

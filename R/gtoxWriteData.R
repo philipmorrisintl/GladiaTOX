@@ -28,17 +28,34 @@
 #' for single concentration data. Multiple concentration data will be loaded
 #' into the level tables, whereas the single concentration will be loaded into
 #' the single tables.
+#' 
+#' @examples
+#' 
+#' \dontrun{
+#' ## Load sample data
+#' load(system.file("extdata", "data_for_vignette.rda", package="GladiaTOX"))
+#' 
+#' # Build assay table
+#' assay <- buildAssayTab(plate, chnmap)
+#' 
+#' ## Set study parameters
+#' std.nm <- "SampleStudy" # study name
+#' phs.nm <- "PhaseII" # study phase
+#' 
+#' ## Load annotation in gtoxDB
+#' loadAnnot(plate, assay, NULL)
+#' 
+#' ## Get the created study ID
+#' asid = gtoxLoadAsid(fld = c("asnm", "asph"), val = list(std.nm, phs.nm))$asid
+#' 
+#' ## Prepare and load data
+#' dat <- prepareDatForDB(asid, dat)
+#' gtoxWriteData(dat[ , list(acid, waid, wllq, rval)], lvl = 0, type = "mc")
+#' }
 #'
-#' @note
-#' This function is not exported and is not inteded to be used by the user.
-#' The user should only write level 0 data, which is written with
-#' \code{\link{gtoxWriteLvl0}}.
-#'
-#' @seealso \code{\link{gtoxCascade}}, \code{\link{gtoxAppend}},
-#' \code{\link{gtoxWriteLvl0}}
+#' @seealso \code{\link{gtoxCascade}}, \code{\link{gtoxAppend}}
 #' 
 #' @return None
-#'
 #' @import data.table
 #' @export
 

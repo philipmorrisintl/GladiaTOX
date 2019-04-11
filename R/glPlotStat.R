@@ -17,7 +17,7 @@
 #' @param stat Character vector of statistic to export
 #'
 #' @details
-#' This funtion is useful to show the MEC trend over control chemical
+#' This function is useful to show the MEC trend over control chemical
 #'
 #' @examples
 #' ## Store the current config settings, so they can be reloaded at the end

@@ -21,7 +21,7 @@ information}
 None
 }
 \description{
-\code{gtoxAddModel} draws a a line for one of the gtox Models (see
+\code{gtoxAddModel} draws a line for one of the gtox Models (see
 \code{\link{Models}} for more information) onto an existing plot.
 }
 \details{
@@ -63,4 +63,3 @@ gtoxAddModel(pars = p2, modl = "hill", adj = 1/log2(5), lty = "dashed")
 \seealso{
 \code{\link{Models}}, \code{\link{gtoxPlotFits}}
 }
-

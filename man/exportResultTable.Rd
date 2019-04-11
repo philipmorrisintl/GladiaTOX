@@ -28,4 +28,3 @@ outfile <- "export_stats.csv"
 exportResultTable(asid=1L, stats=c("modl_acc", "modl_ga"), outfile=outfile)
 
 }
-

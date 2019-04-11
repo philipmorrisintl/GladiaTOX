@@ -22,7 +22,7 @@ None
 This function export results
 }
 \details{
-This funtion is useful to export results in a table format
+This function is useful to export results in a table format
 }
 \examples{
 ## Export MEC (or AC50) values to be visualized in ToxPiGUI
@@ -36,4 +36,3 @@ exportResultForToxpiGUI(asid=1L, tp="4h", outfile=out, stat=quote(modl_acc))
 options(conf_store)
 
 }
-

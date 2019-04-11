@@ -18,6 +18,6 @@ integers.
 }
 \seealso{
 Other gtox abbreviations: \code{\link{lu}},
-  \code{\link{lw}}, \code{\link{sink.reset}}
+  \code{\link{lw}}, \code{\link{sink_reset}}
 }
-
+\concept{gtox abbreviations}

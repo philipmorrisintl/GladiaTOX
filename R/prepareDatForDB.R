@@ -22,6 +22,23 @@
 #' @examples
 #' 
 #' \dontrun{
+#' ## Load sample data
+#' load(system.file("extdata", "data_for_vignette.rda", package="GladiaTOX"))
+#' 
+#' # Build assay table
+#' assay <- buildAssayTab(plate, chnmap)
+#' 
+#' ## Set study parameters
+#' std.nm <- "SampleStudy" # study name
+#' phs.nm <- "PhaseII" # study phase
+#' 
+#' ## Load annotation in gtoxDB
+#' loadAnnot(plate, assay, NULL)
+#' 
+#' ## Get the created study ID
+#' asid = gtoxLoadAsid(fld = c("asnm", "asph"), val = list(std.nm, phs.nm))$asid
+#' 
+#' ## Prepare and load data
 #' dat <- prepareDatForDB(asid, dat)
 #' }
 #' 

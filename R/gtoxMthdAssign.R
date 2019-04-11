@@ -10,6 +10,17 @@
 #-------------------------------------------------------------------------------
 
 #' @rdname mthd_funcs
+#' 
+#' @examples
+#' 
+#' \dontrun{
+#' ## Assign level 2 methods (none for all acid values)
+#' gtoxMthdAssign(lvl = 2L, id = 1L, mthd_id = 1, ordr = 1, type = "mc")
+#' 
+#' ## Process data
+#' gtoxRun(asid = 1L, slvl = 1, elvl = 6, mc.cores = 2)
+#' }
+#' 
 #' @export
 
 gtoxMthdAssign <- function(lvl, id, mthd_id, ordr=NULL, type) {

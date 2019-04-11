@@ -16,7 +16,7 @@
 #'
 #' @param fitc Integer, the fit categories
 #' @param main Character of length 1, the title (optional)
-#' @param fitc_sub, Integer, a subset of fit categories to plot
+#' @param fitc_sub Integer, a subset of fit categories to plot
 #'
 #' @examples
 #' ## Store the current config settings, so they can be reloaded at the end

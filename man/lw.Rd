@@ -17,13 +17,13 @@ The length of the \code{TRUE} values in \code{x}
 \code{length(which(x))}.
 }
 \examples{
-lu(c(TRUE, TRUE, FALSE))
+lw(c(TRUE, FALSE, TRUE))
 
 }
 \seealso{
 \code{\link{length}}, \code{\link{which}}
 
 Other gtox abbreviations: \code{\link{is.odd}},
-  \code{\link{lu}}, \code{\link{sink.reset}}
+  \code{\link{lu}}, \code{\link{sink_reset}}
 }
-
+\concept{gtox abbreviations}

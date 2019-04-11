@@ -18,7 +18,7 @@
 #' @param x A logical
 #' 
 #' @examples 
-#' lu(c(TRUE, TRUE, FALSE))
+#' lw(c(TRUE, FALSE, TRUE))
 #' 
 #' @return The length of the \code{TRUE} values in \code{x}
 #' 

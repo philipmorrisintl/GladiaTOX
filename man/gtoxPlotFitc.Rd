@@ -11,7 +11,7 @@ gtoxPlotFitc(fitc = NULL, main = NULL, fitc_sub = NULL)
 
 \item{main}{Character of length 1, the title (optional)}
 
-\item{fitc_sub, }{Integer, a subset of fit categories to plot}
+\item{fitc_sub}{Integer, a subset of fit categories to plot}
 }
 \value{
 None
@@ -32,4 +32,3 @@ gtoxConfDefault()
 gtoxPlotFitc()
 
 }
-

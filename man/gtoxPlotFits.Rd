@@ -80,4 +80,3 @@ gtoxPlotFits(dat = l5_sub,
 options(conf_store)
 
 }
-
