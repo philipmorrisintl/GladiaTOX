@@ -18,7 +18,6 @@
 #' @param host Character of length 1, the database server 
 #' @param db   Character of length 1, the name of the gtox database
 #' @param show.pass Logical, should the password be returned
-#' @param int Logical
 #' 
 #' @details
 #' Currently, the gtox package only supports the "MySQL" and "SQLite" database

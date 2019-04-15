@@ -38,6 +38,7 @@
 #'
 #' @export
 #'
+
 glComputeToxInd <- function(asid, tp=NULL, stat=quote(modl_acc)) {
     ## save data for toxPi GUI visualizatiion
     dat <- gtoxLoadData(5, "aeid", gtoxLoadAeid("asid", asid)$aeid)

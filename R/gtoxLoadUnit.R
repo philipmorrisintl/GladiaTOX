@@ -17,6 +17,8 @@
 #'
 #' @param aeid Integer, assay endpoint ids
 #'
+#' @keywords internal
+#' 
 #' @return A data.table containing level 3 correction methods for the given
 #' aeids.
 #'

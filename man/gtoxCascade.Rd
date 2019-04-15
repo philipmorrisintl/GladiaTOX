@@ -30,6 +30,4 @@ the single tables.
 If lvl is less than 3, id is interpreted as acid(s) and if lvl is greater
 than or equal to 3, id is interpreted as aeid(s).
 }
-\note{
-This function is not exported and not intended to be used by the user.
-}
+\keyword{internal}

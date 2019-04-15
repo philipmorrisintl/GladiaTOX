@@ -20,6 +20,7 @@ all output and messages back to the console.
 \code{\link{sink}}, \code{\link{sink.number}}
 
 Other gtox abbreviations: \code{\link{is.odd}},
-  \code{\link{lu}}, \code{\link{lw}}
+\code{\link{lu}}, \code{\link{lw}}
 }
 \concept{gtox abbreviations}
+\keyword{internal}

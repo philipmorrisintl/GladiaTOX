@@ -19,6 +19,10 @@
 #' @param col Vector of colors
 #' @param fit.labels Boolean, if TRUE, scale the text to fit
 #'
+#' @examples 
+#' 
+#' ## Plot pie legend
+#' gtoxPlotPieLgnd(aenm=c("Endpoint1", "Endpoint2"))
 #'
 #' @return None
 #'

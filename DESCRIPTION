@@ -3,7 +3,8 @@ Type: Package
 biocViews: Software,
     WorkflowStep,
     Normalization,
-    Preprocessing
+    Preprocessing,
+    QualityControl
 Title: R Package for Processing High Content Screening data
 Version: 0.99.36
 Author: Vincenzo Belcastro [aut, cre],

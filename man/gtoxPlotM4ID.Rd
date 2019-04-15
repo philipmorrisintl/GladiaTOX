@@ -50,11 +50,11 @@ apid <- gtoxLoadApid()[u_boxtrack == pltnm & aid == myaid, apid]
 acid <- gtoxLoadAcid(fld = c("aid", "acnm"), val = list(myaid, acnm))[, acid]
 
 aeid = gtoxLoadAeid(fld = c("acid", "analysis_direction"), 
-                    val = list(acid, "up"))[,aeid]
+val = list(acid, "up"))[,aeid]
 spid = gtoxLoadWaid(fld = c("apid", "wllt"), 
-                    val = list(apid, "c"))[,unique(spid)]
+val = list(apid, "c"))[,unique(spid)]
 m4id = gtoxLoadData(lvl = 4L, fld = c("spid", "aeid"), 
-                    val = list(spid, aeid))[, m4id]
+val = list(spid, aeid))[, m4id]
 
 gtoxPlotM4ID(m4id = m4id, lvl = 6, bline = "coff") ## Create a level 4 plot
 gtoxPlotM4ID(m4id = m4id, lvl = 5) ## Create a level 5 plot

@@ -17,6 +17,8 @@
 #' 
 #' @param names Character, strings to convert
 #' 
+#' @keywords internal
+#' 
 #' @return The same character vector given with any name strings converted to 
 #' the abbreviated version
 

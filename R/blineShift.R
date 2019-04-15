@@ -23,6 +23,8 @@
 #' @note
 #' This function is not exported and is not inteded to be used by the user.
 #' 
+#' @keywords internal
+#' 
 #' @return A numeric vector containing the shifted response values
 #' 
 #' @seealso \code{\link{mc3_mthds}}, \code{\link{mc3}}

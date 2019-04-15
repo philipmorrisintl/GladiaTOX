@@ -23,3 +23,9 @@ None
 \description{
 \code{gtoxPlotPie} creates the piechart plots.
 }
+\examples{
+
+## Plot pie for chemical IDs 1 to 5 and multiple endpoints
+gtoxPlotPie(chid=1:5, mrks=10^c(1:6), aeid=c(2:10))
+
+}

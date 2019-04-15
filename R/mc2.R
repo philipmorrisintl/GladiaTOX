@@ -21,7 +21,9 @@
 #' mc2_acid and mc2_methods tables.
 #'
 #' @seealso \code{\link{Method functions}}, \code{\link{MC2_Methods}}
-#'
+#' 
+#' @keywords internal
+#' 
 #' @import data.table
 
 mc2 <- function(ac, wr=FALSE) {

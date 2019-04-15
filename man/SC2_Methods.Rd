@@ -34,15 +34,15 @@ More information about the level 2 single-concentration processing is
 available in the package vignette, "Pipeline_Overview."
 
 \describe{
-  \item{bmad3}{Add a cutoff value of 3*bmad.}
-  \item{pc20}{Add a cutoff value of 20.}
-  \item{log2_1.2}{Add a cutoff value of log2(1.2).}
-  \item{log10_1.2}{Add a cutoff value of log10(1.2).}
-  \item{bmad5}{Add a cutoff value of 5*bmad.}
-  \item{bmad6}{Add a cutoff value of 6*bmad.}
-  \item{bmad10}{Add a cutoff value of 10*bmad.}
-  \item{pc30orbmad3}{Add a cutoff value of either 30 or 3*bmad, whichever
-  is less.}
+\item{bmad3}{Add a cutoff value of 3*bmad.}
+\item{pc20}{Add a cutoff value of 20.}
+\item{log2_1.2}{Add a cutoff value of log2(1.2).}
+\item{log10_1.2}{Add a cutoff value of log10(1.2).}
+\item{bmad5}{Add a cutoff value of 5*bmad.}
+\item{bmad6}{Add a cutoff value of 6*bmad.}
+\item{bmad10}{Add a cutoff value of 10*bmad.}
+\item{pc30orbmad3}{Add a cutoff value of either 30 or 3*bmad, whichever
+is less.}
 }
 }
 
@@ -50,3 +50,4 @@ available in the package vignette, "Pipeline_Overview."
 \code{\link{sc2}}, \code{\link{Method functions}} to query what
 methods get applied to each acid
 }
+\keyword{internal}

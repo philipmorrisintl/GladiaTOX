@@ -49,10 +49,11 @@
 #' ## flag information to the plots. The following shows how to make level 6
 #' ## plots. Omitting the 'flg' parameter would result in level 5 plots, and
 #' ## loading level 4, rather than level 5 data, would result in level 4 plots.
-#'  
-#' l5 <- gtoxLoadData(lvl = 5, fld = "aeid", val = 10)
-#' l4_agg <- gtoxLoadData(lvl = "agg", fld = "aeid", val = 10)
-#' l6 <- gtoxLoadData(lvl = 6, fld = "aeid", val = 10)
+#' 
+#' aeid = 2
+#' l5 <- gtoxLoadData(lvl = 5, fld = "aeid", val = aeid)
+#' l4_agg <- gtoxLoadData(lvl = "agg", fld = "aeid", val = aeid)
+#' l6 <- gtoxLoadData(lvl = 6, fld = "aeid", val = aeid)
 #' \dontrun{
 #' pdf(file = "gtoxPlotFits.pdf", height = 6, width = 10, pointsize = 10)
 #' gtoxPlotFits(dat = l5, agg = l4_agg, flg = l6)
@@ -68,9 +69,7 @@
 #' bpa <- gtoxLoadChem(field = "chnm", val = "chromium")[ , spid]
 #' l5_sub <- l5[spid %in% bpa]
 #' \dontrun{
-#' gtoxPlotFits(dat = l5_sub,
-#'              agg = l4_agg[m4id %in% l5_sub$m4id],
-#'              browse = TRUE)
+#' gtoxPlotFits(dat = l5_sub, agg = l4_agg[m4id %in% l5_sub$m4id])
 #' }
 #'
 #' ## Reset configuration

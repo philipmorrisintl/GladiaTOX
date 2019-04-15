@@ -24,6 +24,8 @@
 #'
 #' @seealso \code{\link{Method functions}}, \code{\link{SC2_Methods}}
 #'
+#' @keywords internal
+#' 
 #' @import data.table
 #' @importFrom stats mad median
 

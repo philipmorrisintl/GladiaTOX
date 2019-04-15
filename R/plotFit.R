@@ -9,6 +9,8 @@
 # plotFit: Create plot of the dose-response with associated models
 #-------------------------------------------------------------------------------
 
+#' @keywords internal
+#' 
 #' @importFrom graphics par layout plot rect abline curve axis axTicks points
 #' @importFrom graphics plot.window text
 

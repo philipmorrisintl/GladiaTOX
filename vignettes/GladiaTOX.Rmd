@@ -1,38 +1,32 @@
 ---
 title: "GladiaTOX: R Package for Processing High Content Screening data"
 author:
-  - name: Vincenzo Belcastro
-    affiliation: Philip Morris Products, S.A.
-    email: Vincenzo.Belcastro@contracted.pmi.com
-  - name: Stephane Cano
-    affiliation: Philip Morris Products, S.A.
-    email: Stephane.Cano@pmi.com
-  - name: Florian Martin
-    affiliation: Philip Morris Products, S.A.
-    email: Florian.Martin@pmi.com
+- name: Vincenzo Belcastro
+- name: Stephane Cano
+- name: Florian Martin
 
 package: GladiaTOX
 output:
-  BiocStyle::html_document
+    BiocStyle::html_document
 vignette: >
-  %\VignetteIndexEntry{GladiaTOX: R Package for Processing High Content Screening data}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+    %\VignetteIndexEntry{GladiaTOX}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+    collapse = TRUE,
+    comment = "#>"
 )
 ```
 
 # Introduction
 
-`GladiaTOX` is an open-source solution for HCS data processing and reporting that 
-expands the `tcpl` package (toxcast pipeline, *Filer et al., 2016*). In addition 
-to `tcpl`'s functionalities (multiple dose-response fitting and best fit 
-selection), `GladiaTOX`
+`GladiaTOX` is an open-source solution for HCS data processing and reporting 
+that expands the `tcpl` package (toxcast pipeline, *Filer et al., 2016*). In
+addition to `tcpl`'s functionalities (multiple dose-response fitting and best 
+fit selection), `GladiaTOX`
 
 - Fetches raw image quantifications via a webservice layer, also allowing 
 multiple (proprietary) systems to be integrated easily
@@ -62,7 +56,9 @@ glPlotPieLogo()
 
 ## Database configuration
 The `GladiaTOX` installation includes the deployment of a sqlite database 
-(`sql/gladiatoxdb.sqlite` folder).
+(`sql/gladiatoxdb.sqlite` folder). This file contains the database structure 
+already initialized with the necessary content needed for data processing (e.g.
+processing methods entries).
 
 The first step after database deployment is to configure access parameters. 
 The default configuration already points to the sqlite database at so no 
@@ -76,11 +72,11 @@ sqlite_src <- file.path(system.file(package="GladiaTOX"), "sql",
 The `gtoxConf` configuration command below initializes all necessary variables.
 ```{r, eval=TRUE, echo=TRUE, include=TRUE}
 # sqlite database location
-gtoxConf(drvr = "SQLite",
-         host = NA,
-         user = NA,
-         pass = NULL,
-         db = sqlite_src)
+gtoxConf(   drvr = "SQLite",
+            host = NA,
+            user = NA,
+            pass = NULL,
+            db = sqlite_src)
 ```
 This database will be used in next sections to load and process a second study 
 phase. The sqlite database can be seen as a sample database used for the 
@@ -88,7 +84,8 @@ following example.
 
 In case users plan to use the package in production and for multiple studies, 
 it is recommended to install the MySQL database
-(`sql/gladiatoxdb_structure.mysql`).
+(`sql/gladiatoxdb_structure.mysql`). This file contains SQL instructions to
+create and initialize an MySQL database.
 
 In case you install the database schema or change location of the sqlite 
 database, then you must run the configuration command below and point to the
@@ -99,11 +96,11 @@ Eventually you may need to configure your user name and password.
 Below is an example of configuration call pointing to an MySQL database called 
 `my_gl_database` at `local.host`:
 ```{r, eval=FALSE, echo=TRUE, include=TRUE}
-gtoxConf(drvr = "MySQL",
-         host = "local.host",
-         user = "username",
-         pass = "********",
-         db = "my_gl_database")
+gtoxConf(   drvr = "MySQL",
+            host = "local.host",
+            user = "username",
+            pass = "********",
+            db = "my_gl_database")
 ```
 
 ## Deployed database
@@ -138,7 +135,7 @@ The `plate` object stores metadata with plate information.
 Most of the columns have self-contained names and content; `plate` is the plate 
 number (usually an integer); `tube` is the well location (H1 is row 8 column 1);
 `well_type` is the content type of the well (`c` positive control, `t` 
-treatment, `n` is the negative control); `endpoint` contains assay names with no 
+treatment, `n` is the negative control); `endpoint` contains assay names with no
 exposure duration info appended; `u_boxtrack` is a plate identifier used to join
 the `plate` metadata table with the raw data table prior data is loaded in the 
 GladiaTOX database.
@@ -285,7 +282,7 @@ lab. Each experimental plate is controlled. Plates not passing the control step
 are filtered out. Quality control is commonly based on a visual inspection. The
 package exposes functionalities to generate a self contained pdf file with plate
 heatmaps and positive control plots.
-```{r, eval=FALSE, include=TRUE, message=FALSE, warning=FALSE, results='hide'}
+```{r, eval=TRUE, include=TRUE, message=FALSE, warning=FALSE, results='hide'}
 ## QC report
 gtoxReport(type = "qc", asid = asid, report_author = "report author",
 report_title = "Vignette QC report", odir = outdir)
@@ -313,13 +310,13 @@ figure. For that we need to first extract level 4 data.
 ```{r, eval=TRUE}
 # Extract assay endpoint ID
 aeid <- gtoxLoadAeid(fld = c("acid", "analysis_direction"), 
-                     val = list(acid, "up"))[, aeid]
+                        val = list(acid, "up"))[, aeid]
 # Extract sample ID
 spid <- gtoxLoadWaid(fld = c("apid", "wllt"), 
-                     val = list(apid, "c"))[,unique(spid)]
+                        val = list(apid, "c"))[,unique(spid)]
 # Collect level 4 data (normalized data)
 m4id <- gtoxLoadData(lvl = 4L, fld = c("spid", "aeid"), 
-                     val = list(spid, aeid))[, m4id]
+                        val = list(spid, aeid))[, m4id]
 ```
 Then we can plot the normalized data corresponding to the selected sample ID.
 ```{r, eval=TRUE, fig.width=14, fig.height=8, fig.cap='Example of Positive control (chlorambucil chemical) plot with three concentrations, and three technical replicates per concentration.'}

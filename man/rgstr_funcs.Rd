@@ -36,17 +36,17 @@ functions, and the minimal fields required for registering a new ID. (The
 database table affected is in parentheses.) 
 
 \itemize{
- \item asid (assay_source): assay_source_name
- \item aid (assay): asid, assay_name, assay_footprint
- \item acid (assay_component): aid, assay_component_name
- \item aeid (assay_component_endpoint): acid, assay_component_endpoint_name,
- normalized_data_type
- \item spid (sample): spid, chid
- \item chid (chemical): chid, casn
- \item clib (chemical_library): chid, clib
- \item *vehicle (vehicle): vehicle_name
- \item *waid (assay_plate_well): apid, spid, rowi, coli, wllt, vhid, conc
- \item *apid (assay_plate): aid
+\item asid (assay_source): assay_source_name
+\item aid (assay): asid, assay_name, assay_footprint
+\item acid (assay_component): aid, assay_component_name
+\item aeid (assay_component_endpoint): acid, assay_component_endpoint_name,
+normalized_data_type
+\item spid (sample): spid, chid
+\item chid (chemical): chid, casn
+\item clib (chemical_library): chid, clib
+\item *vehicle (vehicle): vehicle_name
+\item *waid (assay_plate_well): apid, spid, rowi, coli, wllt, vhid, conc
+\item *apid (assay_plate): aid
 } 
 
 Note: The functions accept the abbreviated forms of the names, ie. "aenm" 
@@ -66,7 +66,7 @@ gtoxLoadAsid()
 
 ## Register a new assay source
 gtoxRegister(what = "asid", flds = list(asnm = "example_asid", 
-                                        asph = "example_phase"))
+asph = "example_phase"))
 
 ## Show the newly registered ASID
 gtoxLoadAsid(add.fld = "assay_source_desc")
@@ -76,8 +76,8 @@ gtoxLoadAsid(add.fld = "assay_source_desc")
 ## can also be updated using gtoxUpdate
 i1 <- gtoxLoadAsid()[asnm == "example_asid", asid]
 gtoxUpdate(what = "asid", 
-           id = i1, 
-           flds = list(assay_source_desc = "example asid description"))
+id = i1, 
+flds = list(assay_source_desc = "example asid description"))
 gtoxLoadAsid(add.fld = "assay_source_desc")
 
 ## Remove the created ASID. Note: Manually deleting primary keys can cause

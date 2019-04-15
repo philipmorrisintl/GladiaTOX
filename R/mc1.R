@@ -17,6 +17,8 @@
 #' @param wr Logical, whether the processed data should be written to the gtox
 #' database
 #'
+#' @keywords internal
+#' 
 #' @details
 #' Level 1 processing includes defining the concentration and replicate index,
 #' cndx and repi, respectively.

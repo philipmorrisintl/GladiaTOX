@@ -55,6 +55,7 @@
 #'
 #' @import data.table
 #' @export
+
 gtoxLoadChem <- function(field=NULL, val=NULL, exact=TRUE,
     include.spid=TRUE) {
 

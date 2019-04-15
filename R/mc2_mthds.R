@@ -50,6 +50,8 @@
 #'   \item{mult6}{Multiply cval by 6.}
 #' }
 #'
+#' @keywords internal
+#' 
 #' @note
 #' This function is not exported and is not intended to be used by the user.
 

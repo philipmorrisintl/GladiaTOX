@@ -26,6 +26,8 @@
 #'
 #' @seealso \code{\link{gtoxFit}}, \code{\link{Models}}
 #'
+#' @keywords internal
+#' 
 #' @import data.table
 #' @importFrom stats mad
 

@@ -21,6 +21,8 @@
 #' The function loops through the given tables, and for each field i it assigns
 #' the last table containing i to i. ORDER OF FLD MATTERS!!
 #'
+#' @keywords internal
+#' 
 #' @import data.table
 #' @return List of fields
 #' 

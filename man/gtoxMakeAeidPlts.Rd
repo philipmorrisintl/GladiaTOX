@@ -5,7 +5,7 @@
 \title{Create a .pdf with dose-response plots}
 \usage{
 gtoxMakeAeidPlts(aeid, lvl = 4L, fname = NULL, odir = getwd(),
-  ordr.fitc = TRUE, clib = NULL)
+ordr.fitc = TRUE, clib = NULL)
 }
 \arguments{
 \item{aeid}{Integer of length 1, the assay endpoint id}

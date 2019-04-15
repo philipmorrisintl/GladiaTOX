@@ -45,3 +45,4 @@ processing functions: \code{\link{sc2}}
 }
 \concept{single-concentration data 
 processing functions}
+\keyword{internal}

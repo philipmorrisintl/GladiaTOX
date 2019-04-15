@@ -5,7 +5,10 @@
 ## GNU General Public License for more details.                    ##
 #####################################################################
 
+#' @keywords internal
+#' 
 #' @importFrom parallel mclapply
+#' 
 
 .multProc <- function(id, lvl, type, ncores) {
 

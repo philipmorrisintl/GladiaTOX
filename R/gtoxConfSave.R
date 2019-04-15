@@ -10,6 +10,15 @@
 #-------------------------------------------------------------------------------
 
 #' @rdname config_funcs
+#' 
+#' @examples
+#' 
+#' ## Set the environment variable pointing to the configuration file
+#' Sys.setenv(TCPL_CONF=file.path(system.file(package="GladiaTOX"),".gtoxConf"))
+#' 
+#' ## Configure database
+#' gtoxConfSave()
+#'
 #' @export
 
 gtoxConfSave <- function () {
@@ -38,12 +47,10 @@ gtoxConfSave <- function () {
     user <- options()$TCPL_USER
     user <- if(is.na(user)) user else shQuote(user)
     pass <- options()$TCPL_PASS
+    if(is.null(pass)) pass <- NA
     pass <- if(is.na(pass)) pass else shQuote(pass)
     db   <- options()$TCPL_DB
     db   <- if(is.na(db))   db   else shQuote(db)
-
-    int <- options()$TCPL_INT
-    if (!is.logical(int)) stop("The 'int' setting must be logical.")
 
     message(
         "###################################################################\n",
@@ -56,7 +63,6 @@ gtoxConfSave <- function () {
         "USER <-", user, "\n",
         "PASS <-", pass, "\n",
         "DB   <-", db, "\n",
-        "INT  <-", int, "\n",
         "\n",
         "###################################################################\n",
         sep=" ",

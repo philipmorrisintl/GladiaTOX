@@ -18,6 +18,8 @@
 #'
 #' @return A list of functions
 #'
+#' @keywords internal
+#' 
 #' @seealso \code{\link{mc5}}, \code{\link{Method functions}} to query what
 #' methods get applied to each aeid
 #'

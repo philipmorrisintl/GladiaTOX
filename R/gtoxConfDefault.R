@@ -10,6 +10,12 @@
 #-------------------------------------------------------------------------------
 
 #' @rdname config_funcs
+#' 
+#' @examples
+#' 
+#' ## Configure database with default parameters
+#' gtoxConfDefault()
+#' 
 #' @export
 
 gtoxConfDefault <- function () {

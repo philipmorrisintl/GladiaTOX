@@ -22,3 +22,9 @@ None
 \description{
 \code{gtoxPlotErrBar} creates the error bar plots.
 }
+\examples{
+
+## Plot error bar plot
+gtoxPlotErrBar(c1=1, c2=3, aeid=17:18)
+
+}

@@ -10,10 +10,18 @@
 #-------------------------------------------------------------------------------
 
 #' @rdname config_funcs
+#' 
+#' @examples
+#' 
+#' ## Configure database
+#' sqlite <- file.path(system.file(package="GladiaTOX"),
+#'     "sql",
+#'     "gladiatoxdb.sqlite")
+#' gtoxConf(db=sqlite, user=NA, host=NA, drvr="SQLite")
+#' 
 #' @export
 
-gtoxConf <- function (drvr=NULL, user=NULL, pass=NULL, host=NULL, db=NULL, 
-                        int=NULL) {
+gtoxConf <- function (drvr=NULL, user=NULL, pass=NULL, host=NULL, db=NULL) {
 
     ## Variable-binding to pass R CMD Check
     Value <- NULL
@@ -22,10 +30,6 @@ gtoxConf <- function (drvr=NULL, user=NULL, pass=NULL, host=NULL, db=NULL,
     if (!is.null(pass)) options("TCPL_PASS"=pass)
     if (!is.null(host)) options("TCPL_HOST"=host)
     if (!is.null(db))   options("TCPL_DB"=db)
-    if (!is.null(int) && !is.logical(int)) {
-        stop("The 'int' setting must be logical.")
-    }
-    if (!is.null(int))  options("TCPL_INT" =int)
 
     if (!is.null(drvr)) {
 

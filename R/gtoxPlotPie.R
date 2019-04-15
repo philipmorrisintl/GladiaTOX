@@ -20,6 +20,11 @@
 #' @param col Vector of colors
 #' @param lbl  Vector with pie labels (optional)
 #'
+#' @examples
+#'
+#' ## Plot pie for chemical IDs 1 to 5 and multiple endpoints
+#' gtoxPlotPie(chid=1:5, mrks=10^c(1:6), aeid=c(2:10))
+#'
 #' @return None
 #'
 #' @importFrom stats sd

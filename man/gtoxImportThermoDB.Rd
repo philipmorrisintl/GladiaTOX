@@ -5,8 +5,8 @@
 \title{Import data from ThermoDB by study ID}
 \usage{
 gtoxImportThermoDB(asid, verbose = TRUE, write = FALSE,
-  store = "STORE", type = "mc",
-  curlurl = "http://pmichlauapp225.pmintl.net:2020/HTTPHCSConnect")
+store = "STORE", type = "mc",
+curlurl = "http://pmichlauapp225.pmintl.net:2020/HTTPHCSConnect")
 }
 \arguments{
 \item{asid}{Integer, the assay study/source ID to import data for}
@@ -36,7 +36,7 @@ gtoxConfDefault()
 
 \dontrun{
 ## Fetch data from ThermoDB
-dat <- gtoxImportThermoDB(asid)
+dat <- gtoxImportThermoDB(asid=1L)
 }
 
 ## Reset configuration

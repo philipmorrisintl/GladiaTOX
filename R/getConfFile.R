@@ -8,6 +8,9 @@
 #' @title Get the configuration file
 #' @description Get the configuration file location and check that it is
 #' writable
+#' 
+#' @keywords internal
+#' 
 #' @return Config file
 #' 
 

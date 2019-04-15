@@ -14,7 +14,7 @@
 #' @details
 #' Function used only when processing historical data
 #'
-#' @note PMI-specific
+#' @keywords internal
 #' @return Data table with annotation info
 
 .bldAnnWll <- function(study.data, vehicle.mapping, phase) {

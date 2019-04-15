@@ -39,6 +39,7 @@
 #' @importFrom stringr str_wrap
 #' @export
 #'
+
 glPlotStat <- function(asid, ref.chm=NULL, stat=quote(modl_acc)) {
 
     addFlds <- c("asid", "aid", "anm", "acnm")
@@ -73,8 +74,9 @@ glPlotStat <- function(asid, ref.chm=NULL, stat=quote(modl_acc)) {
             unique(dat$chnm)[!unique(dat$chnm) %in% ref.chm]
         )
     )
-    pp <- NULL
-    for(a in sort(unique(dat$aid))) {
+
+    pp <- lapply(sort(unique(dat$aid)), function(a){
+        
         from <- min(unique(dat$logc_min[dat$aid %in% a]))
         to <- max(unique(dat$logc_max[dat$aid %in% a]))
         breaks <- formatC(
@@ -82,21 +84,22 @@ glPlotStat <- function(asid, ref.chm=NULL, stat=quote(modl_acc)) {
             mode="real"
         )
 
-        pp[[a]] <-
+        return(
             ggplot(subset(dat, dat$aid == a), aes(x=chnm, y=stat, col=chnm)) +
-            geom_point(aes(col=chnm), na.rm=TRUE) +
-            geom_boxplot(alpha=0, lwd=0.2) +
-            scale_y_log10(
-                name=yname, breaks=as.numeric(breaks), labels=breaks
-            ) +
-            theme_bw() +
-            annotation_logticks(sides="l") +
-            theme(
-                axis.text.x=element_text(angle=90, hjust=1, vjust=0.5),
-                axis.title.x=element_blank()
-            ) +
-            guides(col=guide_legend(title="Chemical")) +
-            facet_grid(anm~aenm_wrap)
-    }
+                geom_point(aes(col=chnm), na.rm=TRUE) +
+                geom_boxplot(alpha=0, lwd=0.2) +
+                scale_y_log10(
+                    name=yname, breaks=as.numeric(breaks), labels=breaks
+                ) +
+                theme_bw() +
+                annotation_logticks(sides="l") +
+                theme(
+                    axis.text.x=element_text(angle=90, hjust=1, vjust=0.5),
+                    axis.title.x=element_blank()
+                ) +
+                guides(col=guide_legend(title="Chemical")) +
+                facet_grid(anm~aenm_wrap)
+        )
+    })
     return(pp)
 }

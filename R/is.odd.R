@@ -17,6 +17,8 @@
 #'
 #' @param x An integer
 #'
+#' @keywords internal
+#' 
 #' @return \code{TRUE} for odd integers and \code{FALSE} for even integers.
 #'
 #' @family gtox abbreviations

@@ -24,7 +24,9 @@
 #' normalization based on methods listed in sc1_aeid and sc1_methods tables.
 #'
 #' @seealso \code{\link{Method functions}}, \code{\link{SC1_Methods}}
-#'
+#' 
+#' @keywords internal
+#' 
 #' @import data.table
 
 sc1 <- function(ac, wr=FALSE) {

@@ -23,6 +23,8 @@
 #'
 #' @seealso \code{\link{Method functions}}, \code{\link{MC3_Methods}}
 #'
+#' @keywords internal
+#' 
 #' @import data.table
 
 mc3 <- function(ac, wr=FALSE) {

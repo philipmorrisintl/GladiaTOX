@@ -16,7 +16,8 @@
 #'
 #' @param input path to JSON file produced by the GUI
 #'
-#' @note PMI-specific
+#' @keywords internal
+#' 
 #' @importFrom stringr str_extract
 #' @import data.table
 #' 

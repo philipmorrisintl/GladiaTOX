@@ -20,8 +20,7 @@
 #'              the same order as 'fld'.
 #' @param db Character, the database containing the table
 #'
-#' @note
-#' This function is not exported and not intended to be used by the user.
+#' @keywords internal
 #'
 #' @seealso \code{\link{gtoxSendQuery}}
 #' 

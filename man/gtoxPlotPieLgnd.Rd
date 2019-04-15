@@ -21,3 +21,9 @@ None
 \description{
 \code{gtoxPlotPieLgnd} creates the piechart plots.
 }
+\examples{
+
+## Plot pie legend
+gtoxPlotPieLgnd(aenm=c("Endpoint1", "Endpoint2"))
+
+}

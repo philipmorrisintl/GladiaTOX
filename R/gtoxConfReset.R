@@ -10,6 +10,15 @@
 #-------------------------------------------------------------------------------
 
 #' @rdname config_funcs
+#' 
+#' @examples
+#' 
+#' ## Set the environment variable pointing to the configuration file
+#' Sys.setenv(TCPL_CONF=file.path(system.file(package="GladiaTOX"),".gtoxConf"))
+#' 
+#' ## Configure database
+#' gtoxConfReset()
+#'
 #' @export
 
 gtoxConfReset <- function () {
@@ -28,8 +37,7 @@ gtoxConfReset <- function () {
         "PASS <- NA_character_",
         "DB   <- file.path(system.file(package=\"GladiaTOX\"),",
         "                             \"sql\",",
-        "                             \"gtoxdb.sqlite\")",
-        "INT  <- FALSE",
+        "                             \"gladiatoxdb.sqlite\")",
         "",
         "###################################################################",
         sep="\n",

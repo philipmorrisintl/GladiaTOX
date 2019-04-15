@@ -29,7 +29,7 @@
 #' 
 #' \dontrun{
 #' ## Fetch data from ThermoDB
-#' dat <- gtoxImportThermoDB(asid)
+#' dat <- gtoxImportThermoDB(asid=1L)
 #' }
 #' 
 #' ## Reset configuration
@@ -43,6 +43,11 @@
 gtoxImportThermoDB <- function(asid, verbose=TRUE, write=FALSE, store="STORE",
             type="mc",
             curlurl="http://pmichlauapp225.pmintl.net:2020/HTTPHCSConnect") {
+
+    ## Check if the service is available
+    temp <- try(curlPerform(url=curlurl), silent=TRUE)
+    if (is(temp, "try-error"))
+        stop("Error: you have to set curlurl to an available service.")
 
     acid_map <- gtoxLoadAcid("asid", asid, c("aid", "machine_name"))
     well_dat <- gtoxLoadWaid("aid", acid_map[ , unique(aid)])

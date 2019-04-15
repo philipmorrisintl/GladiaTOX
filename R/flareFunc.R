@@ -25,6 +25,8 @@
 #' @seealso \code{\link{MC6_Methods}}, \code{\link{Method functions}},
 #' \code{\link{mc6}}
 #' 
+#' @keywords internal
+#' 
 #' @return None
 #' 
 #' @import data.table

@@ -11,6 +11,14 @@
 
 #' @rdname Models
 #'
+#' @examples 
+#' 
+#' ## Load level 3 data for an assay endpoint ID
+#' dat <- gtoxLoadData(lvl=3L, type="mc", fld="aeid", val=3L)
+#' 
+#' ## Compute fitting log-likelyhood
+#' gtoxObjCnst(1, dat$resp)
+#'
 #' @section Constant Model (cnst):
 #' \code{gtoxObjCnst} calculates the likelyhood for a constant model at 0. The
 #' only parameter passed to \code{gtoxObjCnst} by \code{p} is the scale term

@@ -39,6 +39,7 @@
 #'
 #' @export
 #'
+
 exportResultForToxpiGUI <- function(asid, tp, outfile, stat) {
     ## save data for toxPi GUI visualizatiion
     dat <- gtoxLoadData(lvl=5, fld="aeid", val=gtoxLoadAeid("asid", asid)$aeid)

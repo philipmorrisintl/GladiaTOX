@@ -20,6 +20,11 @@
 #' @param ngrp Integer, the number of "slots" to draw; overridden if the
 #' number of aeid values is greater than 'ngrp'
 #'
+#' @examples 
+#' 
+#' ## Plot error bar plot
+#' gtoxPlotErrBar(c1=1, c2=3, aeid=17:18)
+#'
 #' @return None
 #'
 #' @importFrom stats sd

@@ -19,6 +19,8 @@
 #' all output and messages back to the console.
 #' 
 #' @return None
+#' 
+#' @keywords internal
 #'
 #' @family gtox abbreviations
 #' @seealso \code{\link{sink}}, \code{\link{sink.number}}

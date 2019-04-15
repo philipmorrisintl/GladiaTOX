@@ -30,6 +30,7 @@
 #' 
 #' @export
 #'
+
 exportResultTable <- function(asid, stats, outfile) {
     aetblFlds <- c("asid", "aid", "anm", "acnm", "asnm")
     aetbl<- gtoxLoadAeid(fld="asid", val=asid, add.fld=aetblFlds)

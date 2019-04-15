@@ -13,7 +13,8 @@
 #' @description This function deletes all data from the database and preserves 
 #' the method tables. 
 #' 
-#' @note PMI-specific
+#' @keywords internal
+#' 
 #' @return None
 
 .cleanDB <- function() {

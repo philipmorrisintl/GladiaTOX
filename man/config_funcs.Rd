@@ -13,7 +13,7 @@
 \title{Functions for configuring the gtox package}
 \usage{
 gtoxConf(drvr = NULL, user = NULL, pass = NULL, host = NULL,
-  db = NULL, int = NULL)
+db = NULL)
 
 gtoxConfDefault()
 
@@ -35,8 +35,6 @@ gtoxConfSave()
 \item{host}{Character of length 1, the database server}
 
 \item{db}{Character of length 1, the name of the gtox database}
-
-\item{int}{Logical}
 
 \item{show.pass}{Logical, should the password be returned}
 
@@ -93,5 +91,41 @@ TCPL_CONF environment variable running \code{gtoxConfSave()}.
 }
 \examples{
 gtoxConfList() # List configuration parameters
+
+
+## Configure database
+sqlite <- file.path(system.file(package="GladiaTOX"),
+"sql",
+"gladiatoxdb.sqlite")
+gtoxConf(db=sqlite, user=NA, host=NA, drvr="SQLite")
+
+
+## Configure database with default parameters
+gtoxConfDefault()
+
+
+## List configuration of database parameters
+gtoxConfList()
+
+
+## Set the environment variable pointing to the configuration file
+Sys.setenv(TCPL_CONF=file.path(system.file(package="GladiaTOX"),".gtoxConf"))
+
+## Configure database
+gtoxConfLoad()
+
+
+## Set the environment variable pointing to the configuration file
+Sys.setenv(TCPL_CONF=file.path(system.file(package="GladiaTOX"),".gtoxConf"))
+
+## Configure database
+gtoxConfReset()
+
+
+## Set the environment variable pointing to the configuration file
+Sys.setenv(TCPL_CONF=file.path(system.file(package="GladiaTOX"),".gtoxConf"))
+
+## Configure database
+gtoxConfSave()
 
 }

@@ -22,6 +22,8 @@
 #'
 #' @seealso \code{\link{Method functions}}, \code{\link{MC6_Methods}}
 #'
+#' @keywords internal
+#' 
 #' @import data.table
 
 mc6 <- function(ae, wr=FALSE) {

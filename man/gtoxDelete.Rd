@@ -22,9 +22,7 @@ None
 \description{
 \code{gtoxDelete} deletes rows from the given table and database.
 }
-\note{
-This function is not exported and not intended to be used by the user.
-}
 \seealso{
 \code{\link{gtoxSendQuery}}
 }
+\keyword{internal}

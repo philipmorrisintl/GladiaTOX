@@ -14,6 +14,8 @@
 #' @param line Line to convert
 #' @param side Line side
 #'
+#' @keywords internal
+#' 
 #' @importFrom graphics grconvertX grconvertY
 #' @return None
 

@@ -23,8 +23,7 @@
 #' Cannot be undone. Please use carefully. Not exported, as this is
 #' intended for development and should not be used with real data.
 #' 
-#' @note 
-#' PMI-specific
+#' @keywords internal
 #' 
 #' @import data.table
 #' @return None

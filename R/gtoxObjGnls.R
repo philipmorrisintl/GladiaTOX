@@ -11,6 +11,14 @@
 
 #' @rdname Models
 #'
+#' @examples 
+#' 
+#' ## Load level 3 data for an assay endpoint ID
+#' dat <- gtoxLoadData(lvl=3L, type="mc", fld="aeid", val=3L)
+#' 
+#' ## Compute fitting log-likelyhood
+#' gtoxObjGnls(rep(0,5), dat$logc, dat$resp)
+#'
 #' @section Gain-Loss Model (gnls):
 #' \code{gtoxObjGnls} calculates the likelyhood for a 5 parameter model as the
 #' product of two Hill models with the same top and both bottoms equal to 0.

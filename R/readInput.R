@@ -23,6 +23,8 @@
 #' @importFrom utils type.convert
 #' @import data.table
 #' 
+#' @keywords internal
+#' 
 #' @return Data frame with plate annotation
 #' 
 

@@ -12,7 +12,7 @@
 #' @title Create winning curve plots
 #'
 #' @description
-#' \code{gtoxPlotWin} creates the piechart plots.
+#' \code{gtoxPlotWin} creates best fit plot.
 #'
 #' @param chid Integer of length 1, the chid value
 #' @param aeid Integer, the aeid values to plot
@@ -28,12 +28,17 @@
 #'
 #' @examples
 #' 
+#' \dontrun{
+#' ## Load chemical ID
 #' chid <- gtoxLoadChem(field="chnm", val="acrylamide", include.spid=FALSE)$chid
-#' print(chid)
+#' 
+#' ## Load Assay endpoint ID
 #' aeid <- gtoxLoadAeid(fld=c("asid","aenm"), 
 #'           val=list(1L, "GSH content_GSH content_4h_dn"), add.fld="asid")$aeid
-#' print(aeid)
+#'
+#' ## Plot winning model
 #' gtoxPlotWin(chid = chid, aeid = aeid, bline="bmad", collapse=TRUE)
+#' }
 #' 
 #' @return None
 #'

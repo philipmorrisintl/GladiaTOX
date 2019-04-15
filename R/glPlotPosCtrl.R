@@ -34,7 +34,6 @@
 #'
 #' @return A list of ggplot objects, one per assay X timepoint.
 #'
-#' @note PMI-specific
 #' @import ggplot2
 #' @export
 #'
@@ -63,9 +62,8 @@ glPlotPosCtrl <- function(asid) {
     datatab$wllt[datatab$wllt == "c"] <- "ctrl_pos"
     datatab$wllt[datatab$wllt == "n"] <- "neutral_ctrl"
 
-    pp <- NULL
-    for(a in sort(unique(datatab$aid))) {
-        pp[[a]] <-
+    pp = lapply(sort(unique(datatab$aid)), function(a){
+        return(
             ggplot(
                 subset(datatab, datatab$aid == a),
                 aes(x=wllt, y=resp, fill=u_boxtrack)
@@ -78,6 +76,6 @@ glPlotPosCtrl <- function(asid) {
             geom_boxplot(aes(col=u_boxtrack), alpha=0, lwd=0.5) +
             scale_y_continuous(name="log2FC", limits=c(-4.5, 4.5)) +
             facet_grid(anm~aenm)
-    }
+        )})
     return(pp)
 }

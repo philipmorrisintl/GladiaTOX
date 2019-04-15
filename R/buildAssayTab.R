@@ -16,6 +16,13 @@
 #' @param plate.mtd Legacy study annotation file from biobanking
 #' @param chn.map List of endpoints to thermo channels mapping
 #'
+#' @examples 
+#' ## Load sample data
+#' load(system.file("extdata", "data_for_vignette.rda", package="GladiaTOX"))
+#' 
+#' # Build assay table
+#' assay <- buildAssayTab(plate, chnmap)
+#' 
 #' @details
 #' Function used only when processing historical data
 #'

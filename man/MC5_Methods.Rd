@@ -21,19 +21,19 @@ More information about the level 5 multiple-concentration processing is
 available in the package vignette, "Pipeline_Overview."
 
 \describe{
-  \item{bmad3}{Add a cutoff value of 3*bmad.}
-  \item{pc20}{Add a cutoff value of 20.}
-  \item{log2_1.2}{Add a cutoff value of log2(1.2).}
-  \item{log10_1.2}{Add a cutoff value of log10(1.2).}
-  \item{bmad5}{Add a cutoff value of 5*bmad.}
-  \item{bmad6}{Add a cutoff value of 6*bmad.}
-  \item{bmad10}{Add a cutoff value of 10*bmad.}
-  \item{log2_2}{Add a cutoff value of log2(2).}
-  \item{log10_2}{Add a cutoff value of log10(2).}
-  \item{neglog2_0.88}{Add a cutoff value of -1*log2(0.88).}
-  \item{vmad3}{Add a cutoff value of 3*vmad.}
-  \item{vmad5}{Add a cutoff value of 5*vmad.}
-  \item{vmad10}{Add a cutoff value of 10*vmad.}
+\item{bmad3}{Add a cutoff value of 3*bmad.}
+\item{pc20}{Add a cutoff value of 20.}
+\item{log2_1.2}{Add a cutoff value of log2(1.2).}
+\item{log10_1.2}{Add a cutoff value of log10(1.2).}
+\item{bmad5}{Add a cutoff value of 5*bmad.}
+\item{bmad6}{Add a cutoff value of 6*bmad.}
+\item{bmad10}{Add a cutoff value of 10*bmad.}
+\item{log2_2}{Add a cutoff value of log2(2).}
+\item{log10_2}{Add a cutoff value of log10(2).}
+\item{neglog2_0.88}{Add a cutoff value of -1*log2(0.88).}
+\item{vmad3}{Add a cutoff value of 3*vmad.}
+\item{vmad5}{Add a cutoff value of 5*vmad.}
+\item{vmad10}{Add a cutoff value of 10*vmad.}
 }
 }
 
@@ -41,3 +41,4 @@ available in the package vignette, "Pipeline_Overview."
 \code{\link{mc5}}, \code{\link{Method functions}} to query what
 methods get applied to each aeid
 }
+\keyword{internal}

@@ -15,7 +15,8 @@
 #' 
 #' @param xml_file XML formatted content from Thermo database
 #' 
-#' @note PMI-specific
+#' @keywords internal
+#' 
 #' @importFrom XML xmlToList
 #' @import data.table
 #' @return Parsed protocol list
@@ -49,7 +50,8 @@
 #' 
 #' @param xml_file XML formatted content from Thermo database
 #' 
-#' @note PMI-specific
+#' @keywords internal
+#' 
 #' @importFrom XML xmlToList
 #' @import data.table
 #' @return DB store entry table
@@ -101,7 +103,8 @@
 #' @param verbose Logical, should curl return the messages to the console?
 #' @param curlurl webservice URL
 #'
-#' @note PMI-specific
+#' @keywords internal
+#' 
 #' @importFrom RCurl basicTextGatherer curlOptions curlPerform
 #' @importFrom stringr str_locate
 #' @import data.table
@@ -186,7 +189,8 @@
 #' @param verbose Logical, should curl return the messages to the console?
 #' @param curlurl webservice URL
 #'
-#' @note PMI-specific
+#' @keywords internal
+#' 
 #' @importFrom RCurl basicTextGatherer curlOptions curlPerform
 #' @importFrom stringr str_locate
 #' @import data.table
@@ -272,7 +276,8 @@
 #' @param verbose Logical, should curl return the messages to the console?
 #' @param curlurl webservice URL
 #' 
-#' @note PMI-specific
+#' @keywords internal
+#' 
 #' @import data.table
 #' @return List of DB store entries
 
@@ -315,7 +320,7 @@
 #' 
 #' @param xml_file XML formatted content from Thermo database
 #' 
-#' @note PMI-specific
+#' @keywords internal
 #' 
 #' @importFrom XML xmlToList
 #' @importFrom utils type.convert
@@ -372,7 +377,8 @@
 #' @param verbose Logical, should curl return the messages to the console?
 #' @param curlurl webservice URL
 #'
-#' @note PMI-specific
+#' @keywords internal
+#' 
 #' @importFrom RCurl basicTextGatherer curlOptions curlPerform
 #' @importFrom stringr str_locate
 #' @import data.table
@@ -459,7 +465,8 @@
 #' 
 #' @param l Content of a single well
 #' 
-#' @note PMI-specific
+#' @keywords internal
+#' 
 #' @import data.table
 #' @return Parsed well information
 

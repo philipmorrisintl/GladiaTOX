@@ -98,3 +98,26 @@ where \eqn{x_{i}}{x[i]} is the log concentration for the \eqn{i^{th}}{ith}
 observation.
 }
 
+\examples{
+
+## Load level 3 data for an assay endpoint ID
+dat <- gtoxLoadData(lvl=3L, type="mc", fld="aeid", val=3L)
+
+## Compute fitting log-likelyhood
+gtoxObjCnst(1, dat$resp)
+
+
+## Load level 3 data for an assay endpoint ID
+dat <- gtoxLoadData(lvl=3L, type="mc", fld="aeid", val=3L)
+
+## Compute fitting log-likelyhood
+gtoxObjGnls(rep(0,5), dat$logc, dat$resp)
+
+
+## Load level 3 data for an assay endpoint ID
+dat <- gtoxLoadData(lvl=3L, type="mc", fld="aeid", val=3L)
+
+## Compute fitting log-likelyhood
+gtoxObjHill(rep(0,4), dat$logc, dat$resp)
+
+}

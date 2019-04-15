@@ -22,6 +22,8 @@
 #'
 #' @seealso \code{\link{Method functions}}, \code{\link{MC5_Methods}}
 #'
+#' @keywords internal
+#' 
 #' @import data.table
 
 mc5 <- function(ae, wr=FALSE) {

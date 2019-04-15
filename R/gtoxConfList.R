@@ -10,13 +10,17 @@
 #-------------------------------------------------------------------------------
 
 #' @rdname config_funcs
+#' 
+#' @examples
+#' 
+#' ## List configuration of database parameters
+#' gtoxConfList()
+#' 
 #' @export
 
 gtoxConfList <- function(show.pass=FALSE) {
 
-    opts <- list(
-        "TCPL_DB", "TCPL_USER", "TCPL_HOST", "TCPL_DRVR", "TCPL_INT"
-    )
+    opts <- list("TCPL_DB", "TCPL_USER", "TCPL_HOST", "TCPL_DRVR")
     if (show.pass) opts <- c(opts, "TCPL_PASS")
     do.call(options, opts)
 

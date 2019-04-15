@@ -32,6 +32,7 @@
 #' @import ggplot2
 #' @export
 #'
+
 glPlotPie <- function(asid, chnms=NULL, acids=NULL, aeids=NULL, 
                         expos.time.ordr=NULL, stat=quote(modl_acc)) {
 

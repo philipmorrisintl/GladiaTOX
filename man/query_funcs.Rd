@@ -7,10 +7,10 @@
 \title{Wrappers for sending queries and fetching results}
 \usage{
 gtoxQuery(query, db = getOption("TCPL_DB"),
-  drvr = getOption("TCPL_DRVR"))
+drvr = getOption("TCPL_DRVR"))
 
 gtoxSendQuery(query, db = getOption("TCPL_DB"),
-  drvr = getOption("TCPL_DRVR"))
+drvr = getOption("TCPL_DRVR"))
 }
 \arguments{
 \item{query}{Character of length 1, the query string}
@@ -36,6 +36,10 @@ returns 'TRUE' or the error message given by the database.
 }
 \examples{
 
+## Perform query
+gtoxSendQuery(paste0("SELECT * FROM assay_source"))
+
+
 ## Store the current config settings, so they can be reloaded at the end 
 ## of the examples
 conf_store <- gtoxConfList()
@@ -43,7 +47,7 @@ gtoxConfDefault()
 
 gtoxQuery("SELECT 'Hello World';")
 gtoxQuery("SELECT * FROM assay;")
- 
+
 ## Reset configuration
 options(conf_store)
 

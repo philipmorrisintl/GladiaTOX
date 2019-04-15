@@ -11,6 +11,11 @@
 
 #' @rdname query_funcs
 #'
+#' @examples
+#' 
+#' ## Perform query
+#' gtoxSendQuery(paste0("SELECT * FROM assay_source"))
+#'
 #' @import DBI
 #' @importFrom RSQLite SQLite
 #' @import data.table

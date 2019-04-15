@@ -24,6 +24,6 @@ lw(c(TRUE, FALSE, TRUE))
 \code{\link{length}}, \code{\link{which}}
 
 Other gtox abbreviations: \code{\link{is.odd}},
-  \code{\link{lu}}, \code{\link{sink_reset}}
+\code{\link{lu}}, \code{\link{sink_reset}}
 }
 \concept{gtox abbreviations}

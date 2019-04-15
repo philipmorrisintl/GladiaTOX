@@ -19,9 +19,6 @@ treatments normalized values
 \details{
 This funtion is useful to select plates to mask
 }
-\note{
-PMI-specific
-}
 \examples{
 ## Store the current config settings, so they can be reloaded at the end
 ## of the examples

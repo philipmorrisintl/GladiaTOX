@@ -11,6 +11,14 @@
 
 #' @rdname Models
 #'
+#' @examples 
+#' 
+#' ## Load level 3 data for an assay endpoint ID
+#' dat <- gtoxLoadData(lvl=3L, type="mc", fld="aeid", val=3L)
+#' 
+#' ## Compute fitting log-likelyhood
+#' gtoxObjHill(rep(0,4), dat$logc, dat$resp)
+#'
 #' @section Hill Model (hill):
 #' \code{gtoxObjHill} calculates the likelyhood for a 3 parameter Hill model
 #' with the bottom equal to 0. The parameters passed to \code{gtoxObjHill} by

@@ -44,15 +44,14 @@ For the optimal output size, use width = 12, height = 8,
 pointsize = 12, units = "in"
 }
 \examples{
- 
-acnm = "Cytotoxicity (TIER1)_Cytochrome C release_24h"
-pltnm = "S-000049119"
-myaid = gtoxLoadApid()[u_boxtrack == pltnm, aid]
-myaid = myaid[myaid\%in\%gtoxLoadAid(fld = "asid", val = 1L)$aid]
-apid = gtoxLoadApid()[u_boxtrack == pltnm & aid == myaid, apid]
-acid = gtoxLoadAcid(fld = c("aid", "acnm"), val = list(myaid, acnm))[, acid]
-l2 = gtoxLoadData(lvl = 2L, fld = "acid", val = acid)
+
+## Define assay component and extract assay component ID
+acnm <- "Cytotoxicity (TIER1)_Cytochrome C release_24h"
+acid <- gtoxLoadAcid(fld=c("asid", "acnm"), val=list(1L,acnm))[, acid]
+## Extract assay plate ID corresponding to plate name S-000049119
+apid <- gtoxLoadApid()[u_boxtrack == "S-000049119", apid]
+## Load level 2 data (Raw data before normalization)
+l2 <- gtoxLoadData(lvl = 2L, fld = "acid", val = acid)
 gtoxPlotPlate(dat = l2, apid = apid, id = acid)
-dev.off()
 
 }

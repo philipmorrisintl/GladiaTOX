@@ -1,7 +1,7 @@
 #' @title Load level <%= LVL %> data
 #' 
 #' @description 
-#' \code{<%= paste0("loadLvl", LVL, "Data") %>} queries the ToxCast databases 
+#' \code{<%= paste0("loadLvl", LVL, "Data") %>} queries the GladiaTOX databases 
 #' and returns a data.table with level <%= LVL %> data.
 #' 
 #' @param field Character, the field(s) to query on
