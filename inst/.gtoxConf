@@ -1,0 +1,8 @@
+Sys.setenv(DRVR="SQLite")
+Sys.setenv(HOST=NA)
+Sys.setenv(USER=NA)
+Sys.setenv(PASS=NA)
+Sys.setenv(DB=sqlite <- file.path(system.file(package="GladiaTOX"),
+                                    "sql",
+                                    "gladiatoxdb.sqlite"
+                                    ))
