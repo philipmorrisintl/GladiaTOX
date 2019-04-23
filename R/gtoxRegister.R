@@ -95,7 +95,7 @@ gtoxRegister <- function(what, flds) {
     }
 
     gtoxAppend(dat=flds, tbl=i[[1]], db=options()$TCPL_DB)
-
+    
     TRUE
 
 }

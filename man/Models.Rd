@@ -108,16 +108,16 @@ gtoxObjCnst(1, dat$resp)
 
 
 ## Load level 3 data for an assay endpoint ID
-dat <- gtoxLoadData(lvl=3L, type="mc", fld="aeid", val=3L)
+dat <- gtoxLoadData(lvl=3L, type="mc", fld="aeid", val=2L)
 
 ## Compute fitting log-likelyhood
-gtoxObjGnls(rep(0,5), dat$logc, dat$resp)
+gtoxObjGnls(p=c(rep(0.5,5),1e-3), lconc=dat$logc, resp=dat$resp)
 
 
 ## Load level 3 data for an assay endpoint ID
 dat <- gtoxLoadData(lvl=3L, type="mc", fld="aeid", val=3L)
 
 ## Compute fitting log-likelyhood
-gtoxObjHill(rep(0,4), dat$logc, dat$resp)
+gtoxObjHill(c(rep(0,3), 1e-3), dat$logc, dat$resp)
 
 }

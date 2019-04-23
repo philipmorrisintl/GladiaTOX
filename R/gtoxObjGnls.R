@@ -14,10 +14,10 @@
 #' @examples 
 #' 
 #' ## Load level 3 data for an assay endpoint ID
-#' dat <- gtoxLoadData(lvl=3L, type="mc", fld="aeid", val=3L)
+#' dat <- gtoxLoadData(lvl=3L, type="mc", fld="aeid", val=2L)
 #' 
 #' ## Compute fitting log-likelyhood
-#' gtoxObjGnls(rep(0,5), dat$logc, dat$resp)
+#' gtoxObjGnls(p=c(rep(0.5,5),1e-3), lconc=dat$logc, resp=dat$resp)
 #'
 #' @section Gain-Loss Model (gnls):
 #' \code{gtoxObjGnls} calculates the likelyhood for a 5 parameter model as the
@@ -49,13 +49,13 @@ gtoxObjGnls <- function(p, lconc, resp) {
     ## the starting gain-loss parameters, log concentration, and response.
     ##
     ## Arguments:
-    ##   p:     a numeric vector of length 5 containg the starting values for
+    ##   p:     a numeric vector of length 6 containg the starting values for
     ##          the gain-loss model, in order: top, gain log AC50, gain hill
     ##          coefficient, loss log AC50, loss hill coefficient and log error
     ##          term
     ##   lconc: a numeric vector containing the log concentration values to
     ##          produce the objective function
-    ##   lresp: a numeric vector containing the response values to produce the
+    ##   resp: a numeric vector containing the response values to produce the
     ##          objective function
     ##
     ## Value:
@@ -65,7 +65,7 @@ gtoxObjGnls <- function(p, lconc, resp) {
     gn <- 1/(1 + 10^((p[2] - lconc)*p[3]))
     ls <- 1/(1 + 10^((lconc - p[4])*p[5]))
     mu <- p[1]*gn*ls
-    sum(dt((resp - mu)/exp(p[6]), df=4, log=TRUE) - p[6])
+    sum(dt((resp - mu)/exp(p[6]), df=4, log=TRUE) - p[6], na.rm=TRUE)
 
 }
 

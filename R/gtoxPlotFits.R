@@ -68,9 +68,9 @@
 #' ## a subset of the data. This browse function is admittedly clunky.
 #' bpa <- gtoxLoadChem(field = "chnm", val = "chromium")[ , spid]
 #' l5_sub <- l5[spid %in% bpa]
-#' \dontrun{
+#' 
 #' gtoxPlotFits(dat = l5_sub, agg = l4_agg[m4id %in% l5_sub$m4id])
-#' }
+#' 
 #'
 #' ## Reset configuration
 #' options(conf_store)

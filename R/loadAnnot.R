@@ -27,12 +27,16 @@
 #' ## Load sample data
 #' load(system.file("extdata", "data_for_vignette.rda", package="GladiaTOX"))
 #' 
-#' # Build assay table
+#' ## Build assay table
 #' assay <- buildAssayTab(plate, chnmap)
 #' 
 #' ## Set study parameters
 #' std.nm <- "SampleStudy" # study name
 #' phs.nm <- "PhaseII" # study phase
+#' 
+#' ## Delete previously loaded study data
+#' asid = gtoxLoadAsid(fld=c("asnm", "asph"), val=list(std.nm, phs.nm))$asid
+#' if(length(asid)>0){ deleteStudy(asid=asid) }
 #' 
 #' ## Load annotation in gtoxDB
 #' loadAnnot(plate, assay, NULL)
@@ -47,7 +51,7 @@
 #' 
 
 loadAnnot <- function(plate, assay, outFile="out.json") {
-
+    
     ## Read plate data
     plate <- .readInput(plate)
     setnames(

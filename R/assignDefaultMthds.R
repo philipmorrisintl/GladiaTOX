@@ -83,5 +83,6 @@ assignDefaultMthds <- function(asid) {
         id=atbl$aeid,
         mthd_id=c(6:8, 10:12, 15:16),
         type="mc")
-
+    
+    TRUE
 }

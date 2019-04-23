@@ -37,8 +37,10 @@ multiple (proprietary) systems to be integrated easily
 reporting
 
 ## Installation and package load
-```{r, eval=FALSE, echo=TRUE, include=FALSE}
-install.packages("GladiaTOX")
+```{r, eval=FALSE, include=TRUE}
+if(!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("GladiaTOX")
 ```
 
 ```{r, eval=TRUE, echo=TRUE, include=FALSE}
@@ -122,12 +124,16 @@ In this section we will explore one simple way for loading data in the
 database. The following chunks prepare the metadata and data in R objects
 (data.frame) prior database loading.
 
-The following commands loads the data for vignette.
+The following commands loads the data for vignette. The command loads three 
+objects in the environment. The content of each object is described in the 
+following sections. These objects are what users need to prepare before study 
+data can be loaded. In particular the `dat` object contains the raw data as
+fetched from the instrument database. This database is only accessible 
+internally to the company, hence its content has been exported and saved in an
+Rdat object . Some fields, not used by the code, are not reported.
 ```{r, eval=TRUE, include=TRUE, echo=TRUE}
 load(system.file("extdata", "data_for_vignette.rda", package="GladiaTOX"))
 ```
-The command loads three objects in the environment. These objects are what
-users need to prepare before study data can be loaded.
 
 ## `plate`: plate metadata
 The `plate` object stores metadata with plate information. 

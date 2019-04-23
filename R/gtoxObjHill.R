@@ -17,7 +17,7 @@
 #' dat <- gtoxLoadData(lvl=3L, type="mc", fld="aeid", val=3L)
 #' 
 #' ## Compute fitting log-likelyhood
-#' gtoxObjHill(rep(0,4), dat$logc, dat$resp)
+#' gtoxObjHill(c(rep(0,3), 1e-3), dat$logc, dat$resp)
 #'
 #' @section Hill Model (hill):
 #' \code{gtoxObjHill} calculates the likelyhood for a 3 parameter Hill model
@@ -54,7 +54,7 @@ gtoxObjHill <- function(p, lconc, resp) {
     ##   An objective function for the hill model and the given conc-resp data
 
     mu <- p[1]/(1 + 10^((p[2] - lconc)*p[3]))
-    sum(dt((resp - mu)/exp(p[4]), df=4, log=TRUE) - p[4])
+    sum(dt((resp - mu)/exp(p[4]), df=4, log=TRUE) - p[4], na.rm=TRUE)
 
 }
 

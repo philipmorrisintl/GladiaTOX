@@ -6,36 +6,51 @@
 #####################################################################
 
 #-------------------------------------------------------------------------------
-# .deleteStudy: Completely remove all data for a study  
+# deleteStudy: Completely remove all data for a study  
 #-------------------------------------------------------------------------------
 
 #' @title Completely remove all data for a study  
 #' 
 #' @description
-#' \code{.deleteStudy} completely removes all data for a study from the 
+#' \code{deleteStudy} completely removes all data for a study from the 
 #' database.
 #' 
 #' @param asid The assay source/study ID
 #' @param db   (optional) the databse to delete from, defaults to the current
 #' database settings
 #' 
+#' @examples
+#' 
+#' \dontrun{
+#' ## Load sample data
+#' load(system.file("extdata", "data_for_vignette.rda", package="GladiaTOX"))
+#' 
+#' ## Build assay table
+#' assay <- buildAssayTab(plate, chnmap)
+#' 
+#' ## Set study parameters
+#' std.nm <- "SampleStudy" # study name
+#' phs.nm <- "PhaseII" # study phase
+#' 
+#' ## Load annotation in gtoxDB
+#' loadAnnot(plate, assay, NULL)
+#' 
+#' ## Delete previously loaded study data
+#' asid = gtoxLoadAsid(fld=c("asnm", "asph"), val=list(std.nm, phs.nm))$asid
+#' if(length(asid)>0){ deleteStudy(asid=asid) }
+#' }
+#' 
 #' @details 
 #' Cannot be undone. Please use carefully. Not exported, as this is
 #' intended for development and should not be used with real data.
 #' 
-#' @keywords internal
-#' 
 #' @import data.table
 #' @return None
 
-.deleteStudy <- function(asid, db=NULL) {
+deleteStudy <- function(asid, db=NULL) {
 
     stopifnot(is.null(db) || (length(db) == 1 & is.character(db)))
     stopifnot(is.numeric(asid))
-
-    prmpt <- sprintf("Delete all references to asid %s? [y/n] ", asid)
-    delete <- readline(prompt=prmpt)
-    if (delete != "y") return()
 
     ids <- gtoxLoadAcid(fld="asid", val=asid, add.fld=c("aid", "aeid"))
     plt <- gtoxLoadApid(fld="aid", val=unique(ids$aid))

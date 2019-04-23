@@ -21,3 +21,11 @@ between assay endpoints and channels
 \details{
 Function used only when processing historical data
 }
+\examples{
+## Load sample data
+load(system.file("extdata", "data_for_vignette.rda", package="GladiaTOX"))
+
+# Build assay table
+assay <- buildAssayTab(plate, chnmap)
+
+}

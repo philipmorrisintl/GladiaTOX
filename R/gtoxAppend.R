@@ -66,7 +66,7 @@ gtoxAppend <- function(dat, tbl, db) {
         status <- dbSendQuery(
             dbcon,
             paste(
-                "INSERT INTO", tbl,
+                "INSERT or IGNORE INTO", tbl,
                 "(", paste(tmp_flds, collapse=","), ")",
                 "SELECT",
                 paste(tmp_flds, collapse=","),
@@ -74,6 +74,9 @@ gtoxAppend <- function(dat, tbl, db) {
                 tempTbl
             )
         )
+        ## Closing open result set
+        dbClearResult(status)
+        
         ## Remove temporary table
         dbRemoveTable(dbcon, tempTbl)
 
@@ -108,9 +111,9 @@ gtoxAppend <- function(dat, tbl, db) {
             row.names=FALSE,
             append=TRUE
         )
-
+        
         dbDisconnect(dbcon)
-
+        
         return(TRUE)
 
     }
