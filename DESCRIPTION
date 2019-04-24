@@ -6,7 +6,7 @@ biocViews: Software,
     Preprocessing,
     QualityControl
 Title: R Package for Processing High Content Screening data
-Version: 0.99.39
+Version: 0.99.40
 Author: Vincenzo Belcastro [aut, cre],
     Dayne L Filer [aut],
     Stephane Cano [aut]
@@ -20,7 +20,7 @@ Description: GladiaTOX R package is an open-source, flexible solution to
     control and data processing.
 License: GPL-2
 Depends:
-    R (>= 3.5.0),
+    R (>= 3.6.0),
     data.table (>= 1.9.4)
 Imports:
     DBI,
