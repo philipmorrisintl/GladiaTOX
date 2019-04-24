@@ -2,6 +2,7 @@
 
 export(assignDefaultMthds)
 export(buildAssayTab)
+export(deleteStudy)
 export(exportResultForToxpiGUI)
 export(exportResultTable)
 export(glComputeToxInd)

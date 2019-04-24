@@ -13,7 +13,7 @@
 #' @examples
 #' 
 #' ## Set the environment variable pointing to the configuration file
-#' Sys.setenv(TCPL_CONF=file.path(system.file(package="GladiaTOX"),".gtoxConf"))
+#' Sys.setenv(TCPL_CONF=file.path(system.file(package="GladiaTOX"),"gtoxConf"))
 #' 
 #' ## Configure database
 #' gtoxConfLoad()

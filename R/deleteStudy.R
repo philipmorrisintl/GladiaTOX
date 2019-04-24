@@ -45,6 +45,8 @@
 #' intended for development and should not be used with real data.
 #' 
 #' @import data.table
+#' @export
+#' 
 #' @return None
 
 deleteStudy <- function(asid, db=NULL) {

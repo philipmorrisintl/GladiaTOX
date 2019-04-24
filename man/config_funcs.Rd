@@ -83,7 +83,7 @@ does not exist, create it, and add the following line:
 TCPL_CONF=path/to/confFile.conf
 
 Here 'path/to/confFile.conf' can be any path to a file. One suggestion would
-be to include .gtoxConf in the home directory, eg. TCPL_CONF=~/.gtoxConf. 
+be to include gtoxConf in the home directory, eg. TCPL_CONF=~/gtoxConf. 
 Note, '~' may not indicate the home directory on every operating system.
 Once the environment variable is added, the user can change the settings
 using \code{gtoxConf}, then save the settings to the file given by the
@@ -109,21 +109,21 @@ gtoxConfList()
 
 
 ## Set the environment variable pointing to the configuration file
-Sys.setenv(TCPL_CONF=file.path(system.file(package="GladiaTOX"),".gtoxConf"))
+Sys.setenv(TCPL_CONF=file.path(system.file(package="GladiaTOX"),"gtoxConf"))
 
 ## Configure database
 gtoxConfLoad()
 
 
 ## Set the environment variable pointing to the configuration file
-Sys.setenv(TCPL_CONF=file.path(system.file(package="GladiaTOX"),".gtoxConf"))
+Sys.setenv(TCPL_CONF=file.path(system.file(package="GladiaTOX"),"gtoxConf"))
 
 ## Configure database
 gtoxConfReset()
 
 
 ## Set the environment variable pointing to the configuration file
-Sys.setenv(TCPL_CONF=file.path(system.file(package="GladiaTOX"),".gtoxConf"))
+Sys.setenv(TCPL_CONF=file.path(system.file(package="GladiaTOX"),"gtoxConf"))
 
 ## Configure database
 gtoxConfSave()
