@@ -41,48 +41,48 @@ More information about the level 3 single-concentration processing is
 available in the package vignette, "Pipeline_Overview."
 
 \subsection{bval Methods}{
-\describe{
-\item{bval.apid.nwlls.med}{Calculate bval as the median of rval for
-wells with wllt equal to "n," by apid.}
-\item{bval.apid.twlls.med}{Calculate bval as the median of rval for
-wells with wllt equal to "t," by apid.}
-\item{bval.apid.tn.med}{Calculate bval as the median of rval for wells
-with wllt equal to "t" or "n," by apid.}
-}
+  \describe{
+    \item{bval.apid.nwlls.med}{Calculate bval as the median of rval for
+    wells with wllt equal to "n," by apid.}
+    \item{bval.apid.twlls.med}{Calculate bval as the median of rval for
+    wells with wllt equal to "t," by apid.}
+    \item{bval.apid.tn.med}{Calculate bval as the median of rval for wells
+    with wllt equal to "t" or "n," by apid.}
+  }
 }
 
 \subsection{pval Methods}{
-\describe{
-\item{pval.apid.pwlls.med}{Calculate pval as the median of rval for
-wells with wllt equal to "p," by apid.}
-\item{pval.apid.mwlls.med}{Calculate pval as the median of rval for
-wells with wllt equal to "m," by apid.}
-\item{pval.apid.medpcbyconc.max}{First calculate the median of rval for
-wells with wllt equal to "p" or "c," by wllt, conc, and apid. Then
-calculate pval as the maximum of the calculated medians, by apid.}
-\item{pval.apid.medpcbyconc.min}{First calculate the median of rval for
-wells with wllt equal to "p" or "c," by wllt, conc, and apid. Then
-calculate pval as the minimum of the calculated medians, by apid.}
-\item{pval.apid.medncbyconc.min}{First calculate the median of rval for
-wells with wllt equal to "m" or "o," by wllt, conc, and apid. Then
-calculate pval as the minimum of the calculated medians, by apid.}
-\item{pval.zero}{Define pval as 0.}
-}
+  \describe{
+    \item{pval.apid.pwlls.med}{Calculate pval as the median of rval for
+    wells with wllt equal to "p," by apid.}
+    \item{pval.apid.mwlls.med}{Calculate pval as the median of rval for
+    wells with wllt equal to "m," by apid.}
+    \item{pval.apid.medpcbyconc.max}{First calculate the median of rval for
+    wells with wllt equal to "p" or "c," by wllt, conc, and apid. Then
+    calculate pval as the maximum of the calculated medians, by apid.}
+    \item{pval.apid.medpcbyconc.min}{First calculate the median of rval for
+    wells with wllt equal to "p" or "c," by wllt, conc, and apid. Then
+    calculate pval as the minimum of the calculated medians, by apid.}
+    \item{pval.apid.medncbyconc.min}{First calculate the median of rval for
+    wells with wllt equal to "m" or "o," by wllt, conc, and apid. Then
+    calculate pval as the minimum of the calculated medians, by apid.}
+    \item{pval.zero}{Define pval as 0.}
+  }
 }
 
 \subsection{resp Methods}{
-\describe{
-\item{resp.pc}{Calculate resp as \eqn{\frac{\mathit{rval} -
-\mathit{bval}}{\mathit{pval} - \mathit{bval}}100}{(rval - bval)/(pval
-- bval)*100}.}
-\item{resp.fc}{Calculate resp as \eqn{\mathit{rval}/\mathit{bval}}{
-rval/bval}.}
-\item{resp.logfc}{Calculate resp as \eqn{\mathit{rval} - \mathit{bval}}{
-rval - bval}.}
-\item{resp.log2}{Take the logarithm of resp with base 2.}
-\item{resp.multneg1}{Multiply resp by -1.}
-\item{none}{Do no normalization; make resp equal to rval.}
-}
+  \describe{
+    \item{resp.pc}{Calculate resp as \eqn{\frac{\mathit{rval} -
+    \mathit{bval}}{\mathit{pval} - \mathit{bval}}100}{(rval - bval)/(pval
+    - bval)*100}.}
+    \item{resp.fc}{Calculate resp as \eqn{\mathit{rval}/\mathit{bval}}{
+    rval/bval}.}
+    \item{resp.logfc}{Calculate resp as \eqn{\mathit{rval} - \mathit{bval}}{
+    rval - bval}.}
+    \item{resp.log2}{Take the logarithm of resp with base 2.}
+    \item{resp.multneg1}{Multiply resp by -1.}
+    \item{none}{Do no normalization; make resp equal to rval.}
+  }
 }
 }
 

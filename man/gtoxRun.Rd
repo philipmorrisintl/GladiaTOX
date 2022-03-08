@@ -5,7 +5,7 @@
 \title{Perform data processing}
 \usage{
 gtoxRun(asid = NULL, slvl, elvl, id = NULL, type = "mc",
-mc.cores = NULL, outfile = NULL, runname = NULL)
+  mc.cores = NULL, outfile = NULL, runname = NULL)
 }
 \arguments{
 \item{asid}{Integer, assay source id}

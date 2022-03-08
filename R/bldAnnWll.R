@@ -57,13 +57,13 @@
     DT$study.phase <- phase
     DT$`cell type` <- study.data$u_celltype
     DT$endpoint <- study.data$u_endpoint
-    DT$`exposure date` <- study.data$createdt
+    DT$`exposure date` <- as.Date(study.data$createdt, '%m/%d/%Y')
     DT$plate_set <- study.data$plate_set
     DT$`Biological Replicate` <- study.data$u_biologicalreplicate
     DT$smkid <- ""
     DT$`well format` <- study.data$u_tubetype
     DT$assay <- paste(DT$endpoint,DT$`exposure duration`,sep="_")
-    DT$Date <- study.data$createdt
+    DT$Date <- DT$`exposure date`
     DT$u_boxtrack <- unlist(
         lapply(
             as.character(study.data$u_boxtrack),

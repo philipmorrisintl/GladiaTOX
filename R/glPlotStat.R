@@ -45,6 +45,7 @@ glPlotStat <- function(asid, ref.chm=NULL, stat=quote(modl_acc)) {
     addFlds <- c("asid", "aid", "anm", "acnm")
     aetbl <- gtoxLoadAeid(fld="asid", val=asid, add.fld=addFlds)
     dat <- gtoxPrepOtpt(gtoxLoadData(lvl=5, fld="aeid", val=aetbl$aeid))
+    dat <- dat[!is.na(dat$chnm), ]
     dat <- merge(dat, aetbl, by=c("aeid", "aenm"))
     dat <- dat[ , .SD[which.min(modl_rmse)], by=c("spid", "acnm")]
     dat[ , aenm := vapply(

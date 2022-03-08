@@ -7,10 +7,10 @@
 \title{Wrappers for sending queries and fetching results}
 \usage{
 gtoxQuery(query, db = getOption("TCPL_DB"),
-drvr = getOption("TCPL_DRVR"))
+  drvr = getOption("TCPL_DRVR"))
 
 gtoxSendQuery(query, db = getOption("TCPL_DB"),
-drvr = getOption("TCPL_DRVR"))
+  drvr = getOption("TCPL_DRVR"))
 }
 \arguments{
 \item{query}{Character of length 1, the query string}
@@ -47,7 +47,7 @@ gtoxConfDefault()
 
 gtoxQuery("SELECT 'Hello World';")
 gtoxQuery("SELECT * FROM assay;")
-
+ 
 ## Reset configuration
 options(conf_store)
 

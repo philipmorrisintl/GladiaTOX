@@ -36,7 +36,7 @@ chid <- gtoxLoadChem(field="chnm", val="acrylamide", include.spid=FALSE)$chid
 
 ## Load Assay endpoint ID
 aeid <- gtoxLoadAeid(fld=c("asid","aenm"), 
-val=list(1L, "GSH content_GSH content_4h_dn"), add.fld="asid")$aeid
+          val=list(1L, "GSH content_GSH content_4h_dn"), add.fld="asid")$aeid
 
 ## Plot winning model
 gtoxPlotWin(chid = chid, aeid = aeid, bline="bmad", collapse=TRUE)
