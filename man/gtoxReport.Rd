@@ -5,8 +5,8 @@
 \title{Generate a report}
 \usage{
 gtoxReport(type, asid, params = NULL, odir = getwd(), report_author,
-report_title = "Report", sumfile = NULL,
-keep.intermediates = FALSE)
+  report_title = "Report", sumfile = NULL,
+  keep.intermediates = FALSE)
 }
 \arguments{
 \item{type}{The type of report to generate}
@@ -37,20 +37,20 @@ None
 contains slightly different elements, but in general:
 \itemize{
 \item "all" -- summarizes the results for all or some compounds
-\itemize{
-\item "chids" -- (optional) a vector of chid values to report, rather than
-all available compounds
-}
+  \itemize{
+  \item "chids" -- (optional) a vector of chid values to report, rather than
+  all available compounds
+  }
 \item "compare" -- compares the results for two compounds
-\itemize{
-\item "c1" -- (required) the chid for the first compound to compare
-\item "c2" -- (required) the chid for the second compound to compare
-}
+  \itemize{
+  \item "c1" -- (required) the chid for the first compound to compare
+  \item "c2" -- (required) the chid for the second compound to compare
+  }
 \item "qc" -- summarizes low-level data for quality control purposes
-\itemize{
-\item "aids" -- (optional) a vector of aid values to report, rather than
-all available assays
-}
+  \itemize{
+  \item "aids" -- (optional) a vector of aid values to report, rather than
+  all available assays
+  }
 }
 
 The required list elements vary depending on the type of report, and are

@@ -77,6 +77,10 @@ gtoxReport <- function(type, asid, params=NULL, odir=getwd(),
     report_title="Report", sumfile=NULL,
     keep.intermediates=FALSE) {
 
+    ## replace any LaTeX spec chars
+    report_title <- gsub("[[:punct:]]", " ", report_title)
+    report_author <- gsub("[[:punct:]]", " ", report_author)
+
     ## Check type
     if (!type %in% c("compare", "qc", "all", "test")) {
         stop("Invalid 'type' input; must be 'compare,' 'qc,' or 'all'")

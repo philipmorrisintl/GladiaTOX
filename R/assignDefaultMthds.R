@@ -13,6 +13,7 @@
 #' @description Function to assign default processing method to asid in input
 #' 
 #' @param asid Integer, the asid value(s) to which assign the default methods
+#' @param params Parameters for level 2, 3, and 5 processing
 #'
 #' @details
 #' This function loads all components and endpoints for the given asid(s) in
@@ -36,8 +37,20 @@
 #' @import data.table
 #' @export
 #'
-assignDefaultMthds <- function(asid) {
+assignDefaultMthds <- function(asid, params = NULL) {
 
+    if(!is.null(params)){
+        message("Parse parameters")
+#        mthd_id_lvl2 = 
+#        mthd_id_lvl3 = 
+#        mthd_id_lvl5 =
+    }
+    else{
+        mthd_id_lvl2 = 1
+        mthd_id_lvl3 = c(39, 9, 7)
+        mthd_id_lvl5 = 9
+    }
+    
     atbl <- gtoxLoadAeid(
         fld="asid",
         val=asid,
@@ -57,13 +70,14 @@ assignDefaultMthds <- function(asid) {
         flds=atbl[ , list(normalized_data_type)])
 
     ## Assign level 2 methods (none for all acid values)
-    gtoxMthdAssign(lvl=2, id=unique(atbl$acid), mthd_id=1, ordr=1, type="mc")
+    gtoxMthdAssign(lvl=2, id=unique(atbl$acid), mthd_id=mthd_id_lvl2, ordr=1, 
+                   type="mc")
 
     ## Assign level 3 methods
     gtoxMthdAssign(
         lvl=3,
         id=atbl$aeid,
-        mthd_id=c(39, 9, 7),
+        mthd_id=mthd_id_lvl3,
         ordr=seq_len(3),
         type="mc")
 
@@ -75,7 +89,7 @@ assignDefaultMthds <- function(asid) {
         type="mc")
 
     ## Assign level 5 methods
-    gtoxMthdAssign(lvl=5, id=atbl$aeid, mthd_id=9, type="mc")
+    gtoxMthdAssign(lvl=5, id=atbl$aeid, mthd_id=mthd_id_lvl5, type="mc")
 
     ## Assign level 6 methods
     gtoxMthdAssign(

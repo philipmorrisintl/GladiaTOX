@@ -13,7 +13,7 @@
 \title{Functions for configuring the gtox package}
 \usage{
 gtoxConf(drvr = NULL, user = NULL, pass = NULL, host = NULL,
-db = NULL)
+  db = NULL)
 
 gtoxConfDefault()
 
@@ -95,8 +95,8 @@ gtoxConfList() # List configuration parameters
 
 ## Configure database
 sqlite <- file.path(system.file(package="GladiaTOX"),
-"sql",
-"gladiatoxdb.sqlite")
+    "sql",
+    "gladiatoxdb.sqlite")
 gtoxConf(db=sqlite, user=NA, host=NA, drvr="SQLite")
 
 
