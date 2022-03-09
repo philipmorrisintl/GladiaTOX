@@ -34,17 +34,17 @@ More information about the level 2 multiple-concentration processing is
 available in the package vignette, "Pipeline_Overview."
 
 \describe{
-\item{log2}{Take the logarithm of cval with the base 2.}
-\item{log10}{Take the logarithm of cval with the base 10.}
-\item{rmneg}{Remove entries where cval is less than 0.}
-\item{rmzero}{Remove entries where cval is 0.}
-\item{mult25}{Multiply cval by 25.}
-\item{mult100}{Multiply cval by 100.}
-\item{negshift}{Shift cval by subtracting out the minimum of cval and
-adding 1, such that the new minimum of cval is 1.}
-\item{mult25}{Multiply cval by 2.5.}
-\item{mult3}{Multiply cval by 3.}
-\item{mult6}{Multiply cval by 6.}
+  \item{log2}{Take the logarithm of cval with the base 2.}
+  \item{log10}{Take the logarithm of cval with the base 10.}
+  \item{rmneg}{Remove entries where cval is less than 0.}
+  \item{rmzero}{Remove entries where cval is 0.}
+  \item{mult25}{Multiply cval by 25.}
+  \item{mult100}{Multiply cval by 100.}
+  \item{negshift}{Shift cval by subtracting out the minimum of cval and
+  adding 1, such that the new minimum of cval is 1.}
+  \item{mult25}{Multiply cval by 2.5.}
+  \item{mult3}{Multiply cval by 3.}
+  \item{mult6}{Multiply cval by 6.}
 }
 }
 
