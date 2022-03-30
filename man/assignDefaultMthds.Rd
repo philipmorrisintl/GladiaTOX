@@ -4,10 +4,12 @@
 \alias{assignDefaultMthds}
 \title{Assign default processing methods}
 \usage{
-assignDefaultMthds(asid)
+assignDefaultMthds(asid, params = NULL)
 }
 \arguments{
 \item{asid}{Integer, the asid value(s) to which assign the default methods}
+
+\item{params}{Parameters for level 2, 3, and 5 processing}
 }
 \value{
 None

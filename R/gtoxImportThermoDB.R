@@ -42,7 +42,7 @@
 
 gtoxImportThermoDB <- function(asid, verbose=TRUE, write=FALSE, store="STORE",
             type="mc",
-            curlurl="http://pmichlauapp225.pmintl.net:2020/HTTPHCSConnect") {
+            curlurl="https://YOUR_THERMODB_SERVER_HOSTNAME/HTTPHCSConnect") {
 
     ## Check if the service is available
     temp <- try(curlPerform(url=curlurl), silent=TRUE)

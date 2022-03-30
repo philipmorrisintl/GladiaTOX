@@ -5,7 +5,7 @@
 \title{Pie chart for Minimal Effective Concentrations (MEC) and AC50 plot}
 \usage{
 glPlotPie(asid, chnms = NULL, acids = NULL, aeids = NULL,
-expos.time.ordr = NULL, stat = quote(modl_acc))
+  expos.time.ordr = NULL, stat = quote(modl_acc))
 }
 \arguments{
 \item{asid}{Assay source id}
