@@ -6,7 +6,7 @@
 \usage{
 gtoxImportThermoDB(asid, verbose = TRUE, write = FALSE,
   store = "STORE", type = "mc",
-  curlurl = "http://pptchcsstd00001.pmintl.net:2020/HTTPHCSConnect")
+  curlurl = "https://YOUR_THERMODB_SERVER_HOSTNAME/HTTPHCSConnect")
 }
 \arguments{
 \item{asid}{Integer, the assay study/source ID to import data for}
