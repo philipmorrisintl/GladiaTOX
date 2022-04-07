@@ -8,6 +8,7 @@ glPlotPosCtrlMEC(asid, masked = NULL)
 }
 \arguments{
 \item{asid}{Assay source id}
+\item{masked}{Masking color}
 }
 \value{
 A list of ggplot objects, one per assay X timepoint.
