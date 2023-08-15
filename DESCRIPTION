@@ -6,7 +6,7 @@ biocViews: Software,
     Preprocessing,
     QualityControl
 Title: R Package for Processing High Content Screening data
-Version: 1.11.2
+Version: 1.12.0
 Author: Vincenzo Belcastro [aut, cre],
     Dayne L Filer [aut],
     Stephane Cano [aut]
@@ -24,7 +24,7 @@ Depends:
     data.table (>= 1.9.4)
 Imports:
     DBI,
-    RMySQL,
+    RMariaDB,
     RSQLite,
     numDeriv,
     RColorBrewer,
