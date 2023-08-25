@@ -17,7 +17,7 @@
 #' @inheritParams gtoxConf
 #' 
 #' @details
-#' Currently, the gtox package only supports the "MySQL" and "SQLite" database
+#' Currently, the gtox package only supports the "MariaDB" and "SQLite" database
 #' drivers.
 #' 
 #' \code{gtoxQuery} returns a data.table object with the query results.

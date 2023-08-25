@@ -85,20 +85,20 @@ phase. The sqlite database can be seen as a sample database used for the
 following example. 
 
 In case users plan to use the package in production and for multiple studies, 
-it is recommended to install the MySQL database
+it is recommended to install the MariaDB database
 (`sql/gladiatoxdb_structure.mysql`). This file contains SQL instructions to
-create and initialize an MySQL database.
+create and initialize an MariaDB database.
 
 In case you install the database schema or change location of the sqlite 
 database, then you must run the configuration command below and point to the
 new database location. For example, in case you deploy the database schema 
-provided in the sql folder, then change the driver (`drvr`) to `MySQL`. 
+provided in the sql folder, then change the driver (`drvr`) to `MariaDB`. 
 Eventually you may need to configure your user name and password.
 
-Below is an example of configuration call pointing to an MySQL database called 
+Below is an example of configuration call pointing to an MariaDB database called 
 `my_gl_database` at `local.host`:
 ```{r, eval=FALSE, echo=TRUE, include=TRUE}
-gtoxConf(   drvr = "MySQL",
+gtoxConf(   drvr = "MariaDB",
             host = "local.host",
             user = "username",
             pass = "********",

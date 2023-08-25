@@ -20,7 +20,7 @@
 #' @param show.pass Logical, should the password be returned
 #' 
 #' @details
-#' Currently, the gtox package only supports the "MySQL" and "SQLite" database
+#' Currently, the gtox package only supports the "MariaDB" and "SQLite" database
 #' drivers.
 #'
 #' The settings can be stored in a configuration file to make the using the 

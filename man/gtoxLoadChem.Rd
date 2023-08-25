@@ -28,12 +28,12 @@ The 'field' parameter is named differently from the 'fld' parameter seen
 in other functions because it only takes one input.
 
 The functionality of the 'exact' parameter cannot be demonstrated within
-the SQLite environment. However, in the MySQL environment the user should
+the SQLite environment. However, in the MariaDB environment the user should
 be able to give parital chemcial name strings, to find chemicals with
 similar names. For example, setting 'val' to "phenol" when 'field' is "chnm"
 and 'exact' is \code{FALSE} might pull up the chemicals "mercury". More
 technically, setting 'exact' to \code{FALSE} passes the string in 'val' to
-an RLIKE statement within the MySQL query.
+an RLIKE statement within the MariaDB query.
 }
 \examples{
 ## Store the current config settings, so they can be reloaded at the end

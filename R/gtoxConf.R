@@ -33,11 +33,11 @@ gtoxConf <- function (drvr=NULL, user=NULL, pass=NULL, host=NULL, db=NULL) {
 
     if (!is.null(drvr)) {
 
-        if (!drvr %in% c("SQLite", "MySQL")) {
+        if (!drvr %in% c("SQLite", "MariaDB")) {
             stop(
                 drvr,
                 " is not a supported database driver. Must be 'SQLite' or ",
-                "'MySQL'."
+                "'MariaDB'."
             )
         }
 
@@ -45,14 +45,14 @@ gtoxConf <- function (drvr=NULL, user=NULL, pass=NULL, host=NULL, db=NULL) {
             options("TCPL_DRVR"="SQLite")
         }
 
-        if (drvr == "MySQL") {
-            options("TCPL_DRVR"="MySQL")
+        if (drvr == "MariaDB") {
+            options("TCPL_DRVR"="MariaDB")
             mxp <- gtoxQuery(
                 "SHOW VARIABLES LIKE 'max_allowed_packet'")[ , Value]
             mxp <- as.numeric(mxp)
             if (mxp < 1073741824) {
                 warning(
-                    "The 'max_allowed_packet' MySQL server setting is set to ",
+                    "The 'max_allowed_packet' MariaDB server setting is set to ",
                     mxp, " bytes. It is recommended that you increase it to ",
                     "1073741824 bytes to ensure larger queries run without ",
                     "error."

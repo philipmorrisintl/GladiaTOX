@@ -14,8 +14,8 @@
 #' @import DBI
 #' @importFrom RSQLite SQLite
 #' @import data.table
-#' @importFrom RMySQL MySQL
-#' @importMethodsFrom RMySQL dbConnect dbDisconnect
+#' @importFrom RMariaDB MariaDB
+#' @importMethodsFrom RMariaDB dbConnect dbDisconnect
 #' @export
 
 
@@ -41,7 +41,7 @@ gtoxQuery <- function(query, db=getOption("TCPL_DB"),
 
     }
 
-    if (drvr == "MySQL") {
+    if (drvr == "MariaDB") {
 
         if (any(is.na(options()[c("TCPL_USER", "TCPL_HOST", "TCPL_PASS")]))) {
             stop(
@@ -51,7 +51,7 @@ gtoxQuery <- function(query, db=getOption("TCPL_DB"),
         }
 
         db_pars <- list(
-            drv=MySQL(),
+            drv=MariaDB(),
             user=getOption("TCPL_USER"),
             password=getOption("TCPL_PASS"),
             host=getOption("TCPL_HOST"),
