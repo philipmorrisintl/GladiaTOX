@@ -47,7 +47,7 @@ gtoxListFlds <- function(tbl, db=getOption("TCPL_DB")) {
 
     }
 
-    if (getOption("TCPL_DRVR") == "MySQL") {
+    if (getOption("TCPL_DRVR") == "MariaDB") {
 
         qformat <-
             "

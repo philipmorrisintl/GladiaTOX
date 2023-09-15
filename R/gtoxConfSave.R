@@ -34,10 +34,10 @@ gtoxConfSave <- function () {
     }
 
     drvr <- options()$TCPL_DRVR
-    if (!drvr %in% c("SQLite", "MySQL")) {
+    if (!drvr %in% c("SQLite", "MariaDB")) {
         stop(
             drvr, " is not a supported database driver. Must be 'SQLite' or ",
-            "'MySQL'."
+            "'MariaDB'."
         )
     }
     drvr <- shQuote(drvr)

@@ -27,7 +27,7 @@ These functions send a query to the given database, and are the access point
 for all gtox functions that query or update the gtox database.
 }
 \details{
-Currently, the gtox package only supports the "MySQL" and "SQLite" database
+Currently, the gtox package only supports the "MariaDB" and "SQLite" database
 drivers.
 
 \code{gtoxQuery} returns a data.table object with the query results.

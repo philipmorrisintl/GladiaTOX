@@ -19,8 +19,8 @@
 #' @import DBI
 #' @importFrom RSQLite SQLite
 #' @import data.table
-#' @importFrom RMySQL MySQL
-#' @importMethodsFrom RMySQL dbSendQuery dbClearResult dbDisconnect dbConnect
+#' @importFrom RMariaDB MariaDB
+#' @importMethodsFrom RMariaDB dbSendQuery dbClearResult dbDisconnect dbConnect
 #' @importFrom methods is
 #' @export
 
@@ -44,7 +44,7 @@ gtoxSendQuery <- function(query, db=getOption("TCPL_DB"),
 
     }
 
-    if (getOption("TCPL_DRVR") == "MySQL") {
+    if (getOption("TCPL_DRVR") == "MariaDB") {
 
         if (any(is.na(options()[c("TCPL_USER", "TCPL_HOST", "TCPL_PASS")]))) {
             stop(
@@ -52,7 +52,7 @@ gtoxSendQuery <- function(query, db=getOption("TCPL_DB"),
                 "See ?gtoxConf for more details.")
         }
 
-        db_pars <- list(drv=MySQL(),
+        db_pars <- list(drv=MariaDB(),
                         user=getOption("TCPL_USER"),
                         password=getOption("TCPL_PASS"),
                         host=getOption("TCPL_HOST"),
