@@ -31,7 +31,7 @@ gtoxConfDefault()
 ## Create boxplot of MEC
 ## plots in a pdf file.
 pp <- glPlotStat(asid = 1L)
-pp[[1]]
+pp@data
 
 ## Reset configuration
 options(conf_store)

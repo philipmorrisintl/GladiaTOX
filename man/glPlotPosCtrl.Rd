@@ -28,7 +28,7 @@ gtoxConfDefault()
 ## Create boxplot for all endpoints and chemicals tested. Useful to save
 ## plots in a pdf file.
 pp <- glPlotPosCtrl(asid = 1L)
-pp[[1]]
+pp@data
 
 ## Reset configuration
 options(conf_store)
