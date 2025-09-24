@@ -28,7 +28,7 @@
 #' ## Create boxplot of MEC
 #' ## plots in a pdf file.
 #' pp <- glPlotStat(asid = 1L)
-#' pp@data
+#' pp[[1]]
 #'
 #' ## Reset configuration
 #' options(conf_store)
