@@ -34,7 +34,6 @@
 #' @return A data.table with the assay plate information for the given
 #' parameters
 #'
-#' @import data.table
 #' @export
 
 gtoxLoadApid <- function(fld=NULL, val=NULL) {

@@ -28,7 +28,7 @@
 #'
 #' @import DBI
 #' @importFrom RSQLite SQLite
-#' @import data.table
+#' @importFrom data.table := set
 #' @importFrom RMariaDB MariaDB
 #' @importMethodsFrom RMariaDB dbConnect dbWriteTable dbDisconnect
 

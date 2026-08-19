@@ -24,7 +24,7 @@
 #'
 #' @keywords internal
 #' 
-#' @import data.table
+#' @importFrom data.table := setkey rbindlist
 
 mc6 <- function(ae, wr=FALSE) {
 

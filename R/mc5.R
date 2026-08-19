@@ -24,7 +24,7 @@
 #'
 #' @keywords internal
 #' 
-#' @import data.table
+#' @importFrom data.table := .SD
 
 mc5 <- function(ae, wr=FALSE) {
 

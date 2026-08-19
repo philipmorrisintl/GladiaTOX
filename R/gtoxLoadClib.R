@@ -44,7 +44,6 @@
 #' @return A data.table with the chemical library information for the given
 #' parameters.
 #'
-#' @import data.table
 #' @export
 
 gtoxLoadClib <- function(field=NULL, val=NULL) {

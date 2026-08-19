@@ -26,7 +26,7 @@
 #'
 #' @keywords internal
 #' 
-#' @import data.table
+#' @importFrom data.table := .SD .GRP
 #' @importFrom stats mad median
 
 sc2 <- function(ae, wr=FALSE) {

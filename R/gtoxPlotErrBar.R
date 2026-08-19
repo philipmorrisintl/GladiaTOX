@@ -30,7 +30,7 @@
 #' @importFrom stats sd
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom grDevices colorRampPalette
-#' @import data.table
+#' @importFrom data.table := .N .GRP set setkey
 #' @importFrom graphics text abline points legend lines axis par strwidth
 #' @export
 

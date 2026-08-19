@@ -25,7 +25,7 @@
 #'
 #' @keywords internal
 #' 
-#' @import data.table
+#' @importFrom data.table := .SD setkey
 
 mc3 <- function(ac, wr=FALSE) {
 

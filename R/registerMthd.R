@@ -31,7 +31,7 @@
 #' 
 #' @return None
 #'
-#' @import data.table
+#' @importFrom data.table := data.table
 
 registerMthd <- function(lvl, mthd, desc, nddr=0L, type) {
 

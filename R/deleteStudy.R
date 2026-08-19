@@ -44,7 +44,6 @@
 #' Cannot be undone. Please use carefully. Not exported, as this is
 #' intended for development and should not be used with real data.
 #' 
-#' @import data.table
 #' @export
 #' 
 #' @return None

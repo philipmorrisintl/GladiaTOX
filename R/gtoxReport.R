@@ -64,7 +64,6 @@
 #' 
 #' @return None
 #'
-#' @import data.table
 #' @importFrom tools texi2pdf
 #' @importFrom utils Sweave
 #' @importFrom brew brew

@@ -37,7 +37,7 @@
 #' 
 #' @return Data table with content fetched from Thermo DB.
 #' 
-#' @import data.table
+#' @importFrom data.table := set setkey rbindlist
 #' @export
 
 gtoxImportThermoDB <- function(asid, verbose=TRUE, write=FALSE, store="STORE",

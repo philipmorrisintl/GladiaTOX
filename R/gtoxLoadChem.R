@@ -53,7 +53,7 @@
 #'
 #' @return A data.table with the chemical information for the given parameters
 #'
-#' @import data.table
+#' @importFrom data.table :=
 #' @export
 
 gtoxLoadChem <- function(field=NULL, val=NULL, exact=TRUE,

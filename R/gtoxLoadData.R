@@ -78,7 +78,6 @@
 #'
 #' @seealso \code{\link{gtoxQuery}}, \code{\link{data.table}}
 #'
-#' @import data.table
 #' @export
 
 gtoxLoadData <- function(lvl, fld=NULL, val=NULL, type="mc") {

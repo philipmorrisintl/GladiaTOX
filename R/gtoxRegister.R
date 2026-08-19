@@ -11,7 +11,7 @@
 
 #' @rdname rgstr_funcs
 #'
-#' @import data.table
+#' @importFrom data.table := as.data.table setnames
 #' @export
 
 gtoxRegister <- function(what, flds) {

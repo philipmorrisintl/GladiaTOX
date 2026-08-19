@@ -24,7 +24,6 @@
 #'
 #' @seealso \code{\link{gtoxQuery}}, \code{\link{data.table}}
 #'
-#' @import data.table
 
 gtoxLoadUnit <- function(aeid) {
 

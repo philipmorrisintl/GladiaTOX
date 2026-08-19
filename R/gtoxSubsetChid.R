@@ -63,7 +63,7 @@
 #'
 #' @seealso \code{\link{gtoxPrepOtpt}}
 #'
-#' @import data.table
+#' @importFrom data.table := .N .I data.table setkey setkeyv
 #' @export
 
 gtoxSubsetChid <- function(dat, flag=TRUE) {

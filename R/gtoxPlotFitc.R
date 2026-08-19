@@ -32,7 +32,7 @@
 #' 
 #' @return None
 #'
-#' @import data.table
+#' @importFrom data.table := .N data.table setkey
 #' @importFrom grDevices col2rgb colorRampPalette rgb
 #' @importFrom stats quantile
 #' @importFrom graphics par plot lines text legend

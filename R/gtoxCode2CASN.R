@@ -30,6 +30,7 @@
 #'
 #' @return A CAS Registry Number.
 #'
+#' @importFrom data.table first
 #' @export
 
 gtoxCode2CASN <- function(code) {

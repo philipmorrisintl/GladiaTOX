@@ -34,7 +34,6 @@
 #'
 #' @return TRUE if successful.
 #'
-#' @import data.table
 #' @export
 
 

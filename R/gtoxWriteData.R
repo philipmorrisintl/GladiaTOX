@@ -56,7 +56,7 @@
 #' @seealso \code{\link{gtoxCascade}}, \code{\link{gtoxAppend}}
 #' 
 #' @return None
-#' @import data.table
+#' @importFrom data.table := .SD copy setkeyv
 #' @export
 
 gtoxWriteData <- function(dat, lvl, type) {

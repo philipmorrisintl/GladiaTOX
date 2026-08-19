@@ -23,7 +23,7 @@
 #' Level 1 processing includes defining the concentration and replicate index,
 #' cndx and repi, respectively.
 #'
-#' @import data.table
+#' @importFrom data.table := .SD setkey setkeyv
 
 mc1 <- function(ac, wr=FALSE) {
 

@@ -48,7 +48,7 @@
 #' 
 #' @return Data table with data and metadata to store in database
 #' 
-#' @import data.table
+#' @importFrom data.table := setkey
 #' @export
 #' 
 

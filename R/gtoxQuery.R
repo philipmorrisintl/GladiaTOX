@@ -13,7 +13,7 @@
 #'
 #' @import DBI
 #' @importFrom RSQLite SQLite
-#' @import data.table
+#' @importFrom data.table as.data.table
 #' @importFrom RMariaDB MariaDB
 #' @importMethodsFrom RMariaDB dbConnect dbDisconnect
 #' @export

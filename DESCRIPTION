@@ -20,9 +20,9 @@ Description: GladiaTOX R package is an open-source, flexible solution to
     control and data processing.
 License: GPL-2
 Depends:
-    R (>= 3.6.0),
-    data.table (>= 1.9.4)
+    R (>= 3.6.0)
 Imports:
+    data.table (>= 1.9.4),
     DBI,
     RMariaDB,
     RSQLite,
@@ -44,6 +44,7 @@ Imports:
     utils,
     RCurl,
     XML
+Encoding: UTF-8
 LazyData: FALSE
 VignetteBuilder: knitr
 Suggests:
@@ -53,5 +54,5 @@ Suggests:
     testthat,
     BiocStyle
 NeedsCompilation: no
-RoxygenNote: 6.1.1
 URL: https://github.com/philipmorrisintl/GladiaTOX
+Config/roxygen2/version: 8.0.0

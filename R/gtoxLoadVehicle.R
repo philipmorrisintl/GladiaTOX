@@ -32,7 +32,6 @@
 #' 
 #' @return A data.table with the list of vehicles and vehicles ids.
 #'
-#' @import data.table
 #' @export
 
 gtoxLoadVehicle <- function(field=NULL, val=NULL) {

@@ -26,7 +26,6 @@
 #' 
 #' @return None
 #'
-#' @import data.table
 
 gtoxDelete <- function(tbl, fld, val, db) {
 

@@ -33,7 +33,7 @@
 #' 
 #' @return None
 #'
-#' @import data.table
+#' @importFrom data.table := data.table
 #' @importFrom stats dist
 
 interlaceFunc <- function(val, intq, coli, rowi, apid, r) {

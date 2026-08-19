@@ -19,7 +19,7 @@
 #' @keywords internal
 #' 
 #' @importFrom stringr str_extract
-#' @import data.table
+#' @importFrom data.table :=
 #' 
 #' @return None
 

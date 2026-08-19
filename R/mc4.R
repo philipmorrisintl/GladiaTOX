@@ -28,7 +28,7 @@
 #'
 #' @keywords internal
 #' 
-#' @import data.table
+#' @importFrom data.table := .GRP tables
 #' @importFrom stats mad
 
 mc4 <- function(ae, wr=FALSE) {

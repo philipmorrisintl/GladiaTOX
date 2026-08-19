@@ -21,7 +21,7 @@
 #' @importFrom RJSONIO isValidJSON fromJSON
 #' @importFrom stringr str_extract
 #' @importFrom utils type.convert
-#' @import data.table
+#' @importFrom data.table data.table as.data.table
 #' 
 #' @keywords internal
 #' 

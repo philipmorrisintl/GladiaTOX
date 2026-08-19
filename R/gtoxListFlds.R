@@ -26,7 +26,6 @@
 #'
 #' @return A string of field names for the given table.
 #'
-#' @import data.table
 #' @export
 
 

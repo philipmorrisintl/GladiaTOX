@@ -18,7 +18,6 @@
 #'
 #' @import DBI
 #' @importFrom RSQLite SQLite
-#' @import data.table
 #' @importFrom RMariaDB MariaDB
 #' @importMethodsFrom RMariaDB dbSendQuery dbClearResult dbDisconnect dbConnect
 #' @importFrom methods is

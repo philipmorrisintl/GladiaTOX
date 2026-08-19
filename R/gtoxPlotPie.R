@@ -30,7 +30,7 @@
 #' @importFrom stats sd
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom grDevices colorRampPalette
-#' @import data.table
+#' @importFrom data.table := setkey
 #' @importFrom graphics text polygon legend lines axis par strwidth plot.new
 #' @importFrom graphics plot.window
 #' @export

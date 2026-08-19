@@ -31,7 +31,6 @@
 #' 
 #' @return A data.table containing cutoff values for the given aeids.
 #'
-#' @import data.table
 #' @export
 
 gtoxLoadVmad <- function(aeid=NULL) {

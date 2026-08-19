@@ -23,7 +23,6 @@
 #'
 #' @keywords internal
 #' 
-#' @import data.table
 #' @return List of fields
 #' 
 

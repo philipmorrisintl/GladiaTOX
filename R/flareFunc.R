@@ -29,7 +29,7 @@
 #' 
 #' @return None
 #' 
-#' @import data.table
+#' @importFrom data.table := data.table
 #' @importFrom stats dist
 
 flareFunc <- function(val, coli, rowi, apid, r){

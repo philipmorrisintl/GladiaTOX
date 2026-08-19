@@ -34,7 +34,6 @@
 #' @return A data.table with the well annotation information for the given
 #' parameters
 #'
-#' @import data.table
 #' @export
 
 gtoxLoadWaid <- function(fld=NULL, val=NULL) {

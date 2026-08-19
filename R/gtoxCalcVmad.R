@@ -41,7 +41,7 @@
 #' 
 #' @return None
 #' 
-#' @import data.table
+#' @importFrom data.table .N data.table
 #' @export
 
 gtoxCalcVmad <- function(inputs, aeid=NULL, notes=NULL) {

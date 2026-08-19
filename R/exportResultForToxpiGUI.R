@@ -34,6 +34,7 @@
 #' @return None
 #'
 #' @importFrom tidyr spread
+#' @importFrom data.table := .SD dcast
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom utils write.table
 #'

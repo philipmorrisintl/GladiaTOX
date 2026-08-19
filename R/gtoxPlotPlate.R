@@ -54,7 +54,7 @@
 #' 
 #' @return None
 #'
-#' @import data.table
+#' @importFrom data.table := data.table setnames setkey
 #' @importFrom stats quantile
 #' @export
 

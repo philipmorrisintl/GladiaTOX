@@ -77,7 +77,7 @@
 #' 
 #' @return None
 #'
-#' @import data.table
+#' @importFrom data.table := setkey
 #' @export
 
 gtoxPlotFits <- function(dat, agg, flg=NULL, ordr.fitc=FALSE, bline="bmad") {

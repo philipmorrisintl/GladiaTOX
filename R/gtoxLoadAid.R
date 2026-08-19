@@ -10,7 +10,6 @@
 #-------------------------------------------------------------------------------
 
 #' @rdname assay_funcs
-#' @import data.table
 #' @export
 
 gtoxLoadAid <- function(fld=NULL, val=NULL, add.fld=NULL) {

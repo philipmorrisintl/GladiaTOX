@@ -34,7 +34,7 @@
 #' gtoxRun(asid = 1L, slvl = 1, elvl = 6, mc.cores = 2)
 #' 
 #' @return None
-#' @import data.table
+#' @importFrom data.table :=
 #' @export
 #'
 assignDefaultMthds <- function(asid, params = NULL) {

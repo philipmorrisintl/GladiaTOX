@@ -46,7 +46,7 @@
 #' 
 #' @importFrom RJSONIO toJSON
 #' @importFrom stringr str_extract
-#' @import data.table
+#' @importFrom data.table := .I data.table setnames setkey
 #' @export
 #' 
 

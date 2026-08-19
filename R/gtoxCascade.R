@@ -33,7 +33,6 @@
 #' 
 #' @return None
 #'
-#' @import data.table
 #' @importFrom methods is
 
 gtoxCascade <- function(lvl, type, id) {

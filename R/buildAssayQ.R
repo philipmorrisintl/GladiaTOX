@@ -26,7 +26,6 @@
 #' 
 #' @return A character containing the query to send to gtoxQuery
 #' 
-#' @import data.table
 
 .buildAssayQ <- function(out, tblo, fld=NULL, val=NULL, add.fld=NULL) {
 

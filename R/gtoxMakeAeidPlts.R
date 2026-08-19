@@ -40,7 +40,6 @@
 #' 
 #' @return None
 #'
-#' @import data.table
 #' @importFrom grDevices graphics.off pdf
 #' @export
 

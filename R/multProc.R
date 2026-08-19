@@ -7,6 +7,7 @@
 
 #' @keywords internal
 #' 
+#' @importFrom data.table rbindlist
 #' @importFrom parallel mclapply
 #' 
 
